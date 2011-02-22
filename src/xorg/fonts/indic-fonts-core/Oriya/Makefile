@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -35,8 +35,8 @@ ROOT_FONT_DIR 	= $(FILEROOT)/usr/share/fonts/TrueType//indic-fonts-core
 ROOT_DOC_DIR 	= $(FILEROOT)/usr/share/doc/indic-fonts-core
 
 $(VER)/.installed: $(VER)/.unpacked_withdir
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_FONT_DIR)
-	( cd $(VER); $(INS) $(ROOT_FONT_DIR) -m 0444 -u root -g bin $(FONT); )
+	$(INSDIR) -m 755 $(ROOT_FONT_DIR)
+	( cd $(VER); $(INS) $(ROOT_FONT_DIR) $(FONT); )
 	touch $@
 
 all: $(VER)/.unpacked_withdir

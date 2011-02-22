@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -38,8 +38,8 @@ $(VER)/$(FONT): $(VER)/.unpacked_withdir
 	cp $(VER)/vemana2000.ttf $@
 
 $(VER)/.installed: $(VER)/$(FONT)
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_FONT_DIR)
-	( cd $(VER); $(INS) $(ROOT_FONT_DIR) -m 0444 -u root -g bin $(FONT); )
+	$(INSDIR) -m 755 $(ROOT_FONT_DIR)
+	( cd $(VER); $(INS) $(ROOT_FONT_DIR) $(FONT); )
 	touch $@
 
 all: $(VER)/.unpacked_withdir

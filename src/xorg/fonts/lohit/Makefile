@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -66,21 +66,21 @@ clean: $(SUBDIRS)
 	$(RM) .*installed *bz2
 
 .files_installed: .docs_installed
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_FONT_DIR)
+	$(INSDIR) -m 755 $(ROOT_FONT_DIR)
 	( for f in $(FILES); do \
-		$(INS) $(ROOT_FONT_DIR) -m 0444 -u root -g bin $$f; \
+		$(INS) $(ROOT_FONT_DIR) $$f; \
 	done; )
-	$(INSDIR) -m 755 -u root -g bin $(FONTCONF_DIR)
-	$(INS) $(FONTCONF_DIR) -m 0444 -u root -g bin $(CONF_FILE) 
+	$(INSDIR) -m 755 $(FONTCONF_DIR)
+	$(INS) $(FONTCONF_DIR) $(CONF_FILE) 
 	touch $@
 
 %.bz2: %
 	$(BZIP2) -c $< > $@
 
 .docs_installed: $(DOCS:%=%.bz2) $(SUBDIRS)
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_DOC_DIR)
+	$(INSDIR) -m 755 $(ROOT_DOC_DIR)
 	( for f in $(DOCS); do \
-		$(INS) $(ROOT_DOC_DIR) -m 0444 -u root -g bin $$f.bz2; \
+		$(INS) $(ROOT_DOC_DIR) $$f.bz2; \
 	done; )
 	touch $@
 

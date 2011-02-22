@@ -18,16 +18,16 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 FONTROOT	= $(FILEROOT)/usr/share/fonts/TrueType
 
 $(VER)/.fonts_installed: $(VER)/.unpacked
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_FONT_DIR)
+	$(INSDIR) -m 755 $(ROOT_FONT_DIR)
 	( cd $(VER); \
 	for f in $(FONTS); do \
-		$(INS) $(ROOT_FONT_DIR) -m 0444 -u root -g bin $$f; \
+		$(INS) $(ROOT_FONT_DIR) $$f; \
 	done; )
 	touch $@
 
@@ -35,11 +35,11 @@ $(VER)/%.bz2: $(VER)/%
 	$(BZIP2) -c $< > $@
 
 $(VER)/.docs_installed: $(VER)/.unpacked $(DOCS:%=$(VER)/%.bz2)
-	$(INSDIR) -m 755 -u root -g bin $(ROOT_DOC_DIR)
+	$(INSDIR) -m 755 $(ROOT_DOC_DIR)
 	( cd $(VER); \
 	DOCS="$(DOCS)"; \
 	for f in $$DOCS; do \
-		$(INS) $(ROOT_DOC_DIR) -m 0444 -u root -g bin $$f.bz2; \
+		$(INS) $(ROOT_DOC_DIR) $$f.bz2; \
 	done; \
 	)
 	touch $@

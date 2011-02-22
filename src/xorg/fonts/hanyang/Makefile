@@ -18,10 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -39,11 +36,14 @@ FILES =	h2drrm.ttf \
 	fonts.dir
 
 
-install: all
-	$(INSDIR) -m 775 -u root -g bin $(TARGETFONTDIR)
+install: .installed
+
+.installed:
+	$(INSDIR) -m 775 $(TARGETFONTDIR)
 	for f in $(FILES); do \
-		$(INS) $(TARGETFONTDIR) -m 444 -u root -g bin $$f ; \
+		$(INS) $(TARGETFONTDIR) $$f ; \
 	done
+	touch $@
 
 all: $(FILES)
 
