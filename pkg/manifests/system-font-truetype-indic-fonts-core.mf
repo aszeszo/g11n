@@ -11,7 +11,7 @@
 # and limitations under the License.
 #
 # When distributing Covered Code, include this CDDL HEADER in each
-# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# file and include the License file at src/OPENSOLARIS.LICENSE.
 # If applicable, add the following below this CDDL HEADER, with the
 # fields enclosed by brackets "[]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/indic-fonts-core@$(PKGVERS)
@@ -44,6 +44,8 @@ file path=usr/share/fonts/TrueType/indic-fonts-core/Malige-b.ttf
 file path=usr/share/fonts/TrueType/indic-fonts-core/Malige-n.ttf
 file path=usr/share/fonts/TrueType/indic-fonts-core/MuktiNarrow.ttf
 file path=usr/share/fonts/TrueType/indic-fonts-core/MuktiNarrowBold.ttf
+file path=usr/share/fonts/TrueType/indic-fonts-core/fonts.dir
+file path=usr/share/fonts/TrueType/indic-fonts-core/fonts.scale
 file path=usr/share/fonts/TrueType/indic-fonts-core/utkal.ttf
 file path=usr/share/fonts/TrueType/indic-fonts-core/vemana.ttf
 license copyright.indic-fonts-core license=copyright.indic-fonts-core

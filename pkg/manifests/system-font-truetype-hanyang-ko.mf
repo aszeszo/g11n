@@ -11,7 +11,7 @@
 # and limitations under the License.
 #
 # When distributing Covered Code, include this CDDL HEADER in each
-# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# file and include the License file at src/OPENSOLARIS.LICENSE.
 # If applicable, add the following below this CDDL HEADER, with the
 # fields enclosed by brackets "[]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
@@ -20,11 +20,12 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/hanyang-ko@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
+depend fmri=system/font/truetype/hanyang-ko-core type=require
 set name=pkg.summary value="HanYang Korean TrueType fonts"
 set name=pkg.description value="HanYang Korean Truetype fonts"
 legacy pkg=SUNWttf-hanyang-ko category=system,l10nko \

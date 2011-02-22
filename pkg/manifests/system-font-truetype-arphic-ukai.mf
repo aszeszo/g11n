@@ -11,7 +11,7 @@
 # and limitations under the License.
 #
 # When distributing Covered Code, include this CDDL HEADER in each
-# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# file and include the License file at src/OPENSOLARIS.LICENSE.
 # If applicable, add the following below this CDDL HEADER, with the
 # fields enclosed by brackets "[]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/arphic-ukai@$(PKGVERS)
@@ -33,8 +33,20 @@ legacy pkg=SUNWttf-arphic-ukai category=system,l10nzh \
     desc="debian arphic-ukai font"
 dir path=usr group=sys
 dir path=usr/share group=sys
+dir path=usr/share/doc group=other
+dir path=usr/share/doc/arphic
+dir path=usr/share/doc/arphic/license
+dir path=usr/share/doc/arphic/license/big5
+dir path=usr/share/doc/arphic/license/english
+dir path=usr/share/doc/arphic/license/gb
 dir path=usr/share/fonts
 dir path=usr/share/fonts/TrueType
 dir path=usr/share/fonts/TrueType/arphic
+file path=usr/share/doc/arphic/license/big5/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/doc/arphic/license/english/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/doc/arphic/license/gb/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/fonts/TrueType/arphic/fonts.alias
+file path=usr/share/fonts/TrueType/arphic/fonts.dir
+file path=usr/share/fonts/TrueType/arphic/fonts.scale
 file path=usr/share/fonts/TrueType/arphic/ukai.ttf
 license copyright.arphicfont license=copyright.arphicfont

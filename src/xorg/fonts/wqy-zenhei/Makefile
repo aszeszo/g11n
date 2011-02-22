@@ -18,51 +18,44 @@
 #
 # CDDL HEADER END
 #
-
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
 
-ROOT_FONT_DIR 	= $(FILEROOT)/usr/share/fonts/TrueType/wqy
-ROOT_DOC_DIR 	= $(FILEROOT)/usr/share/doc/wqy-zenhei
-ROOT_FONTCONF_DIR = $(FILEROOT)/etc/fonts/conf.avail
+PROJECT		= wqy-zenhei
+VER 		= $(PROJECT)
+TARBALL		= $(VER)-0.6.26-0.tar.gz
+SOURCE_URL	= http://downloads.sourceforge.net/project/wqy/$(PROJECT)/0.6.26/$(TARBALL)
 
-FONT_TAR	= wqy-zenhei.tar.bz2
-FONT_DOC_TAR	= wqy-zenhei-doc.tar.bz2
-FONT_CONF	= 44-wqy-zenhei.conf
-FONT_SHARP_CONF = 66-wqy-zenhei-sharp.conf
+ROOT_FONT_DIR 	= $(FONTROOT)/wqy
+ROOT_DOC_DIR 	= $(FILEROOT)/usr/share/doc/$(PROJECT)
+FONTCONF_DIR	= $(FILEROOT)/etc/fonts/conf.avail
 
+FONTS =	wqy-zenhei.ttf \
+	../fonts.dir \
+	../fonts.scale
 
-SUBDIRS         = 
+# customized 44-wqy-zenhei.conf
+CONF_FILES = 	../44-wqy-zenhei.conf \
+		66-wqy-zenhei-sharp.conf
 
-all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+DOCS =	AUTHORS \
+	COPYING \
+	ChangeLog \
+	README
 
-.KEEP_STATE:
+all: $(VER)/.unpacked
 
-all: $(FONT_TAR)
+install: $(VER)/.installed $(VER)/.conf_installed
 
-font_install:
-	mkdir -p $(ROOT_FONT_DIR) $(ROOT_DOC_DIR) $(ROOT_FONTCONF_DIR)
-	bzip2 -d -c $(FONT_TAR) | (cd $(ROOT_FONT_DIR) ; tar xpf -)
-	bzip2 -d -c $(FONT_DOC_TAR) | (cd $(ROOT_DOC_DIR) ; tar xpf -)
-	cp $(FONT_CONF) $(ROOT_FONTCONF_DIR)/
-	cp $(FONT_SHARP_CONF) $(ROOT_FONTCONF_DIR)/
-    
+$(VER)/.conf_installed:
+	$(INSDIR) -m 755 $(FONTCONF_DIR)
+	( cd $(VER); \
+	for f in $(CONF_FILES); do \
+		$(INS) $(FONTCONF_DIR) $$f; \
+	done; )
+	touch $@
 
-install: all $(SUBDIRS) font_install
-
-clean:
-
-clobber: clean
-
-$(SUBDIRS): FRC
-	-@cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
+include ../Makefile.fonts
+include $(SRC)/Makefile.targ

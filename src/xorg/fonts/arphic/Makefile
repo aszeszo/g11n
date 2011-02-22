@@ -18,50 +18,46 @@
 #
 # CDDL HEADER END
 #
-
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
 
+SUBDIRS = \
+	ukai \
+	uming
+
+FILES = fonts.dir \
+	fonts.scale \
+	fonts.alias
+
+
 ROOT_FONT_DIR 	= $(FILEROOT)/usr/share/fonts/TrueType/arphic
 ROOT_DOC_DIR 	= $(FILEROOT)/usr/share/doc/arphic
 
-FONT_TAR1 = uming.tar.bz2
-FONT_TAR2 = ukai.tar.bz2
-FONT_DOCS = license
-FONT_SCALE	= fonts.scale
-
-
-
 all:=		TARGET= all
-install:=	TARGET= install
-clean:=		TARGET= clean
-clobber:=	TARGET= clobber
-lint:=		TARGET= lint
+install :=	TARGET= install
+clean :=	TARGET= clean
+clobber :=	TARGET= clobber
 
-.KEEP_STATE:
+all: $(SUBDIRS)
 
-all: $(FONT_TAR1) $(FONT_TAR2)
+install: $(SUBDIRS) .files_installed
 
-font_install:
-	mkdir -p $(ROOT_FONT_DIR) $(ROOT_DOC_DIR)
-	bzip2 -d -c $(FONT_TAR1) | (cd $(ROOT_FONT_DIR) ; tar xpf -)
-	bzip2 -d -c $(FONT_TAR2) | (cd $(ROOT_FONT_DIR) ; tar xpf -)
-	cp -r $(FONT_DOCS) $(ROOT_DOC_DIR)
-	cp fonts.dir $(ROOT_FONT_DIR)/fonts.dir
-	cp fonts.alias $(ROOT_FONT_DIR)/fonts.alias
-	cp fonts.scale $(ROOT_FONT_DIR)/fonts.scale
+clean: $(SUBDIRS)
+	$(RM) .*installed
 
-install: all  font_install
-
-clean:
-
-clobber: clean
+.files_installed:
+	$(INSDIR) -m 755 $(ROOT_FONT_DIR)
+	( for f in $(FILES); do \
+		$(INS) $(ROOT_FONT_DIR) $$f; \
+	done; )
+	touch $@
 
 $(SUBDIRS): FRC
-	-@cd $@; pwd; $(MAKE) $(TARGET)
+	@cd $@; pwd; $(MAKE) $(MFLAGS) $(TARGET)
+
+tarball:
 
 FRC:
+

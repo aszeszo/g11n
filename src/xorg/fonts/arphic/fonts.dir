@@ -1,4 +1,4 @@
-60
+78
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-c-0-big5-0
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-c-0-big5hkscs-0
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-c-0-cns11643.1992-1
@@ -59,3 +59,21 @@ uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-p-0-iso8859-9
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-p-0-jisx0201.1976-0
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
 uming.ttf -arphic-ar pl shanheisun uni-medium-r-normal--0-0-0-0-p-0-jisx0212.1990-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-big5-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-big5hkscs-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-gb18030.2000-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-gb2312.1980-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-gbk-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso10646-1
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-1
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-10
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-13
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-14
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-15
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-2
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-3
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-4
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-iso8859-9
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-jisx0201.1976-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
+ukai.ttf -arphic-ar pl zenkai uni-medium-r-normal--0-0-0-0-p-0-jisx0212.1990-0

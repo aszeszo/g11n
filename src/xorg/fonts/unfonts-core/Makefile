@@ -18,10 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -45,7 +42,9 @@ FONTS =	UnBatang.ttf \
 	UnGraphicBold.ttf \
 	UnGungseo.ttf \
 	UnPilgi.ttf \
-	UnPilgiBold.ttf
+	UnPilgiBold.ttf \
+	../fonts.dir \
+	../fonts.scale
 
 DOCS =	README
 
