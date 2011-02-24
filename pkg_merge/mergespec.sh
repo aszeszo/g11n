@@ -139,6 +139,12 @@ do
 			grep -v '^set name=info\.maintainer_url value=pkgbuild-sfe-devel@sourceforge\.net' | \
 			grep -v '^set name=info\.upstream_url value=http://pkgbuild\.sf\.net/' | \
 			cat > $mf
+# 4
+			if ! egrep -s 'set name=variant\.opensolaris\.zone ' $mf
+			then
+				echo "WORKAROUND: add variant.opensolaris.zone"
+				echo "set name=variant.opensolaris.zone value=global value=nonglobal" >> $mf
+			fi
 # end of workaround
 			echo "depend fmri=$fmri type=incorporate" >> $MF_INC_B
 			echo "depend fmri=$fmri type=require" >> $MF_RED_B
