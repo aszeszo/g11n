@@ -73,7 +73,7 @@ REPOD=$(PKGDEST)/repo.import
 REPO=file\://$(REPOD)
 
 L10N_PUBLISHER=l10n-nightly
-REFREPO=http://ipkg.sfbay.sun.com/dev/solaris
+REFREPO=http://ipkg.us.oracle.com/solaris11/dev/
 
 install: all imp
 all:
