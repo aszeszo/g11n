@@ -25,7 +25,6 @@
 
 set name=pkg.fmri value=pkg:/system/font/truetype/arphic-uming@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
-depend fmri=system/font/truetype/arphic-ukai type=require
 set name=pkg.summary value="arphic-uming Chinese TrueType font"
 set name=pkg.description value="debian arphic-uming font"
 legacy pkg=SUNWttf-arphic-uming category=system,l10nzh \
@@ -42,7 +41,13 @@ dir path=usr/share/doc/arphic/license/zh_TW.utf-8
 dir path=usr/share/fonts
 dir path=usr/share/fonts/TrueType
 dir path=usr/share/fonts/TrueType/arphic
+file path=usr/share/doc/arphic/license/big5/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/doc/arphic/license/english/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/doc/arphic/license/gb/ARPHICPL.txt.bz2 mode=0444
 file path=usr/share/doc/arphic/license/zh_CN.utf-8/ARPHICPL.txt.bz2 mode=0444
 file path=usr/share/doc/arphic/license/zh_TW.utf-8/ARPHICPL.txt.bz2 mode=0444
+file path=usr/share/fonts/TrueType/arphic/fonts.alias
+file path=usr/share/fonts/TrueType/arphic/fonts.dir
+file path=usr/share/fonts/TrueType/arphic/fonts.scale
 file path=usr/share/fonts/TrueType/arphic/uming.ttf
 license copyright.arphicfont license=copyright.arphicfont
