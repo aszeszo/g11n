@@ -1,0 +1,51 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+set name=pkg.fmri value=pkg:/system/font/sun-ja-bitmap-unicode@$(PKGVERS)
+set name=info.classification value=org.opensolaris.category.2008:System/Fonts
+set name=pkg.summary value="Sun Japanese Bitmap fonts - Unicode"
+set name=pkg.description value="Japanese Bitmap fonts used in Japanese CDE environment. Font encoding is iso10646-1."
+dir path=usr group=sys
+dir path=usr/share group=sys
+dir path=usr/share/fonts
+dir path=usr/share/fonts/X11
+dir path=usr/share/fonts/X11/sun-ja
+file path=usr/share/fonts/X11/sun-ja/gotb12u.pcf
+file path=usr/share/fonts/X11/sun-ja/gotb14u.pcf
+file path=usr/share/fonts/X11/sun-ja/gotb16u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/gotb20u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/gotb24u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/gotm12u.pcf
+file path=usr/share/fonts/X11/sun-ja/gotm14u.pcf
+file path=usr/share/fonts/X11/sun-ja/gotm16u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/gotm20u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/gotm24u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minb16u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minb20u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minb24u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minm16u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minm20u.pcf.gz
+file path=usr/share/fonts/X11/sun-ja/minm24u.pcf.gz
+license copyright.oracle license=copyright.oracle
