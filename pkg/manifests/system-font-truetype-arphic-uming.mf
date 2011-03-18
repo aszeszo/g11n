@@ -36,6 +36,9 @@ dir path=usr/share group=sys
 dir path=usr/share/doc group=other
 dir path=usr/share/doc/arphic
 dir path=usr/share/doc/arphic/license
+dir path=usr/share/doc/arphic/license/big5
+dir path=usr/share/doc/arphic/license/english
+dir path=usr/share/doc/arphic/license/gb
 dir path=usr/share/doc/arphic/license/zh_CN.utf-8
 dir path=usr/share/doc/arphic/license/zh_TW.utf-8
 dir path=usr/share/fonts

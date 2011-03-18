@@ -34,12 +34,6 @@ legacy pkg=SUNWttf-arphic-ukai category=system,l10nzh \
     desc="debian arphic-ukai font"
 dir path=usr group=sys
 dir path=usr/share group=sys
-dir path=usr/share/doc group=other
-dir path=usr/share/doc/arphic
-dir path=usr/share/doc/arphic/license
-dir path=usr/share/doc/arphic/license/big5
-dir path=usr/share/doc/arphic/license/english
-dir path=usr/share/doc/arphic/license/gb
 dir path=usr/share/fonts
 dir path=usr/share/fonts/TrueType
 dir path=usr/share/fonts/TrueType/arphic
