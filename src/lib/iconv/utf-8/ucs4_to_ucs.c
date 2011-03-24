@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,15 +19,12 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  *
  * This particular file is to cover conversions from UCS-4, UCS-4BE, UCS-4LE,
  * UTF-32, UTF-32BE, and UTF-32LE to various other UCS formats, especially,
  * UCS-2, UCS-2BE, UCS-2LE, UTF-16, UTF-16BE, and UTF-16LE.
  */
-
-#pragma ident	"@(#)ucs4_to_ucs.c	1.7	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
@@ -47,7 +44,11 @@ _icv_open()
 		return((void *)-1);
 	}
 
-#if defined(UCS_4BE) || defined(UTF_32BE)
+#if defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN)
+	cd->input.little_endian = false;
+#elif defined(UCS_4_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
+	cd->input.little_endian = true;
+#elif defined(UCS_4BE) || defined(UTF_32BE)
 	cd->input.little_endian = false;
 	cd->input.bom_written = true;
 #elif defined(UCS_4LE) || defined(UTF_32LE)
@@ -57,7 +58,11 @@ _icv_open()
 	cd->input.little_endian = true;
 #endif
 
-#if defined(UTF_16BE) || defined(UCS_2BE)
+#if defined(UTF_16_BIG_ENDIAN) || defined(UCS_2_BIG_ENDIAN)
+	cd->output.little_endian = false;
+#elif defined(UTF_16_LITTLE_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN)
+	cd->output.little_endian = true;
+#elif defined(UTF_16BE) || defined(UCS_2BE)
 	cd->output.little_endian = false;
 	cd->output.bom_written = true;
 #elif defined(UTF_16LE) || defined(UCS_2LE)
@@ -101,11 +106,26 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		return((size_t)-1);
 	}
 
+	/* Reset the state as if it is just fresh after the iconv_open(). */
 	if (!inbuf || !(*inbuf)) {
 #if defined(UCS_4) || defined(UTF_32)
+#if defined(_LITTLE_ENDIAN)
+		cd->input.little_endian = true;
+#else
+		cd->input.little_endian = false;
+#endif
+		cd->input.bom_written = false;
+#elif defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN)
+		cd->input.little_endian = false;
+		cd->input.bom_written = false;
+#elif defined(UCS_4_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
+		cd->input.little_endian = true;
 		cd->input.bom_written = false;
 #endif
-#if defined(UCS_2) || defined(UTF_16)
+
+#if defined(UCS_2) || defined(UTF_16) || \
+	defined(UCS_2_BIG_ENDIAN) || defined(UTF_16_BIG_ENDIAN) || \
+	defined(UCS_2_LITTLE_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 		cd->output.bom_written = false;
 #endif
 		return((size_t)0);
@@ -116,7 +136,9 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
 
-#if defined(UCS_4) || defined(UTF_32)
+#if defined(UCS_4) || defined(UTF_32) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN) || \
+	defined(UCS_4_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 	if (! cd->input.bom_written) {
 		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE) {
 			errno = EINVAL;
@@ -134,8 +156,9 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			ib += ICV_FETCH_UCS4_SIZE;
 			cd->input.little_endian = true;
 		}
+
+		cd->input.bom_written = true;
 	}
-	cd->input.bom_written = true;
 #endif
 
 
@@ -156,9 +179,11 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		}
 
 		if (u4 == 0x00fffe || u4 == 0x00ffff ||
-#if defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+#if defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		    u4 > 0x10ffff ||
-#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE)
+#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
 		    u4 > 0x7fffffff ||
 #endif
 		    (u4 >= 0x00d800 && u4 <= 0x00dfff)) {
@@ -168,12 +193,14 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		}
 
 		obsz = (cd->output.bom_written) ? 2 : 4;
-#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE)
+#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN)
 		if (u4 > 0x00ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
 		}
-#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 		if (u4 > 0x10ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
@@ -183,7 +210,9 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			obsz += 2;
 		}
 #elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN) || \
+	defined(UCS_4_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		/*
 		 * We do nothing here since these if expressions
 		 * are only for preparing for output buffer;
@@ -207,7 +236,8 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			}
 			*ob++ = (uchar_t)(u4 & 0xff);
 			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
-#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 			if (u4_2) {
 				*ob++ = (uchar_t)(u4_2 & 0xff);
 				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
@@ -221,7 +251,8 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			}
 			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
 			*ob++ = (uchar_t)(u4 & 0xff);
-#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 			if (u4_2) {
 				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
 				*ob++ = (uchar_t)(u4_2 & 0xff);

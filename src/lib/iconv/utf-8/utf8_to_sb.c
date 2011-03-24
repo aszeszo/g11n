@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,20 +19,16 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  *
  * This particular file is to cover conversions from UTF-8 to various single
  * byte codesets.
  */
 
-#pragma ident	"@(#)utf8_to_sb.c	1.9	04/10/07 SMI"
-
 #include <stdlib.h>
 #include <errno.h>
 #include <sys/types.h>
 #include "utf8_to_sb.h"
-
 
 
 void *
@@ -70,6 +66,7 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
        	register int i, l, h;
        	signed char sz;
        	unsigned long u8;
+	size_t len;
 
 	if (! cd) {
 		errno = EBADF;
@@ -86,15 +83,19 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
 
-	/* We skip any first signiture of UTF-8 */
-	if (!cd->bom_written &&
-		((ibtail - ib) >= ICV_FETCH_UTF8_BOM_SIZE)) {
-		for (u8 = 0, i = 0; i < ICV_FETCH_UTF8_BOM_SIZE; i++)
-			u8 = (u8 << 8) | ((uint_t)(*(ib + i)));
-		if (u8 == ICV_BOM_IN_BIG_ENDIAN)
-			ib += ICV_FETCH_UTF8_BOM_SIZE;
+	/* We skip the first signature of UTF-8 BOM if any. */
+	if (! cd->bom_written) {
+		len = ibtail - ib;
+		if (len >= ICV_FETCH_UTF8_BOM_SIZE) {
+			if (ib[0] == 0xef && ib[1] == 0xbb && ib[2] == 0xbf) {
+				ib += ICV_FETCH_UTF8_BOM_SIZE;
+			}
+			cd->bom_written = true;
+		} else if ((len == 1 && ib[0] != 0xef) ||
+			   (len == 2 && (ib[0] != 0xef || ib[1] != 0xbb))) {
+			cd->bom_written = true;
+		}
 	}
-	cd->bom_written = true;
 
 	while (ib < ibtail) {
 		sz = number_of_bytes_in_utf8_char[*ib];
@@ -119,9 +120,21 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 				break;
 			}
 
-			u8 = 0;
-			for (i = 0; i < sz; i++) {
-				if (((unsigned int)*ib) < 0x80) {
+			u8 = *ib++;
+			for (i = 1; i < sz; i++) {
+				if (i == 1) {
+					if (((uchar_t)*ib) <
+						valid_min_2nd_byte[u8] ||
+					    ((uchar_t)*ib) >
+						valid_max_2nd_byte[u8]) {
+						ib--;
+						errno = EILSEQ;
+						ret_val = (size_t)-1;
+						goto illegal_char_err;
+					}
+				} else if (((uint_t)*ib) < 0x80 ||
+					   ((uint_t)*ib) > 0xbf) {
+					ib -= i;
 					errno = EILSEQ;
 					ret_val = (size_t)-1;
 					goto illegal_char_err;
@@ -129,6 +142,7 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 				u8 = (u8 << 8) | ((unsigned int)*ib);
 				ib++;
 			}
+
 			if ((u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==
 			    ICV_UTF8_REPRESENTATION_fffe ||
 			    (u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==

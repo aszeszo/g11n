@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,8 +19,7 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  *
  * In this program, we assume that each table entry provided will contain
  * a valid UCS character, an illegal character, or, a replacement character.
@@ -33,9 +32,6 @@
  * codesets to UCS-2, UCS-2BE, UCS-2LE, UCS-4, UCS-4BE, UCS-4LE, UTF-16,
  * UTF-16BE, UTF-16LE, UTF-32, UTF-32BE, and UTF-32LE.
  */
-
-#pragma ident	"@(#)sb_to_ucs.c	1.6	04/10/07 SMI"
-
 #include <stdlib.h>
 #include <errno.h>
 #include <sys/types.h>
@@ -53,7 +49,13 @@ _icv_open()
 		return((void *)-1);
 	}
 
-#if defined(UTF_16BE) || defined(UCS_2BE) || defined(UCS_4BE) || \
+#if defined(UTF_16_BIG_ENDIAN) || defined(UCS_2_BIG_ENDIAN) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN)
+	cd->little_endian = false;
+#elif defined(UTF_16_LITTLE_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN) || \
+	defined(UCS_4_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
+	cd->little_endian = true;
+#elif defined(UTF_16BE) || defined(UCS_2BE) || defined(UCS_4BE) || \
 	defined(UTF_32BE)
 	cd->little_endian = false;
 	cd->bom_written = true;
@@ -99,7 +101,11 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	}
 
 	if (!inbuf || !(*inbuf)) {
-#if defined(UCS_2) || defined(UCS_4) || defined(UTF_16) || defined(UTF_32)
+#if defined(UCS_2) || defined(UCS_4) || defined(UTF_16) || defined(UTF_32) || \
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_4_BIG_ENDIAN) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN) || \
+	defined(UCS_2_LITTLE_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_16_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		cd->bom_written = false;
 #endif
 		return((size_t)0);
@@ -122,12 +128,14 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 
 		obsz = (cd->bom_written) ? ICV_FETCH_UCS_SIZE :
 			ICV_FETCH_UCS_SIZE_TWO;
-#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE)
+#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN)
 		if (u4 > 0x00ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
 		}
-#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 		if (u4 > 0x00ffff && u4 < 0x110000) {
 			u4_2 = ((u4 - 0x010000) % 0x400) + 0x00dc00;
 			u4   = ((u4 - 0x010000) / 0x400) + 0x00d800;
@@ -136,12 +144,14 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
 		}
-#elif defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+#elif defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		if (u4 > 0x10ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
 		}
-#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE)
+#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
 		/* do nothing */
 #else
 #error	"Fatal: one of the UCS macros need to be defined."
@@ -174,7 +184,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 				*ob++ = (uchar_t)0xff;
 				*ob++ = (uchar_t)0xfe;
 #if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 				*(ushort_t *)ob = (ushort_t)0;
 				ob += 2;
 #endif
@@ -183,10 +195,13 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			*ob++ = (uchar_t)(u4 & 0xff);
 			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
 #if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
 			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
-#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 			if (u4_2) {
 				*ob++ = (uchar_t)(u4_2 & 0xff);
 				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
@@ -195,7 +210,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		} else {
 			if (! cd->bom_written) {
 #if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 				*(ushort_t *)ob = (ushort_t)0;
 				ob += 2;
 #endif
@@ -204,13 +221,16 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 				cd->bom_written = true;
 			}
 #if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
 			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
 #endif
 			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
 			*ob++ = (uchar_t)(u4 & 0xff);
-#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 			if (u4_2) {
 				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
 				*ob++ = (uchar_t)(u4_2 & 0xff);

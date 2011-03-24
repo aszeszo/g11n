@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,8 +19,7 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  *
  * This program covers conversion from UTF-8, UCS-2, and, UCS-4 to UTF-7.
  * UTF-7 is described in RFC 2152.
@@ -28,8 +27,6 @@
  * other UCS formats are going to be supported unless there is a significant
  * reason.
  */
-
-#pragma ident	"@(#)ucs_to_utf7.c	1.5	07/12/11 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
@@ -140,8 +137,9 @@ _icv_iconv(utf7_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			ib += ICV_FETCH_UCS_SIZE;
 			cd->little_endian = true;
 		}
+
+		cd->bom_written = true;
 	}
-	cd->bom_written = true;
 #endif
 
 	while (ib < ibtail) {

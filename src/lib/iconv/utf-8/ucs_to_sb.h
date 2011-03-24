@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,14 +19,12 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ifndef	UCS_TO_SB_H
 #define	UCS_TO_SB_H
 
-#pragma	ident	"@(#)ucs_to_sb.h	1.6 07/12/03 SMI"
 
 #include "common_defs.h"
 
@@ -93,6 +91,9 @@ static const to_sb_table_component_t u4_sb_tbl[] = {
 
 #elif defined(CP437)
 #include "tbls/ucs4_to_cp437.tbl"
+
+#elif defined(CP720)
+#include "tbls/ucs4_to_cp720.tbl"
 
 #elif defined(CP720)
 #include "tbls/ucs4_to_cp720.tbl"

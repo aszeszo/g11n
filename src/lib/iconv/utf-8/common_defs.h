@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,14 +19,11 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ifndef	COMMON_DEFS_H
 #define	COMMON_DEFS_H
-
-#pragma ident	"@(#)common_defs.h	1.9	07/12/03 SMI"
 
 
 #define	MAGIC_NUMBER			201513
@@ -36,7 +33,9 @@
 #define	ICV_BOM_IN_BIG_ENDIAN		0x00feff
 #define	ICV_BOM_IN_LITTLE_ENDIAN_UCS4	0xfffe0000
 #if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
-	defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN) || \
+	defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 #define	ICV_BOM_IN_LITTLE_ENDIAN	0x00fffe
 #else
 #define	ICV_BOM_IN_LITTLE_ENDIAN	0xfffe0000
@@ -72,11 +71,17 @@ typedef struct {
 } to_sb_table_component_t;
 
 
-/* UCS-2/UCS-4/UTF-16/UTF-32 requires state management. */
+/* UCS-2/UCS-4/UTF-16/UTF-32/UTF-8 requires state management. */
 typedef struct {
 	boolean		bom_written;
 	boolean		little_endian;
 } ucs_state_t;
+
+typedef struct {
+	boolean		bom_written;
+	boolean		little_endian;
+	boolean		bom_processed;
+} utf8_state_t;
 
 typedef struct {
 	ucs_state_t	input;
@@ -243,15 +248,20 @@ static const unsigned char valid_max_2nd_byte[0x100] = {
  */
 #define	ICV_UTF8_BIT_SHIFT		6
 #define	ICV_UTF8_BIT_MASK		0x3f
-#define	ICV_FETCH_UTF8_BOM_SIZE		6
+
+#define	ICV_FETCH_UTF8_BOM_SIZE		3
 
 #define	ICV_FETCH_UCS4_SIZE		4
 #if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
-	defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN) || \
+	defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 #define ICV_FETCH_UCS_SIZE              2
 #define ICV_FETCH_UCS_SIZE_TWO          4
 #elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE)
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 #define ICV_FETCH_UCS_SIZE              4
 #define ICV_FETCH_UCS_SIZE_TWO          8
 #endif

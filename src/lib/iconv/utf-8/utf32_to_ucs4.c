@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,14 +19,11 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2004 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  *
  * This particular file is to cover conversions from UTF-32, UTF-32BE, and
  * UTF-32LE to UCS-4, UCS-4BE, and UCS-4LE.
  */
-
-#pragma ident	"@(#)utf32_to_ucs4.c	1.3	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
@@ -48,7 +45,11 @@ _icv_open()
 		return((void *)-1);
 	}
 
-#if defined(UTF_32BE)
+#if defined(UTF_32_BIG_ENDIAN)
+	cd->input.little_endian = false;
+#elif defined(UTF_32_LITTLE_ENDIAN)
+	cd->input.little_endian = true;
+#elif defined(UTF_32BE)
 	cd->input.little_endian = false;
 	cd->input.bom_written = true;
 #elif defined(UTF_32LE)
@@ -58,7 +59,11 @@ _icv_open()
 	cd->input.little_endian = true;
 #endif
 
-#if defined(UCS_4BE)
+#if defined(UCS_4_BIG_ENDIAN)
+	cd->output.little_endian = false;
+#elif defined(UCS_4_LITTLE_ENDIAN)
+	cd->output.little_endian = true;
+#elif defined(UCS_4BE)
 	cd->output.little_endian = false;
 	cd->output.bom_written = true;
 #elif defined(UCS_4LE)
@@ -101,11 +106,24 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		return((size_t)-1);
 	}
 
+	/* Reset the state as if it is called right after the iconv_open(). */
 	if (!inbuf || !(*inbuf)) {
 #if defined(UTF_32)
+#if defined(_LITTLE_ENDIAN)
+		cd->input.little_endian = true;
+#else
+		cd->input.little_endian = false;
+#endif
+		cd->input.bom_written = false;
+#elif defined(UTF_32_BIG_ENDIAN)
+		cd->input.little_endian = false;
+		cd->input.bom_written = false;
+#elif defined(UTF_32_LITTLE_ENDIAN)
+		cd->input.little_endian = true;
 		cd->input.bom_written = false;
 #endif
-#if defined(UCS_4)
+
+#if defined(UCS_4) || defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
 		cd->output.bom_written = false;
 #endif
 		return((size_t)0);
@@ -116,7 +134,8 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
 
-#if defined(UTF_32)
+#if defined(UTF_32) || defined(UTF_32_BIG_ENDIAN) || \
+	defined(UTF_32_LITTLE_ENDIAN)
 	if (! cd->input.bom_written) {
 		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE) {
 			errno = EINVAL;
@@ -134,8 +153,9 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			ib += ICV_FETCH_UCS4_SIZE;
 			cd->input.little_endian = true;
 		}
+
+		cd->input.bom_written = true;
 	}
-	cd->input.bom_written = true;
 #endif
 
 
