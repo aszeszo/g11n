@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -101,7 +101,7 @@ LOCALE = $(LOCALES_OTHER) $(LOCALES_UTF8)
 
 LOCALE.so = $(LOCALE:%=%.so.$(METHOD_VERSION))
 
-LOCALE_src = $(LOCALE:%=%.src.bz2)
+LOCALE_src = $(LOCALE:%=%.src)
 
 all:=		TARGET= all
 install:=	TARGET= install
@@ -175,7 +175,7 @@ $(MACH64)/methods_%.so.$(METHOD_VERSION): $(MACH64)
 	fi
 
 
-all: $(METHODS_SOS) $(MACH64) $(LOCALE.so) $(LOCALE_src)
+all: $(METHODS_SOS) $(MACH64) $(LOCALE.so)
 
 %.localedef.build: %.localedef
 	$(SRC)/tools/generatelocaledef -d include/ -i $< -o $@
@@ -204,14 +204,20 @@ install: all install_src
 		$(INS) $(FILEROOT)/usr/lib/locale/$$i/$(MACH64) $(MACH64)/$$i.so.$(METHOD_VERSION); \
 	done
 
-install_src: $(LOCALE_src)
+install_src: all
 	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/locales
-	for i in $(LOCALE_src); do \
-		$(INS) $(FILEROOT)/usr/lib/localedef/src/locales $$i; \
+	for i in $(LOCALE); do \
+		$(CP) $(SRC)/src/locale_src/base/$$i.localedef.build $(FILEROOT)/usr/lib/localedef/src/locales/$$i.src; \
 	done
-
-%.src.bz2: %.localedef
-	$(BZIP2) -c $< > $@
+	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/charmaps
+	for i in $(_CHARMAPS)/ja* $(_CHARMAPS)/ko* $(_CHARMAPS)/zh* $(_CHARMAPS)/th*; do \
+		$(INS) $(FILEROOT)/usr/lib/localedef/src/charmaps $$i; \
+	done
+	$(CP) $(_CHARMAPS)/UTF-8.charmap $(FILEROOT)/usr/lib/localedef/src/charmaps/UTF-8.APAC.charmap
+	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/extensions
+	for i in $(_METHODSRC)/*; do \
+		$(INS) $(FILEROOT)/usr/lib/localedef/src/extensions $$i; \
+	done
 
 clean clobber: 
 	$(RM) *.c *.o *.so.* *.localedef.build *.Z 
@@ -222,6 +228,12 @@ clean clobber:
 	done
 	for i in $(LOCALE_src); do \
 		$(RM) $(FILEROOT)/usr/lib/locale/src/locales/$$i; \
+	done
+	for i in $(_CHARMAPS)/*; do \
+		$(RM) $(FILEROOT)/usr/lib/localedef/src/charmaps $$i; \
+	done
+	for i in $(_METHODSRC)/*; do \
+		$(RM) $(FILEROOT)/usr/lib/localedef/src/extensions $$i; \
 	done
 
 FRC:

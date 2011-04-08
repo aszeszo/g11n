@@ -33,7 +33,6 @@ legacy pkg=SUNWlang-common category=system,l10n \
     desc="language support common components"
 dir path=usr group=sys
 dir path=usr/lib
-dir path=usr/lib
 dir path=usr/lib/locale
 dir path=usr/lib/locale/common
 dir path=usr/lib/locale/common/$(ARCH64)
@@ -41,8 +40,6 @@ dir path=usr/lib/locale/common/LC_CTYPE
 dir path=usr/lib/locale/common/LC_CTYPE/$(ARCH64)
 dir path=usr/lib/locale/common/LO_LTYPE
 dir path=usr/lib/locale/common/LO_LTYPE/$(ARCH64)
-dir path=usr/lib/localedef
-dir path=usr/lib/localedef/extensions
 dir path=usr/share group=sys
 dir path=usr/share/lib group=sys
 dir path=usr/share/lib/pub
@@ -54,7 +51,6 @@ file path=usr/lib/locale/common/LC_CTYPE/wdresolve_unicode.so mode=0555
 file path=usr/lib/locale/common/LO_LTYPE/$(ARCH64)/umle.layout.so.1 mode=0555
 file path=usr/lib/locale/common/LO_LTYPE/umle.layout.so.1 mode=0555
 file path=usr/lib/locale/common/methods_unicode.so.3 mode=0555
-file path=usr/lib/localedef/extensions/UTF-8.x mode=0444
 file path=usr/share/lib/pub/UTF-8
 license copyright.oracle license=copyright.oracle
 link path=usr/share/lib/pub/utf-8 target=./UTF-8

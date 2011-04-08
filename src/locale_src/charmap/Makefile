@@ -18,9 +18,7 @@
 #
 # CDDL HEADER END
 #
-#ident  "@(#)Makefile 1.0 10/03/07 SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates.  All rights reserved.
 # Use is subject to license terms.
 #
 
@@ -32,28 +30,22 @@ install:=	TARGET= install
 clean:=		TARGET= clean
 
 
-CHARMAPS = ansi-1251 iso-8859-1 iso-8859-13 iso-8859-15 iso-8859-2 iso-8859-5 iso-8859-6 iso-8859-7 iso-8859-8 iso-8859-9 koi8-r utf-8
+CHARMAPS = ja_JP.PCK ja_JP.eucJP ko ko_KR.EUC th_TH.TIS620 zh_CN.EUC zh_CN.GB18030 zh_CN.GBK zh_HK.BIG5HK zh_TW.BIG5 zh_TW.EUC
 
 TARGETDIR =	$(FILEROOT)/usr/lib/localedef/src/charmaps
 
-FILES =		$(CHARMAPS:%=charmap.%.bz2)
+FILES =		$(CHARMAPS:%=%.charmap)
 
 TARGETDIRS =	$(TARGETDIR)
 
 
-all: $(TARGETDIRS) $(FILES) UTF-8.src.Z
+all: $(TARGETDIRS) $(FILES)
 
 include $(SRC)/src/Makefile.targ
 
-install: $(FILES) UTF-8.src.Z $(TARGETDIRS) $(FILES.obj)
+install: $(FILES) $(TARGETDIRS) $(FILES.obj)
 	$(INSDIR) $(FILEROOT)/lib/localedef/charmaps
-	$(INS) $(FILEROOT)/lib/localedef/charmaps UTF-8.src.Z
 
 clean:
 	$(RM) $(FILES)
 
-charmap.%.bz2: %.charmap
-	$(BZIP2) -c $< > $@
-
-%.src.Z: %.charmap
-	$(COMPRESS) -c $< > $@
