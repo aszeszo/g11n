@@ -26,8 +26,6 @@ include $(SRC)/Makefile.master
 LOCALES = \
 	af_ZA.UTF-8 \
 	ar_EG.ISO8859-6 \
-	ar_EG.UTF-8 \
-	ar_SA.UTF-8 \
 	as_IN.UTF-8 \
 	az_AZ.UTF-8 \
 	be_BY.UTF-8 \
@@ -46,8 +44,6 @@ LOCALES = \
 	da_DK.UTF-8 \
 	de_AT.ISO8859-15 \
 	de_DE.ISO8859-15 \
-	de_DE.UTF-8 \
-	de_DE.UTF-8@euro \
 	el_CY.UTF-8 \
 	el_GR.ISO8859-7 \
 	el_GR.ISO8859-7@euro \
@@ -68,22 +64,16 @@ LOCALES = \
 	en_US.ISO8859-1 \
 	en_US.ISO8859-15 \
 	es_ES.ISO8859-15 \
-	es_ES.UTF-8 \
-	es_ES.UTF-8@euro \
 	es_US.UTF-8 \
 	et_EE.ISO8859-15 \
 	et_EE.UTF-8 \
 	fi_FI.ISO8859-1 \
 	fi_FI.ISO8859-15 \
-	fi_FI.UTF-8 \
 	fr_BE.ISO8859-15 \
 	fr_BE.UTF-8 \
-	fr_BE.UTF-8@euro \
 	fr_FR.ISO8859-15 \
-	fr_FR.UTF-8@euro \
 	gu_IN.UTF-8 \
 	he_IL.ISO8859-8 \
-	he_IL.UTF-8 \
 	hi_IN.UTF-8 \
 	hr_HR.ISO8859-2 \
 	hr_HR.UTF-8 \
@@ -104,8 +94,6 @@ LOCALES = \
 	iso_8859_9 \
 	it_CH.UTF-8 \
 	it_IT.ISO8859-15 \
-	it_IT.UTF-8 \
-	it_IT.UTF-8@euro \
 	ja_JP.PCK \
 	ja_JP.UTF-8 \
 	ja_JP.eucJP \
@@ -138,9 +126,7 @@ LOCALES = \
 	or_IN.UTF-8 \
 	pa_IN.UTF-8 \
 	pl_PL.ISO8859-2 \
-	pl_PL.UTF-8 \
 	pt_BR.ISO8859-1 \
-	pt_BR.UTF-8 \
 	pt_PT.ISO8859-1 \
 	pt_PT.ISO8859-15 \
 	pt_PT.UTF-8 \
@@ -149,7 +135,6 @@ LOCALES = \
 	ru_RU.ANSI1251 \
 	ru_RU.ISO8859-5 \
 	ru_RU.KOI8-R \
-	ru_RU.UTF-8 \
 	sa_IN.UTF-8 \
 	sk_SK.ISO8859-2 \
 	sk_SK.UTF-8 \
@@ -160,14 +145,11 @@ LOCALES = \
 	sr_ME.UTF-8 \
 	sr_RS.UTF-8 \
 	sv_SE.ISO8859-15 \
-	sv_SE.UTF-8 \
-	sv_SE.UTF-8@euro \
 	ta_IN.UTF-8 \
 	te_IN.UTF-8 \
 	th_TH.TIS620 \
 	th_TH.UTF-8 \
 	tr_TR.ISO8859-9 \
-	tr_TR.UTF-8 \
 	uk_UA.UTF-8 \
 	vi_VN.UTF-8 \
 	zh_CN.EUC \
