@@ -19,54 +19,42 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 1994-2003 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1994, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#ident	"@(#)PCK_TO_ISO-2022-JP.c	1.10	06/12/20 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 
-/*
- * struct _icv_state; to keep stat
- */
-struct _icv_state {
-	int	_st_cset;
-};
-
-void *
-_icv_open()
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	struct _icv_state *st;
+	__icv_state_t *st;
 
-	if ((st = (struct _icv_state *)malloc(sizeof (struct _icv_state)))
-									== NULL)
-		return ((void *)ERR_RETURN);
+	if ((st = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		st->_st_cset = CS_0;
+		st->replacement = JGETA; /* default is JIS GETA */
+	}
 
-	st->_st_cset = CS_0;
-	return (st);
-}
-
-void
-_icv_close(struct _icv_state *st)
-{
-	free(st);
+	return ((iconv_t)st);
 }
 
 size_t
-_icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-	int		cset;
-	unsigned char	*ip, ic;
+	__icv_state_t	*st;
+	int		cset, stat;
+	unsigned char	*ip, ic, ic2;
 	char			*op;
 	size_t			ileft, oleft;
 	size_t			retval;
         unsigned short  zenkaku;
+
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -105,8 +93,10 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	 */
 
 	while ((int)ileft > 0) {
+		st->_st_cset = cset;
 		GET(ic);
 		if (ISASC((int)ic)) {		/* ASCII */
+			RESTORE_HEX_ASCII_CONTINUE(ic)
 			if (cset != CS_0) {
 				CHECK2BIG(SEQ_SBTOG0,1);
 				PUT(ESC);	/* to JIS X 0201 Roman */
@@ -146,37 +136,33 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			continue;
 		} else if (ISSJKANJI1(ic)) {	/* CS_1 Kanji starts */
 			if ((int)ileft > 0) {
-				if (ISSJKANJI2(*ip)) {
+				GET(ic2); /* get 2nd byte */
+				if (ISSJKANJI2(ic2)) {
 					if (cset != CS_1) {
-						CHECK2BIG(SEQ_MBTOG0_O,1);
+						CHECK2BIG(SEQ_MBTOG0_O,2);
 						cset = CS_1;
 						PUT(ESC);
 						PUT(MBTOG0_1);
 						PUT(F_X0208_83_90);
 					}
-					CHECK2BIG(JISW1,1);
+					CHECK2BIG(JISW1,2);
 #ifdef  RFC1468_MODE /* Convert VDC and UDC to GETA */
 					if ((ic == 0x87) || (0xed <= ic )){
 						PUT((JGETA >> 8) & CMASK);
-						GET(ic); /* Get dummy */
 						PUT(JGETA & CMASK);
 						continue;
 					}
 #endif  /* RFC1468_MODE */
 					ic = sjtojis1[(ic - 0x80)];
-					if (*ip >= 0x9f) {
+					if (ic2 >= 0x9f) {
 						ic++;
 					}
 					PUT(ic);
-					GET(ic);
-					ic = sjtojis2[ic];
-					PUT(ic);
+					ic2 = sjtojis2[ic2];
+					PUT(ic2);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -186,48 +172,44 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			}
 		} else if (ISSJSUPKANJI1(ic)) {	/* CS_3 Kanji starts */
 			if ((int)ileft > 0) {
-				if (ISSJKANJI2(*ip)) {
+				GET(ic2); /* get 2nd byte */
+				if (ISSJKANJI2(ic2)) {
 #ifdef  RFC1468_MODE	/* Substitute JIS X 0208 "Geta" for JIS X 0212 */
 					if (cset != CS_1) {
-						CHECK2BIG(SEQ_MBTOG0_O,1);
+						CHECK2BIG(SEQ_MBTOG0_O,2);
 						cset = CS_1;
 						PUT(ESC);
 						PUT(MBTOG0_1);
 						PUT(F_X0208_83_90);
 					}
-					CHECK2BIG(JISW1,1);
+					CHECK2BIG(JISW1,2);
 					/* Put GETA (0x222e) */
 					ic = (unsigned char)((JGETA >> 8) & 
 					CMASK);
 					PUT(ic);
 					ic = (unsigned char)(JGETA & CMASK);
 					PUT(ic);
-					GET(ic); /* dummy GET */
 #else   /* ISO-2022-JP.UIOSF */
 					if (cset != CS_3) {
-						CHECK2BIG(SEQ_MBTOG0,1);
+						CHECK2BIG(SEQ_MBTOG0,2);
 						cset = CS_3;
 						PUT(ESC);
 						PUT(MBTOG0_1);
 						PUT(MBTOG0_2);
 						PUT(F_X0212_90);
 					}
-					CHECK2BIG(JISW3,1);
+					CHECK2BIG(JISW3,2);
 					ic = sjtojis1[(ic - 0x80)];
-					if (*ip >= 0x9f) {
+					if (ic2 >= 0x9f) {
 						ic++;
 					}
 					PUT(ic);
-					GET(ic);
-					ic = sjtojis2[ic];
-					PUT(ic);
+					ic2 = sjtojis2[ic2];
+					PUT(ic2);
 #endif  /* RFC1468_MODE */
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -244,11 +226,11 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			 * extended IBM chars.
 			 */
 			if ((int)ileft > 0) {
-				if (ISSJKANJI2(*ip)) {
+				GET(ic2); /* get 2nd byte */
+				if (ISSJKANJI2(ic2)) {
 					unsigned short dest;
 					dest = (ic << 8);
-					GET(ic);
-					dest += ic;
+					dest += ic2;
 					if ((0xed40 <= dest) &&
 						(dest <= 0xeffc)) {
 						REMAP_NEC(dest);
@@ -297,20 +279,13 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 						 * in IBM-EXT area.
 						 */
 ill_ibm:
-						UNGET();
-						UNGET();
-						errno = EILSEQ;
-						retval = (size_t)ERR_RETURN;
-						goto ret;
+						UNGET_EILSEQ(2)
 					}
 					PUT(((dest>>8) & 0x7f));
 					PUT(dest & 0x7f);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -326,24 +301,29 @@ ill_ibm:
 		 * So far, we'll use (0x222e) for it.
 		 */
 			if ((int)ileft > 0) {
-				if (ISSJKANJI2(*ip)) {
-					if (cset != CS_1) {
-						CHECK2BIG(SEQ_MBTOG0_O,1);
-						cset = CS_1;
-						PUT(ESC);
-						PUT(MBTOG0_1);
-						PUT(F_X0208_83_90);
+				GET(ic2); /* get 2nd byte */
+				if (ISSJKANJI2(ic2)) {
+					if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+						CALL_NON_IDENTICAL_UNGET(2)
+						if(st->_icv_flag & 
+							__ICONV_CONV_REPLACE_HEX) {
+							cset = CS_0;
+						}
+					} else {
+						if (cset != CS_1) {
+							CHECK2BIG(SEQ_MBTOG0_O,2);
+							cset = CS_1;
+							PUT(ESC);
+							PUT(MBTOG0_1);
+							PUT(F_X0208_83_90);
+						}
+						CHECK2BIG(JISW1,2);
+						PUT((JGETA>>8) & CMASK);
+						PUT(JGETA & CMASK);
 					}
-					CHECK2BIG(JISW1,1);
-					GET(ic); /* Dummy */
-					PUT((JGETA>>8) & CMASK);
-					PUT(JGETA & CMASK);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -352,20 +332,40 @@ ill_ibm:
 				goto ret;
 			}
 		} else {			/* 1st byte is illegal */
-			UNGET();
-			errno = EILSEQ;
-			retval = (size_t)ERR_RETURN;
-			goto ret;
+			UNGET_EILSEQ(1)
 		}
 	}
 	retval = ileft;
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;
 
 	return (retval);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_iso2022jp(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_iso2022jp(pop, poleft, cd));
 }

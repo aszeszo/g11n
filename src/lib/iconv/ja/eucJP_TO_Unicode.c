@@ -19,16 +19,14 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)eucJP_TO_Unicode.c	1.16	07/05/25 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #ifdef JAVA_CONV_COMPAT
@@ -40,23 +38,24 @@
 #endif
 #include "jfp_jis_to_ucs2.h"
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserve)
 {
-	return (_icv_open_unicode((size_t)0));
-}
+	__icv_state_t *cd;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+	}
+
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned int	u32;		/* UTF-32 */
 	unsigned char	ic1, ic2, ic3;	/* 1st, 2nd, and 3rd bytes of a char */
 	size_t		rv = (size_t)0;	/* return value of this function */
@@ -66,12 +65,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	char		*op;
         size_t		oleft;
 
+	st = (__icv_state_t *)cd;
+
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(cd);
+		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -84,25 +85,26 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 		NGET(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC(ic1)) { /* ASCII; 1 byte */
+			RESTORE_HEX_ASCII_JUMP(ic1)
 			u32 = _jfp_tbl_jisx0201roman_to_ucs2[ic1];
-			PUTU(u32, "ASCII");
+			PUTU(u32, "ASCII", 1);
 		} else if (ISCS1(ic1)) { /* JIS X 0208 or UDC; 2 bytes */
 			NGET(ic2, "CS1-2 not available");
 			if (ISCS1(ic2)) { /* 2nd byte check passed */
 				u32 = _jfp_tbl_jisx0208_to_ucs2[
 					(ic1 - 0xa1) * 94 + (ic2 - 0xa1)];
-				PUTU(u32, "CS1");
+				PUTU(u32, "CS1", 2);
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "CS1-2")
+				RET_EILSEQ("CS1-2", 2)
 			}
 		} else if (ic1 == SS2) { /* JIS X 0201 Kana; 2 bytes */
 			NGET(ic2, "CS2-2");
 			if (ISCS2(ic2)) { /* 2nd byte check passed */
 				u32 = _jfp_tbl_jisx0201kana_to_ucs2[
 					(ic2 - 0xa1)];
-				PUTU(u32, "CS2");
+				PUTU(u32, "CS2", 2);
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "CS2-2")
+				RET_EILSEQ("CS2-2", 2)
 			}
 		} else if (ic1 == SS3) { /* JIS X 0212 or UDC; 3 bytes */
 			NGET(ic2, "CS3-2");
@@ -112,20 +114,20 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 					u32 = _jfp_tbl_jisx0212_to_ucs2[
 						((ic2 - 0xa1) * 94 +
 						(ic3 - 0xa1))];
-					PUTU(u32, "CS3");
+					PUTU(u32, "CS3", 3);
 				} else { /* 3rd byte check failed */
-					RETERROR(EILSEQ, "CS3-3")
+					RET_EILSEQ("CS3-3", 3)
 				}
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "CS3-2")
+				RET_EILSEQ("CS3-2", 2)
 			}
 		} else if (ISC1CTRLEUC(ic1)) { /* C1 control; 1 byte */
 			u32 = ic1;
-			PUTU(u32, "C1CTRL");
+			PUTU(u32, "C1CTRL", 1);
 		} else { /* 1st byte check failed */
-			RETERROR(EILSEQ, "at 1st")
+			RET_EILSEQ("at 1st", 1)
 		}
-
+cont:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -145,4 +147,26 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_utf32(pip, pop, poleft, cd));
 }

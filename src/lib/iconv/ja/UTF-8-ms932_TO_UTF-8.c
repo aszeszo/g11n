@@ -24,14 +24,11 @@
  * Copyright (c) 1991-2005 Unicode, Inc. All rights reserved. Distributed
  * under the Terms of Use in http://www.unicode.org/copyright.html.
  *
- * This file has been modified by Sun Microsystems, Inc. 
+ * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright 1999-2004 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1999, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)UTF-8-ms932_TO_UTF-8.c	1.5	06/12/20 SMI"
 
 #if	defined(DEBUG)
 #include <stdio.h>
@@ -41,25 +38,28 @@
 
 #define	JFP_ICONV_STATELESS
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserve)
 {
-	return (_icv_open_stateless());
-}
+	__icv_state_t *cd;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_stateless(cd);
-	return;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		cd->replacement = 0xefbfbd; /* UTF-8 of U+fffd */
+		cd->trivialp = __TRIVIALP; /* trivial conversion */
+	}
+
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	size_t		rv = (size_t)0;
 	unsigned int	ucs4;
 
@@ -67,6 +67,8 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
         size_t		ileft;
 	char		*op;
         size_t		oleft;
+
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -83,10 +85,23 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		if (utf8_ucs(&ucs4, &ip, &ileft) == (size_t)-1) {
+		errno = 0;
+		if (utf8_ucs(&ucs4, &ip, &ileft, &op, &oleft, st)
+				== (size_t)-1) {
 			/* errno has been set in utf8_ucs() */
 			rv = (size_t)-1;
 			goto ret;
+		}
+		/*
+		 * When illegal byte is detected and __ICONV_CONV_ILLEGAL,
+		 * utf8_ucs return with sucess, but EILSEQ is set in
+		 * errno. Detected illegal bytes have been processed
+		 * already. It should go to the next loop.
+		 * The above "errno = 0;" is required for here.
+		 */
+		if ((errno == EILSEQ) && 
+			(st->_icv_flag & __ICONV_CONV_ILLEGAL)) {
+			goto cont;
 		}
 
 		if (ucs4 == 0xff5e)		/* FULLWIDTH TILDE */
@@ -103,7 +118,7 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 			ucs4 = 0x00ac;		/* NOT SIGN */
 
 		PUTUCS2((unsigned short)ucs4, "E2BIG");
-
+cont:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -127,4 +142,28 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_ascii(pop, poleft, cd));
 }

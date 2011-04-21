@@ -19,17 +19,15 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 1997-2003 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1997, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)ISO-2022-JP_TO_UTF-8.c 1.8     06/12/20 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 /* Note: JFP_J2U_ICONV_RFC1468 macro pass through hankaku katakata. */
@@ -41,44 +39,60 @@
 #include "jfp_jis_to_ucs2.h"
 
 /*
- * struct _cv_state; to keep status
+ * PUTU_UNGET macro
+ *
+ * Write unicode to output buffer. When attribute ICONV_CONV_NON_IDENTICAL_*
+ * is specified and writing unicode is a replacement character (0xfffd),
+ * call __icv_non_identical() to process non-identical char. Otherwise,
+ * call write_unicode(). If any errors are encountered, move back the pointer
+ * of input buffer, and return.
+ *
+ * This macro is used only from this program so far.
  */
-struct _icv_state {
-	int	_st_cset;
-	int	_st_cset_sav;
-};
+#define PUTU_UNGET(u32, msg, num_of_bytes) \
+	if ((st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) \
+		&& (u32 == 0xfffd)) { \
+		if(__icv_non_identical((unsigned char **)(&ip), &op, &oleft, \
+			st, num_of_bytes) == (size_t)-1) { \
+			UNGET(); \
+			retval = ((size_t)-1); \
+			goto ret; \
+		} \
+	} else if (write_unicode(u32, &op, &oleft, st, msg) \
+			< (size_t)0) { \
+		UNGET(); \
+		retval = ((size_t)-1); \
+		goto ret; \
+	}
 
-void *
-_icv_open()
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	struct _icv_state *st;
+	__icv_state_t *st;
 
-	if ((st = (struct _icv_state *)malloc(sizeof (struct _icv_state)))
-									== NULL)
-		return ((void *)ERR_RETURN);
+	if ((st = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		st->_st_cset_sav = st->_st_cset = CS_0;
+		st->replacement = 0xefbfbd; /* UTF-8 of U+fffd */
+	}
 
-	st->_st_cset_sav = st->_st_cset = CS_0;
-
-	return (st);
-}
-
-void
-_icv_close(struct _icv_state *st)
-{
-	free(st);
+	return ((iconv_t)st);
 }
 
 size_t
-_icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-	int cset, stat, ret_val;
-	char *ip, ic;
+	__icv_state_t	*st;
+
+	int cset, stat;
+	char *ip, ic, ic2;
 	size_t ileft;
 	size_t retval;
 	unsigned int index;
 	char		*op;
 	size_t		oleft;
+
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -92,7 +106,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	cset = st->_st_cset;
 	stat = ST_INIT;
 
-	ip = *inbuf;
+	ip = (char *)*inbuf;
 	op = *outbuf;
 	ileft = *inbytesleft;
 	oleft = *outbytesleft;
@@ -138,11 +152,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					goto ret;
 				}
 			} else {
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(2)
 			}
 		} else if (stat == ST_MBTOG0_1) {
 			if ((ic == F_X0208_83_90) || (ic == F_X0208_78)) {
@@ -166,12 +176,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_3;
 				continue;
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(3)
 			}
 		} else if (stat == ST_MBTOG0_2) {
 			if ((ic == F_X0208_83_90) || (ic == F_X0208_78)) {
@@ -183,13 +188,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_3;
 				continue;
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(4)
 			}
 		} else if (stat == ST_SBTOG0) {
 			if ((ic == F_ASCII) ||
@@ -203,12 +202,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_2;
 				continue;
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(3)
 			}
 		} else if (stat == ST_208REV_1) {
 			if (ic == X208REV_2) {
@@ -224,12 +218,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					goto ret;
 				}
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(3)
 			}
 		} else if (stat == ST_208REV_2) {
 			if (ic == ESC) {
@@ -246,13 +235,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					goto ret;
 				}
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(4)
 			}
 		} else if (stat == ST_REV_AFT_ESC) {
 			if (ic == MBTOG0_1) {
@@ -270,14 +253,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					goto ret;
 				}
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(5)
 			}
 		} else if (stat == ST_REV_AFT_MBTOG0_1) {
 			if (ic == F_X0208_83_90) {
@@ -300,15 +276,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					goto ret;
 				}
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(6)
 			}
 		} else if (stat == ST_REV_AFT_MBTOG0_2) {
 			if (ic == F_X0208_83_90) {
@@ -316,16 +284,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_1;
 				continue;
 			} else {
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				UNGET();
-				errno = EILSEQ;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_EILSEQ_STATELESS(7)
 			}
 		}
 		/*
@@ -361,38 +320,28 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 		} else if (!(ic & CMSB)) {
 			if ((cset == CS_0) || (cset == CS_2)){
 				if (cset == CS_0) {
+					RESTORE_HEX_ASCII_CONTINUE(ic)
 					index = (int)_jfp_tbl_jisx0201roman_to_ucs2[ic];
 				} else if (cset == CS_2) {
 					index = 
 					(int)_jfp_tbl_jisx0201kana_to_ucs2[(ic - 0x21)];
 				}
-				if ((ret_val = write_unicode(
-					(unsigned int)index, &op, &oleft,
-					B_FALSE, "writing CS_0/2"))
-					< 0) {
-					/* errno is set in write_unicode */
-					UNGET();
-                              		retval = (size_t)ERR_RETURN;
-                                	goto ret;
-				}
+				PUTU_UNGET(index, "writing CS_0/2", 2)
 				stat = ST_INIT;
 				continue;
 			} else if ((cset == CS_1) || (cset == CS_3)) {
 				if ((int)ileft > 0) {
 					if ((ic < 0x21) || (ic == 0x7f)) {
-						UNGET();
-						errno = EILSEQ;
-						retval = (size_t)ERR_RETURN;
-						goto ret;
-					} else if ((*ip < 0x21) || (*ip == 
-					0x7f)) {
-						UNGET();
-						errno = EILSEQ;
-						retval = (size_t)ERR_RETURN;
-						goto ret;
+						/* 1st byte check failed */
+						UNGET_EILSEQ_STATELESS(1)
+					}
+					GET(ic2);
+					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
+						/* 2nd byte check failed */
+						UNGET_EILSEQ_STATELESS(2)
 					}
 					index = ((ic - 0x21) * 94)
-							+ (*ip - 0x21);
+							+ (ic2 - 0x21);
 					if (cset == CS_1) {
 #ifdef  RFC1468_MODE /* Convert VDC and UDC to GETA(DEFC_U in jis%UTF-8.h) */
 						if ((ic == 0x2d) || 
@@ -413,20 +362,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 						(int)_jfp_tbl_jisx0212_to_ucs2[index];
 #endif  /* RFC1468_MODE */
 					}
-					if ((ret_val = write_unicode(
-						(unsigned int)index,
-						&op, &oleft,
-						B_FALSE, "writing CS_1/3"))
-						< 0) {	
-						/* errno is set
-						in write_unicode */
-						UNGET();
-	                                	retval = 
-	                                	(size_t)ERR_RETURN;
-		                                goto ret;
-					}
-					/* dummy GET for 2nd byte */
-					GET(ic);
+					PUTU_UNGET(index, "writing CS_1/3", 2)
 					stat = ST_INIT;
 					continue;
 				} else {
@@ -437,20 +373,40 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				}
 			}
 		} else {
-			UNGET();
-			errno = EILSEQ;
-			retval = (size_t)ERR_RETURN;
-			goto ret;
+			UNGET_EILSEQ_STATELESS(1)
 		}
 	}
 	retval = ileft;
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;
 
 	return (retval);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_ascii(hex, pip, pop, poleft, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_ascii(pop, poleft, cd));
 }

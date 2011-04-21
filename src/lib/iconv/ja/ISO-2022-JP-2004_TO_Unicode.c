@@ -19,65 +19,50 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)ISO-2022-JP-2004_TO_Unicode.c 1.1 07/01/11 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #define	JFP_J2U_ICONV_X0213
 #include "jfp_jis_to_ucs2.h"
 
-struct _icv_state {
-	int	_st_cset;
-};
-
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	void			*cd;
-	struct _icv_state	*st;
+	__icv_state_t *cd;
 
-	cd = _icv_open_unicode(sizeof (struct _icv_state));
-
-	if (cd != NULL) {
-		st = (struct _icv_state *)(_icv_get_ext(cd));
-		st->_st_cset = CS_0;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+		cd->_st_cset = CS_0;
 	}
 
-	return (cd);
-}
-
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned int	u32;		/* UTF-32 */
 	unsigned short	e16;		/* 16-bit EUC */
 	unsigned char	ic1, ic2;	/* bytes in a char or an esc seq */
 	unsigned char	ic3, ic4;	/* bytes in an esc seq */
 	size_t		rv = (size_t)0;	/* return value of this function */
-	struct _icv_state	*st;
 
 	unsigned char	*ip;
         size_t		ileft;
 	char		*op;
         size_t		oleft;
 
-	st = (struct _icv_state *)(_icv_get_ext(cd));
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -85,7 +70,7 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
 		st->_st_cset = CS_0;
-		_icv_reset_unicode(cd);
+		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -116,15 +101,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 						st->_st_cset = CS_1;
 						break;
 					default:
-						RETERROR(EILSEQ,
-							"Unknown ESC$(?");
+						RET_EILSEQ("Unknown ESC$(?", 4)
 					}
 					break;
 				case 0x42: /* 24-42 ESC$B */
 					st->_st_cset = CS_1;
 					break;
 				default:
-					RETERROR(EILSEQ, "Unknown ESC$?");
+					RET_EILSEQ("Unknown ESC$?", 3)
 				}
 				break;
 			case 0x28: /* ( */
@@ -134,60 +118,61 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 					st->_st_cset = CS_0;
 					break;
 				default:
-					RETERROR(EILSEQ, "Unknown ESC(?");
+					RET_EILSEQ("Unknown ESC(?", 3)
 				}
 				break;
 			default:
-				RETERROR(EILSEQ, "Unknown ESC?");
+				RET_EILSEQ("Unknown ESC?", 2)
 			}
 		} else if (st->_st_cset == CS_0) { /* IRV */
 			if ((ic1 == 0x0e) || (ic1 == 0x0f) || (ic1 > 0x7f)) {
-				RETERROR(EILSEQ, "IRV-1")
+				RET_EILSEQ("IRV-1", 1)
 			}
+			RESTORE_HEX_ASCII_JUMP(ic1)
 			u32 = (unsigned int)_jfp_tbl_jisx0201roman_to_ucs2[ic1];
-			PUTU(u32, "IRV");
+			PUTU(u32, "IRV", 1);
 		} else if (st->_st_cset == CS_1) { /* Plane 1 */
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
-				RETERROR(EILSEQ, "PLANE1-1")
+				RET_EILSEQ("PLANE1-1", 1)
 			}
 			NGET(ic2, "PLANE1-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
-				RETERROR(EILSEQ, "PLANE1-2")
+				RET_EILSEQ("PLANE1-2", 2)
 			}
 			e16 = ((ic1 << 8) | ic2) | 0x8080;
 			u32 = (unsigned int)_jfp_tbl_jisx0208_to_ucs2[
 				(ic1 - 0x21) * 94 + (ic2 - 0x21)];
 			if (IFHISUR(u32)) {
 				u32 = _jfp_lookup_x0213_nonbmp(e16, u32);
-				PUTU(u32, "PLANE1->NONBMP");
+				PUTU(u32, "PLANE1->NONBMP", 2);
 			} else if (u32 == 0xffff) {
 				/* need to compose */
 				unsigned int	u32_2;
 				u32 = _jfp_lookup_x0213_compose(e16, &u32_2);
-				PUTU(u32, "PLANE1->CP1");
-				PUTU(u32_2, "PLANE1->CP2");
+				PUTU(u32, "PLANE1->CP1", 2);
+				PUTU(u32_2, "PLANE1->CP2", 2);
 			} else {
-				PUTU(u32, "PLANE1->BMP");
+				PUTU(u32, "PLANE1->BMP", 2);
 			}
 		} else if (st->_st_cset == CS_3) { /* Plane 2 */
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
-				RETERROR(EILSEQ, "PLANE2-1")
+				RET_EILSEQ("PLANE2-1", 1)
 			}
 			NGET(ic2, "PLANE2-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
-				RETERROR(EILSEQ, "PLANE2-2")
+				RET_EILSEQ("PLANE2-2", 2)
 			}
 			e16 = ((ic1 << 8) | ic2) | 0x8000;
 			u32 = (unsigned int)_jfp_tbl_jisx0213p2_to_ucs2[
 				(ic1 - 0x21) * 94 + (ic2 - 0x21)];
 			if (IFHISUR(u32)) {
 				u32 = _jfp_lookup_x0213_nonbmp(e16, u32);
-				PUTU(u32, "PLANE2->NONBMP");
+				PUTU(u32, "PLANE2->NONBMP", 2);
 			} else {
-				PUTU(u32, "PLANE2->BMP");
+				PUTU(u32, "PLANE2->BMP", 2);
 			}
 		}
-
+cont:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -206,4 +191,27 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_utf32(pip, pop, poleft, cd));
 }

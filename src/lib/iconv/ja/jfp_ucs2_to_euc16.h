@@ -24,11 +24,10 @@
  * Copyright (c) 1991-2006 Unicode, Inc. All rights reserved. Distributed
  * under the Terms of Use in http://www.unicode.org/copyright.html.
  *
- * This file has been modified by Sun Microsystems, Inc. 
+ * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #pragma ident "@(#)jfp_ucs2_to_euc16.h	1.16	07/05/25 SMI"
@@ -84,15 +83,18 @@ typedef	unsigned short	_jfp_euc16_t;
  * 	U2E_NODEST_COL2: for 2 column width character
  * 	U2E_NODEST_COL1: for 1 column width character
  * 	U2E_NODEST_COLX: for unknown (or undefined) column width character
+ *
+ * It was defined as 0x003f, but now it's DO_SPECIAL (0xffff) to process
+ * non identical bytes specified by ICONV_CONV_NON_IDENTICAL_* flag.
  */
 #if	defined(JFP_U2E_STREAMS)
 #define		U2E_NODEST_COL2	0xa2ae	/* Geta Mark */
 #define		U2E_NODEST_COL1	0x003f	/* Question Mark */
 #define		U2E_NODEST_COLX	U2E_NODEST_COL2	/* tentative */
 #elif	defined(JFP_U2E_ICONV)
-#define		U2E_NODEST_COL2	0x003f	/* Question Mark */
-#define		U2E_NODEST_COL1	0x003f	/* Question Mark */
-#define		U2E_NODEST_COLX	0x003f	/* Question Mark */
+#define		U2E_NODEST_COL2	0xffff	/* see above */
+#define		U2E_NODEST_COL1	0xffff	/* see above */
+#define		U2E_NODEST_COLX	0xffff	/* see above */
 #endif
 
 /*

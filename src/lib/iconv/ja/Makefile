@@ -41,6 +41,10 @@ lint		:=	TARGET = lint
 clean		:=	TARGET = clean
 clobber		:=	TARGET = clobber
 
+DBGCOMP=
+COMMON_OBJS = jfp_iconv_common.o
+COMMON_OBJS64 = $(MACH64)/jfp_iconv_common.o
+
 LINKS= \
 	eucJP_TO_ISO-2022-JP.RFC1468.c \
 	PCK_TO_ISO-2022-JP.RFC1468.c \
@@ -308,13 +312,14 @@ $(ICONV_DIR):
 	$(INSDIR) $(FILEROOT)/usr/lib/iconv/$(MACH64)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
-	$(CC) $(CFLAGS64) -o $(MACH64)/$@ -c $<
+	$(CC) $(CFLAGS) $(DBGCOMP) -o $@ -c $<
+	$(CC) $(CFLAGS) $(DBGCOMP) -o jfp_iconv_common.o -c jfp_iconv_common.c
+	$(CC) $(CFLAGS64) $(DBGCOMP) -o $(MACH64)/$@ -c $<
+	$(CC) $(CFLAGS64) $(DBGCOMP) -o $(MACH64)/jfp_iconv_common.o -c jfp_iconv_common.c
 
 %.so: %.o
-	$(LD) $(LDFLAGS) -o $@ $<
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$<
-
+	$(LD) $(LDFLAGS) -o $@ $< $(COMMON_OBJS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$< $(COMMON_OBJS64)
 
 all: $(MACH64) $(LINKS) $(DYNOBJS)
 

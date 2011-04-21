@@ -19,53 +19,42 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 1994-2003 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1994, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#ident	"@(#)eucJP_TO_jis.c	1.8	06/12/20 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 
-/*
- * struct _icv_state; to keep stat
- */
-struct _icv_state {
-	int	_st_cset;
-};
-
-void *
-_icv_open()
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	struct _icv_state *st;
+	__icv_state_t *st;
 
-	if ((st = (struct _icv_state *)malloc(sizeof (struct _icv_state)))
-									== NULL)
-		return ((void *)ERR_RETURN);
+	if ((st = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		st->_st_cset = CS_0;
+		st->replacement = JGETA; /* default is JIS GETA */
+	}
 
-	st->_st_cset = CS_0;
-	return (st);
-}
-
-void
-_icv_close(struct _icv_state *st)
-{
-	free(st);
+	return ((iconv_t)st);
 }
 
 size_t
-_icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t *st;
+
 	int cset, stat;
-	unsigned char *ip, ic;
+	unsigned char *ip, ic, ic2, ic3;
 	char *op;
 	size_t ileft, oleft;
 	size_t retval;
+
+	st = (__icv_state_t *)cd;
 
 	stat = ST_INIT;
 
@@ -120,23 +109,10 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	 */
 
 	while ((int)ileft > 0) {
+		st->_st_cset = cset;
 		GET(ic);
-		if (stat == ST_INCS2) {
-			PUT(ic & CMASK);
-			stat = ST_INIT;
-			continue;
-		} else if (stat == ST_INCS1) {
-			PUT(ic & CMASK);
-			stat = ST_INIT;
-			continue;
-		} else if (stat == ST_INCS3) {
-			PUT(ic & CMASK);
-			GET(ic);
-			PUT(ic & CMASK);
-			stat = ST_INIT;
-			continue;
-		}
 		if (ISASC((int)ic)) { /* ASCII */
+			RESTORE_HEX_ASCII_CONTINUE(ic)
 			if ((cset == CS_1) || (cset == CS_3)) {
 				if (oleft < SEQ_SBTOG0) {
 					UNGET();
@@ -167,9 +143,11 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			continue;
 		} else if (ISCS1(ic)) {
 			if ((int)ileft > 0) {	/* Kanj starts */
-				if (ISCS1(*ip)) {
+				GET(ic2); /*get 2nd byte */
+				if (ISCS1(ic2)) {
 					if (cset == CS_2) {
 						if (oleft < SEQ_SOSI) {
+							UNGET();
 							UNGET();
 							errno = E2BIG;
 							retval =
@@ -181,6 +159,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					}
 					if (cset != CS_1) {
 						if (oleft < SEQ_MBTOG0_O) {
+							UNGET();
 							UNGET();
 							errno = E2BIG;
 							retval =
@@ -194,17 +173,16 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					}
 					if (oleft < JISW1) {
 						UNGET();
+						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
 						goto ret;
 					}
-					stat = ST_INCS1;
 					PUT(ic & CMASK);
+					PUT(ic2 & CMASK);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -214,9 +192,11 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			}
 		} else if (ic == SS2) {	/* Kana starts */
 			if ((int)ileft > 0) {
-				if (ISCS2(*ip)) {
+				GET(ic2); /* get 2nd byte */
+				if (ISCS2(ic2)) {
 					if ((cset == CS_1) || (cset == CS_3)) {
 						if (oleft < SEQ_SBTOG0) {
+							UNGET();
 							UNGET();
 							errno = E2BIG;
 							retval =
@@ -231,6 +211,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					if (cset != CS_2) {
 						if (oleft < SEQ_SOSI) {
 							UNGET();
+							UNGET();
 							errno = E2BIG;
 							retval =
 							(size_t)ERR_RETURN;
@@ -241,16 +222,15 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					}
 					if (oleft < JISW2) {
 						UNGET();
+						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
 						goto ret;
 					}
-					stat = ST_INCS2;
+					PUT(ic2 & CMASK);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ(2)
 				}
 			} else {		/* input fragment of Kana */
 				UNGET();
@@ -260,9 +240,13 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 			}
 		} else if (ic == SS3) {	/* JISX0212 starts */
 			if (ileft >= EUCW3) {
-				if (ISCS3(*ip) && ISCS3(*(ip + 1))) {
+				GET(ic2); /* get 2nd byte */
+				GET(ic3); /* get 3rd byte */
+				if (ISCS3(ic2) && ISCS3(ic3)) {
 					if (cset == CS_2) {
 						if (oleft < SEQ_SOSI) {
+							UNGET();
+							UNGET();
 							UNGET();
 							errno = E2BIG;
 							retval =
@@ -274,6 +258,8 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					}
 					if (cset != CS_3) {
 						if (oleft < SEQ_MBTOG0) {
+							UNGET();
+							UNGET();
 							UNGET();
 							errno = E2BIG;
 							retval =
@@ -288,16 +274,17 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 					}
 					if (oleft < JISW3) {
 						UNGET();
+						UNGET();
+						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
 						goto ret;
 					}
-					stat = ST_INCS3;
+					PUT(ic2 & CMASK);
+					PUT(ic3 & CMASK);
 					continue;
-				} else {
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+				} else { /* 2nd and 3rd byte check failed */
+					UNGET_EILSEQ(3)
 				}
 			} else {	/* input fragment of JISX0212 */
 				UNGET();
@@ -305,21 +292,41 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				retval = (size_t)ERR_RETURN;
 				goto ret;
 			}
-		} else {
-			UNGET();
-			errno = EILSEQ;
-			retval = (size_t)ERR_RETURN;
-			goto ret;
+		} else { /* 1st byte check failed */
+			UNGET_EILSEQ(1)
 		}
 	}
 	retval = ileft;
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;
 
 	return (retval);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_iso2022jp(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_iso2022jp(pop, poleft, cd));
 }

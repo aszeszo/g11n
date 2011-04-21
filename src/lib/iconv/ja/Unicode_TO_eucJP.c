@@ -19,11 +19,8 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)Unicode_TO_eucJP.c 1.18     07/05/25 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,6 +28,7 @@
 #include <euc.h>
 
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #ifdef JAVA_CONV_COMPAT
@@ -44,39 +42,45 @@
 
 #define	DEF_SINGLE	'?'
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	return (_icv_open_unicode((size_t)0));
-}
+	__icv_state_t *cd;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+		cd->replacement = DEF_SINGLE;
+	}
+
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned char	ic;
 	size_t		rv = (size_t)0;
 	unsigned int	ucs4;
 	unsigned short	euc16;
 
 	unsigned char	*ip;
-        size_t		ileft;
+        size_t		ileft, pre_ileft;
 	char		*op;
         size_t		oleft;
+
+	int		cset; /* not used but needed for GETU() */
+
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(cd);
+		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -86,14 +90,28 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
+		pre_ileft = ileft; /* value before reading input bytes */
 		GETU(&ucs4);
 
 		if (ucs4 > 0xffff) {
-			/* non-BMP */
-			ic = (unsigned char)DEF_SINGLE;
-			NPUT(ic, "DEF for non-BMP");
+			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+				CALL_NON_IDENTICAL()
+			} else {
+				/* non-BMP */
+				ic = (unsigned char)DEF_SINGLE;
+				NPUT(ic, "DEF for non-BMP");
+			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
+
+			if(euc16 == 0xffff) {
+				if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+					CALL_NON_IDENTICAL()
+					goto next;
+				} else {
+					euc16 = DEF_SINGLE; /* replacement char */
+				}
+			}
 
 			switch (euc16 & 0x8080) {
 			case 0x0000:	/* CS0 */
@@ -140,4 +158,28 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_ascii(hex, pip, pop, poleft, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_ascii(pop, poleft, cd));
 }

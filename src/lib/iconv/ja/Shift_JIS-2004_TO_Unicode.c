@@ -19,16 +19,14 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)Shift_JIS-2004_TO_Unicode.c 1.3     07/05/25 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #define	JFP_J2U_ICONV_X0213
@@ -143,23 +141,24 @@ static unsigned short sjtoe16_x0213(unsigned char c1, unsigned char c2)
 	return (e16);
 }
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	return (_icv_open_unicode((size_t)0));
-}
+	__icv_state_t *cd;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+	}
+
+	return((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned int	u32;		/* UTF-32 */
 	unsigned short	e16;		/* 16-bit EUC */
 	unsigned int	index;		/* index for table lookup */
@@ -171,12 +170,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	char		*op;
 	size_t		oleft;
 
+	st = (__icv_state_t *)cd;
+
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(cd);
+		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -189,11 +190,12 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 		NGET(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
+			RESTORE_HEX_ASCII_JUMP(ic1)
 			u32 = _jfp_tbl_jisx0201roman_to_ucs2[ic1];
-			PUTU(u32, "ASCII");
+			PUTU(u32, "ASCII", 1);
 		} else if (ISSJKANA(ic1)) { /* JIS X 0201 Kana; 1 byte */
 			u32 = _jfp_tbl_jisx0201kana_to_ucs2[ic1 - 0xa1];
-			PUTU(u32, "KANA");
+			PUTU(u32, "KANA", 1);
 		} else if (((ic1 >= 0x81) && (ic1 <= 0x9f)) ||
 				((ic1 >= 0xe0) && (ic1 <= 0xef))) {
 			/* JIS X 0213 plane 1 */
@@ -206,19 +208,19 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				if (IFHISUR(u32)) {
 					u32 = _jfp_lookup_x0213_nonbmp(
 						e16, u32);
-					PUTU(u32, "PLANE1->NONBMP");
+					PUTU(u32, "PLANE1->NONBMP", 2);
 				} else if (u32 == 0xffff) {
 					/* need to compose */
 					unsigned int	u32_2;
 					u32 = _jfp_lookup_x0213_compose(
 						e16, &u32_2);
-					PUTU(u32, "PLANE1->CP1");
-					PUTU(u32_2, "PLANE1->CP2");
+					PUTU(u32, "PLANE1->CP1", 2);
+					PUTU(u32_2, "PLANE1->CP2", 2);
 				} else {
-					PUTU(u32, "PLANE1->BMP");
+					PUTU(u32, "PLANE1->BMP", 2);
 				}
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "PLANE1-2")
+				RET_EILSEQ("PLANE1-2, 2)
 				/* NOTREACHED */
 			}
 		} else if ((ic1 >= 0xf0) && (ic1 <= 0xfc)) {
@@ -232,18 +234,18 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				if (IFHISUR(u32)) {
 					u32 = _jfp_lookup_x0213_nonbmp(
 					e16, u32);
-					PUTU(u32, "PLANE2->NONBMP");
+					PUTU(u32, "PLANE2->NONBMP", 2);
 				} else {
-					PUTU(u32, "PLANE2->BMP");
+					PUTU(u32, "PLANE2->BMP", 2);
 				}
 			} else {
-				RETERROR(EILSEQ, "PLANE2-2")
+				RET_EILSEQ("PLANE2-2", 2)
 				/* NOTREACHED */
 			}
 		} else { /* 1st byte check failed */
-			RETERROR(EILSEQ, "EILSEQ at 1st")
+			RET_EILSEQ("EILSEQ at 1st", 1)
 		}
-
+cont:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -262,4 +264,26 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_utf32(pip, pop, poleft, cd));
 }

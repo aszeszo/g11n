@@ -19,17 +19,15 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)Unicode_TO_ISO-2022-JP-2004.c 1.1 07/01/11 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #define	JFP_U2E_ICONV_X0213
@@ -48,49 +46,39 @@
 #define	CS3_SEQ3	0x28	/* ( */
 #define	CS3_SEQ4	0x50	/* P */
 
-struct _icv_state {
-	int	_st_cset;
-};
-
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	void			*cd;
-	struct _icv_state	*st;
+	__icv_state_t *cd;
 
-	cd = _icv_open_unicode(sizeof (struct _icv_state));
-
-	if (cd != NULL) {
-		st = (struct _icv_state *)(_icv_get_ext(cd));
-		st->_st_cset = CS_0;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+		cd->_st_cset = CS_0;
+		cd->replacement = DEF_SINGLE;
 	}
 
-	return (cd);
-}
-
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned int	u32;		/* UTF-32 */
 	unsigned short	e16;		/* 16-bit EUC */
 	unsigned char	ic;
 	size_t		rv = (size_t)0;
 
-	struct _icv_state	*st = (struct _icv_state *)(_icv_get_ext(cd));
-	int			cset;
+	int		cset;
 
 	unsigned char	*ip;
-        size_t		ileft;
+        size_t		ileft, pre_ileft;
 	char		*op;
         size_t		oleft;
+
+	st = (__icv_state_t *)cd;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -109,7 +97,7 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				*outbytesleft = oleft;
 			}
 			st->_st_cset = CS_0;
-			_icv_reset_unicode(cd);
+			_icv_reset_unicode(st);
 		}
 		return ((size_t)0);
 	}
@@ -122,9 +110,25 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
+		pre_ileft = ileft; /* value before reading input bytes */
+		errno = 0;
 		GETU(&u32)
 
 		e16 = _jfp_u32_to_euc16(u32);
+
+		if(e16 == 0xffff) {
+			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+				CALL_NON_IDENTICAL()
+				if (st->_icv_flag & __ICONV_CONV_REPLACE_HEX) {
+					cset = CS_0;
+				}
+				goto next;
+			} else {
+				e16 = DEF_SINGLE; /* replacement char */
+			}
+		}
+
+		cset = st->_st_cset;
 
 		switch (e16 & 0x8080) {
 		case 0x0000:	/* CS0 */
@@ -151,14 +155,21 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 			NPUT(ic, "CS1-2");
 			break;
 		case 0x0080:	/* CS2 */
-			if (cset != CS_0) {
-				NPUT(ESC, "CS2-REPL-SEQ-ESC");
-				NPUT(CS0_SEQ2, "CS2-REPL-SEQ2");
-				NPUT(CS0_SEQ3, "CS2-REPL-SEQ3");
-				cset = CS_0;
+			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+				CALL_NON_IDENTICAL()
+				if (st->_icv_flag & __ICONV_CONV_REPLACE_HEX) {
+					cset = CS_0;
+				}
+			} else {
+				if (cset != CS_0) {
+					NPUT(ESC, "CS2-REPL-SEQ-ESC");
+					NPUT(CS0_SEQ2, "CS2-REPL-SEQ2");
+					NPUT(CS0_SEQ3, "CS2-REPL-SEQ3");
+					cset = CS_0;
+				}
+				ic = DEF_SINGLE;
+				NPUT(ic, "CS2-REPL");
 			}
-			ic = DEF_SINGLE;
-			NPUT(ic, "CS2-REPL");
 			break;
 		case 0x8000:	/* CS3 */
 			if (cset != CS_3) {
@@ -174,8 +185,19 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 			NPUT(ic, "CS3-2");
 			break;
 		}
-
 next:
+		/*
+		 * Program jump to here when illegal byte is detected in
+		 * GETU() The above "errno = 0;" is required for here.
+		 * The mode needs to be change to CS_0, when illegal byte
+		 * has been replaced in GETU() as spceified by _icv_flag.
+		 */ 
+		if ((errno == EILSEQ) && 
+		(st->_icv_flag & 
+			(__ICONV_CONV_REPLACE_HEX|ICONV_REPLACE_INVALID))) { 
+			cset = CS_0;
+		}
+
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -197,4 +219,28 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_iso2022jp(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_iso2022jp(pop, poleft, cd));
 }

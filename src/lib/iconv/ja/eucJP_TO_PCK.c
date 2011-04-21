@@ -19,11 +19,8 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 1994-2003 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 1994, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#ident	"@(#)eucJP_TO_PCK.c	1.11	06/12/20 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,30 +28,34 @@
 #include <euc.h>
 #define	JFP_ICONV_STATELESS
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 
 static unsigned short lookuptbl(unsigned short);
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	return (_icv_open_stateless());
-}
+	__icv_state_t *st;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_stateless(cd);
-	return;
+	if ((st = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		st->replacement = PGETA; /* default is PCK GETA */
+	}
+
+	return ((iconv_t)st);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-	int				stat;
-	unsigned char	*ip, ic, *op;
-	size_t			ileft, oleft;
-	size_t			retval;
+	__icv_state_t	*st;
+
+	int		stat;
+	unsigned char	*ip, ic, ic2, ic3, *op;
+	size_t		ileft, oleft;
+	size_t		retval;
+
+	st = (__icv_state_t *)cd;
 
 	stat = ST_INIT;
 
@@ -78,12 +79,8 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 
 	while ((int)ileft > 0) {
 		GET(ic);
-		if (stat == ST_INCS2) {
-			PUT(ic);
-			stat = ST_INIT;
-			continue;
-		}
 		if (ISASC((int)ic)) {		/* ASCII */
+			RESTORE_HEX_ASCII_CONTINUE(ic)
 			if (oleft < SJISW0) {
 				UNGET();
 				errno = E2BIG;
@@ -95,9 +92,10 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 		}
 		if (ISCS1(ic)) {			/* Kanji starts */
 			if ((int)ileft > 0) {
-				if (ISCS1(*ip)) {
-					int even_ku;
+				GET(ic2);
+				if (ISCS1(ic2)) {
 					if (oleft < SJISW1) {
+						UNGET();
 						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
@@ -105,21 +103,13 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 					}
 					ic &= 0x7f;
 					PUT(jis208tosj1[ic]);
+					ic2 &= 0x7f;
 					if ((ic % 2) == 0)
-						even_ku = TRUE;
-					else
-						even_ku = FALSE;
-					GET(ic);
-					ic &= 0x7f;
-					if (even_ku)
-						ic += 0x80;
-					PUT(jistosj2[ic]);
+						ic2 += 0x80;
+					PUT(jistosj2[ic2]);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ_STATELESS(2)
 				}
 			} else {		/* input fragment of Kanji */
 				UNGET();
@@ -129,20 +119,19 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 			}
 		} else if (ic == SS2) {	/* Kana starts */
 			if ((int)ileft > 0) {
-				if (ISCS2(*ip)) {
+				GET(ic2);
+				if (ISCS2(ic2)) {
 					if (oleft < SJISW2) {
+						UNGET();
 						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
 						goto ret;
 					}
-					stat = ST_INCS2;
+					PUT(ic2);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET();
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_EILSEQ_STATELESS(2)
 				}
 			} else {		/* input fragment of Kana */
 				UNGET();
@@ -153,61 +142,62 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 		} else if (ic == SS3) { /* CS_3 Kanji starts */
 			unsigned short dest;
 			if (ileft >= EUCW3) {
-				if (ISCS3(*ip) && ISCS3(*(ip + 1))) {
+				GET(ic2);
+				GET(ic3);
+				if (ISCS3(ic2) && ISCS3(ic3)) {
 					if (oleft < SJISW1) {
+						UNGET();
+						UNGET();
 						UNGET();
 						errno = E2BIG;
 						retval = (size_t)ERR_RETURN;
 						goto ret;
 					}
-					if (*ip < 0xf5) { /* check IBM area */
-						GET(ic);
-						dest = (ic << 8);
-						GET(ic);
-						dest += ic;
+					if (ic2 < 0xf5) { /* check IBM area */
+						dest = (ic2 << 8);
+						dest += ic3;
 						dest = lookuptbl(dest);
 						if (dest == 0xffff) {
 							/*
 							 * Illegal code points
 							 * in G3 plane.
 							 */
-							UNGET();
-							UNGET();
-							errno = E2BIG;
-							retval =
-							(size_t)ERR_RETURN;
-							goto ret;
+							UNGET_EILSEQ_STATELESS(3)
 						} else {
-							PUT((dest >> 8) &
-							0xff);
-							PUT(dest & 0xff);
+							if ((dest == PGETA) &&
+							(st->_icv_flag & __ICONV_CONV_NON_IDENTICAL))
+							{
+								CALL_NON_IDENTICAL_UNGET(3)
+							} else {
+								PUT((dest >> 8) & 0xff);
+								PUT(dest & 0xff);
+							}
 						}
 						continue;
 					} else {
-						unsigned char c1, c2;
-
-						GET(c1);
-						GET(c2);
-						c1 &= 0x7f;
-						c2 &= 0x7f;
-						if ((c1 % 2) == 0)
-							c2 += 0x80;
-						c1 = jis212tosj1[c1];
-						c2 = jistosj2[c2];
-						if ((c1 != 0xff) &&
-							(c2 != 0xff)) {
-							PUT(c1);
-							PUT(c2);
+						ic2 &= 0x7f;
+						ic3 &= 0x7f;
+						if ((ic2 % 2) == 0)
+							ic3 += 0x80;
+						ic2 = jis212tosj1[ic2];
+						ic3 = jistosj2[ic3];
+						if ((ic2 != 0xff) &&
+							(ic3 != 0xff)) {
+							PUT(ic2);
+							PUT(ic3);
 							continue;
 						}
-						PUT((PGETA >> 8) & 0xff);
-						PUT(PGETA & 0xff);
+						if (st->_icv_flag & 
+							__ICONV_CONV_NON_IDENTICAL) {
+							CALL_NON_IDENTICAL_UNGET(3)
+						} else {
+							PUT((PGETA >> 8) & 0xff);
+							PUT(PGETA & 0xff);
+						}
 						continue;
 					}
-				} else {
-					errno = EILSEQ;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+				} else { /* 2nd and 3rd byte check failed */
+					UNGET_EILSEQ_STATELESS(3)
 				}
 			} else {	/* input fragment of JISX0212 */
 				UNGET();
@@ -215,18 +205,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				retval = (size_t)ERR_RETURN;
 				goto ret;
 			}
-		} else {
-			UNGET();
-			errno = EILSEQ;
-			retval = (size_t)ERR_RETURN;
-			goto ret;
+		} else { /* 1st byte check failed */
+			UNGET_EILSEQ_STATELESS(1)
 		}
 	}
 	retval = ileft;
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 
@@ -251,4 +237,28 @@ lookuptbl(unsigned short dest)
 			return ((i + 0xfa40 + ((i / 0xc0) * 0x40)));
 	}
 	return (PGETA);
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*st,
+	int		caller)
+{
+	return (__replace_hex_ascii(hex, pip, pop, poleft, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t
+__replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_ascii(pop, poleft, cd));
 }

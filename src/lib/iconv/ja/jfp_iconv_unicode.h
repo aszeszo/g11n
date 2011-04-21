@@ -24,11 +24,10 @@
  * Copyright (c) 1991-2005 Unicode, Inc. All rights reserved. Distributed
  * under the Terms of Use in http://www.unicode.org/copyright.html.
  *
- * This file has been modified by Sun Microsystems, Inc. 
+ * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #pragma ident	"@(#)jfp_iconv_unicode.h 1.20 07/05/25 SMI"
@@ -67,11 +66,15 @@
 #define	IFHISUR(x)	((0xd800 <= (x)) && ((x) <= 0xdbff))
 #define	IFLOSUR(x)	((0xdc00 <= (x)) && ((x) <= 0xdfff))
 
-typedef struct {
-	boolean_t         bom_written;
-	boolean_t         little_endian;
-} ucs_state_t;
-
+/* 
+ * size of character. It's used in _replace_hex_ucs() function to
+ * look for the prefix to be replaced with hex value.
+ */
+#if     defined(JFP_ICONV_FROMCODE_UTF32)
+#define __SIZE_OF_UCS	4
+#else   /* JFP_ICONV_FROMCODE_UTF16 or JFP_ICONV_FROMCODE_UCS2 */
+#define __SIZE_OF_UCS	2
+#endif
 
 #if	defined(JFP_ICONV_FROMCODE_UTF32)
 
@@ -80,10 +83,14 @@ read_unicode(
 	unsigned int	*p,		/* point variable to store UTF-32 */
 	unsigned char	**pip,		/* point pointer to input buf */
 	size_t		*pileft,	/* point #bytes left in input buf */
-	ucs_state_t	*state)		/* BOM state and endian */
+	char		**pop,		/* point pointer to output buf */
+	size_t		*poleft,	/* point #bytes left in output buf */
+	__icv_state_t	*st)		/* BOM state and endian */
 {
 	unsigned char	*ip = *pip;
 	size_t		ileft = *pileft;
+	char		*op = *pop;
+	size_t		oleft = *poleft;
 	size_t		rv = (size_t)0; /* return value */
 	unsigned char	ic1, ic2, ic3, ic4;	/* bytes read */
 	unsigned int	u32;		/* resulted UTF-32 */
@@ -93,30 +100,30 @@ read_unicode(
 	NGET(ic3, "UTF32-3");
 	NGET(ic4, "UTF32-4");
 
-	if (state->bom_written == B_FALSE) {
+	if (st->bom_written == B_FALSE) {
 		u32 = 0U;
 		u32 |= (unsigned int)ic1 << 24;
 		u32 |= (unsigned int)ic2 << 16;
 		u32 |= (unsigned int)ic3 << 8;
 		u32 |= (unsigned int)ic4 << 0;
 		if (u32 == BOM) {
-			state->bom_written = B_TRUE;
-			state->little_endian = B_FALSE;
+			st->bom_written = B_TRUE;
+			st->little_endian = B_FALSE;
 			*p = BOM;
 			rv = (size_t)0;
 			goto ret;
 		} else if (u32 == BSBOM32) {
-			state->bom_written = B_TRUE;
-			state->little_endian = B_TRUE;
+			st->bom_written = B_TRUE;
+			st->little_endian = B_TRUE;
 			*p = BOM;
 			rv = (size_t)0;
 			goto ret;
 		} else {
-			state->bom_written = B_TRUE;
+			st->bom_written = B_TRUE;
 		}
 	}
 
-	if (state->little_endian == B_TRUE) {
+	if (st->little_endian == B_TRUE) {
 		u32 = 0U;
 		u32 |= (unsigned int)ic1 << 0;
 		u32 |= (unsigned int)ic2 << 8;
@@ -131,22 +138,27 @@ read_unicode(
 	}
 
 	if (u32 == BSBOM32) {
-		RETERROR(EILSEQ, "byte-swapped BOM detected")
+		RET_EILSEQ("byte-swapped BOM detected", 4)
 	}
 
 	if ((u32 == 0xfffe) || (u32 == 0xffff) || (u32 > 0x10ffff)
 			|| IFHISUR(u32) || IFLOSUR(u32)) {
-		RETERROR(EILSEQ, "illegal in UTF-32")
+		RET_EILSEQ("illegal in UTF-32", 4)
 	}
+
+	RESTORE_HEX_UNICODE(u32)
 
 	*p = u32;
 	rv = *pileft - ileft;
 
+cont:
 ret:
 	if (rv != (size_t)-1) {
-		/* update *pip and *pileft only on successful return */
+		/* update pointers only on successful return */
 		*pip = ip;
 		*pileft = ileft;
+		*pop = op;
+		*poleft = oleft;
 	}
 
 	return (rv);
@@ -159,10 +171,14 @@ read_unicode(
 	unsigned int	*p,		/* point variable to store UTF-32 */
 	unsigned char	**pip,		/* point pointer to input buf */
 	size_t		*pileft,	/* point #bytes left in input buf */
-	ucs_state_t	*state)		/* BOM state and endian */
+	char		**pop,		/* point pointer to output buf */
+	size_t		*poleft,	/* point #bytes left in output buf */
+	__icv_state_t	*st)		/* BOM state and endian */
 {
 	unsigned char	*ip = *pip;
 	size_t		ileft = *pileft;
+	char		*op = *pop;
+	size_t		oleft = *poleft;
 	size_t		rv = (size_t)0; /* return value */
 	unsigned char	ic1, ic2;	/* bytes read */
 	unsigned int	u32;		/* resulted UTF-32 */
@@ -171,50 +187,52 @@ read_unicode(
 	NGET(ic1, "UTF16-1");	/* read 1st byte */
 	NGET(ic2, "UTF16-2");	/* read 2nd byte */
 
-	if (state->bom_written == B_FALSE) {
+	if (st->bom_written == B_FALSE) {
 		u32 = 0U;
 		u32 |= (unsigned int)ic1 << 8;
 		u32 |= (unsigned int)ic2 << 0;
 		if (u32 == BOM) {
-			state->bom_written = B_TRUE;
-			state->little_endian = B_FALSE;
+			st->bom_written = B_TRUE;
+			st->little_endian = B_FALSE;
 			*p = BOM;
 			rv = (size_t)0;
 			goto ret;
 		} else if (u32 == BSBOM16) {
-			state->bom_written = B_TRUE;
-			state->little_endian = B_TRUE;
+			st->bom_written = B_TRUE;
+			st->little_endian = B_TRUE;
 			*p = BOM;
 			rv = (size_t)0;
 			goto ret;
 		} else {
-			state->bom_written = B_TRUE;
+			st->bom_written = B_TRUE;
 		}
 	}
 
-	if (state->little_endian == B_TRUE) {
+	if (st->little_endian == B_TRUE) {
 		u32 = (((unsigned int)ic2) << 8) | ic1;
 	} else {
 		u32 = (((unsigned int)ic1) << 8) | ic2;
 	}
 
 	if (u32 == BSBOM16) {
-		RETERROR(EILSEQ, "byte-swapped BOM detected")
+		RET_EILSEQ("byte-swapped BOM detected", 2)
 	}
 
 	if ((u32 == 0xfffe) || (u32 == 0xffff) || (u32 > 0x10ffff)
 			|| (IFLOSUR(u32))) {
-		RETERROR(EILSEQ, "illegal in UTF16")
+		RET_EILSEQ("illegal in UTF16", 2)
 	}
+
+	RESTORE_HEX_UNICODE(u32)
 
 	if (IFHISUR(u32)) {
 #if	defined(JFP_ICONV_FROMCODE_UCS2)
-		RETERROR(EILSEQ, "surrogate is illegal in UCS2")
+		RET_EILSEQ("surrogate is illegal in UCS2", 2)
 #else	/* !defined(JFP_ICONV_FROMCODE_UCS2) */
 		NGET(ic1, "LOSUR-1");
 		NGET(ic2, "LOSUR-2");
 
-		if (state->little_endian == B_TRUE) {
+		if (st->little_endian == B_TRUE) {
 			losur = (((unsigned int)ic2) << 8) | ic1;
 		} else {
 			losur = (((unsigned int)ic1) << 8) | ic2;
@@ -224,7 +242,7 @@ read_unicode(
 			u32 = ((u32 - 0xd800) * 0x400)
 				+ (losur - 0xdc00) + 0x10000;
 		} else {
-			RETERROR(EILSEQ, "low-surrogate expected")
+			RET_EILSEQ("low-surrogate expected", 4)
 		}
 #endif	/* defined(JFP_ICONV_FROMCODE_UCS2) */
 	}
@@ -232,11 +250,14 @@ read_unicode(
 	*p = u32;
 	rv = *pileft - ileft;
 
+cont:
 ret:
 	if (rv != (size_t)-1) {
-		/* update *pip and *pileft only on successful return */
+		/* update pointers only on sucessful return */
 		*pip = ip;
 		*pileft = ileft;
+		*pop = op;
+		*poleft = oleft;
 	}
 
 	return (rv);
@@ -375,7 +396,13 @@ static const unsigned char valid_max_2nd_byte[0x100] = {
 };
 
 static size_t
-utf8_ucs(unsigned int *p, unsigned char **pip, size_t *pileft)
+utf8_ucs(
+	unsigned int	*p,
+	unsigned char	**pip,
+	size_t		*pileft,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*st)
 {
 	unsigned int	l;	/* to be copied to *p on successful return */
 	unsigned char	ic;	/* current byte */
@@ -383,13 +410,17 @@ utf8_ucs(unsigned int *p, unsigned char **pip, size_t *pileft)
 	unsigned char	*ip = *pip;	/* next byte to read */
 	size_t		ileft = *pileft; /* number of bytes available */
 	size_t		rv = (size_t)0; /* return value of this function */
-	int		remaining_bytes;
+	int		remaining_bytes, i;
+
+	char		*op = *pop;
+	size_t		oleft = *poleft;
 
 	NGET(ic, "no bytes available");	/* read 1st byte */
 	ic1 = ic;
 	l = ic1; /* get bits from 1st byte to UCS value */
 
 	if (ic1 < 0x80) {
+		RESTORE_HEX_ASCII_JUMP(ic1)
 		/* successfully converted */
 		*p = l;
 		rv = *pileft - ileft;
@@ -401,38 +432,44 @@ utf8_ucs(unsigned int *p, unsigned char **pip, size_t *pileft)
 	if (remaining_bytes != 0) {
 		l &= masks_tbl[remaining_bytes];
 
-		for (; remaining_bytes > 0; remaining_bytes--) {
+		/*
+		 * loop counter 'i' starts from 2 since 1st byte has been 
+		 * already read. loop counter is used to process __icv_illegal()
+		 * that need to know which byte has been detected as illegal.
+		 */
+		for (i = 2; remaining_bytes > 0; remaining_bytes--, i++) {
 			if (ic1 != 0U) {
 				NGET(ic, "2nd byte of UTF-8");
 				if ((ic < valid_min_2nd_byte[ic1]) ||
 					(ic > valid_max_2nd_byte[ic1])) {
-					RETERROR(EILSEQ, "2nd byte is invalid")
+					RET_EILSEQ("2nd byte is invalid", 2)
 				}
 				ic1 = 0U; /* 2nd byte check done */
 			} else {
 				NGET(ic, "3rd or later byte of UTF-8");
 				if ((ic < 0x80) || (ic > 0xbf)) {
-				RETERROR(EILSEQ, "3rd or later byte is invalid")
+				RET_EILSEQ("3rd or later byte is invalid", i)
 				}
 			}
 			l = (l << 6) | (ic & 0x3f);
 		}
-
 		/* successfully converted */
 		*p = l;
 		rv = *pileft - ileft;
 		goto ret;
 	} else {
-		RETERROR(EILSEQ, "1st byte is invalid")
+		RET_EILSEQ("1st byte is invalid", 1)
 	}
-
+cont:
 ret:
 	if (rv != (size_t)-1) {
 		/*
-		 * update *pip and *pileft on successful return
+		 * update pointers on successful return
 		 */
 		*pip = ip;
 		*pileft = ileft;
+		*pop = op;
+		*poleft = oleft;
 	}
 
 	return (rv);
@@ -444,9 +481,11 @@ read_unicode(
 	unsigned int	*p,		/* point variable to store UTF-32 */
 	unsigned char	**pip,		/* point pointer to input buf */
 	size_t		*pileft,	/* point #bytes left in input buf */
-	ucs_state_t	*state)		/* BOM state and endian - unused */
+	char		**pop,		/* point pointer to output buf */
+	size_t		*poleft,	/* point #bytes left in output buf */
+	__icv_state_t	*state)		/* BOM state and endian - unused */
 {
-	return (utf8_ucs(p, pip, pileft));
+	return (utf8_ucs(p, pip, pileft, pop, poleft, state));
 }
 
 #endif
@@ -458,7 +497,7 @@ write_unicode(
 	unsigned int	u32,		/* UTF-32 to write */
 	char		**pop,		/* point pointer to output buf */
 	size_t		*poleft,	/* point #bytes left in output buf */
-	ucs_state_t	*state,		/* BOM state and endian */
+	__icv_state_t	*state,		/* BOM state and endian */
 	const char	*msg)		/* debug message */
 {
 	char		*op = *pop;
@@ -523,7 +562,7 @@ write_unicode(
 	unsigned int	u32,		/* UTF-32 to write */
 	char		**pop,		/* point pointer to output buf */
 	size_t		*poleft,	/* point #bytes left in output buf */
-	ucs_state_t	*state,		/* BOM state and endian */
+	__icv_state_t	*state,		/* BOM state and endian */
 	const char	*msg)		/* debug message */
 {
 	char		*op = *pop;
@@ -602,7 +641,7 @@ write_unicode(
 	unsigned int	u32,		/* UTF-32 to write */
 	char		**pop,		/* point pointer to output buf */
 	size_t		*poleft,	/* point #bytes left in output buf */
-	ucs_state_t	*state,		/* BOM state and endian - unused */
+	__icv_state_t	*state,		/* BOM state and endian - unused */
 	const char	*msg)		/* debug message */
 {
 	char	*op = *pop;
@@ -646,7 +685,8 @@ ret:
 #endif
 
 #define	GETU(pu32) \
-	switch (read_unicode(pu32, &ip, &ileft, (ucs_state_t *)cd)) { \
+	switch (read_unicode(pu32, &ip, &ileft, \
+		&op, &oleft, st)) { \
 	case (size_t)-1: \
 		/* errno has been set in read_unicode() */ \
 		rv = (size_t)-1; \
@@ -660,20 +700,42 @@ ret:
 		break; \
 	}
 
-
-#define	PUTU(u32, msg)	\
-	if (write_unicode(u32, &op, &oleft, (ucs_state_t *)cd, msg) \
+#if	defined(JFP_ICONV_TOCODE_UCS2)
+#define	PUTU(u32, msg, num_of_bytes)	\
+	if ((st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) \
+		&& ((u32 == 0xfffd) || (u32 > 0xffff))) { \
+		if (__icv_non_identical(&ip, &op, &oleft, st, num_of_bytes) \
+			== (size_t)-1) { \
+			rv = ((size_t)-1);\
+			goto ret; \
+		} \
+	} else if (write_unicode(u32, &op, &oleft, st, msg) \
 			== (size_t)-1) { \
 		rv = ((size_t)-1);\
 		goto ret; \
 	}
+#else
+#define	PUTU(u32, msg, num_of_bytes)	\
+	if ((st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) \
+		&& (u32 == 0xfffd)) { \
+		if (__icv_non_identical(&ip, &op, &oleft, st, num_of_bytes) \
+			== (size_t)-1) { \
+			rv = ((size_t)-1);\
+			goto ret; \
+		} \
+	} else if (write_unicode(u32, &op, &oleft, st, msg) \
+			== (size_t)-1) { \
+		rv = ((size_t)-1);\
+		goto ret; \
+	}
+#endif
 
 #include	<stdlib.h>
 
 static void
 _icv_reset_unicode(void *cd)
 {
-	ucs_state_t	*state = (ucs_state_t *)cd;
+	__icv_state_t	*state = (__icv_state_t *)cd;
 
 #if	defined(JFP_ICONV_FROMCODE_UTF32BE) || \
 	defined(JFP_ICONV_TOCODE_UTF32BE) || \
@@ -696,38 +758,272 @@ _icv_reset_unicode(void *cd)
 	state->bom_written = B_FALSE;
 #endif
 
+	/* set default replacement char U+fffd */
+	state->replacement = 0xfffd;
+
 	return;
 }
 
-static void *
-_icv_open_unicode(size_t extsize)
+/*
+ * __replace_hex_utf32()
+ *
+ * Replace illegal, or non-identical hex value to UTF-32, and then
+ * call PUTU macro (call write_unicode() function) to write
+ * appropriate Unicode representative like UTF-8 into output buffer
+ *
+ * This function is called from __replace_hex() function defined in
+ * each conversion modules. In case Unicode based conversion module,
+ * this should be called.
+ */
+size_t
+__replace_hex_utf32(
+	unsigned char   hex,            /* hex to write */
+	unsigned char   **pip,          /* point pointer to input buf */
+	char            **pop,          /* point pointer to output buf */
+	size_t          *poleft,        /* point #bytes left in output buf */
+	__icv_state_t	*st,		/* state */
+	int  		caller)	        /* caller */
 {
-	ucs_state_t	*cd;
+	unsigned char	*ip = *pip;
+	char		*op = *pop;
+	size_t		oleft = *poleft;
+	size_t		rv = (size_t)0;		/* return value */
+	
+	unsigned char	first_half = ((hex >> 4) & 0x0f);
+	unsigned char	second_half = (hex & 0x0f);
 
-	if ((cd = (ucs_state_t *)calloc(1,
-			sizeof (ucs_state_t) + extsize)) == NULL) {
-		errno = ENOMEM;
-		return ((void *)-1);
-	}
-
-	_icv_reset_unicode((void *)cd);
-
-	return ((void *)cd);
-}
-
-static void
-_icv_close_unicode(void *cd)
-{
-	if (cd == NULL) {
-		errno = EBADF;
+	if(first_half < 0xa) {
+		first_half += 0x30;
 	} else {
-		free(cd);
+		first_half += 0x37;
 	}
-	return;
+
+	if(second_half < 0xa) {
+		second_half += 0x30;
+	} else {
+		second_half += 0x37;
+	}
+
+	if (caller == __ICV_ILLEGAL) {
+		PUTU('I', "REPLACE_HEX", 1);
+		PUTU('L', "REPLACE_HEX", 1);
+	} else { /* __ICV_NON_IDENTICAL */
+		PUTU('N', "REPLACE_HEX", 1);
+		PUTU('I', "REPLACE_HEX", 1);
+	}
+	PUTU('-', "REPLACE_HEX", 1);
+	PUTU('-', "REPLACE_HEX", 1);
+	PUTU((unsigned int)first_half, "REPLACE_HEX", 1);
+	PUTU((unsigned int)second_half, "REPLACE_HEX", 1);
+
+ret:
+	if (rv != (size_t)-1) {
+		/* update *pop and *poleft only on successful return */
+		*pop = op;
+		*poleft = oleft;
+	}
+
+	return (rv);
 }
 
-static void *
-_icv_get_ext(void *cd)
+/*
+ * __replace_invalid_utf32
+ *
+ * Replace invalid character with pre-defined replacement character.
+ * pre-defined replacement character is set in conversion descriptor
+ * when _icv_open() or _icv_open_attr() is called.
+ */
+size_t
+__replace_invalid_utf32(
+	unsigned char   **pip,          /* point pointer to input buf */
+	char            **pop,          /* point pointer to output buf */
+	size_t          *poleft,        /* point #bytes left in output buf */
+	__icv_state_t	*st)		/* state */
 {
-	return ((void *)((unsigned char *)cd + sizeof (ucs_state_t)));
+	unsigned char	*ip = *pip;
+	char		*op = *pop;
+	size_t		oleft = *poleft;
+	size_t		rv = (size_t)0;		/* retrun value */
+
+	PUTU(st->replacement, "REPLACE_INVALID", 1);
+
+ret:
+	if (rv != (size_t)-1) {
+		/* update *pop and *poleft only on successful return */
+		*pop = op;
+		*poleft = oleft;
+	}
+	return (rv);
 }
+
+/*
+ * __restore_hex_ucs()
+ *
+ * Restore hex value when "IL--XX" or "NI--XX' is encountered.
+ * return value:
+ * 	0: done nothing 
+ * 	1: done restoring ascii value, go to next loop
+ *	-1: error, conversion should abort
+ */
+size_t
+__restore_hex_ucs(
+	unsigned char	**pip,	 /* point pointer to input buf */
+	size_t		*pileft, /* point #bytes left in input buf */
+	char		**pop,	 /* point pointer to output buf */
+	size_t		*poleft, /* point #bytes left in output buf */
+        __icv_state_t   *st)	 /* state */
+{
+	unsigned char	*ip = *pip;
+	size_t		ileft = *pileft;
+	char		*op = *pop;
+	size_t		oleft = *poleft;
+
+	char 		*prefix; 
+	unsigned char	hexval;
+
+	int		rv = 0; /* return value */
+	int		i, ucs, is_equal;
+
+	unsigned char	restore_buf[(PREFIX_LENGTH + 2) * __SIZE_OF_UCS];
+	unsigned int	illegal_prefix[PREFIX_LENGTH] = {'I', 'L', '-', '-'};
+	unsigned int	non_identical_prefix[PREFIX_LENGTH] = {'N', 'I', '-', '-'};
+	unsigned int	first_half, second_half;
+
+	for(i = 0; i < (PREFIX_LENGTH + 2) * __SIZE_OF_UCS; i++) {
+		restore_buf[i] = *(ip - __SIZE_OF_UCS + i);
+	}
+
+	/* check if the string equal with prefix */
+
+	for (i = 0, is_equal = 0; i < (PREFIX_LENGTH * __SIZE_OF_UCS); ) {
+
+#if     defined(JFP_ICONV_FROMCODE_UTF32)
+
+		if (st->little_endian == B_TRUE) {
+			ucs = 0U;
+			ucs |= (unsigned int)(restore_buf[i++] << 0);
+			ucs |= (unsigned int)(restore_buf[i++] << 8);
+			ucs |= (unsigned int)(restore_buf[i++] << 16);
+			ucs |= (unsigned int)(restore_buf[i++] << 24);
+		} else {
+			ucs = 0U;
+			ucs |= (unsigned int)(restore_buf[i++] << 24);
+			ucs |= (unsigned int)(restore_buf[i++] << 16);
+			ucs |= (unsigned int)(restore_buf[i++] << 8);
+			ucs |= (unsigned int)(restore_buf[i++] << 0);
+		}
+
+#else   /* JFP_ICONV_FROMCODE_UTF16 or JFP_ICONV_FROMCODE_UCS2 */
+
+		if (st->little_endian == B_TRUE) {
+			ucs = restore_buf[i++] |
+				(((unsigned int)restore_buf[i++]) << 8);
+		} else {
+			ucs = (((unsigned int)restore_buf[i++]) << 8) |
+					restore_buf[i++];
+		}
+
+#endif
+		/* break immediately when difference is detected */
+		if (((st->_icv_flag & ICONV_CONV_ILLEGAL_RESTORE_HEX) &&
+			(ucs == illegal_prefix[(i - 1)/__SIZE_OF_UCS])) || 
+		    ((st->_icv_flag & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX) &&
+			(ucs == non_identical_prefix[(i - 1)/__SIZE_OF_UCS]))){
+			is_equal++;
+		} else {
+			break;
+		}
+	}
+
+	/* prefix has been detected, process to get hex value */
+
+	if (is_equal == PREFIX_LENGTH) {
+
+#if     defined(JFP_ICONV_FROMCODE_UTF32)
+
+		if (st->little_endian == B_TRUE) {
+			first_half = 0U;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 0;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 8;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 16;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 24;
+			second_half = 0U;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 0;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 8;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 16;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 24;
+		} else {
+			first_half = 0U;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 24;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 16;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 8;
+			first_half |= 
+				(unsigned int)restore_buf[i++] << 0;
+			first_half = 0U;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 24;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 16;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 8;
+			second_half |= 
+				(unsigned int)restore_buf[i++] << 0;
+		}
+
+#else   /* JFP_ICONV_FROMCODE_UTF16 or JFP_ICONV_FROMCODE_UCS2 */
+
+		if (st->little_endian == B_TRUE) {
+			first_half = 
+				(((unsigned int)restore_buf[i+1]) << 8) |
+				restore_buf[i];
+			second_half = 
+				(((unsigned int)restore_buf[i+3]) << 8) |
+				restore_buf[i+2];
+		} else {
+			first_half =
+				(((unsigned int)restore_buf[i]) << 8) |
+					 restore_buf[i+1];
+			first_half =
+				(((unsigned int)restore_buf[i+2]) << 8) |
+						 restore_buf[i+3];
+		}
+#endif
+		/* if hex value is detected, put it to output */
+		if (ISHEXNUM(first_half) && ISHEXNUM(second_half)) {
+			__ATOI(first_half);
+			__ATOI(second_half);
+			hexval = (unsigned char)((first_half << 4) +
+				 second_half);
+			NPUT(hexval, "RESTORE_HEX");
+
+			/* move pointer to the end of replacement */
+			ip += (PREFIX_LENGTH + 1) * __SIZE_OF_UCS;
+			ileft -= (PREFIX_LENGTH + 1) * __SIZE_OF_UCS;
+
+			/* notify to caller */
+			rv = (size_t)1;
+		}
+	}
+ret:
+	/* pointers are updated only on successful return */
+	if (rv != (size_t)-1) {
+		*pip =  ip;
+		*pileft = ileft;
+		*pop =  op;
+		*poleft = oleft;
+	}
+
+	return (rv);
+}
+

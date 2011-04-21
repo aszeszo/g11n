@@ -24,19 +24,17 @@
  * Copyright (c) 1991-2005 Unicode, Inc. All rights reserved. Distributed
  * under the Terms of Use in http://www.unicode.org/copyright.html.
  *
- * This file has been modified by Sun Microsystems, Inc. 
+ * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma ident  "@(#)PCK_TO_Unicode.c 1.16     07/05/25 SMI"
 
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
 #include "japanese.h"
+#include "jfp_iconv_common.h"
 #include "jfp_iconv_unicode.h"
 
 #ifdef JAVA_CONV_COMPAT
@@ -48,23 +46,24 @@
 #endif
 #include "jfp_jis_to_ucs2.h"
 
-void *
-_icv_open(void)
+iconv_t
+_icv_open_attr(int flag, void *reserved)
 {
-	return (_icv_open_unicode((size_t)0));
-}
+	__icv_state_t *cd;
 
-void
-_icv_close(void *cd)
-{
-	_icv_close_unicode(cd);
-	return;
+	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
+		_icv_reset_unicode((void *)cd);
+	}
+
+	return ((iconv_t)cd);
 }
 
 size_t
-_icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
+_icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
+	__icv_state_t	*st;
+
 	unsigned int	uni;		/* UTF-32 */
 	unsigned int	index;		/* index for table lookup */
 	unsigned char	ic1, ic2;	/* 1st and 2nd bytes of a char */
@@ -75,12 +74,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	char		*op;
 	size_t		oleft;
 
+	st = (__icv_state_t *)cd;
+
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(cd);
+		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -93,11 +94,12 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 		NGET(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
+			RESTORE_HEX_ASCII_JUMP(ic1)
 			uni = _jfp_tbl_jisx0201roman_to_ucs2[ic1];
-			PUTU(uni, "ASCII");
+			PUTU(uni, "ASCII", 1);
 		} else if (ISSJKANA(ic1)) { /* JIS X 0201 Kana; 1 byte */
 			uni = _jfp_tbl_jisx0201kana_to_ucs2[(ic1 - 0xa1)];
-			PUTU(uni, "KANA");
+			PUTU(uni, "KANA", 1);
 		} else if (ISSJKANJI1(ic1)) { /* JIS X 0208 or UDC; 2 bytes */
 			NGET(ic2, "CS1-2 not available");
 			if (ISSJKANJI2(ic2)) {
@@ -108,9 +110,9 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				index = ((ic1 - 0x21) * 94)
 					+ (sjtojis2[ic2] - 0x21);
 				uni = _jfp_tbl_jisx0208_to_ucs2[index];
-				PUTU(uni, "KANJI");
+				PUTU(uni, "KANJI", 2);
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "EILSEQ at CS1-2")
+				RET_EILSEQ("EILSEQ at CS1-2", 2)
 				/* NOTREACHED */
 			}
 		} else if (ISSJSUPKANJI1(ic1)) { /* VDC, 2 bytes */
@@ -123,9 +125,9 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				index = ((ic1 - 0x21) * 94)
 						+ (sjtojis2[ic2] - 0x21);
 				uni = _jfp_tbl_jisx0212_to_ucs2[index];
-				PUTU(uni, "SUPKANJI");
+				PUTU(uni, "SUPKANJI", 2);
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "EILSEQ at CS1-2")
+				RET_EILSEQ("EILSEQ at CS1-1", 2)
 			}
 		} else if (ISSJIBM(ic1) || /* Extended IBM char. area */
 			ISSJNECIBM(ic1)) { /* NEC/IBM char. area */
@@ -142,7 +144,7 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				if ((0xed40 <= dest) && (dest <= 0xeffc)) {
 					REMAP_NEC(dest);
 					if (dest == 0xffff) {
-						RETERROR(EILSEQ, "invalid NEC")
+						RET_EILSEQ("invalid NEC", 2)
 					}
 				}
 				/*
@@ -159,23 +161,23 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 				index = (2 - 1) * 94 + (72 - 1);
 					}
 					uni = _jfp_tbl_jisx0208_to_ucs2[index];
-					PUTU(uni, "IBM");
+					PUTU(uni, "IBM", 2);
 				} else {
 					dest = dest - 0xfa40 -
 						(((dest>>8) - 0xfa) * 0x40);
 					dest = sjtoibmext[dest];
 					if (dest == 0xffff) {
-						RETERROR(EILSEQ, "invalid IBM")
+						RET_EILSEQ("invalid IBM", 2)
 					}
 					upper = ((dest >> 8) & 0x7f) - 0x21;
 					lower = (dest & 0x7f) - 0x21;
 					index = (unsigned int)(upper * 94 + 
 						lower);
 					uni = _jfp_tbl_jisx0212_to_ucs2[index];
-					PUTU(uni, "IBM");
+					PUTU(uni, "IBM", 2);
 				}
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "EILSEQ at IBM-2")
+				RET_EILSEQ("EILSEQ at IBM-2", 2)
 			}
 		} else if ((0xeb <= ic1) && (ic1 <= 0xec)) {
 		/*
@@ -187,14 +189,14 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 			NGET(ic2, "GAP-2 not available");
 			if (ISSJKANJI2(ic2)) {
 				uni = 0xfffd;
-				PUTU(uni, "GAP");
+				PUTU(uni, "GAP", 2);
 			} else { /* 2nd byte check failed */
-				RETERROR(EILSEQ, "EILSEQ at GAP-2")
+				RET_EILSEQ("EILSEQ at GAP-2", 2)
 			}
 		} else { /* 1st byte check failed */
-			RETERROR(EILSEQ, "EILSEQ at 1st")
+			RET_EILSEQ("EILSEQ at 1st", 1)
 		}
-
+cont:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
@@ -213,4 +215,26 @@ ret:
 	 * so return same as *inbytesleft as existing codes do.
 	 */
 	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_hex(
+	unsigned char	hex,
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd,
+	int		caller)
+{
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
+}
+
+/* see jfp_iconv_common.h */
+size_t __replace_invalid(
+	unsigned char	**pip,
+	char		**pop,
+	size_t		*poleft,
+	__icv_state_t	*cd)
+{
+	return (__replace_invalid_utf32(pip, pop, poleft, cd));
 }
