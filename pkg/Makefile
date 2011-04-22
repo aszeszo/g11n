@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -178,7 +178,7 @@ sparc_ARCH64= sparcv9
 # dependency checking.
 #
 PM_TRANSFORMS_BRANDING= branding_Oracle
-PM_TRANSFORMS_OTHERS= common_actions publish restart_fmri defaults extract_metadata
+PM_TRANSFORMS_OTHERS= common_actions publish restart_fmri defaults facet extract_metadata
 PM_TRANSFORMS= $(PM_TRANSFORMS_BRANDING) $(PM_TRANSFORMS_OTHERS)
 PM_INC= transforms
 
@@ -246,26 +246,16 @@ CLOBBERFILES= $(PDIR) proto_list_$(PKGMACH)
 # build environment and then reference (implicitly or explicitly) the all
 # or install targets.
 #
-# manifests for locales from g11n-locale source tree will be obtained
-# from g11n-locale results so handling separately from statically
-# maintained manifests.
-#
 MFDIR_STATIC= manifests
-MFDIR_CLUSTER= manifests_cluster
 MFDIR_RENAMED= manifests_renamed
 MFDIR_OBSOLETE= manifests_obsolete
-MFDIR_LOCALE= manifests_locale
 MANIFESTS_STATIC.cmd= (cd $(MFDIR_STATIC); echo *.mf)
 MANIFESTS_STATIC= $(MANIFESTS_STATIC.cmd:sh)
-MANIFESTS_CLUSTER.cmd= (cd $(MFDIR_CLUSTER); echo *.mf)
-MANIFESTS_CLUSTER= $(MANIFESTS_CLUSTER.cmd:sh)
 MANIFESTS_RENAMED.cmd= (cd $(MFDIR_RENAMED); echo *.mf)
 MANIFESTS_RENAMED= $(MANIFESTS_RENAMED.cmd:sh)
 MANIFESTS_OBSOLETE.cmd= (cd $(MFDIR_OBSOLETE); echo *.mf)
 MANIFESTS_OBSOLETE= $(MANIFESTS_OBSOLETE.cmd:sh)
-MANIFESTS_LOCALE.cmd= (if [ -d $(MFDIR_LOCALE) ]; then cd $(MFDIR_LOCALE); echo *.mf; fi)
-MANIFESTS_LOCALE= $(MANIFESTS_LOCALE.cmd:sh)
-MANIFESTS= $(MANIFESTS_STATIC) $(MANIFESTS_CLUSTER) $(MANIFESTS_RENAMED) $(MANIFESTS_OBSOLETE) $(MANIFESTS_LOCALE)
+MANIFESTS= $(MANIFESTS_STATIC) $(MANIFESTS_RENAMED) $(MANIFESTS_OBSOLETE)
 PKGS= $(MANIFESTS:%.mf=%)
 DEP_PKGS= $(PKGS:%=$(PDIR)/%.dep)
 PROC_PKGS= $(PKGS:%=$(PDIR)/%.mog)

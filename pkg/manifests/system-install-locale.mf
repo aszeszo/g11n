@@ -20,23 +20,17 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/install/locale@$(PKGVERS)
-set name=info.classification value=org.opensolaris.category.2008:System/Localizations
-set name=pkg.summary value="Localization for system install libraries and commands"
 set name=pkg.description value="Localization for core software libraries and commands used for system installation"
-legacy pkg=SUNWinstall-l10n category=system,l10n \
-    version=11.11,REV= \
-    name="Localization for system install libraries and commands" \
-    desc="Localization for core software libraries and commands used for system installation"
+set name=pkg.summary value="Localization for system install libraries and commands"
+set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
 dir path=usr/lib
 dir path=usr/lib/locale
 dir path=usr/lib/locale/ar_EG.UTF-8
-dir path=usr/lib/locale/ar_EG.UTF-8
-dir path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES
 dir path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES
 dir path=usr/lib/locale/ca_ES.UTF-8
 dir path=usr/lib/locale/ca_ES.UTF-8/LC_MESSAGES
@@ -78,7 +72,6 @@ dir path=usr/lib/locale/zh_CN.UTF-8
 dir path=usr/lib/locale/zh_CN.UTF-8/LC_MESSAGES
 dir path=usr/lib/locale/zh_TW.UTF-8
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_MESSAGES
-dir path=usr/share group=sys
 dir path=usr/share group=sys
 dir path=usr/share/gui-install group=sys
 dir path=usr/share/gui-install/help group=sys
@@ -146,6 +139,8 @@ dir path=usr/share/locale/zh_CN group=other
 dir path=usr/share/locale/zh_CN/LC_MESSAGES group=other
 dir path=usr/share/locale/zh_TW group=other
 dir path=usr/share/locale/zh_TW/LC_MESSAGES group=other
+file usr/lib/locale/ar_SA.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo mode=0755
+file usr/lib/locale/ar_SA.UTF-8/LC_MESSAGES/SUNW_INSTALL_LIBORCHESTRATOR.mo path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES/SUNW_INSTALL_LIBORCHESTRATOR.mo mode=0755
 file path=usr/lib/locale/ca_ES.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo mode=0755
 file path=usr/lib/locale/ca_ES.UTF-8/LC_MESSAGES/SUNW_INSTALL_LIBORCHESTRATOR.mo mode=0755
 file path=usr/lib/locale/cs_CZ.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo mode=0755
@@ -397,8 +392,7 @@ file path=usr/share/locale/sk/LC_MESSAGES/gui-install.mo group=other
 file path=usr/share/locale/sv/LC_MESSAGES/gui-install.mo group=other
 file path=usr/share/locale/zh_CN/LC_MESSAGES/gui-install.mo group=other
 file path=usr/share/locale/zh_TW/LC_MESSAGES/gui-install.mo group=other
-file usr/lib/locale/ar_SA.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES/SUNW_INSTALL_INSTALLADM.mo mode=0755
-file usr/lib/locale/ar_SA.UTF-8/LC_MESSAGES/SUNW_INSTALL_LIBORCHESTRATOR.mo path=usr/lib/locale/ar_EG.UTF-8/LC_MESSAGES/SUNW_INSTALL_LIBORCHESTRATOR.mo mode=0755
+legacy pkg=SUNWinstall-l10n category=system,l10n desc="Localization for core software libraries and commands used for system installation" name="Localization for system install libraries and commands" version=11.11,REV=
 license copyright.unicode license=copyright.unicode
 link path=usr/share/gui-install/help/ar_EG.UTF-8 target=ar
 link path=usr/share/gui-install/help/ca_ES.UTF-8 target=ca

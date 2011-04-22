@@ -20,17 +20,13 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/diagnostic/ddu/locale@$(PKGVERS)
-set name=info.classification value=org.opensolaris.category.2008:System/Localizations
-set name=pkg.summary value="Localization for Device Driver Utility(DDU)"
 set name=pkg.description value="Localization for Device Driver Utility"
-legacy pkg=SUNWddu-l10n category=system,l10n \
-    version=1.2,REV= \
-    name="Localization for Device Driver Utility(DDU)" \
-    desc="Localization for Device Driver Utility"
+set name=pkg.summary value="Localization for Device Driver Utility(DDU)"
+set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
 dir path=usr/ddu
 dir path=usr/ddu/help
@@ -136,6 +132,7 @@ file path=usr/ddu/i18n/ru/LC_MESSAGES/ddu.mo
 file path=usr/ddu/i18n/sv/LC_MESSAGES/ddu.mo
 file path=usr/ddu/i18n/zh_CN/LC_MESSAGES/ddu.mo
 file path=usr/ddu/i18n/zh_TW/LC_MESSAGES/ddu.mo
+legacy pkg=SUNWddu-l10n category=system,l10n desc="Localization for Device Driver Utility" name="Localization for Device Driver Utility(DDU)" version=1.2,REV=
 license copyright.ddu-l10n license=copyright.ddu-l10n
 link path=usr/ddu/help/gnome/help/ddu/zh_HK/ddu.xml target=../zh_TW/ddu.xml
 link path=usr/ddu/i18n/ar_AE.UTF-8 target=ar

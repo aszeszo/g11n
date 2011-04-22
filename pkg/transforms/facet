@@ -1,0 +1,232 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+#
+# locale facets
+#
+# NOTE about "facet.locale.detected"
+#
+# IPS provides this syntax (structure) for locale facets:
+#     facet.locale.<locale>=true
+# rather than:
+#     facet.locale=<locale>
+# This means that effect of "default" transform - set if NOT already exist -
+# does not work between locale facets with different <locale>.
+# e.g. "facet.locale.xx" vs "facet.locale.xx_YY"
+#
+# This behaviour is inconvenient if patterns of mulitple default
+# transforms (typically first one has more specific pattern than
+# the second one has) match single action.
+# e.g. Even if an action already got added "facet.locale.xx=true" by an
+# default transform, it will NOT prevent "facet.locale.xx_YY=true" from
+# being added by another default transform.
+#
+# To avoid this issue, using tentative facet "facet.locale.detected=<locale>"
+# within this transform file. At end of this transform file, its final value
+# will be converted to "facet.locale.<locale>=true".
+#
+
+#
+# usr/lib/locale/<locale>/LC_(MESSAGES|TIME) of primary locale
+# (one locale chosen per language) except pt_BR, zh_CN, and zh_TW
+#   -> Specify language only (e.g. "ca"), since they can be shared
+#      with other locales in same language.
+#
+<transform dir file link hardlink \
+    path=usr/lib/locale/(ca)_ES\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(cs)_CZ\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(de)_DE\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(en)_US\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(el)_GR\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(es)_ES\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(fr)_FR\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(he)_IL\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(hu)_HU\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(id)_ID\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(it)_IT\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(ja)_JP\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(ko)_KR\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(nl)_NL\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(pl)_PL\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(ru)_RU\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(sk)_SK\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(sv)_SE\.[^/]+/LC_(MESSAGES|TIME)(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# usr/lib/locale/<locale>/LC_(MESSAGES|TIME) of other locales
+# usr/lib/locale/<locale>
+#   -> Specify language + territory (e.g. "pt_BR"), since they are
+#      for the locale only.
+#      (share between zh_* locales are treated specially later in this file)
+#
+<transform dir file link hardlink \
+    path=usr/lib/locale/([a-z]{2}(_[A-Z]{2}))\.[^/]+(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# usr/share/locale/<locale>
+# usr/lib/help/*/<locale>
+# usr/share/lib/locale/<locale>/help
+#   -> Just take directory name (except codeset/variant portions).
+#
+<transform dir file link hardlink \
+    path=usr/share/locale/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/lib/help/.+/locale/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/share/lib/locale/.+/help/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# .properties/.class
+#   -> Just take from filename.
+#
+<transform file link hardlink \
+    path=.*_([a-z]{2}(_[A-Z]{2})?)\.properties$ -> \
+    default facet.locale.detected %<1>>
+<transform file link hardlink \
+    path=.*_([a-z]{2}(_[A-Z]{2})?)\.class$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# manpages
+#  -> Just take directory name in mandir.
+#     Split into two transforms to avoid wrong file (e.g. man.cf)
+#     from being faceted.
+#
+# section dir
+<transform dir link \
+    path=.*/man/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?$ -> \
+    default facet.locale.detected %<1>>
+# contents
+<transform dir file link \
+    path=.*/man/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?/.+$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# paths specific to some component(s)
+#   -> Just take directory name (except codeset/variant portions).
+#
+# gui-install help
+<transform dir file link hardlink \
+    path=usr/share/gui-install/help/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+# ddu .mo
+<transform dir file link hardlink \
+    path=usr/ddu/i18n/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+# ddu help
+<transform dir file link hardlink \
+    path=usr/ddu/help/gnome/help/ddu/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+# setterm conf.file
+<transform dir file link hardlink \
+    path=usr/share/lib/setterm/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+
+#
+# actions faceted zh_CN or zh_TW
+#   -> Add zh_SG or zh_HK respectively since the actions can be shared with
+#      those locales.
+#
+<transform dir file link hardlink \
+    facet.locale.detected=zh_CN$ -> \
+    default facet.locale.zh_SG true>
+<transform dir file link hardlink \
+    facet.locale.detected=zh_TW$ -> \
+    default facet.locale.zh_HK true>
+# exclude actions not needed by zh_SG or zh_HK
+<transform link \
+    target=zh_CN$ -> \
+    delete facet.locale.zh_SG ^.*$>
+<transform link \
+    target=zh_TW$ -> \
+    delete facet.locale.zh_HK ^.*$>
+<transform dir file link hardlink \
+    path=.*zh_CN\.(EUC|GB18030|GBK) -> \
+    delete facet.locale.zh_SG ^.*$>
+<transform dir file link hardlink \
+    path=.*zh_CN\.UTF-8@ -> \
+    delete facet.locale.zh_SG ^.*$>
+<transform dir file link hardlink \
+    path=.*zh_TW\.[^/]+@ -> \
+    delete facet.locale.zh_HK ^.*$>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(zh_CN([.@][^/]+)?)/(.*%<1>.so.3|amd64|sparcv9|locale|LC_(COLLATE|CTYPE|MONETARY|NUMERIC)|LO_LTYPE) -> \
+    delete facet.locale.zh_SG ^.*$>
+<transform dir file link hardlink \
+    path=usr/lib/locale/(zh_TW([.@][^/]+)?)/(.*%<1>.so.3|amd64|sparcv9|locale|LC_(COLLATE|CTYPE|MONETARY|NUMERIC)|LO_LTYPE) -> \
+    delete facet.locale.zh_HK ^.*$>
+
+#
+# finalize: convert facet.locale.detected to real facet value
+#
+<transform dir file link hardlink \
+    facet.locale.detected=(.*)$ -> \
+    default facet.locale.%<1> true>
+<transform dir file link hardlink \
+    facet.locale.detected=(.*)$ -> \
+    delete facet.locale.detected ^.*$>
+
+#
+# end
+#
