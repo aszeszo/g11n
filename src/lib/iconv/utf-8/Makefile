@@ -245,66 +245,78 @@ $(UTF_32_LITTLE_ENDIAN_SOS)	:= CFLAGS += -DUTF_32_LITTLE_ENDIAN
 $(UTF_32_LITTLE_ENDIAN_SOS)	:= CFLAGS64 += -DUTF_32_LITTLE_ENDIAN
 
 #
+# Common parts
+$(CMN)/common.o: common.c common.h common_defs.h
+	$(CC) $(CFLAGS) -c -o $@ common.c
+
+$(CMN)/$(MACH64)/common.o: common.c common.h common_defs.h $(MACH64)
+	$(CC) $(CFLAGS64) -c -o $@ common.c
+
+CMNDEPS		= $(CMN)/common_defs.h $(CMN)/common.o $(CMN)/$(MACH64)/common.o
+LDLIBS32	= $(CMN)/common.o $(LDLIBS)
+LDLIBS64	= $(CMN)/$(MACH64)/common.o $(LDLIBS)
+
+#
 # Dependencies and actual compilations are defined at below.
-$(SB_TO_UCS_SOS): $(CMN)/common_defs.h $(CMN)/sb_to_ucs.h $(CMN)/sb_to_ucs.c
+$(SB_TO_UCS_SOS): $(CMN)/sb_to_ucs.h $(CMN)/sb_to_ucs.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/sb_to_ucs.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/sb_to_ucs.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UCS_TO_SB_SOS): $(CMN)/common_defs.h $(CMN)/ucs_to_sb.h $(CMN)/ucs_to_sb.c
+$(UCS_TO_SB_SOS): $(CMN)/ucs_to_sb.h $(CMN)/ucs_to_sb.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/ucs_to_sb.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/ucs_to_sb.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(SB_TO_UTF_8_SOS): $(CMN)/common_defs.h $(CMN)/sb_to_utf8.h $(CMN)/sb_to_utf8.c
+$(SB_TO_UTF_8_SOS): $(CMN)/sb_to_utf8.h $(CMN)/sb_to_utf8.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/sb_to_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/sb_to_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UTF_8_TO_SB_SOS): $(CMN)/common_defs.h $(CMN)/utf8_to_sb.h $(CMN)/utf8_to_sb.c
+$(UTF_8_TO_SB_SOS): $(CMN)/utf8_to_sb.h $(CMN)/utf8_to_sb.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/utf8_to_sb.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/utf8_to_sb.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UCS_4_TO_UCS_SOS): $(CMN)/common_defs.h $(CMN)/ucs4_to_ucs.h $(CMN)/ucs4_to_ucs.c
+$(UCS_4_TO_UCS_SOS): $(CMN)/ucs4_to_ucs.h $(CMN)/ucs4_to_ucs.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/ucs4_to_ucs.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/ucs4_to_ucs.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UCS_TO_UCS_4_SOS): $(CMN)/common_defs.h $(CMN)/ucs_to_ucs4.h $(CMN)/ucs_to_ucs4.c
+$(UCS_TO_UCS_4_SOS): $(CMN)/ucs_to_ucs4.h $(CMN)/ucs_to_ucs4.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/ucs_to_ucs4.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/ucs_to_ucs4.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UCS_4_TO_UTF_32_SOS): $(CMN)/common_defs.h $(CMN)/ucs4_to_ucs.h $(CMN)/ucs4_to_ucs.c
+$(UCS_4_TO_UTF_32_SOS): $(CMN)/ucs_to_ucs4.h $(CMN)/ucs4_to_utf32.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/ucs4_to_utf32.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/ucs4_to_utf32.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UTF_32_TO_UCS_4_SOS): $(CMN)/common_defs.h $(CMN)/ucs_to_ucs4.h $(CMN)/ucs_to_ucs4.c
+$(UTF_32_TO_UCS_4_SOS): $(CMN)/ucs_to_ucs4.h $(CMN)/utf32_to_ucs4.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/utf32_to_ucs4.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/utf32_to_ucs4.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UCS_TO_UTF_8_SOS): $(CMN)/common_defs.h $(CMN)/ucs_to_utf8.h $(CMN)/ucs_to_utf8.c
+$(UCS_TO_UTF_8_SOS): $(CMN)/ucs_to_utf8.h $(CMN)/ucs_to_utf8.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/ucs_to_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/ucs_to_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UTF_8_TO_UCS_SOS): $(CMN)/common_defs.h $(CMN)/utf8_to_ucs.h $(CMN)/utf8_to_ucs.c
+$(UTF_8_TO_UCS_SOS):$(CMN)/utf8_to_ucs.h $(CMN)/utf8_to_ucs.c $(CMNDEPS) common_ucs.h
 	$(CC) $(CFLAGS) $(CMN)/utf8_to_ucs.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/utf8_to_ucs.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
 $(UCS_TO_UTF_7_SOS): $(CMN)/common_defs.h $(CMN)/ucs_to_utf7.h $(CMN)/ucs_to_utf7.c
 	$(CC) $(CFLAGS) $(CMN)/ucs_to_utf7.c -c -o $@.o

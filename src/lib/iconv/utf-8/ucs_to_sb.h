@@ -25,8 +25,20 @@
 #ifndef	UCS_TO_SB_H
 #define	UCS_TO_SB_H
 
+#include "common.h"
 
-#include "common_defs.h"
+#define STATE_T		ucs_state_t
+
+/*
+ * Read in a character from the input.
+ * Note that this function doesn't consume the input buffer.
+ * Return values:
+ *	0	- character read ok
+ *	-1	- incomplete input sequence (set EINVAL)
+ *	-2	- illegal character
+ */
+static int _ucs_getc(int little_endian, char **inbuf, size_t inbufleft,
+	uint_t *p1, uint_t *p2);
 
 
 /*

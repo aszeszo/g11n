@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,14 +19,11 @@
  * CDDL HEADER END
  */
 /*
- * Copyright (c) 1998-1999 by Sun Microsystems, Inc.
- * All rights reserved.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ifndef	UTF7_TO_UCS_H
 #define	UTF7_TO_UCS_H
-
-#pragma	ident	"@(#)utf7_to_ucs.h	1.3 99/08/31 SMI"
 
 #include "common_defs.h"
 

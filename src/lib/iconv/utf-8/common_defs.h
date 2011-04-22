@@ -22,9 +22,6 @@
  * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
-#ifndef	COMMON_DEFS_H
-#define	COMMON_DEFS_H
-
 
 #define	MAGIC_NUMBER			201513
 
@@ -53,6 +50,7 @@
 /* Following are replacement characters for non-identical character cases. */
 #define	ICV_CHAR_ASCII_REPLACEMENT	('?')
 #define	ICV_CHAR_UTF8_REPLACEMENT	(0x00efbfbd)
+#define	ICV_CHAR_UTF8_REPLACEMENT_SIZE	3
 #define	ICV_CHAR_UCS2_REPLACEMENT	(0xfffd)
 
 
@@ -71,26 +69,34 @@ typedef struct {
 } to_sb_table_component_t;
 
 
+/* PSARC/2010/160 requires conversion flags. */
+typedef struct {
+	int flags;
+} icv_state_t;
+
 /* UCS-2/UCS-4/UTF-16/UTF-32/UTF-8 requires state management. */
 typedef struct {
+	int		flags;
 	boolean		bom_written;
 	boolean		little_endian;
 } ucs_state_t;
 
 typedef struct {
+	int		flags;
 	boolean		bom_written;
 	boolean		little_endian;
 	boolean		bom_processed;
 } utf8_state_t;
 
 typedef struct {
+	int		flags;
 	ucs_state_t	input;
 	ucs_state_t	output;
 } ucs_ucs_state_t;
 
-
 /* UTF-7 requires additional state data fields. */
 typedef struct {
+	int		flags;
 	boolean		bom_written;
 	boolean		little_endian;
 	boolean		in_the_middle_of_utf7_sequence;
@@ -268,10 +274,10 @@ static const unsigned char valid_max_2nd_byte[0x100] = {
 
 /*
  * UTF-8 representations of some useful Unicode values.
- * 
+ *
  * The U+FFFE in UTF-8 is 0x00efbfbe and the U+FFFF is 0x00efbfbf but
  * we use masked values at the below:
- */ 
+ */
 #define	ICV_UTF8_REPRESENTATION_d800		(0x00eda080UL)
 #define	ICV_UTF8_REPRESENTATION_dfff		(0x00edbfbfUL)
 #define	ICV_UTF8_REPRESENTATION_fdd0		(0x00efb790UL)
@@ -301,5 +307,82 @@ static const unsigned char valid_max_2nd_byte[0x100] = {
 
 #define	ICV_UCS4_LAST_VALID_CHAR		(0x7fffffff)
 
+/* Prefixes for ICONV_CONV_*_REPLACE_HEX format */
+#define	ICV_RHEX_PREFIX_IL		"IL--"
+#define	ICV_RHEX_PREFIX_NI		"NI--"
+#define	ICV_RHEX_PREFIX_ASCII_SZ	4
 
-#endif	/* COMMON_DEFS_H */
+#define	ICV_RHEX_PREFIX_IL_2BE		"\x00I\x00L\x00-\x00-"
+#define	ICV_RHEX_PREFIX_IL_2LE		"I\x00L\x00-\x00-\x00"
+#define	ICV_RHEX_PREFIX_NI_2BE		"\x00N\x00I\x00-\x00-"
+#define	ICV_RHEX_PREFIX_NI_2LE		"N\x00I\x00-\x00-\x00"
+#define	ICV_RHEX_PREFIX_2SZ		8
+
+#define	ICV_RHEX_PREFIX_IL_4BE		"\x00\x00\x00I\x00\x00\x00L" \
+					"\x00\x00\x00-\x00\x00\x00-"
+#define	ICV_RHEX_PREFIX_IL_4LE		"I\x00\x00\x00L\x00\x00\x00" \
+					"-\x00\x00\x00-\x00\x00\x00"
+#define	ICV_RHEX_PREFIX_NI_4BE		"\x00\x00\x00N\x00\x00\x00I" \
+					"\x00\x00\x00-\x00\x00\x00-"
+#define	ICV_RHEX_PREFIX_NI_4LE		"N\x00\x00\x00I\x00\x00\x00" \
+					"-\x00\x00\x00-\x00\x00\x00"
+#define	ICV_RHEX_PREFIX_4SZ		16
+
+
+#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
+	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN) || \
+	defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
+
+#define	ICV_RHEX_PREFIX_IL_BE		ICV_RHEX_PREFIX_IL_2BE
+#define	ICV_RHEX_PREFIX_IL_LE		ICV_RHEX_PREFIX_IL_2LE
+#define	ICV_RHEX_PREFIX_NI_BE		ICV_RHEX_PREFIX_NI_2BE
+#define	ICV_RHEX_PREFIX_NI_LE		ICV_RHEX_PREFIX_NI_2LE
+#define	ICV_RHEX_PREFIX_SZ		ICV_RHEX_PREFIX_2SZ
+
+#elif defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN) || \
+	defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
+	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
+
+#define	ICV_RHEX_PREFIX_IL_BE		ICV_RHEX_PREFIX_IL_4BE
+#define	ICV_RHEX_PREFIX_IL_LE		ICV_RHEX_PREFIX_IL_4LE
+#define	ICV_RHEX_PREFIX_NI_BE		ICV_RHEX_PREFIX_NI_4BE
+#define	ICV_RHEX_PREFIX_NI_LE		ICV_RHEX_PREFIX_NI_4LE
+#define	ICV_RHEX_PREFIX_SZ		ICV_RHEX_PREFIX_4SZ
+
+#endif
+
+/* Number of characters in a REPLACE_HEX string */
+#define ICV_RHEX_LEN			6
+
+/*
+ * Common macros
+ */
+#define ERR_INT(ERRNO)		{	errno = ERRNO; \
+					ret_val = (size_t)-1; \
+					goto _INTERRUPT; \
+				}
+
+#define HEX_ARR			"0123456789ABCDEF"
+
+#define PUTC(ob,ch)		*ob++ = ch;
+
+#define BYTE_TO_HEX(ob,ch)	PUTC(ob, HEX_ARR[ch/16]); \
+				PUTC(ob, HEX_ARR[ch%16]);
+
+#define PUT_RHEX(ch,ob,ID)	for (i=0; i < ICV_RHEX_LEN-2; i++) \
+					PUTC(ob, ICV_RHEX_PREFIX_##ID[i]); \
+				BYTE_TO_HEX(ob,ch);
+
+#define	CHECK_OB(sz) 		if ((obtail - ob) < (sz)) { \
+					ERR_INT(E2BIG); \
+				}
+
+/*
+ * Attributes for _icv_flag_action() below.
+ * Zero value should match the defaults for most modules.
+ */
+#define ICONVCTL_NON_TRIVIAL		0x0001
+#define ICONVCTL_NO_TRANSLIT		0x0002
+

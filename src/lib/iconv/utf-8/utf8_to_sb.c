@@ -26,62 +26,55 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
+#include <iconv.h>
 #include <sys/types.h>
 #include "utf8_to_sb.h"
 
-
 void *
-_icv_open()
+_icv_open_attr(int flag, void *reserved)
 {
-	ucs_state_t *cd = (ucs_state_t *)calloc(1, sizeof(ucs_state_t));
-	if (cd == (ucs_state_t *)NULL) {
+	STATE_T *cd = (STATE_T *)calloc(1, sizeof(STATE_T));
+
+	if (cd == (STATE_T *)NULL) {
 		errno = ENOMEM;
-		return((void *)-1);
+		return ((void *)-1);
 	}
+	cd->flags = flag;
 
-	return((void *)cd);
-}
-
-
-void
-_icv_close(ucs_state_t *cd)
-{
-	if (! cd)
-		errno = EBADF;
-	else
-		free((void *)cd);
+	return ((void *)cd);
 }
 
 
 size_t
-_icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
-                size_t *outbufleft)
+_icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
+	char **outbuf, size_t *outbufleft)
 {
 	size_t ret_val = 0;
-	unsigned char *ib;
-	unsigned char *ob;
-	unsigned char *ibtail;
-	unsigned char *obtail;
-       	register int i, l, h;
-       	signed char sz;
-       	unsigned long u8;
+	uchar_t *ib;
+	uchar_t *ob;
+	uchar_t *ibtail;
+	uchar_t *obtail;
+       	int f;
 	size_t len;
+
 
 	if (! cd) {
 		errno = EBADF;
-		return((size_t)-1);
+		return ((size_t)-1);
 	}
 
 	if (!inbuf || !(*inbuf)) {
 		cd->bom_written = false;
-		return((size_t)0);
+		return ((size_t)0);
 	}
 
-	ib = (unsigned char *)*inbuf;
-	ob = (unsigned char *)*outbuf;
+	ib = (uchar_t *)*inbuf;
+	ob = (uchar_t *)*outbuf;
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
+	f = cd->flags;
 
 	/* We skip the first signature of UTF-8 BOM if any. */
 	if (! cd->bom_written) {
@@ -97,99 +90,182 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		}
 	}
 
+
 	while (ib < ibtail) {
+		int i, l, h;
+		unsigned long u8;
+		signed char sz;
+
+
 		sz = number_of_bytes_in_utf8_char[*ib];
+
 		if (sz == ICV_TYPE_ILLEGAL_CHAR) {
-			errno = EILSEQ;
-			ret_val = (size_t)-1;
-			break;
+			sz = 1;
+			goto ILLEGAL_CHAR;
 		}
 
-		if (ob >= obtail) {
-			errno = E2BIG;
-			ret_val = (size_t)-1;
-			break;
+		/* Handle RESTORE_HEX */
+
+		if (f) {
+			char *prefix = NULL;
+			if (f & ICONV_CONV_ILLEGAL_RESTORE_HEX &&
+			    *ib == ICV_RHEX_PREFIX_IL[0]) {
+				prefix = ICV_RHEX_PREFIX_IL;
+			} else if (f & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX &&
+			    *ib == ICV_RHEX_PREFIX_NI[0]) {
+				prefix = ICV_RHEX_PREFIX_NI;
+			}
+			if (prefix &&
+			    ibtail - ib >= ICV_RHEX_LEN &&
+			    memcmp(ib, prefix, ICV_RHEX_PREFIX_ASCII_SZ) == 0) {
+
+				i = _icv_restore_hex((char **)&ib, ibtail - ib,
+				    (char **)&ob, obtail - ob);
+				if (i == 1)
+					continue;
+				if (i == -1) {
+					ret_val = (size_t)-1;
+					break;
+				}
+			}
 		}
 
 		if (sz == 1) {
+			CHECK_OB(1);
 			*ob++ = *ib++;
-		} else {
-			if ((ibtail - ib) < sz) {
-				errno = EINVAL;
-				ret_val = (size_t)-1;
-				break;
-			}
+			continue;
+		}
 
-			u8 = *ib++;
-			for (i = 1; i < sz; i++) {
-				if (i == 1) {
-					if (((uchar_t)*ib) <
-						valid_min_2nd_byte[u8] ||
-					    ((uchar_t)*ib) >
-						valid_max_2nd_byte[u8]) {
-						ib--;
-						errno = EILSEQ;
-						ret_val = (size_t)-1;
-						goto illegal_char_err;
-					}
-				} else if (((uint_t)*ib) < 0x80 ||
-					   ((uint_t)*ib) > 0xbf) {
-					ib -= i;
-					errno = EILSEQ;
-					ret_val = (size_t)-1;
-					goto illegal_char_err;
+		/* sz > 1 */
+		if ((ibtail - ib) < sz)
+			ERR_INT(EINVAL);
+
+		u8 = *ib;
+		for (i = 1; i < sz; i++) {
+			uchar_t cib = (uchar_t)*(ib + i);
+			if (i == 1) {
+				if (cib < valid_min_2nd_byte[*ib] ||
+				    cib > valid_max_2nd_byte[*ib]) {
+					sz = 2;
+					goto ILLEGAL_CHAR;
 				}
-				u8 = (u8 << 8) | ((unsigned int)*ib);
-				ib++;
+			} else if (cib < 0x80 || cib > 0xbf) {
+				sz = i+1;
+				goto ILLEGAL_CHAR;
 			}
+			u8 = (u8 << 8) | ((unsigned int)*(ib+i));
+		}
 
-			if ((u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==
-			    ICV_UTF8_REPRESENTATION_fffe ||
-			    (u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==
-			    ICV_UTF8_REPRESENTATION_ffff ||
-			    u8 > ICV_UTF8_REPRESENTATION_10fffd ||
-			    (u8 >= ICV_UTF8_REPRESENTATION_d800 &&
-			    u8 <= ICV_UTF8_REPRESENTATION_dfff) ||
-			    (u8 >= ICV_UTF8_REPRESENTATION_fdd0 &&
-			    u8 <= ICV_UTF8_REPRESENTATION_fdef)) {
-				ib -= sz;
-				errno = EILSEQ;
-				ret_val = (size_t)-1;
-			       	goto illegal_char_err;
-			}
+		if ((u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==
+		    ICV_UTF8_REPRESENTATION_fffe ||
+		    (u8 & ICV_UTF8_REPRESENTATION_ffff_mask) ==
+		    ICV_UTF8_REPRESENTATION_ffff ||
+		    u8 > ICV_UTF8_REPRESENTATION_10fffd ||
+		    (u8 >= ICV_UTF8_REPRESENTATION_d800 &&
+		    u8 <= ICV_UTF8_REPRESENTATION_dfff) ||
+		    (u8 >= ICV_UTF8_REPRESENTATION_fdd0 &&
+		    u8 <= ICV_UTF8_REPRESENTATION_fdef))
+			goto ILLEGAL_CHAR;
 
-			i = l = 0;
-			h = (sizeof(u8_sb_tbl) /
-			     sizeof(to_sb_table_component_t)) - 1;
-			while (l <= h) {
-				i = (l + h) / 2;
-				if (u8_sb_tbl[i].u8 == u8)
-					break;
-				else if (u8_sb_tbl[i].u8 < u8)
-					l = i + 1;
-				else
-					h = i - 1;
-			}
+		i = l = 0;
+		h = (sizeof(u8_sb_tbl) /
+		     sizeof(to_sb_table_component_t)) - 1;
+		while (l <= h) {
+			i = (l + h) / 2;
+			if (u8_sb_tbl[i].u8 == u8)
+				break;
+			else if (u8_sb_tbl[i].u8 < u8)
+				l = i + 1;
+			else
+				h = i - 1;
+		}
 
-			/*
-			 * We just assume that either we found it or it is
-			 * a non-identical character that we need to
-			 * provide a replacement character.
-			 */
-			if (u8_sb_tbl[i].u8 == u8) {
-				*ob++ = u8_sb_tbl[i].sb;
-			} else {
-				*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
-				ret_val++;
+		/*
+		 * We just assume that either we found it or it is
+		 * a non-identical character that we need to
+		 * provide a replacement character or process
+		 * according to flags.
+		 */
+		if (u8_sb_tbl[i].u8 == u8) {
+			*ob++ = u8_sb_tbl[i].sb;
+			ib += sz;
+			continue;
+		}
+
+NON_IDENTICAL_CHAR:
+
+		/*
+		 * Handle NON_IDENTICAL
+		 * Count non-identicals in return value
+		 */
+		ret_val++;
+
+		if (f) {
+			if (f & ICONV_CONV_NON_IDENTICAL_DISCARD) {
+				ib += sz;
+				continue;
+
+			} else if (f & ICONV_CONV_NON_IDENTICAL_REPLACE_HEX) {
+				CHECK_OB(sz * ICV_RHEX_LEN);
+				for (l=0; l < sz; l++) {
+					PUT_RHEX(*(ib+l), ob, NI);
+				}
+				ib += sz;
+				continue;
+
 			}
 		}
+
+		/* Default scenario */
+		*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
+		ib += sz;
+		continue;
+
+ILLEGAL_CHAR:
+
+		/*
+		 * Handle ILLEGAL and REPLACE_INVALID
+		 * Here ib has the illegal character of sz bytes.
+		 */
+		if (f) {
+			if (f & ICONV_CONV_ILLEGAL_DISCARD) {
+				ib += sz;
+				continue;
+
+			} else if (f & ICONV_CONV_ILLEGAL_REPLACE_HEX) {
+				CHECK_OB(sz * ICV_RHEX_LEN);
+				for (l=0; l < sz; l++) {
+					PUT_RHEX(*(ib+l), ob, IL);
+				}
+				ib += sz;
+				continue;
+
+			} else if (f & ICONV_REPLACE_INVALID) {
+				CHECK_OB(1);
+				*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
+				ib += sz;
+				ret_val++;
+				continue;
+			}
+		}
+
+		/* Default scenario */
+		ERR_INT(EILSEQ);
 	}
 
-illegal_char_err:
+_INTERRUPT:
 	*inbuf = (char *)ib;
 	*inbufleft = ibtail - ib;
 	*outbuf = (char *)ob;
 	*outbufleft = obtail - ob;
 
-	return(ret_val);
+	return (ret_val);
 }
+
+
+int _icv_iconvctl(STATE_T *cd, int req, void *arg)
+{
+	return _icv_flag_action(&cd->flags, req, (int *)arg,
+	    ICONVCTL_NO_TRANSLIT);
+}
+

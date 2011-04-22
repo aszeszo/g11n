@@ -25,8 +25,32 @@
 #ifndef	SB_TO_UCS_H
 #define	SB_TO_UCS_H
 
+#include "common.h"
+#include "common_ucs.h"
 
-#include "common_defs.h"
+
+#define STATE_T		ucs_state_t
+
+#if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
+    defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN)
+
+#define PUTC(u4)	PUTC_UCS2(u4, cd->little_endian)
+
+#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
+      defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
+
+#define PUTC(u4)	PUTC_UTF16(u4, u4_2, cd->little_endian)
+
+#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
+      defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
+      defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
+      defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
+
+#define PUTC(u4)	PUTC_UCS4(u4, cd->little_endian)
+
+#else
+#error	"Fatal: one of the UCS macros needs to be defined."
+#endif
 
 
 static const to_utf8_table_component_t sb_u4_tbl[256] = {

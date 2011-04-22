@@ -2,7 +2,7 @@
  * CDDL HEADER START
  *
  * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").  
+ * Common Development and Distribution License (the "License").
  * You may not use this file except in compliance with the License.
  *
  * You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
@@ -19,23 +19,19 @@
  * CDDL HEADER END
  */
 /*
- * Copyright (c) 1998-1999 by Sun Microsystems, Inc.
- * All rights reserved.
+ * Copyright (c) 1998, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ifndef	UCS_TO_UTF8_H
 #define	UCS_TO_UTF8_H
 
-#pragma	ident	"@(#)ucs_to_utf8.h	1.1 99/03/04 SMI"
+#include "common.h"
 
-#include "common_defs.h"
+#define STATE_T		ucs_state_t
 
-#define	OUTBUF_SIZE_CHECK(sz) \
-	if ((obtail - ob) < (sz)) { \
-		errno = E2BIG; \
-		ret_val = (size_t)-1; \
-		break; \
-	}
+
+static int _ucs_getc(int little_endian, char **inbuf, size_t inbufleft,
+	uint_t *p1, uint_t *p2);
 
 
 #endif	/* UCS_TO_UTF8_H */

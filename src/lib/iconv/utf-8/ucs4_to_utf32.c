@@ -26,24 +26,26 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
+#include <iconv.h>
 #include <sys/types.h>
 #include <sys/isa_defs.h>
-
-/* We include the ucs4_to_ucs.h at the moment. */
-#include "ucs4_to_ucs.h"
+/* We include the ucs_to_ucs4.h at the moment. */
+#include "ucs_to_ucs4.h"
 
 
 void *
-_icv_open()
+_icv_open_attr(int flag, void *reserved)
 {
-	ucs_ucs_state_t *cd;
+	STATE_T *cd;
 
-	cd = (ucs_ucs_state_t *)calloc(1, sizeof(ucs_ucs_state_t));
-	if (cd == (ucs_ucs_state_t *)NULL) {
+	cd = (STATE_T *)calloc(1, sizeof(STATE_T));
+	if (cd == (STATE_T *)NULL) {
 		errno = ENOMEM;
-		return((void *)-1);
+		return ((void *)-1);
 	}
+	cd->flags = flag;
 
 #if defined(UCS_4_BIG_ENDIAN)
 	cd->input.little_endian = false;
@@ -73,23 +75,13 @@ _icv_open()
 	cd->output.little_endian = true;
 #endif
 
-	return((void *)cd);
-}
-
-
-void
-_icv_close(ucs_ucs_state_t *cd)
-{
-	if (! cd)
-		errno = EBADF;
-	else
-		free((void *)cd);
+	return ((void *)cd);
 }
 
 
 size_t
-_icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
-                size_t *outbufleft)
+_icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
+	char **outbuf, size_t *outbufleft)
 {
 	size_t ret_val = 0;
 	uchar_t *ib;
@@ -97,13 +89,13 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	uchar_t *ibtail;
 	uchar_t *obtail;
 	uint_t u4;
-	signed char obsz;
-	int i;
+	uint_t u4_2;
+	int i, f;
 
 
 	if (! cd) {
 		errno = EBADF;
-		return((size_t)-1);
+		return ((size_t)-1);
 	}
 
 	/* Reset the state as if it is called right after the iconv_open(). */
@@ -127,21 +119,19 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	defined(UTF_32_LITTLE_ENDIAN)
 		cd->output.bom_written = false;
 #endif
-		return((size_t)0);
+		return ((size_t)0);
 	}
 
 	ib = (uchar_t *)*inbuf;
 	ob = (uchar_t *)*outbuf;
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
+	f = cd->flags;
 
 #if defined(UCS_4) || defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
 	if (! cd->input.bom_written) {
-		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE) {
-			errno = EINVAL;
-			ret_val = (size_t)-1;
-			goto need_more_input_err;
-		}
+		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE)
+			ERR_INT(EINVAL);
 
 		for (u4 = 0, i = 0; i < ICV_FETCH_UCS4_SIZE; i++)
 			u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
@@ -160,74 +150,197 @@ _icv_iconv(ucs_ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 
 
 	while (ib < ibtail) {
-		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE) {
-			errno = EINVAL;
-			ret_val = (size_t)-1;
-			break;
-		}
+		signed char obsz;
 
-		u4 = 0;
-		if (cd->input.little_endian) {
-			for (i = ICV_FETCH_UCS4_SIZE - 1; i >= 0; i--)
-				u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
-		} else {
-			for (i = 0; i < ICV_FETCH_UCS4_SIZE; i++)
-				u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
-		}
 
-		if (u4 == 0x00fffe || u4 == 0x00ffff || u4 > 0x7fffffff ||
-		    (u4 >= 0x00d800 && u4 <= 0x00dfff)) {
-			errno = EILSEQ;
-			ret_val = (size_t)-1;
-			goto illegal_char_err;
-		}
+		i = _ucs_getc(cd->input.little_endian, (char **)&ib,
+		    ibtail - ib, &u4, &u4_2);
+		if (i == -1)
+			return (-1);
+		if (i == -2)
+			goto ILLEGAL_CHAR;
+		if (i > 0)
+			goto NON_IDENTICAL_CHAR;
 
-		if (u4 > 0x10ffff) {
-			u4 = ICV_CHAR_UCS2_REPLACEMENT;
-			ret_val++;
-		}
 
-		obsz = (cd->output.bom_written) ? 2 : 4;
-		if ((obtail - ob) < obsz) {
-			errno = E2BIG;
-			ret_val = (size_t)-1;
-			break;
-		}
+		/* Handle RESTORE_HEX */
 
-		if (cd->output.little_endian) {
-			if (! cd->output.bom_written) {
-				*ob++ = (uchar_t)0xff;
-				*ob++ = (uchar_t)0xfe;
-				*(ushort_t *)ob = (ushort_t)0;
-				ob += 2;
-				cd->output.bom_written = true;
+		if (f) {
+			char *prefix = NULL;
+			if (f & ICONV_CONV_ILLEGAL_RESTORE_HEX &&
+			    u4 == ICV_RHEX_PREFIX_IL[0]) {
+				prefix = cd->input.little_endian ?
+					ICV_RHEX_PREFIX_IL_4LE :
+					ICV_RHEX_PREFIX_IL_4BE;
+			} else if (f & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX &&
+			    u4 == ICV_RHEX_PREFIX_NI[0]) {
+				prefix = cd->input.little_endian ?
+					ICV_RHEX_PREFIX_NI_4LE :
+					ICV_RHEX_PREFIX_NI_4BE;
 			}
-			*ob++ = (uchar_t)(u4 & 0xff);
-			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
-		} else {
-			if (! cd->output.bom_written) {
-				*(ushort_t *)ob = (ushort_t)0;
-				ob += 2;
-				*ob++ = (uchar_t)0xfe;
-				*ob++ = (uchar_t)0xff;
-				cd->output.bom_written = true;
+			if (prefix &&
+			    ibtail - ib >= ICV_RHEX_LEN * ICV_FETCH_UCS4_SIZE &&
+			    memcmp(ib, prefix, ICV_RHEX_PREFIX_4SZ) == 0) {
+
+				obsz = (cd->output.bom_written) ? 1 : 5;
+				CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+
+				i = _icv_ucs_restore_hex(&_ucs_getc,
+				    (char **)&ib, ibtail - ib,
+				    (char **)&ob, obtail - ob,
+				    ICV_FETCH_UCS4_SIZE, cd->input.little_endian);
+				if (i == 1)
+					continue;
+				if (i == -1) {
+					ret_val = (size_t)-1;
+					break;
+				}
 			}
-			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
-			*ob++ = (uchar_t)(u4 & 0xff);
 		}
+
+		obsz = (cd->output.bom_written) ? 4 : 8;
+		CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+		PUTC(u4);
 		ib += ICV_FETCH_UCS4_SIZE;
+		continue;
+
+NON_IDENTICAL_CHAR:
+
+		/*
+		 * Handle NON_IDENTICAL
+		 * Count non-identicals in return value
+		 */
+		ret_val++;
+
+		if (f) {
+			if (f & ICONV_CONV_NON_IDENTICAL_DISCARD) {
+				ib += ICV_FETCH_UCS4_SIZE;
+				continue;
+
+			} else if (f & ICONV_CONV_NON_IDENTICAL_REPLACE_HEX) {
+				int l;
+
+				/* 4 bytes input char, 4 bytes output char */
+				obsz = ICV_FETCH_UCS4_SIZE * ICV_RHEX_LEN * 4;
+				if (! cd->output.bom_written)
+					obsz += 4;
+				CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+				for (l=0; l < ICV_FETCH_UCS4_SIZE; l++) {
+					PUT_RHEX(*(ib+l), NI);
+				}
+				ib += ICV_FETCH_UCS4_SIZE;
+				continue;
+			}
+		}
+
+		/* Default scenario */
+		obsz = (cd->output.bom_written) ? 4 : 8;
+		CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+		PUTC(ICV_CHAR_UCS2_REPLACEMENT);
+		ib += ICV_FETCH_UCS4_SIZE;
+		continue;
+
+
+ILLEGAL_CHAR:
+		/*
+		 * Handle ILLEGAL and REPLACE_INVALID
+		 */
+		if (f) {
+			if (f & ICONV_CONV_ILLEGAL_DISCARD) {
+				ib += ICV_FETCH_UCS4_SIZE;
+				continue;
+
+			} else if (f & ICONV_CONV_ILLEGAL_REPLACE_HEX) {
+				int l;
+
+				/* 4 bytes input char, 4 bytes output char */
+				obsz = ICV_FETCH_UCS4_SIZE * ICV_RHEX_LEN * 4;
+				if (! cd->output.bom_written)
+					obsz += 4;
+				CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+				for (l=0; l < ICV_FETCH_UCS4_SIZE; l++) {
+					PUT_RHEX(*(ib+l), IL);
+				}
+				ib += ICV_FETCH_UCS4_SIZE;
+				continue;
+
+			} else if (f & ICONV_REPLACE_INVALID) {
+				obsz = (cd->output.bom_written) ? 4 : 8;
+				CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
+				PUTC(ICV_CHAR_UCS2_REPLACEMENT);
+				ib += ICV_FETCH_UCS4_SIZE;
+				ret_val++;
+				continue;
+			}
+		}
+
+		/* Default scenario */
+		ERR_INT(EILSEQ);
 	}
 
-need_more_input_err:
-illegal_char_err:
+_INTERRUPT:
 	*inbuf = (char *)ib;
 	*inbufleft = ibtail - ib;
 	*outbuf = (char *)ob;
 	*outbufleft = obtail - ob;
 
-	return(ret_val);
+	return (ret_val);
 }
+
+
+/*
+ * This flavor of _ucs_getc doesn't produce u4_2, just sets *p2 to 0.
+ */
+int
+_ucs_getc(int little_endian, char **inbuf, size_t inbufleft,
+	uint_t *p1, uint_t *p2)
+{
+	size_t ret_val = 0;
+	unsigned char *ib;
+	unsigned char *ibtail;
+	int i;
+	uint_t u4;
+
+
+	ib = (unsigned char *)*inbuf;
+	ibtail = ib + inbufleft;
+
+	if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE)
+		ERR_INT(EINVAL);
+
+	u4 = 0;
+	if (little_endian) {
+		for (i = ICV_FETCH_UCS4_SIZE - 1; i >= 0; i--)
+			u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
+	} else {
+		for (i = 0; i < ICV_FETCH_UCS4_SIZE; i++)
+			u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
+	}
+
+	if (u4 == 0x00fffe || u4 == 0x00ffff || u4 > 0x7fffffff ||
+	    (u4 >= 0x00d800 && u4 <= 0x00dfff)) {
+		goto ILLEGAL_CHAR;
+	}
+	if (u4 > 0x10ffff) {
+		u4 = ICV_CHAR_UCS2_REPLACEMENT;
+		ret_val++;
+	}
+
+_INTERRUPT:
+	*p1 = u4;
+	*p2 = 0;
+	return ret_val;
+
+ILLEGAL_CHAR:
+	*p1 = u4;
+	*p2 = 0;
+	return -2;
+}
+
+
+int _icv_iconvctl(STATE_T *cd, int req, void *arg)
+{
+	return _icv_flag_action(&cd->flags, req, (int *)arg,
+	    ICONVCTL_NO_TRANSLIT);
+}
+

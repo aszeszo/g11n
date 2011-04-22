@@ -19,8 +19,7 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 /*
  * COPYRIGHT AND PERMISSION NOTICE
@@ -183,7 +182,7 @@
 /* 0x95 */  {  0x00E280A2, 3  },
 /* 0x96 */  {  0x00E28093, 3  },
 /* 0x97 */  {  0x00E28094, 3  },
-/* 0x98 */  {  0x00000000, -2 },
+/* 0x98 */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
 /* 0x99 */  {  0x00E284A2, 3  },
 /* 0x9A */  {  0x0000D199, 2  },
 /* 0x9B */  {  0x00E280BA, 3  },

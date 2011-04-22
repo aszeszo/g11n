@@ -32,22 +32,26 @@
  * codesets to UCS-2, UCS-2BE, UCS-2LE, UCS-4, UCS-4BE, UCS-4LE, UTF-16,
  * UTF-16BE, UTF-16LE, UTF-32, UTF-32BE, and UTF-32LE.
  */
+
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
+#include <iconv.h>
 #include <sys/types.h>
 #include <sys/isa_defs.h>
 #include "sb_to_ucs.h"
 
 
 void *
-_icv_open()
+_icv_open_attr(int flag, void *reserved)
 {
-	ucs_state_t *cd = (ucs_state_t *)calloc(1, sizeof(ucs_state_t));
+	STATE_T *cd = (STATE_T *)calloc(1, sizeof(STATE_T));
 
-	if (cd == (ucs_state_t *)NULL) {
+	if (cd == (STATE_T *)NULL) {
 		errno = ENOMEM;
-		return((void *)-1);
+		return ((void *)-1);
 	}
+	cd->flags = flag;
 
 #if defined(UTF_16_BIG_ENDIAN) || defined(UCS_2_BIG_ENDIAN) || \
 	defined(UCS_4_BIG_ENDIAN) || defined(UTF_32_BIG_ENDIAN)
@@ -67,37 +71,25 @@ _icv_open()
 	cd->little_endian = true;
 #endif
 
-	return((void *)cd);
-}
-
-
-void
-_icv_close(ucs_state_t *cd)
-{
-	if (! cd)
-		errno = EBADF;
-	else
-		free((void *)cd);
+	return ((void *)cd);
 }
 
 
 size_t
-_icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
-                size_t *outbufleft)
+_icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
+	char **outbuf, size_t *outbufleft)
 {
 	size_t ret_val = 0;
 	unsigned char *ib;
 	unsigned char *ob;
 	unsigned char *ibtail;
 	unsigned char *obtail;
-	unsigned int u4;
-	unsigned int u4_2;
-	signed char obsz;
+	int f;
 
 
 	if (! cd) {
 		errno = EBADF;
-		return((size_t)-1);
+		return ((size_t)-1);
 	}
 
 	if (!inbuf || !(*inbuf)) {
@@ -108,34 +100,71 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	defined(UTF_16_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		cd->bom_written = false;
 #endif
-		return((size_t)0);
+		return ((size_t)0);
 	}
 
 	ib = (unsigned char *)*inbuf;
 	ob = (unsigned char *)*outbuf;
 	ibtail = ib + *inbufleft;
 	obtail = ob + *outbufleft;
+	f = cd->flags;
 
 	while (ib < ibtail) {
+		int i;
+		unsigned int u4;
+		unsigned int u4_2;
+		signed char obsz;
+
 		u4 = sb_u4_tbl[*ib].u8;
 		u4_2 = 0;
 
-		if (sb_u4_tbl[*ib].size == ICV_TYPE_ILLEGAL_CHAR) {
-			errno = EILSEQ;
-			ret_val = (size_t)-1;
-			break;
+		/* Handle RESTORE_HEX */
+
+		if (f) {
+			char *prefix = NULL;
+			if (f & ICONV_CONV_ILLEGAL_RESTORE_HEX &&
+			    *ib == ICV_RHEX_PREFIX_IL[0]) {
+				prefix = ICV_RHEX_PREFIX_IL;
+			} else if (f & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX &&
+			    *ib == ICV_RHEX_PREFIX_NI[0]) {
+				prefix = ICV_RHEX_PREFIX_NI;
+			}
+			if (prefix &&
+			    ibtail - ib >= ICV_RHEX_LEN &&
+			    memcmp(ib, prefix, ICV_RHEX_PREFIX_ASCII_SZ) == 0) {
+
+				obsz = (cd->bom_written) ? 1 :
+				    ICV_FETCH_UCS_SIZE + 1;
+				CHECK_OB_AND_BOM(obsz, cd->bom_written);
+
+				i = _icv_restore_hex((char **)&ib, ibtail - ib,
+				    (char **)&ob, obtail - ob);
+				if (i == 1)
+					continue;
+				if (i == -1) {
+					ret_val = (size_t)-1;
+					break;
+				}
+			}
 		}
+
+		if (sb_u4_tbl[*ib].size == ICV_TYPE_ILLEGAL_CHAR)
+			goto ILLEGAL_CHAR;
 
 		obsz = (cd->bom_written) ? ICV_FETCH_UCS_SIZE :
 			ICV_FETCH_UCS_SIZE_TWO;
+
+/* This doesn't occur in the tables:
+
 #if defined(UCS_2) || defined(UCS_2BE) || defined(UCS_2LE) || \
 	defined(UCS_2_BIG_ENDIAN) || defined(UCS_2_LITTLE_ENDIAN)
 		if (u4 > 0x00ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
+			goto NON_IDENTICAL_CHAR;
 		}
 #elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
-	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
+       defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
 		if (u4 > 0x00ffff && u4 < 0x110000) {
 			u4_2 = ((u4 - 0x010000) % 0x400) + 0x00dc00;
 			u4   = ((u4 - 0x010000) / 0x400) + 0x00d800;
@@ -143,19 +172,19 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		} else if (u4 > 0x10ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
+			goto NON_IDENTICAL_CHAR;
 		}
 #elif defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
-	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
+       defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 		if (u4 > 0x10ffff) {
 			u4 = ICV_CHAR_UCS2_REPLACEMENT;
 			ret_val++;
+			goto NON_IDENTICAL_CHAR;
 		}
-#elif defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
-		/* do nothing */
 #else
-#error	"Fatal: one of the UCS macros need to be defined."
+#error "Fatal: one of the UCS macros need to be defined."
 #endif
+ */
 
 		/*
 		 * The target values in the conversion tables are in UCS-4
@@ -164,86 +193,64 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		 */
 		if (u4 == 0x00fffe || u4 == 0x00ffff || u4 > 0x7fffffff ||
 		    (u4 >= 0x00d800 && u4 <= 0x00dfff)) {
-			/* 
-			 * if conversion table is right, this should not
+			/*
+			 * If conversion table is right, this should not
 			 * happen.
 			 */
-			errno = EILSEQ;
-			ret_val = (size_t)-1;
-			break;
+			ERR_INT(EILSEQ);
 		}
 
-		if ((obtail - ob) < obsz) {
-			errno = E2BIG;
-			ret_val = (size_t)-1;
-			break;
-		}
-
-		if (cd->little_endian) {
-			if (! cd->bom_written) {
-				*ob++ = (uchar_t)0xff;
-				*ob++ = (uchar_t)0xfe;
-#if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
-	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
-				*(ushort_t *)ob = (ushort_t)0;
-				ob += 2;
-#endif
-				cd->bom_written = true;
-			}
-			*ob++ = (uchar_t)(u4 & 0xff);
-			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
-#if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
-	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
-			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
-#elif defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
-	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
-			if (u4_2) {
-				*ob++ = (uchar_t)(u4_2 & 0xff);
-				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
-			}
-#endif
-		} else {
-			if (! cd->bom_written) {
-#if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
-	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
-				*(ushort_t *)ob = (ushort_t)0;
-				ob += 2;
-#endif
-				*ob++ = (uchar_t)0xfe;
-				*ob++ = (uchar_t)0xff;
-				cd->bom_written = true;
-			}
-#if defined(UCS_4) || defined(UCS_4BE) || defined(UCS_4LE) || \
-	defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
-	defined(UTF_32) || defined(UTF_32BE) || defined(UTF_32LE) || \
-	defined(UTF_32_BIG_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
-			*ob++ = (uchar_t)((u4 >> 24) & 0xff);
-			*ob++ = (uchar_t)((u4 >> 16) & 0xff);
-#endif
-			*ob++ = (uchar_t)((u4 >> 8) & 0xff);
-			*ob++ = (uchar_t)(u4 & 0xff);
-#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE) || \
-	defined(UTF_16_BIG_ENDIAN) || defined(UTF_16_LITTLE_ENDIAN)
-			if (u4_2) {
-				*ob++ = (uchar_t)((u4_2 >> 8) & 0xff);
-				*ob++ = (uchar_t)(u4_2 & 0xff);
-			}
-#endif
-		}
+		CHECK_OB_AND_BOM(obsz, cd->bom_written);
+		PUTC(u4);
 		ib++;
+		continue;
+
+ILLEGAL_CHAR:
+
+		/*
+		 * Handle ILLEGAL and REPLACE_INVALID
+		 */
+		if (f) {
+			if (f & ICONV_CONV_ILLEGAL_DISCARD) {
+				ib++;
+				continue;
+
+			} else if (f & ICONV_CONV_ILLEGAL_REPLACE_HEX) {
+				obsz = ICV_FETCH_UCS_SIZE * ICV_RHEX_LEN;
+				if (! cd->bom_written)
+					obsz += ICV_FETCH_UCS_SIZE;
+				CHECK_OB_AND_BOM(obsz, cd->bom_written);
+				PUT_RHEX(*ib, IL);
+				ib++;
+				continue;
+
+			} else if (f & ICONV_REPLACE_INVALID) {
+				obsz = (cd->bom_written) ? ICV_FETCH_UCS_SIZE :
+					ICV_FETCH_UCS_SIZE_TWO;
+				CHECK_OB_AND_BOM(obsz, cd->bom_written);
+				PUTC(ICV_CHAR_UCS2_REPLACEMENT);
+				ib++;
+				ret_val++;
+				continue;
+			}
+		}
+
+		/* Default scenario */
+		ERR_INT(EILSEQ);
 	}
 
+_INTERRUPT:
 	*inbuf = (char *)ib;
 	*inbufleft = ibtail - ib;
 	*outbuf = (char *)ob;
 	*outbufleft = obtail - ob;
 
-	return(ret_val);
+	return (ret_val);
 }
+
+int _icv_iconvctl(STATE_T *cd, int req, void *arg)
+{
+	return _icv_flag_action(&cd->flags, req, (int *)arg,
+	    ICONVCTL_NO_TRANSLIT);
+}
+

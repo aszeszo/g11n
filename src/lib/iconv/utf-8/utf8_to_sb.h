@@ -25,8 +25,9 @@
 #ifndef	UTF8_TO_SB_H
 #define	UTF8_TO_SB_H
 
-#include "common_defs.h"
+#include "common.h"
 
+#define STATE_T		ucs_state_t
 
 /*
  * The values in u8 data field is a UTF-8 byte streams saved in uint_t and

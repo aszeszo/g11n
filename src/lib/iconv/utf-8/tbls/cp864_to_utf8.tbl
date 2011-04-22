@@ -19,8 +19,7 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 /*
  * COPYRIGHT AND PERMISSION NOTICE
@@ -186,19 +185,19 @@
 /* 0x98 */  {  0x0000C2BB, 2  },
 /* 0x99 */  {  0x00EFBBB7, 3  },
 /* 0x9A */  {  0x00EFBBB8, 3  },
-/* 0x9B */  {  0x00000000, -2 },
-/* 0x9C */  {  0x00000000, -2 },
+/* 0x9B */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
+/* 0x9C */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
 /* 0x9D */  {  0x00EFBBBB, 3  },
 /* 0x9E */  {  0x00EFBBBC, 3  },
-/* 0x9F */  {  0x00000000, -2 },
+/* 0x9F */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
 /* 0xA0 */  {  0x0000C2A0, 2  },
 /* 0xA1 */  {  0x0000C2AD, 2  },
 /* 0xA2 */  {  0x00EFBA82, 3  },
 /* 0xA3 */  {  0x0000C2A3, 2  },
 /* 0xA4 */  {  0x0000C2A4, 2  },
 /* 0xA5 */  {  0x00EFBA84, 3  },
-/* 0xA6 */  {  0x00000000, -2 },
-/* 0xA7 */  {  0x00000000, -2 },
+/* 0xA6 */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
+/* 0xA7 */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
 /* 0xA8 */  {  0x00EFBA8E, 3  },
 /* 0xA9 */  {  0x00EFBA8F, 3  },
 /* 0xAA */  {  0x00EFBA95, 3  },
@@ -286,4 +285,4 @@
 /* 0xFC */  {  0x00EFBB99, 3  },
 /* 0xFD */  {  0x00EFBBB1, 3  },
 /* 0xFE */  {  0x00E296A0, 3  },
-/* 0xFF */  {  0x00000000, -2 },
+/* 0xFF */  {  0x00000000, ICV_TYPE_ILLEGAL_CHAR },
