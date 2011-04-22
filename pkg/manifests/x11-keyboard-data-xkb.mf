@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/x11/keyboard/data-xkb@$(PKGVERS)
@@ -355,7 +355,6 @@ file path=usr/share/X11/xkb/symbols/sun_vndr/se
 file path=usr/share/X11/xkb/symbols/sun_vndr/sk
 file path=usr/share/X11/xkb/symbols/sun_vndr/solaris
 file path=usr/share/X11/xkb/symbols/sun_vndr/tr
-file path=usr/share/X11/xkb/symbols/sun_vndr/tuv
 file path=usr/share/X11/xkb/symbols/sun_vndr/tw
 file path=usr/share/X11/xkb/symbols/sun_vndr/ua
 file path=usr/share/X11/xkb/symbols/sun_vndr/us

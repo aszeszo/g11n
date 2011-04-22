@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+// Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -49,31 +49,11 @@
 //
 
 // Taiwanese layout for a Type 6 Sun keyboard
-partial
+default partial
 xkb_symbols "type6" {
     // A few keys are different from US layout - only those are shown here
     key <ALGR> { [ Henkan_Mode          ]                       };
     key <BKSL> { [ backslash, bar,  brokenbar   ]               };
-
-};
-
-
-// Taiwanese layout for a Type 4 Sun keyboard
-
-xkb_symbols "type4" {
-
-    key <BKSL> { [ backslash, bar,  brokenbar	]		};
-
-    key <COMP> { [ Henkan_Mode		]			};
-
-};
-
-// Taiwanese layout for a Type 5 Sun keyboard
-xkb_symbols "type5" {
-
-    // A few keys are different
-    key <ALGR> { [ Henkan_Mode		]			};
-    key <BKSL> { [ backslash, bar,  brokenbar	]		};
 
 };
 

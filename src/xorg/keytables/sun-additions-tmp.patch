@@ -1,0 +1,100 @@
+--- rules/base	Tue Apr 12 13:33:20 2011
++++ rules/base	Tue Apr 12 13:39:46 2011
+@@ -303,7 +303,7 @@
+   *		lo			=	pc+la
+   *		kan			=	pc+in(kan)
+   *		mi			=	pc+mao
+-  *		ml			=	pc+in(mal)
++  *		mal			=	pc+in(mal)
+   *		ogham			=	pc+ie(ogam)
+   *		ori			=	pc+ie(ori)
+   *		sapmi			=	pc+no(smi)
+@@ -421,7 +421,7 @@
+   *		lo			=	pc+la%(v[1])
+   *		kan			=	pc+in(kan)
+   *		mi			=	pc+mao%(v[1])
+-  *		ml			=	pc+in(mal)
++  *		mal			=	pc+in(mal)
+   *		ogham			=	pc+ie(ogam)
+   *		ori			=	pc+ie(ori)
+   *		sapmi			=	pc+no(smi)
+
+--- symbols/in	Tue Apr 12 13:33:18 2011
++++ symbols/in	Tue Apr 12 13:40:29 2011
+@@ -85,7 +85,7 @@
+ 	key <AB10> { [ U092f, U095f, slash, question ] };
+ 
+ 	// space, space, Zero-Width-Non-Joiner (ZWNJ), Zero-Width-Joiner (ZWJ):
+-	include "nbsp(zwnj3zwj4)";
++	include "nbsp(zwnj3zwj4)"
+ };
+ 
+ //Name		:	Bolnagri (Combined)
+@@ -1263,7 +1263,7 @@
+   key <AB10> { [	U092F,	U095F ] }; // DEVANAGARI LETTER YA; DEVANAGARI LETTER YYA
+ 
+   // space, space, Zero-Width-Non-Joiner (ZWNJ), Zero-Width-Joiner (ZWJ):
+-  include "nbsp(zwnj3zwj4)";
++  include "nbsp(zwnj3zwj4)"
+ 
+   include "group(olpc)"
+ };
+
+--- symbols/ir	Tue Apr 12 13:33:18 2011
++++ symbols/ir	Tue Apr 12 13:41:33 2011
+@@ -18,11 +18,11 @@
+ xkb_symbols "pes" {
+     name[Group1]= "Iran";
+ 
+-    include "ir(pes_part_basic)";
+-    include "ir(pes_part_ext)";
++    include "ir(pes_part_basic)"
++    include "ir(pes_part_ext)"
+ 
+-    include "nbsp(zwnj2nb3nnb4)";
+-    include "level3(ralt_switch)";
++    include "nbsp(zwnj2nb3nnb4)"
++    include "level3(ralt_switch)"
+ };
+ 
+ 
+@@ -30,11 +30,11 @@
+ xkb_symbols "pes_keypad" {
+     name[Group1]= "Iran - Persian, with Persian Keypad";
+ 
+-    include "ir(pes_part_basic)";
+-    include "ir(pes_part_keypad)";
++    include "ir(pes_part_basic)"
++    include "ir(pes_part_keypad)"
+ 
+-    include "nbsp(zwnj2nb3nnb4)";
+-    include "level3(ralt_switch)";
++    include "nbsp(zwnj2nb3nnb4)"
++    include "level3(ralt_switch)"
+ };
+ 
+ partial hidden alphanumeric_keys
+
+--- symbols/lk	Tue Apr 12 13:33:18 2011
++++ symbols/lk	Tue Apr 12 13:42:23 2011
+@@ -74,7 +74,7 @@
+   key <AB10> { [ any, any, 0x0100200d, NoSymbol ] };
+ 
+   // Space
+-  include "nbsp(zwnj2nb3s)";
++  include "nbsp(zwnj2nb3s)"
+ 
+   include "level3(ralt_switch)"
+ };
+
+--- symbols/sy	Tue Apr 12 13:33:19 2011
++++ symbols/sy	Tue Apr 12 13:42:53 2011
+@@ -68,7 +68,7 @@
+     // End Alphanumeric Section
+ 
+     // Space
+-    include "nbsp(zwnj2)";
++    include "nbsp(zwnj2)"
+     
+     // Begin Modifier Mappings
+     

@@ -1,5 +1,5 @@
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the
@@ -10,7 +10,7 @@
 # copyright notice(s) and this permission notice appear in all copies of
 # the Software and that both the above copyright notice(s) and this
 # permission notice appear in supporting documentation.
-#
+# 
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 # OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
@@ -20,13 +20,12 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-#
+# 
 # Except as contained in this notice, the name of a copyright holder
 # shall not be used in advertising or otherwise to promote the sale, use
 # or other dealings in this Software without prior written authorization
 # of the copyright holder.
 #
-
 #
 # CDDL HEADER START
 #
@@ -76,90 +75,6 @@
 # the correct type is not found.
 #
 ##############################################################################
-#
-# Type 4 Keyboards
-#
-4	0	-	sun_type4		us	# US4
-4	1	-	sun_type4		us	# US4
-4	2	-	sun_type4_euro		fr	# FranceBelg4
-4	3	-	sun_type4_ca		ca	# Canada4
-4	4	-	sun_type4_euro		dk	# Denmark4
-4	5	-	sun_type4_euro		de	# Germany4
-4	6	-	sun_type4_euro		it	# Italy4
-4	7	-	sun_type4_euro		nl	# Netherland4
-4	8	-	sun_type4_euro		no	# Norway4
-4	9	-	sun_type4_euro		pt	# Portugal4
-4	10	-	sun_type4_euro		es	# SpainLatAm4
-4	11	-	sun_type4_euro		se	# SwedenFin4
-4	12	-	sun_type4_euro		fr_CH	# Switzer_Fr4
-4	13	-	sun_type4_euro		de_CH	# Switzer_Ge4
-4	14	-	sun_type4_euro		gb	# UK4
-4	16	-	sun_type4		kr	# Korea4
-4	17	-	sun_type4		tw	# Taiwan4
-4	32	-	sun_type4_jp		jp	# Japan4
-#
-# Uncomment either the PC compatible or Sun compatible layout
-# Sun 101A -- PC compatible layout:
-4	19	-	sun_type5		us	# US101A_PC
-# Sun 101A -- Sun compatible layout:
-#4	19	-	sun_type5		us	# US101A_Sun
-#
-#
-# Type 5 Keyboards
-#
-# Type 5 keyboards identify themselves as type 4 for backward compatibility
-#
-4	33	-	sun_type5		us	# US5
-4	34	-	sun_type5_unix		us	# US_UNIX5
-4	35	-	sun_type5_euro		fr	# France5
-4	36	-	sun_type5_euro		dk	# Denmark5
-4	37	-	sun_type5_euro		de	# Germany5
-4	38	-	sun_type5_euro		it	# Italy5
-4	39	-	sun_type5_euro		nl	# Netherland5
-4	40	-	sun_type5_euro		no	# Norway5
-4	41	-	sun_type5_euro		pt	# Portugal5
-4	42	-	sun_type5_euro		es	# Spain5
-4	43	-	sun_type5_euro		se	# Sweden5
-4	44	-	sun_type5_euro		fr_CH	# Switzer_Fr5
-4	45	-	sun_type5_euro		de_CH	# Switzer_Ge5
-4	46	-	sun_type5_euro		gb	# UK5
-4	47	-	sun_type5		kr	# Korea5
-4	48	-	sun_type5		tw	# Taiwan5
-4	49	-	sun_type5_jp		jp	# Japan5
-4	50	-	sun_type5_euro		fr_CA	# Canada_Fr5
-4	51	-	sun_type5_euro		hu	# Hungary5
-4	52	-	sun_type5_euro		pl	# Poland5
-4	53	-	sun_type5_euro		cz	# Czech5
-4	54	-	sun_type5_euro		ru	# Russia5
-4	55	-	sun_type5_euro		lv	# Latvia5
-4	57	-	sun_type5_euro		gr	# Greece5
-4	59	-	sun_type5_euro		lt	# Lithuania5
-4	63	-	sun_type5_euro		fr_CA	# Canada_Fr5_TBITS5
-4	56	-	sun_type5_euro		tr	# TurkeyQ5
-4	58	-	sun_type5_euro		ar	# Arabic5
-4	60	-	sun_type5_euro		be	# Belgian5
-4	62	-	sun_type5_euro		tr_f	# TurkeyF5
-#
-# Type 5 Hobo Keyboards
-#
-4	80	-	sun_type5_hobo		us	# US5_Hobo
-4	81	-	sun_type5_unix_hobo	us	# US_UNIX5_Hobo
-4	82	-	sun_type5_euro_hobo	fr	# France5_Hobo
-4	83	-	sun_type5_euro_hobo	dk	# Denmark5_Hobo
-4	84	-	sun_type5_euro_hobo	de	# Germany5_Hobo
-4	85	-	sun_type5_euro_hobo	it	# Italy5_Hobo
-4	86	-	sun_type5_euro_hobo	nl	# Netherland5_Hobo
-4	87	-	sun_type5_euro_hobo	no	# Norway5_Hobo
-4	88	-	sun_type5_euro_hobo	pt	# Portugal5_Hobo
-4	89	-	sun_type5_euro_hobo	es	# Spain5_Hobo
-4	90	-	sun_type5_euro_hobo	se	# Sweden5_Hobo
-4	91	-	sun_type5_euro_hobo	fr_CH	# Switzer_Fr5_Hobo
-4	92	-	sun_type5_euro_hobo	de_CH	# Switzer_Ge5_Hobo
-4	93	-	sun_type5_euro_hobo	gb	# UK5_Hobo
-4	94	-	sun_type5_hobo		kr	# Korea5_Hobo
-4	95	-	sun_type5_hobo		tw	# Taiwan5_Hobo
-4	96	-	sun_type5_jp_hobo	jp	# Japan5_Hobo
-4	97	-	sun_type5_euro_hobo	fr_CA	# Canada_Fr5_Hobo
 #
 # Type 101 Keyboards (Solaris x86 Keyboards)
 #

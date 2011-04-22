@@ -2,7 +2,7 @@
 +++ rules/base.hdr.part	2010-10-01 15:50:13.183939543 +0200
 @@ -1,3 +1,25 @@
 +//
-+// Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
++// Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 +//
 +// CDDL HEADER START
 +//
@@ -29,17 +29,14 @@
 
 --- rules/base.lists.part	2010-10-01 15:10:31.049513647 +0200
 +++ rules/base.lists.part	2010-10-01 15:50:13.191863378 +0200
-@@ -99,6 +99,15 @@
+@@ -99,6 +99,12 @@
  
  ! $thinkpads = thinkpad thinkpad60 thinkpadz60
  
-+! $sun = sun_type4 sun_type4_ca sun_type4_jp sun_type4_euro sun_type5 sun_type5_euro sun_type5_jp sun_type5_unix sun_type5_hobo sun_type5_euro_hobo sun_type5_jp_hobo sun_type5_unix_hobo sun_type6 sun_type6_euro sun_type6_jp sun_type6_unix sun_type6_usb sun_type6_euro_usb sun_type6_jp_usb sun_type6_unix_usb sun_type7_jp_usb sun_type7_usb sun_type7_euro_usb sun_type7_unix_usb
-+! $sun_type4 = sun_type4 sun_type4_ca sun_type4_jp sun_type4_euro
-+! $sun_type5 = sun_type5 sun_type5_euro sun_type5_jp sun_type5_unix
-+! $sun_hobo = sun_type5_hobo sun_type5_euro_hobo sun_type5_jp_hobo sun_type5_unix_hobo
++! $sun = sun_type6 sun_type6_euro sun_type6_jp sun_type6_unix sun_type6_usb sun_type6_euro_usb sun_type6_jp_usb sun_type6_unix_usb sun_type7_jp_usb sun_type7_usb sun_type7_euro_usb sun_type7_unix_usb
 +! $sun_type6 = sun_type6 sun_type6_euro sun_type6_jp sun_type6_unix sun_type6_usb sun_type6_euro_usb sun_type6_jp_usb sun_type6_unix_usb
 +! $sun_type7 = sun_type7_jp_usb sun_type7_usb sun_type7_euro_usb sun_type7_unix_usb
-+! $sun_jp = sun_type4_jp sun_type5_jp sun_type6_jp sun_type6_jp_usb sun_type7_jp_usb
++! $sun_jp = sun_type6_jp sun_type6_jp_usb sun_type7_jp_usb
 +
 +// Sun Type 6 keyboards with custom/non-standard layouts
  ! $sun_t6_custom = ara be br ca ch cz de dk \
@@ -48,22 +45,10 @@
 
 --- rules/base.m_g.part	2010-10-01 15:10:31.042038339 +0200
 +++ rules/base.m_g.part	2010-10-01 15:50:13.182913100 +0200
-@@ -23,4 +23,31 @@
+@@ -23,4 +23,19 @@
    hhk		=	hhk(basic)
    kinesis	=	kinesis(model100)
   $nokiamodels	=	nokia(%m)
-+  sun_type4	=	sun(type4)
-+  sun_type4_ca	=	sun(type4_ca)
-+  sun_type4_jp	=	sun(type4jp)
-+  sun_type4_euro	=	sun(type4tuv)
-+  sun_type5	=	sun(type5)
-+  sun_type5_euro	=	sun(type5tuv)
-+  sun_type5_jp	=	sun(type5jp)
-+  sun_type5_unix	=	sun(type5unix)
-+  sun_type5_hobo	=	sun(type5hobo)
-+  sun_type5_euro_hobo	=	sun(type5tuvhobo)
-+  sun_type5_jp_hobo	=	sun(type5jphobo)
-+  sun_type5_unix_hobo	=	sun(type5hobo)
 +  sun_type6	=	sun(type6)
 +  sun_type6_euro	=	sun(type6tuv)
 +  sun_type6_jp	=	sun(type6jp)
@@ -118,7 +103,7 @@
 
 --- rules/base.ml_s.part	2010-10-01 15:10:31.048127359 +0200
 +++ rules/base.ml_s.part	2010-10-04 10:48:29.467904091 +0200
-@@ -5,18 +5,16 @@
+@@ -5,18 +5,10 @@
    classmate	us			=	pc+%l(classmate)
    empty         *                       =       empty(basic)
    *             empty                   =       empty(basic)
@@ -134,14 +119,8 @@
 -  sun6euro	en_US			=	pc+sun_vndr/us(type6)+iso9995-3(basic)
 -  sun6euro	$sun_t6_custom		=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
 -  sun6euro	*			=	pc+sun_vndr/us(type6)+%l%(v)
-+ $sun_type4	$sun_t6_custom		=	pc+sun_vndr/us(type4)+sun_vndr/%l%(v)
-+ $sun_type5	$sun_t6_custom		=	pc+sun_vndr/us(type5)+sun_vndr/%l%(v)
-+ $sun_type5	tw			=	sun_vndr/us_old(type5)+sun_vndr/tw(type5)
-+ $sun_hobo	$sun_t6_custom		=	pc+sun_vndr/us(type5hobo)+sun_vndr/%l%(v)
-+ $sun_type6	us			=	pc+sun_vndr/us(type6)
 + $sun_type6	jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type6)+sun_vndr/solaris(defaults)
 + $sun_type6	tw			=	sun_vndr/us_old(type6)+sun_vndr/tw(type6)
-+ $sun_type7	us			=	pc+sun_vndr/us(type6)
 + $sun_type7	jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type7)+sun_vndr/solaris(defaults_type7jp)
 +  jp106		jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type7)+sun_vndr/solaris(defaults_type7jp)
    pc98		nec_vndr/jp		=	nec_vndr/jp(pc98)
@@ -150,22 +129,19 @@
 
 --- rules/base.ml1_s.part	2010-10-01 15:10:31.052557894 +0200
 +++ rules/base.ml1_s.part	2010-10-04 10:49:33.233462214 +0200
-@@ -1,7 +1,9 @@
+@@ -1,7 +1,5 @@
    ataritt	*			=	xfree68_vndr/ataritt(us)+%l[1]%(v[1])
    amiga		*			=	xfree68_vndr/amiga(usa1)+%l[1]%(v[1])
 -  sun4		*			=	latin+sun_vndr/us(type4)+%l[1]%(v[1])
 -  sun5		*			=	latin+sun_vndr/us(type5)+%l[1]%(v[1])
-+ $sun_type4	$sun_t6_custom		=	pc+sun_vndr/us(type4)+sun_vndr/%l[1]%(v[1])
-+ $sun_type5	$sun_t6_custom		=	pc+sun_vndr/us(type5)+sun_vndr/%l[1]%(v[1])
-+ $sun_hobo	$sun_t6_custom		=	pc+sun_vndr/us(type5hobo)+sun_vndr/%l[1]%(v[1])
-+ $sun_type6	us			=	pc+sun_vndr/us(type6)
    macintosh_old	us			=	macintosh_vndr/us(oldmac)
    macintosh_old	$macvendorlayouts	=	macintosh_vndr/us(oldmac)+macintosh_vndr/%l[1]%(v[1])
    macintosh_old	*			=	macintosh_vndr/us(oldmac)+%l[1]%(v[1])
 
 --- rules/base.ml1v1_s.part	1970-01-01 01:00:00.000000000 +0100
 +++ rules/base.ml1v1_s.part	2010-10-01 16:36:12.619512830 +0200
-@@ -0,0 +1 @@
+@@ -0,0 +2 @@
++ $sun_type6	us		type6		=	pc+sun_vndr/us(type6)
 + $sun_type6	$sun_t6_custom	type6		=	pc+sun_vndr/us(type6)+sun_vndr/%l[1]%(v[1])
 
 --- rules/base.ml2v2_s.part	1970-01-01 01:00:00.000000000 +0100
@@ -187,12 +163,12 @@
 +++ rules/base.mlv_s.part	2010-10-01 16:00:50.812695480 +0200
 @@ -1,3 +1,11 @@
 + $sun_type6	us		type6		=	pc+sun_vndr/us(type6)
-+ $sun_type6	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
-+ $sun_type6	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
++ $sun_type6	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(de_type6)
++ $sun_type6	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(fr_type6)
 + $sun_type6	$sun_t6_custom	type6		=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
 + $sun_type7	us		type6		=	pc+sun_vndr/us(type6)
-+ $sun_type7	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
-+ $sun_type7	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
++ $sun_type7	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(de_type6)
++ $sun_type7	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(fr_type6)
 + $sun_type7	$sun_t6_custom	type6		=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
    classmate	us		intl		=	pc+us(classmate-intl)
    classmate	us		alt-intl	=	pc+us(classmate-alt-intl)
@@ -204,7 +180,7 @@
  <?xml version="1.0" encoding="utf-8"?>
  <!DOCTYPE xkbConfigRegistry SYSTEM "xkb.dtd">
 +<!--
-+Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
++Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 +
 +CDDL HEADER START
 +
@@ -228,7 +204,7 @@
  <xkbConfigRegistry>
    <modelList>
      <model>
-@@ -1170,8 +1192,162 @@
+@@ -1170,8 +1192,85 @@
      </model>
      <model>
        <configItem>
@@ -313,87 +289,10 @@
 +      <configItem>
 +        <name>sun_type6_unix</name>
 +        <_description>Sun Type 6 (Unix layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5</name>
-+        <_description>Sun Type 5</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_euro</name>
-+        <_description>Sun Type 5 (European layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_jp</name>
-+        <_description>Sun Type 5 (Japanese layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_unix</name>
-+        <_description>Sun Type 5 (Unix layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_hobo</name>
-+        <_description>Sun Type 5 Compact</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_euro_hobo</name>
-+        <_description>Sun Type 5 Compact (European layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type5_jp_hobo</name>
-+        <_description>Sun Type 5 Compact (Japanese layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type4</name>
-+        <_description>Sun Type 4</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type4_ca</name>
-+        <_description>Sun Type 4 (Canadian layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type4_jp</name>
-+        <_description>Sun Type 4 (Japanese layout)</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
-+        <name>sun_type4_euro</name>
-+        <_description>Sun Type 4 (European layout)</_description>
          <vendor>Sun Microsystems</vendor>
        </configItem>
      </model>
-@@ -1316,6 +1492,18 @@
+@@ -1316,6 +1415,12 @@
          </variant>
          <variant>
            <configItem>
@@ -403,16 +302,10 @@
 +        </variant>
 +        <variant>
 +          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
              <name>srp</name>
              <_description>Serbian</_description>
              <languageList><iso639Id>eng</iso639Id>
-@@ -1442,6 +1630,12 @@
+@@ -1442,6 +1547,12 @@
              <_description>Buckwalter</_description>
            </configItem>
          </variant>
@@ -425,7 +318,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -1582,6 +1776,12 @@
+@@ -1582,6 +1693,12 @@
              <_description>Wang model 724 azerty</_description>
            </configItem>
          </variant>
@@ -438,7 +331,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -1822,6 +2022,12 @@
+@@ -1822,6 +1939,12 @@
              <languageList><iso639Id>epo</iso639Id></languageList>
            </configItem>
          </variant>
@@ -451,7 +344,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -1979,6 +2185,12 @@
+@@ -1979,6 +2102,12 @@
              <languageList><iso639Id>eng</iso639Id></languageList>
            </configItem>
          </variant>
@@ -464,7 +357,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -2086,6 +2298,12 @@
+@@ -2086,6 +2215,12 @@
  	    <_description>US Dvorak with CZ UCW support</_description>
  	 </configItem>
  	</variant>
@@ -477,7 +370,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -2120,6 +2338,24 @@
+@@ -2120,6 +2255,12 @@
              <_description>Dvorak</_description>
            </configItem>
          </variant>
@@ -487,22 +380,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -2148,6 +2384,24 @@
+@@ -2148,6 +2289,12 @@
              <_description>Standard</_description>
            </configItem>
          </variant>
@@ -512,22 +393,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -2184,6 +2438,12 @@
+@@ -2184,6 +2331,12 @@
              <_description>US keyboard with Estonian letters</_description>
            </configItem>
          </variant>
@@ -540,52 +409,46 @@
        </variantList>
      </layout>
      <layout>
-@@ -2319,6 +2579,12 @@
+@@ -2319,6 +2472,12 @@
              <_description>Macintosh</_description>
            </configItem>
          </variant>
 +        <variant>
 +          <configItem>
 +            <name>type6</name>
-+            <_description>Sun Type 5/6/7 Variant</_description>
++            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -2427,6 +2693,12 @@
+@@ -2427,6 +2586,12 @@
              <languageList><iso639Id>geo</iso639Id></languageList>
            </configItem>
          </variant>
 +        <variant>
 +          <configItem>
 +            <name>type6</name>
-+            <_description>Sun Type 5/6/7 Variant</_description>
++            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -2626,6 +2898,18 @@
+@@ -2626,6 +2791,12 @@
              <_description>qwerty</_description>
            </configItem>
          </variant>
 +        <variant>
 +          <configItem>
 +            <name>type6</name>
-+            <_description>Sun Type 5/6/7 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
++            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -2660,6 +2944,12 @@
+@@ -2660,6 +2831,12 @@
              <_description>Polytonic</_description>
            </configItem>
          </variant>
@@ -598,7 +461,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -2886,6 +3176,24 @@
+@@ -2886,6 +3063,12 @@
              <languageList><iso639Id>geo</iso639Id></languageList>
            </configItem>
          </variant>
@@ -608,22 +471,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+           <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -3065,6 +3373,12 @@
+@@ -3065,6 +3248,12 @@
              <_description>LEKPa</_description>
            </configItem>
          </variant>
@@ -636,7 +487,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3093,6 +3407,12 @@
+@@ -3093,6 +3282,12 @@
              <_description>F-letter (F) variant</_description>
            </configItem>
          </variant>
@@ -649,7 +500,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3243,6 +3563,24 @@
+@@ -3243,6 +3438,12 @@
              <_description>Macintosh, eliminate dead keys</_description>
            </configItem>
          </variant>
@@ -659,22 +510,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -3297,6 +3635,12 @@
+@@ -3297,6 +3498,12 @@
              <_description>Programmer Dvorak</_description>
            </configItem>
          </variant>
@@ -687,7 +526,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3356,6 +3700,24 @@
+@@ -3356,6 +3563,12 @@
              <languageList><iso639Id>epo</iso639Id></languageList>
            </configItem>
          </variant>
@@ -697,22 +536,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -3418,6 +3780,12 @@
+@@ -3418,6 +3631,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -725,7 +552,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3542,6 +3910,12 @@
+@@ -3542,6 +3761,12 @@
              <languageList><iso639Id>bak</iso639Id></languageList>
            </configItem>
          </variant>
@@ -738,7 +565,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3651,6 +4025,12 @@
+@@ -3651,6 +3876,12 @@
              <_description>qwerty, extended Backslash</_description>
            </configItem>
          </variant>
@@ -751,7 +578,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3705,6 +4085,24 @@
+@@ -3705,6 +3936,12 @@
              <_description>Macintosh</_description>
            </configItem>
          </variant>
@@ -761,22 +588,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -3760,6 +4158,24 @@
+@@ -3760,6 +3997,12 @@
              <_description>Svdvorak</_description>
            </configItem>
          </variant>
@@ -786,41 +601,29 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -3823,6 +4239,18 @@
+@@ -3823,6 +4066,18 @@
              <_description>German (Macintosh)</_description>
            </configItem>
          </variant>
 +        <variant>
 +          <configItem>
 +            <name>de_type6</name>
-+            <_description>German Sun Type 5/6/7 Variant</_description>
++            <_description>German Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
 +        <variant>
 +          <configItem>
 +            <name>fr_type6</name>
-+            <_description>French Sun Type 5/6/7 Variant</_description>
++            <_description>French Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -4004,6 +4432,30 @@
+@@ -4004,6 +4259,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -830,28 +633,10 @@
 +            <_description>Sun Type 6 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5hobo</name>
-+            <_description>Sun Type 5 hobo Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -4079,6 +4531,12 @@
+@@ -4079,6 +4340,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -864,7 +649,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -4125,6 +4583,24 @@
+@@ -4125,6 +4392,12 @@
              <_description>Colemak</_description>
            </configItem>
          </variant>
@@ -874,22 +659,10 @@
 +            <_description>Sun Type 6/7 Variant</_description>
 +          </configItem>
 +        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
-+          </configItem>
-+        </variant>
        </variantList>
      </layout>
      <layout>
-@@ -4187,6 +4663,24 @@
+@@ -4187,6 +4460,12 @@
  	    <_description>101/104 key Compatible</_description>
  	  </configItem>
  	</variant>
@@ -897,18 +670,6 @@
 +          <configItem>
 +            <name>type6</name>
 +            <_description>Sun Type 6/7 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type5</name>
-+            <_description>Sun Type 5 Variant</_description>
-+          </configItem>
-+        </variant>
-+        <variant>
-+          <configItem>
-+            <name>type4</name>
-+            <_description>Sun Type 4 Variant</_description>
 +          </configItem>
 +        </variant>
        </variantList>
@@ -922,7 +683,7 @@
      include "group(olpc)"
  };
 +
-+partial alphanumeric_keys 
++alphanumeric_keys 
 +xkb_symbols "type6" {
 +
 +    name[Group1]= "Arabic - type6";
@@ -1598,7 +1359,7 @@
      key <AC10> { [ semicolon, colon ] }; // ; :
  };
 +
-+partial alphanumeric_keys
++alphanumeric_keys
 +xkb_symbols "type6" {
 +
 +    name[Group1]="Greece - type6";
@@ -1726,7 +1487,7 @@
      include "level3(ralt_switch)"
  };
  
-+partial alphanumeric_keys
++alphanumeric_keys
 +xkb_symbols "type6" {
 +
 +    name[Group1]="Lithuania - type6";
@@ -1795,7 +1556,7 @@
  
  };
 +
-+partial alphanumeric_keys
++alphanumeric_keys
 +xkb_symbols "type6" {
 +
 +    name[Group1]="Latvia - type6";
@@ -2089,7 +1850,7 @@
      key <AC07>	{ [    ibreve,     Ibreve,               j,               J ]	};
  };
 +
-+partial alphanumeric_keys
++alphanumeric_keys
 +xkb_symbols "type6" {
 +
 +    name[Group1]="Romania - type6";
@@ -2380,7 +2141,7 @@
      name[Group1]="Ukraine - Crimean Tatar (Turkish Alt-Q)";
  };
 +
-+partial alphanumeric_keys
++alphanumeric_keys
 +xkb_symbols "type6" {
 +
 +    name[Group1]="Ukraine - type6";
@@ -2444,7 +2205,7 @@
 
 --- symbols/us	2010-10-01 15:10:31.129045180 +0200
 +++ symbols/us	2010-10-04 13:27:20.666586458 +0200
-@@ -1147,3 +1147,17 @@
+@@ -1147,3 +1147,15 @@
  
    include "level3(ralt_switch)"
  };
@@ -2453,10 +2214,8 @@
 +xkb_symbols "type6" {
 +
 +    name[Group1]= "USA - type6";
-+    include "us(basic)"
 +
 +    include "sun_vndr/us(sunbasic)"
-+    include "sun_vndr/us(volumekeys)"
 +    include "eurosign(4)"
 +    include "level3(ralt_switch)"
 +

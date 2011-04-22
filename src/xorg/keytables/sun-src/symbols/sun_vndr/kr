@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+// Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -59,29 +59,6 @@ xkb_symbols "type6" {
     key <BKSL> { [ backslash, bar,  brokenbar   ]       };
 
         include "level3(ralt_switch)"
-};
-
-// Korean layout for a Type 4 Sun keyboard
-xkb_symbols "type4" {
-
-    key <BKSL> { [ backslash, bar,  brokenbar	]		};
-
-    key <LNFD> { [ Hangul		]			};
-    key <RALT> { [ Linefeed		]			};
-    key <COMP> { [ Hangul_Hanja		]			};
-
-	include "level3(ralt_switch)"
-};
-
-// Korean layout for a Type 5 Sun keyboard
-xkb_symbols "type5" {
-
-    // A few keys are different
-    key <ALGR> { [ Hangul		]				  };
-    key <COMP> { [ Hangul_Hanja		]				  };
-    key <BKSL> { [ backslash, bar,  brokenbar			] };
-
-	include "level3(ralt_switch)"
 };
 
 

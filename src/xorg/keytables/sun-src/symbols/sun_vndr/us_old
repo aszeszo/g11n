@@ -1,6 +1,5 @@
-// $XdotOrg: $
 //
-// Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+// Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -26,7 +25,6 @@
 // shall not be used in advertising or otherwise to promote the sale, use
 // or other dealings in this Software without prior written authorization
 // of the copyright holder.
-//
 //
 //Copyright 1996, 1998  The Open Group
 //
@@ -218,95 +216,6 @@ xkb_symbols "volumekeys" {
 };
 
 
-// US/ASCII layout for a Type 4 Sun keyboard
-xkb_symbols "type4basic" {
-    include "sun_vndr/us_old(sunbasic)"
-
-    // A few alphanumeric keys are different
-    key <AE04> { [ 4, dollar		], [ EuroSign	]	};
-    key <AE05> { [ 5, percent		], [ EuroSign	]	};
-    key <AD03> { [ e, E			], [ EuroSign	]	};
-
-    key <LNFD> { [ Linefeed		]			};
-
-    // Begin "Editing" section
-    key <PRSC> { [ R2,	R2		], [ Print		] };
-    key <SCLK> { [ R3,	R3		], [ Scroll_Lock, Break	] };
-    key <PAUS> { [ R1,	R1		], [ Pause		] };
-
-    // End "Editing" section, begin "Keypad"
-    key <KPEQ> { [ R4,	KP_Equal	], [ KP_Equal		] };
-
-};
-
-xkb_symbols "type4" {
-    include "sun_vndr/us_old(type4basic)"
-
-    key <BKSL> { [ backslash, bar	], [ brokenbar	]	};
-};
-
-// US/ASCII layout for a Type 5 Sun keyboard
-xkb_symbols "type5basic" {
-    include "sun_vndr/us_old(sunbasic)"
-    include "sun_vndr/us_old(volumekeys)"
-
-    // Begin "Editing" section
-    key <PRSC> { [ R2, R2 		], [ Print, SunSys_Req	]	};
-    key <SCLK> { [ R3, R3		], [ Scroll_Lock	]	};
-    key <PAUS> { [ R1, R1		], [ Pause, Break	]	};
-    // End "Editing" section
-};
-
-xkb_symbols "type5" {
-    include "sun_vndr/us_old(type5basic)"
-
-    // A few alphanumeric keys are different
-    key <AE04> { [ 4, dollar		], [ EuroSign	]	};
-    key <AE05> { [ 5, percent		], [ EuroSign	]	};
-    key <AD03> { [ e, E			], [ EuroSign	]	};
-    key <BKSL> { [ backslash, bar	], [ brokenbar	]	};
-};
-
-// US/ASCII layout for a Type 5 Sun keyboard
-xkb_symbols "type5hobobasic" {
-    include "sun_vndr/us_old(type5basic)"
-};
-
-xkb_symbols "type5hobo" {
-    include "sun_vndr/us_old(type5hobobasic)"
-
-    // A few alphanumeric keys are different
-    key <AE04> { [ 4, dollar            ], [ EuroSign   ]       };
-    key <AE05> { [ 5, percent           ], [ EuroSign   ]       };
-    key <AD03> { [ e, E                 ], [ EuroSign   ]       };
-    key <BKSL> { [ backslash, bar       ], [ brokenbar  ]       };
-
-    // Here is the hobo keypad:
-
-    key <AE07> { [ 7, ampersand ], [ NoSymbol, NoSymbol ], [ KP_7       ] };
-    key <AE08> { [ 8, asterisk  ], [ NoSymbol, NoSymbol ], [ KP_8       ] };
-    key <AE09> { [ 9, parenleft ], [ NoSymbol, NoSymbol ], [ KP_9       ] };
-    key <AE10> { [ 0, parenright], [ NoSymbol, NoSymbol ], [ KP_Multiply] };
-
-    key <AD07> { [ u, U         ], [ NoSymbol, NoSymbol ], [ KP_4       ] };
-    key <AD08> { [ i, I         ], [ NoSymbol, NoSymbol ], [ KP_5       ] };
-    key <AD09> { [ o, O         ], [ NoSymbol, NoSymbol ], [ KP_6       ] };
-    key <AD10> { [ p, P         ], [ NoSymbol, NoSymbol ], [ KP_Subtract]};
-
-    key <AC07> { [ j, J         ], [ NoSymbol, NoSymbol ], [ KP_1       ] };
-    key <AC08> { [ k, K         ], [ NoSymbol, NoSymbol ], [ KP_2       ] };
-    key <AC09> { [ l, L         ], [ NoSymbol, NoSymbol ], [ KP_3       ] };
-    key <AC10> { [ semicolon, colon], [ NoSymbol, NoSymbol], [ KP_Add   ] };
-
-    key <RTRN> { [ Return       ], [ NoSymbol, NoSymbol], [ KP_Enter    ] };
-
-    key <AB07> { [ m, M         ], [ NoSymbol, NoSymbol ], [ KP_0       ] };
-
-    key <AB09> { [ period, greater], [ NoSymbol, NoSymbol], [ KP_Decimal] };
-    key <AB10> { [ slash, question], [ NoSymbol, NoSymbol], [ KP_Divide ] };
-};
-
-
 xkb_symbols "type6" {
     include "sun_vndr/us_old(sunbasic)"
     include "sun_vndr/us_old(volumekeys)"
@@ -314,7 +223,6 @@ xkb_symbols "type6" {
 
     key <SYRQ> { [ SunSys_Req                   ]};
 };
-
 
 
 xkb_symbols "pc101" {

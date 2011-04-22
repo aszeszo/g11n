@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -31,6 +31,8 @@ TARBALL		= $(VER).tar.gz
 SOURCE_URL	= http://people.freedesktop.org/~svu/$(TARBALL)
 
 SOURCE_PATCH	= sun-additions.patch
+
+SOURCE_PATCH_TMP	= sun-additions-tmp.patch
 
 TARGETDIR	= $(FILEROOT)/usr/share/X11/xkb
 
@@ -72,7 +74,15 @@ $(VER)/config.status:	$(VER)/.patched
 			  PATH=/usr/gnu/bin:/usr/X11/bin:$$PATH && export PATH; \
 			  ./configure )
 
-$(VER)/.copied:		$(VER)/.built
+# The following patch is temporarily needed due to
+# current issues in upstream xkeyboard-config. Once 
+# the sources are fixed we will remove this patch.
+$(VER)/.patched_tmp:        $(VER)/.built
+			( cd $(VER); \
+			gpatch -p0 < ../$(SOURCE_PATCH_TMP) )
+			touch $@
+
+$(VER)/.copied:		$(VER)/.patched_tmp
 			for i in `cd sun-src ; find . -type f -print` ; \
 			do \
 			mkdir -p $(VER)/`dirname $$i` ; \
