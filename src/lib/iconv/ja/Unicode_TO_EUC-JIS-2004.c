@@ -28,7 +28,7 @@
 
 #include "japanese.h"
 #include "jfp_iconv_common.h"
-#include "jfp_iconv_unicode.h"
+#include "jfp_iconv_unicode_enhance.h"
 
 #define	JFP_U2E_ICONV_X0213
 #include "jfp_ucs2_to_euc16.h"

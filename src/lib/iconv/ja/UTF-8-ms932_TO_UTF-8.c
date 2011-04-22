@@ -39,7 +39,7 @@
 #define	JFP_ICONV_STATELESS
 #include "japanese.h"
 #include "jfp_iconv_common.h"
-#include "jfp_iconv_unicode.h"
+#include "jfp_iconv_unicode_enhance.h"
 
 iconv_t
 _icv_open_attr(int flag, void *reserve)

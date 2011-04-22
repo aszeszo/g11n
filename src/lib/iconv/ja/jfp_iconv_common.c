@@ -231,8 +231,15 @@ __icv_open_attr(int flag)
 	/* set flag */
 	st->_icv_flag = flag;
 
-	/* set default value into tivialp */
+	/* set default value into trivialp */
 	st->trivialp = __NOT_TRIVIALP;
+
+	/* initialze all other values */
+	st->_st_cset = ST_INIT;
+	st->_st_cset_sav = ST_INIT;
+	st->bom_written = B_FALSE;
+	st->little_endian = B_FALSE;
+	st->replacement = NULL;
 
 	return (st);
 }

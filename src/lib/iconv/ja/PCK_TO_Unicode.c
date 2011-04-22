@@ -35,7 +35,7 @@
 #include <euc.h>
 #include "japanese.h"
 #include "jfp_iconv_common.h"
-#include "jfp_iconv_unicode.h"
+#include "jfp_iconv_unicode_enhance.h"
 
 #ifdef JAVA_CONV_COMPAT
 #define	JFP_J2U_ICONV_JAVA

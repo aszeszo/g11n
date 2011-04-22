@@ -28,7 +28,7 @@
 #include <euc.h>
 #include "japanese.h"
 #include "jfp_iconv_common.h"
-#include "jfp_iconv_unicode.h"
+#include "jfp_iconv_unicode_enhance.h"
 
 #ifdef RFC1468_MODE
 #define	JFP_U2E_ICONV_RFC1468
