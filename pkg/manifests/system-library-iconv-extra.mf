@@ -36,7 +36,6 @@ dir path=usr/lib
 dir path=usr/lib/iconv
 dir path=usr/lib/iconv/$(ARCH64)
 file path=usr/lib/iconv/$(ARCH64)/646%CODESET.so mode=0644
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB-2312%zh_CN.euc.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%eucJP.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%ISO-2022-JP.RFC1468.so
@@ -58,14 +57,6 @@ file path=usr/lib/iconv/$(ARCH64)/iscii91%ea-iscii.so
 file path=usr/lib/iconv/$(ARCH64)/iscii91%pc-iscii.so
 file path=usr/lib/iconv/$(ARCH64)/jis%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/jis%eucJP.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-iso2022-7.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-johap.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-johap92.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-iso2022-7%ko_KR-euc.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-johap%ko_KR-euc.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-johap92%ko_KR-euc.so
-file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
 file path=usr/lib/iconv/$(ARCH64)/pc-iscii%iscii91.so
 file path=usr/lib/iconv/$(ARCH64)/tcvn%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/tcvn%UCS-2LE.so
@@ -75,34 +66,185 @@ file path=usr/lib/iconv/$(ARCH64)/viscii%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/viscii%UCS-2LE.so
 file path=usr/lib/iconv/$(ARCH64)/viscii%UTF-8.so
 file path=usr/lib/iconv/$(ARCH64)/viscii%tcvn.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.euc%HZ-GB-2312.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.euc%zh_CN.iso2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.euc%zh_TW-big5.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%HZ-GB-2312.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_CN.iso2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_HK.hkscs.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_TW-big5.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_TW-big5p.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.iso2022-CN%zh_CN.euc.so
-file path=usr/lib/iconv/$(ARCH64)/zh_CN.iso2022-CN%zh_CN.gbk.so
-file path=usr/lib/iconv/$(ARCH64)/zh_HK.hkscs%zh_CN.gbk.so
-file path=usr/lib/iconv/$(ARCH64)/zh_HK.hkscs%zh_TW-big5p.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_CN.euc.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_CN.gbk.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_TW-euc.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_TW-iso2022-7.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_TW-iso2022-CN-EXT.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5p%zh_CN.gbk.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-big5p%zh_HK.hkscs.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-euc%zh_TW-big5.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-euc%zh_TW-iso2022-7.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-euc%zh_TW-iso2022-CN-EXT.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-7%zh_TW-big5.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-7%zh_TW-euc.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-CN-EXT%zh_TW-big5.so
-file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-CN-EXT%zh_TW-euc.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%IBM-CP937.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%MS-CP949.so
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB18030%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%wchar_t-GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5-HKSCS2008%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-KR%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-GB2312%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%wchar_t-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%wchar_t-EUC-TW.so
 file path=usr/lib/iconv/646%CODESET.so mode=0644
-file path=usr/lib/iconv/HZ-GB-2312%zh_CN.euc.so
 file path=usr/lib/iconv/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/ISO-2022-JP%eucJP.so
 file path=usr/lib/iconv/PCK%ISO-2022-JP.RFC1468.so
@@ -124,14 +266,6 @@ file path=usr/lib/iconv/iscii91%ea-iscii.so
 file path=usr/lib/iconv/iscii91%pc-iscii.so
 file path=usr/lib/iconv/jis%PCK.so
 file path=usr/lib/iconv/jis%eucJP.so
-file path=usr/lib/iconv/ko_KR-euc%ko_KR-iso2022-7.so
-file path=usr/lib/iconv/ko_KR-euc%ko_KR-johap.so
-file path=usr/lib/iconv/ko_KR-euc%ko_KR-johap92.so
-file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
-file path=usr/lib/iconv/ko_KR-iso2022-7%ko_KR-euc.so
-file path=usr/lib/iconv/ko_KR-johap%ko_KR-euc.so
-file path=usr/lib/iconv/ko_KR-johap92%ko_KR-euc.so
-file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
 file path=usr/lib/iconv/pc-iscii%iscii91.so
 file path=usr/lib/iconv/tcvn%UCS-2BE.so
 file path=usr/lib/iconv/tcvn%UCS-2LE.so
@@ -141,32 +275,188 @@ file path=usr/lib/iconv/viscii%UCS-2BE.so
 file path=usr/lib/iconv/viscii%UCS-2LE.so
 file path=usr/lib/iconv/viscii%UTF-8.so
 file path=usr/lib/iconv/viscii%tcvn.so
-file path=usr/lib/iconv/zh_CN.euc%HZ-GB-2312.so
-file path=usr/lib/iconv/zh_CN.euc%zh_CN.iso2022-CN.so
-file path=usr/lib/iconv/zh_CN.euc%zh_TW-big5.so
-file path=usr/lib/iconv/zh_CN.gbk%HZ-GB-2312.so
-file path=usr/lib/iconv/zh_CN.gbk%zh_CN.iso2022-CN.so
-file path=usr/lib/iconv/zh_CN.gbk%zh_HK.hkscs.so
-file path=usr/lib/iconv/zh_CN.gbk%zh_TW-big5.so
-file path=usr/lib/iconv/zh_CN.gbk%zh_TW-big5p.so
-file path=usr/lib/iconv/zh_CN.iso2022-CN%zh_CN.euc.so
-file path=usr/lib/iconv/zh_CN.iso2022-CN%zh_CN.gbk.so
-file path=usr/lib/iconv/zh_HK.hkscs%zh_CN.gbk.so
-file path=usr/lib/iconv/zh_HK.hkscs%zh_TW-big5p.so
-file path=usr/lib/iconv/zh_TW-big5%zh_CN.euc.so
-file path=usr/lib/iconv/zh_TW-big5%zh_CN.gbk.so
-file path=usr/lib/iconv/zh_TW-big5%zh_TW-euc.so
-file path=usr/lib/iconv/zh_TW-big5%zh_TW-iso2022-7.so
-file path=usr/lib/iconv/zh_TW-big5%zh_TW-iso2022-CN-EXT.so
-file path=usr/lib/iconv/zh_TW-big5p%zh_CN.gbk.so
-file path=usr/lib/iconv/zh_TW-big5p%zh_HK.hkscs.so
-file path=usr/lib/iconv/zh_TW-euc%zh_TW-big5.so
-file path=usr/lib/iconv/zh_TW-euc%zh_TW-iso2022-7.so
-file path=usr/lib/iconv/zh_TW-euc%zh_TW-iso2022-CN-EXT.so
-file path=usr/lib/iconv/zh_TW-iso2022-7%zh_TW-big5.so
-file path=usr/lib/iconv/zh_TW-iso2022-7%zh_TW-euc.so
-file path=usr/lib/iconv/zh_TW-iso2022-CN-EXT%zh_TW-big5.so
-file path=usr/lib/iconv/zh_TW-iso2022-CN-EXT%zh_TW-euc.so
+file path=usr/lib/iconv/wchar_t-GB18030%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-UTF-8%GB18030.so
+file path=usr/lib/iconv/GB18030%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-GB18030%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-UTF-8%ISO2022-KR.so
+file path=usr/lib/iconv/ISO2022-KR%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-UTF-8%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-UTF-8%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-UTF-8%IBM-CP937.so
+file path=usr/lib/iconv/IBM-CP937%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-UTF-8%EUC-KR.so
+file path=usr/lib/iconv/EUC-KR%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-UTF-8%BIG5+.so
+file path=usr/lib/iconv/BIG5+%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-GB2312%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-UTF-8%GB2312.so
+file path=usr/lib/iconv/GB2312%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-GB2312%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-UTF-8%IBM-CP935.so
+file path=usr/lib/iconv/IBM-CP935%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-BIG5%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-BIG5%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-BIG5%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-BIG5%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-UTF-8%BIG5.so
+file path=usr/lib/iconv/BIG5%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-BIG5%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-UTF-8%HZ-GB2312.so
+file path=usr/lib/iconv/HZ-GB2312%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%UCS-4BE.so
+file path=usr/lib/iconv/UCS-4BE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%UCS-4LE.so
+file path=usr/lib/iconv/UCS-4LE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%UCS-2LE.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%UTF-8.so
+file path=usr/lib/iconv/UTF-8%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-UTF-8%EUC-TW.so
+file path=usr/lib/iconv/EUC-TW%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%UCS-2BE.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-UTF-8%IBM-CP933.so
+file path=usr/lib/iconv/IBM-CP933%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-UTF-8%MS-CP949.so
+file path=usr/lib/iconv/MS-CP949%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-UTF-8%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-UTF-8%JOHAP82.so
+file path=usr/lib/iconv/JOHAP82%wchar_t-UTF-8.so
+file path=usr/lib/iconv/wchar_t-UTF-8%JOHAP92.so
+file path=usr/lib/iconv/JOHAP92%wchar_t-UTF-8.so
+file path=usr/lib/iconv/GB18030%BIG5.so
+file path=usr/lib/iconv/BIG5%GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%BIG5.so
+file path=usr/lib/iconv/BIG5%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-BIG5%GB18030.so
+file path=usr/lib/iconv/GB18030%wchar_t-BIG5.so
+file path=usr/lib/iconv/GB18030%BIG5+.so
+file path=usr/lib/iconv/BIG5+%GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%BIG5+.so
+file path=usr/lib/iconv/BIG5+%wchar_t-GB18030.so
+file path=usr/lib/iconv/GB18030%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%GB18030.so
+file path=usr/lib/iconv/GB18030%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/GB18030%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%wchar_t-GB18030.so
+file path=usr/lib/iconv/GB2312%BIG5.so
+file path=usr/lib/iconv/BIG5%GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%BIG5.so
+file path=usr/lib/iconv/BIG5%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-BIG5%GB2312.so
+file path=usr/lib/iconv/GB2312%wchar_t-BIG5.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%BIG5+.so
+file path=usr/lib/iconv/BIG5+%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%BIG5+.so
+file path=usr/lib/iconv/BIG5+%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%BIG5+.so
+file path=usr/lib/iconv/BIG5+%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/GB2312%HZ-GB2312.so
+file path=usr/lib/iconv/HZ-GB2312%GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%HZ-GB2312.so
+file path=usr/lib/iconv/HZ-GB2312%wchar_t-GB2312.so
+file path=usr/lib/iconv/EUC-TW%BIG5.so
+file path=usr/lib/iconv/BIG5%EUC-TW.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%BIG5.so
+file path=usr/lib/iconv/BIG5%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/wchar_t-BIG5%EUC-TW.so
+file path=usr/lib/iconv/EUC-TW%wchar_t-BIG5.so
+file path=usr/lib/iconv/EUC-TW%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%EUC-TW.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/GB2312%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%GB2312.so
+file path=usr/lib/iconv/wchar_t-GB2312%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%wchar_t-GB2312.so
+file path=usr/lib/iconv/GB18030%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%GB18030.so
+file path=usr/lib/iconv/wchar_t-GB18030%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%wchar_t-GB18030.so
+file path=usr/lib/iconv/BIG5%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%BIG5.so
+file path=usr/lib/iconv/wchar_t-BIG5%ISO2022-CN.so
+file path=usr/lib/iconv/ISO2022-CN%wchar_t-BIG5.so
+file path=usr/lib/iconv/ISO2022-KR%EUC-KR.so
+file path=usr/lib/iconv/EUC-KR%ISO2022-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%ISO2022-KR.so
+file path=usr/lib/iconv/ISO2022-KR%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/EUC-KR%JOHAP92.so
+file path=usr/lib/iconv/JOHAP92%EUC-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%JOHAP92.so
+file path=usr/lib/iconv/JOHAP92%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/EUC-KR%JOHAP82.so
+file path=usr/lib/iconv/JOHAP82%EUC-KR.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%JOHAP82.so
+file path=usr/lib/iconv/JOHAP82%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/GB18030%HZ-GB2312.so
+file path=usr/lib/iconv/wchar_t-GB18030%HZ-GB2312.so
+file path=usr/lib/iconv/wchar_t-GB18030%GB18030.so
+file path=usr/lib/iconv/GB18030%wchar_t-GB18030.so
+file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%wchar_t-BIG5-HKSCS2008.so
+file path=usr/lib/iconv/wchar_t-EUC-KR%EUC-KR.so
+file path=usr/lib/iconv/EUC-KR%wchar_t-EUC-KR.so
+file path=usr/lib/iconv/wchar_t-GB2312%GB2312.so
+file path=usr/lib/iconv/GB2312%wchar_t-GB2312.so
+file path=usr/lib/iconv/wchar_t-BIG5%BIG5.so
+file path=usr/lib/iconv/BIG5%wchar_t-BIG5.so
+file path=usr/lib/iconv/wchar_t-EUC-TW%EUC-TW.so
+file path=usr/lib/iconv/EUC-TW%wchar_t-EUC-TW.so
+-file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
+-file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
+-file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
+-file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
 license copyright.unicode license=copyright.unicode
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
@@ -176,7 +466,6 @@ link path=usr/lib/iconv/$(ARCH64)/646%SJIS.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%cns11643.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%eucJP.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%gb2312.so target=./646%CODESET.so
-link path=usr/lib/iconv/$(ARCH64)/HZ-GB-2312%zh_CN.gbk.so target=./HZ-GB-2312%zh_CN.euc.so
 link path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%SJIS.so target=./ISO-2022-JP%PCK.so
 link path=usr/lib/iconv/$(ARCH64)/JIS7%eucJP.so target=./ISO-2022-JP%eucJP.so
 link path=usr/lib/iconv/$(ARCH64)/SJIS%ISO-2022-JP.so target=./PCK%ISO-2022-JP.so
@@ -186,54 +475,11 @@ link path=usr/lib/iconv/$(ARCH64)/UCS-2%tcvn.so target=./UCS-2BE%tcvn.so
 link path=usr/lib/iconv/$(ARCH64)/UCS-2%viscii.so target=./UCS-2BE%viscii.so
 link path=usr/lib/iconv/$(ARCH64)/eucJP%JIS7.so target=./eucJP%ISO-2022-JP.so
 link path=usr/lib/iconv/$(ARCH64)/eucJP%SJIS.so target=./eucJP%PCK.so
-link path=usr/lib/iconv/$(ARCH64)/gb2312%iso2022.so target=./zh_CN.euc%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/$(ARCH64)/iso2022%gb2312.so target=./zh_CN.iso2022-CN%zh_CN.euc.so
 link path=usr/lib/iconv/$(ARCH64)/jis%SJIS.so target=./jis%PCK.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.iso2022-7.so target=./ko_KR-euc%ko_KR-iso2022-7.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.johap.so target=./ko_KR-euc%ko_KR-johap.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.johap92.so target=./ko_KR-euc%ko_KR-johap92.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.iso2022-7%ko_KR.euc.so target=./ko_KR-iso2022-7%ko_KR-euc.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.johap%ko_KR.euc.so target=./ko_KR-johap%ko_KR-euc.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.johap92%ko_KR.euc.so target=./ko_KR-johap92%ko_KR-euc.so
-link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
 link path=usr/lib/iconv/$(ARCH64)/tcvn%UCS-2.so target=./tcvn%UCS-2BE.so
 link path=usr/lib/iconv/$(ARCH64)/viscii%UCS-2.so target=./viscii%UCS-2BE.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.euc%zh_CN.iso2022-7.so target=./zh_CN.euc%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_CN.iso2022-CN.so target=./zh_CN.gbk%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_HK-big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_HK.big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_HK.hkscs.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_TW-big5.so target=./zh_CN.gbk%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gb18030%zh_TW-big5p.so target=./zh_CN.gbk%zh_TW-big5p.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_HK-big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.gbk%zh_HK.big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_CN.iso2022-7%zh_CN.euc.so target=./zh_CN.iso2022-CN%zh_CN.euc.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK-big5hk%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK-big5hk%zh_CN.gbk.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK-big5hk%zh_TW-big5p.so target=./zh_HK.hkscs%zh_TW-big5p.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK.big5hk%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK.big5hk%zh_CN.gbk.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK.big5hk%zh_TW-big5p.so target=./zh_HK.hkscs%zh_TW-big5p.so
-link path=usr/lib/iconv/$(ARCH64)/zh_HK.hkscs%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_CN.gb18030.so target=./zh_TW-big5%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-big5%zh_TW-iso2022-CN.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-big5p%zh_CN.gb18030.so target=./zh_TW-big5p%zh_CN.gbk.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-big5p%zh_HK-big5hk.so target=./zh_TW-big5p%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-big5p%zh_HK.big5hk.so target=./zh_TW-big5p%zh_HK.hkscs.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-CN%zh_TW-big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.big5%zh_TW.euc.so target=./zh_TW-big5%zh_TW-euc.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.big5%zh_TW.iso2022-7.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.big5%zh_TW.iso2022-CN-EXT.so target=./zh_TW-big5%zh_TW-iso2022-CN-EXT.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.big5%zh_TW.iso2022-CN.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.euc%zh_TW.big5.so target=./zh_TW-euc%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.euc%zh_TW.iso2022-7.so target=./zh_TW-euc%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.euc%zh_TW.iso2022-CN-EXT.so target=./zh_TW-euc%zh_TW-iso2022-CN-EXT.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.iso2022-7%zh_TW.big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.iso2022-7%zh_TW.euc.so target=./zh_TW-iso2022-7%zh_TW-euc.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.iso2022-CN%zh_TW.big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.iso2022-CN-EXT%zh_TW.big5.so target=./zh_TW-iso2022-CN-EXT%zh_TW-big5.so
-link path=usr/lib/iconv/$(ARCH64)/zh_TW.iso2022-CN-EXT%zh_TW.euc.so target=./zh_TW-iso2022-CN-EXT%zh_TW-euc.so
+link path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%GB18030.so target=./HZ-GB2312%GB2312.so
+link path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-GB18030.so target=./HZ-GB2312%wchar_t-GB2312.so
 link path=usr/lib/iconv/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%BIG5.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%GBK.so target=./646%CODESET.so
@@ -242,7 +488,6 @@ link path=usr/lib/iconv/646%SJIS.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%cns11643.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%eucJP.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%gb2312.so target=./646%CODESET.so
-link path=usr/lib/iconv/HZ-GB-2312%zh_CN.gbk.so target=./HZ-GB-2312%zh_CN.euc.so
 link path=usr/lib/iconv/ISO-2022-JP%SJIS.so target=./ISO-2022-JP%PCK.so
 link path=usr/lib/iconv/JIS7%eucJP.so target=./ISO-2022-JP%eucJP.so
 link path=usr/lib/iconv/SJIS%ISO-2022-JP.so target=./PCK%ISO-2022-JP.so
@@ -252,51 +497,14 @@ link path=usr/lib/iconv/UCS-2%tcvn.so target=./UCS-2BE%tcvn.so
 link path=usr/lib/iconv/UCS-2%viscii.so target=./UCS-2BE%viscii.so
 link path=usr/lib/iconv/eucJP%JIS7.so target=./eucJP%ISO-2022-JP.so
 link path=usr/lib/iconv/eucJP%SJIS.so target=./eucJP%PCK.so
-link path=usr/lib/iconv/gb2312%iso2022.so target=./zh_CN.euc%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/iso2022%gb2312.so target=./zh_CN.iso2022-CN%zh_CN.euc.so
 link path=usr/lib/iconv/jis%SJIS.so target=./jis%PCK.so
-link path=usr/lib/iconv/ko_KR.euc%ko_KR.iso2022-7.so target=./ko_KR-euc%ko_KR-iso2022-7.so
-link path=usr/lib/iconv/ko_KR.euc%ko_KR.johap.so target=./ko_KR-euc%ko_KR-johap.so
-link path=usr/lib/iconv/ko_KR.euc%ko_KR.johap92.so target=./ko_KR-euc%ko_KR-johap92.so
-link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
-link path=usr/lib/iconv/ko_KR.iso2022-7%ko_KR.euc.so target=./ko_KR-iso2022-7%ko_KR-euc.so
-link path=usr/lib/iconv/ko_KR.johap%ko_KR.euc.so target=./ko_KR-johap%ko_KR-euc.so
-link path=usr/lib/iconv/ko_KR.johap92%ko_KR.euc.so target=./ko_KR-johap92%ko_KR-euc.so
-link path=usr/lib/iconv/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
 link path=usr/lib/iconv/tcvn%UCS-2.so target=./tcvn%UCS-2BE.so
 link path=usr/lib/iconv/viscii%UCS-2.so target=./viscii%UCS-2BE.so
-link path=usr/lib/iconv/zh_CN.euc%zh_CN.iso2022-7.so target=./zh_CN.euc%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_CN.iso2022-CN.so target=./zh_CN.gbk%zh_CN.iso2022-CN.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_HK-big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_HK.big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_HK.hkscs.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_TW-big5.so target=./zh_CN.gbk%zh_TW-big5.so
-link path=usr/lib/iconv/zh_CN.gb18030%zh_TW-big5p.so target=./zh_CN.gbk%zh_TW-big5p.so
-link path=usr/lib/iconv/zh_CN.gbk%zh_HK-big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_CN.gbk%zh_HK.big5hk.so target=./zh_CN.gbk%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_CN.iso2022-7%zh_CN.euc.so target=./zh_CN.iso2022-CN%zh_CN.euc.so
-link path=usr/lib/iconv/zh_HK-big5hk%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_HK-big5hk%zh_CN.gbk.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_HK-big5hk%zh_TW-big5p.so target=./zh_HK.hkscs%zh_TW-big5p.so
-link path=usr/lib/iconv/zh_HK.big5hk%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_HK.big5hk%zh_CN.gbk.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_HK.big5hk%zh_TW-big5p.so target=./zh_HK.hkscs%zh_TW-big5p.so
-link path=usr/lib/iconv/zh_HK.hkscs%zh_CN.gb18030.so target=./zh_HK.hkscs%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_TW-big5%zh_CN.gb18030.so target=./zh_TW-big5%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_TW-big5%zh_TW-iso2022-CN.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/zh_TW-big5p%zh_CN.gb18030.so target=./zh_TW-big5p%zh_CN.gbk.so
-link path=usr/lib/iconv/zh_TW-big5p%zh_HK-big5hk.so target=./zh_TW-big5p%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_TW-big5p%zh_HK.big5hk.so target=./zh_TW-big5p%zh_HK.hkscs.so
-link path=usr/lib/iconv/zh_TW-iso2022-CN%zh_TW-big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/zh_TW.big5%zh_TW.euc.so target=./zh_TW-big5%zh_TW-euc.so
-link path=usr/lib/iconv/zh_TW.big5%zh_TW.iso2022-7.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/zh_TW.big5%zh_TW.iso2022-CN-EXT.so target=./zh_TW-big5%zh_TW-iso2022-CN-EXT.so
-link path=usr/lib/iconv/zh_TW.big5%zh_TW.iso2022-CN.so target=./zh_TW-big5%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/zh_TW.euc%zh_TW.big5.so target=./zh_TW-euc%zh_TW-big5.so
-link path=usr/lib/iconv/zh_TW.euc%zh_TW.iso2022-7.so target=./zh_TW-euc%zh_TW-iso2022-7.so
-link path=usr/lib/iconv/zh_TW.euc%zh_TW.iso2022-CN-EXT.so target=./zh_TW-euc%zh_TW-iso2022-CN-EXT.so
-link path=usr/lib/iconv/zh_TW.iso2022-7%zh_TW.big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/zh_TW.iso2022-7%zh_TW.euc.so target=./zh_TW-iso2022-7%zh_TW-euc.so
-link path=usr/lib/iconv/zh_TW.iso2022-CN%zh_TW.big5.so target=./zh_TW-iso2022-7%zh_TW-big5.so
-link path=usr/lib/iconv/zh_TW.iso2022-CN-EXT%zh_TW.big5.so target=./zh_TW-iso2022-CN-EXT%zh_TW-big5.so
-link path=usr/lib/iconv/zh_TW.iso2022-CN-EXT%zh_TW.euc.so target=./zh_TW-iso2022-CN-EXT%zh_TW-euc.so
+link path=usr/lib/iconv/HZ-GB2312%GB18030.so target=./HZ-GB2312%GB2312.so
+link path=usr/lib/iconv/HZ-GB2312%wchar_t-GB18030.so target=./HZ-GB2312%wchart_t-GB2312.so
+-link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
+-link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
+-link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
+-link path=usr/lib/iconv/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
+
+
