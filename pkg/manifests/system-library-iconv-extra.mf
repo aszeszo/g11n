@@ -453,10 +453,10 @@ file path=usr/lib/iconv/wchar_t-BIG5%BIG5.so
 file path=usr/lib/iconv/BIG5%wchar_t-BIG5.so
 file path=usr/lib/iconv/wchar_t-EUC-TW%EUC-TW.so
 file path=usr/lib/iconv/EUC-TW%wchar_t-EUC-TW.so
--file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
--file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
--file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
--file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
+file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
+file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
+file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
+file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
 license copyright.unicode license=copyright.unicode
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
@@ -502,9 +502,7 @@ link path=usr/lib/iconv/tcvn%UCS-2.so target=./tcvn%UCS-2BE.so
 link path=usr/lib/iconv/viscii%UCS-2.so target=./viscii%UCS-2BE.so
 link path=usr/lib/iconv/HZ-GB2312%GB18030.so target=./HZ-GB2312%GB2312.so
 link path=usr/lib/iconv/HZ-GB2312%wchar_t-GB18030.so target=./HZ-GB2312%wchart_t-GB2312.so
--link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
--link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
--link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
--link path=usr/lib/iconv/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
-
-
+link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
+link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
+link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
+link path=usr/lib/iconv/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
