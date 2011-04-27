@@ -35,6 +35,353 @@ dir path=usr group=sys
 dir path=usr/lib
 dir path=usr/lib/iconv
 dir path=usr/lib/iconv/$(ARCH64)
+file path=usr/lib/iconv/$(ARCH64)/646%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/646%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-10%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-13%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-14%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-15%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-16%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-2%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-3%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-4%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-5%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-6%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-7%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-8%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5+%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1250%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1251%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1252%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1253%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1254%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1255%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1256%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1257%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP1258%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP437%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP720%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP737%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP775%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP850%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP852%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP855%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP857%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP860%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP861%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP862%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP863%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP864%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP865%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP866%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP869%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/CP874%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-2.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-2LE.so
@@ -45,8 +392,47 @@ file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UTF-32.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/GB2312%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UTF-8.so
 file path=usr/lib/iconv/$(ARCH64)/IBM-838%IBM-874.so
 file path=usr/lib/iconv/$(ARCH64)/IBM-874%IBM-838.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UTF-8.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%UTF-8.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UCS-2.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UCS-2BE.so
@@ -58,6 +444,47 @@ file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UTF-32.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP-2004%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-R%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/KOI8-U%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-4BE.so
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-4LE.so
+file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UTF-8.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UCS-2.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UCS-2LE.so
@@ -69,6 +496,14 @@ file path=usr/lib/iconv/$(ARCH64)/PCK%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UTF-8-Java.so
 file path=usr/lib/iconv/$(ARCH64)/PCK%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/PTCP154%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/Shift_JIS-2004%UCS-2.so
 file path=usr/lib/iconv/$(ARCH64)/Shift_JIS-2004%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/Shift_JIS-2004%UCS-2LE.so
@@ -83,62 +518,673 @@ file path=usr/lib/iconv/$(ARCH64)/UCS-2%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UCS-2%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2-LITTLE-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%EUC-JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP937.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ISO-2022-JP-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%MS-CP949.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%EUC-JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP937.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ISO-2022-JP-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%MS-CP949.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4-LITTLE-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP937.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%MS-CP949.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP937.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%MS-CP949.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16-LITTLE-ENDIAN%UTF-8.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%ms932.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%ms932.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32-LITTLE-ENDIAN%UTF-8.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%ms932.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%EUC-JIS-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%ms932.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5+.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5-HKSCS2008.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%EUC-JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%EUC-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%HZ-GB2312.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP933.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP935.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP937.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO-2022-JP.RFC1468.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO-2022-JP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO2022-CN.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO2022-KR.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%JOHAP82.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%JOHAP92.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%MS-CP949.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%Shift_JIS-2004.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%UTF-8-ms932.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%eucJP-ms.so
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%iscii91.so
@@ -168,172 +1214,353 @@ file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%GB18030.so
-file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%GB18030.so
-file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%GB18030.so
-file path=usr/lib/iconv/$(ARCH64)/GB18030%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%GB18030.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%ISO2022-KR.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%ISO2022-KR.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ISO2022-KR.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO2022-KR.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-KR%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ISO2022-KR.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2004%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5-HKSCS2008%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP937.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP937.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP937.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP937.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP937%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP937.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%EUC-KR.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%EUC-KR.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%EUC-KR.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%EUC-KR.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-KR%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%EUC-KR.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5+.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5+.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5+.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5+%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%BIG5+.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5+%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5+.so
-file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/GB2312%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/GB2312%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP935.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP935.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP935.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP935.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP935%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP935.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%BIG5.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%BIG5.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%BIG5.so
-file path=usr/lib/iconv/$(ARCH64)/BIG5%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%BIG5.so
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%HZ-GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%HZ-GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%HZ-GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%HZ-GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%HZ-GB2312.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%EUC-TW.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%EUC-TW.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%EUC-TW.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%EUC-TW.so
-file path=usr/lib/iconv/$(ARCH64)/EUC-TW%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%EUC-TW.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%IBM-CP933.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%IBM-CP933.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%IBM-CP933.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%IBM-CP933.so
-file path=usr/lib/iconv/$(ARCH64)/IBM-CP933%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%IBM-CP933.so
-file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%MS-CP949.so
-file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%MS-CP949.so
-file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%MS-CP949.so
-file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%MS-CP949.so
-file path=usr/lib/iconv/$(ARCH64)/MS-CP949%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%MS-CP949.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%ISO2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%ISO2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%ISO2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%ISO2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/ISO2022-CN%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%ISO2022-CN.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%JOHAP82.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%JOHAP82.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%JOHAP82.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%JOHAP82.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP82%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%JOHAP82.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-4BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%JOHAP92.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-4LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-4LE%JOHAP92.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-2LE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%JOHAP92.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UTF-8.so
-file path=usr/lib/iconv/$(ARCH64)/UTF-8%JOHAP92.so
-file path=usr/lib/iconv/$(ARCH64)/JOHAP92%UCS-2BE.so
-file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%JOHAP92.so
+file path=usr/lib/iconv/646%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/646%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-1%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-10%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-13%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-14%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-15%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-16%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-2%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-3%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-4%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-5%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-6%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-7%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-8%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/8859-9%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/BIG5%UCS-2BE.so
+file path=usr/lib/iconv/BIG5%UCS-2LE.so
+file path=usr/lib/iconv/BIG5%UCS-4BE.so
+file path=usr/lib/iconv/BIG5%UCS-4LE.so
+file path=usr/lib/iconv/BIG5+%UCS-2BE.so
+file path=usr/lib/iconv/BIG5+%UCS-2LE.so
+file path=usr/lib/iconv/BIG5+%UCS-4BE.so
+file path=usr/lib/iconv/BIG5+%UCS-4LE.so
+file path=usr/lib/iconv/BIG5+%UTF-8.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-2BE.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-2LE.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-4BE.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-4LE.so
+file path=usr/lib/iconv/BIG5-HKSCS2004%UTF-8.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-2BE.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-2LE.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-4BE.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-4LE.so
+file path=usr/lib/iconv/BIG5-HKSCS2008%UTF-8.so
+file path=usr/lib/iconv/CP1250%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1250%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1251%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1252%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1253%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1254%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1255%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1256%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1257%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP1258%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP437%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP720%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP737%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP775%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP850%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP852%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP855%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP857%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP860%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP861%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP862%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP863%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP864%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP865%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP866%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP869%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/CP874%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/EUC-JIS-2004%UCS-2.so
 file path=usr/lib/iconv/EUC-JIS-2004%UCS-2BE.so
 file path=usr/lib/iconv/EUC-JIS-2004%UCS-2LE.so
@@ -344,8 +1571,47 @@ file path=usr/lib/iconv/EUC-JIS-2004%UTF-32.so
 file path=usr/lib/iconv/EUC-JIS-2004%UTF-32BE.so
 file path=usr/lib/iconv/EUC-JIS-2004%UTF-32LE.so
 file path=usr/lib/iconv/EUC-JIS-2004%UTF-8.so
+file path=usr/lib/iconv/EUC-KR%UCS-2BE.so
+file path=usr/lib/iconv/EUC-KR%UCS-2LE.so
+file path=usr/lib/iconv/EUC-KR%UCS-4BE.so
+file path=usr/lib/iconv/EUC-KR%UCS-4LE.so
+file path=usr/lib/iconv/EUC-KR%UTF-8.so
+file path=usr/lib/iconv/EUC-TW%UCS-2BE.so
+file path=usr/lib/iconv/EUC-TW%UCS-2LE.so
+file path=usr/lib/iconv/EUC-TW%UCS-4BE.so
+file path=usr/lib/iconv/EUC-TW%UCS-4LE.so
+file path=usr/lib/iconv/EUC-TW%UTF-8.so
+file path=usr/lib/iconv/GB18030%UCS-2BE.so
+file path=usr/lib/iconv/GB18030%UCS-2LE.so
+file path=usr/lib/iconv/GB18030%UCS-4BE.so
+file path=usr/lib/iconv/GB18030%UCS-4LE.so
+file path=usr/lib/iconv/GB2312%UCS-2BE.so
+file path=usr/lib/iconv/GB2312%UCS-2LE.so
+file path=usr/lib/iconv/GB2312%UCS-4BE.so
+file path=usr/lib/iconv/GB2312%UCS-4LE.so
+file path=usr/lib/iconv/GB2312%UTF-8.so
+file path=usr/lib/iconv/HZ-GB2312%UCS-2BE.so
+file path=usr/lib/iconv/HZ-GB2312%UCS-2LE.so
+file path=usr/lib/iconv/HZ-GB2312%UCS-4BE.so
+file path=usr/lib/iconv/HZ-GB2312%UCS-4LE.so
+file path=usr/lib/iconv/HZ-GB2312%UTF-8.so
 file path=usr/lib/iconv/IBM-838%IBM-874.so
 file path=usr/lib/iconv/IBM-874%IBM-838.so
+file path=usr/lib/iconv/IBM-CP933%UCS-2BE.so
+file path=usr/lib/iconv/IBM-CP933%UCS-2LE.so
+file path=usr/lib/iconv/IBM-CP933%UCS-4BE.so
+file path=usr/lib/iconv/IBM-CP933%UCS-4LE.so
+file path=usr/lib/iconv/IBM-CP933%UTF-8.so
+file path=usr/lib/iconv/IBM-CP935%UCS-2BE.so
+file path=usr/lib/iconv/IBM-CP935%UCS-2LE.so
+file path=usr/lib/iconv/IBM-CP935%UCS-4BE.so
+file path=usr/lib/iconv/IBM-CP935%UCS-4LE.so
+file path=usr/lib/iconv/IBM-CP935%UTF-8.so
+file path=usr/lib/iconv/IBM-CP937%UCS-2BE.so
+file path=usr/lib/iconv/IBM-CP937%UCS-2LE.so
+file path=usr/lib/iconv/IBM-CP937%UCS-4BE.so
+file path=usr/lib/iconv/IBM-CP937%UCS-4LE.so
+file path=usr/lib/iconv/IBM-CP937%UTF-8.so
 file path=usr/lib/iconv/ISO-2022-JP%UTF-8.so
 file path=usr/lib/iconv/ISO-2022-JP-2004%UCS-2.so
 file path=usr/lib/iconv/ISO-2022-JP-2004%UCS-2BE.so
@@ -357,6 +1623,47 @@ file path=usr/lib/iconv/ISO-2022-JP-2004%UTF-32.so
 file path=usr/lib/iconv/ISO-2022-JP-2004%UTF-32BE.so
 file path=usr/lib/iconv/ISO-2022-JP-2004%UTF-32LE.so
 file path=usr/lib/iconv/ISO-2022-JP-2004%UTF-8.so
+file path=usr/lib/iconv/ISO2022-CN%UCS-2BE.so
+file path=usr/lib/iconv/ISO2022-CN%UCS-2LE.so
+file path=usr/lib/iconv/ISO2022-CN%UCS-4BE.so
+file path=usr/lib/iconv/ISO2022-CN%UCS-4LE.so
+file path=usr/lib/iconv/ISO2022-CN%UTF-8.so
+file path=usr/lib/iconv/ISO2022-KR%UCS-2BE.so
+file path=usr/lib/iconv/ISO2022-KR%UCS-2LE.so
+file path=usr/lib/iconv/ISO2022-KR%UCS-4BE.so
+file path=usr/lib/iconv/ISO2022-KR%UCS-4LE.so
+file path=usr/lib/iconv/ISO2022-KR%UTF-8.so
+file path=usr/lib/iconv/JOHAP82%UCS-2BE.so
+file path=usr/lib/iconv/JOHAP82%UCS-2LE.so
+file path=usr/lib/iconv/JOHAP82%UCS-4BE.so
+file path=usr/lib/iconv/JOHAP82%UCS-4LE.so
+file path=usr/lib/iconv/JOHAP82%UTF-8.so
+file path=usr/lib/iconv/JOHAP92%UCS-2BE.so
+file path=usr/lib/iconv/JOHAP92%UCS-2LE.so
+file path=usr/lib/iconv/JOHAP92%UCS-4BE.so
+file path=usr/lib/iconv/JOHAP92%UCS-4LE.so
+file path=usr/lib/iconv/JOHAP92%UTF-8.so
+file path=usr/lib/iconv/KOI8-R%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-R%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/KOI8-U%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/MS-CP949%UCS-2BE.so
+file path=usr/lib/iconv/MS-CP949%UCS-2LE.so
+file path=usr/lib/iconv/MS-CP949%UCS-4BE.so
+file path=usr/lib/iconv/MS-CP949%UCS-4LE.so
+file path=usr/lib/iconv/MS-CP949%UTF-8.so
 file path=usr/lib/iconv/PCK%UCS-2.so
 file path=usr/lib/iconv/PCK%UCS-2BE.so
 file path=usr/lib/iconv/PCK%UCS-2LE.so
@@ -368,6 +1675,14 @@ file path=usr/lib/iconv/PCK%UTF-32BE.so
 file path=usr/lib/iconv/PCK%UTF-32LE.so
 file path=usr/lib/iconv/PCK%UTF-8-Java.so
 file path=usr/lib/iconv/PCK%UTF-8.so
+file path=usr/lib/iconv/PTCP154%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/PTCP154%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/Shift_JIS-2004%UCS-2.so
 file path=usr/lib/iconv/Shift_JIS-2004%UCS-2BE.so
 file path=usr/lib/iconv/Shift_JIS-2004%UCS-2LE.so
@@ -382,62 +1697,673 @@ file path=usr/lib/iconv/UCS-2%EUC-JIS-2004.so
 file path=usr/lib/iconv/UCS-2%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UCS-2%PCK.so
 file path=usr/lib/iconv/UCS-2%Shift_JIS-2004.so
+file path=usr/lib/iconv/UCS-2%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UCS-2%eucJP-ms.so
 file path=usr/lib/iconv/UCS-2%ms932.so
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UCS-2-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UCS-2-LITTLE-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UCS-2BE%BIG5+.so
+file path=usr/lib/iconv/UCS-2BE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/UCS-2BE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/UCS-2BE%BIG5.so
 file path=usr/lib/iconv/UCS-2BE%EUC-JIS-2004.so
+file path=usr/lib/iconv/UCS-2BE%EUC-KR.so
+file path=usr/lib/iconv/UCS-2BE%EUC-TW.so
+file path=usr/lib/iconv/UCS-2BE%GB18030.so
+file path=usr/lib/iconv/UCS-2BE%GB2312.so
+file path=usr/lib/iconv/UCS-2BE%HZ-GB2312.so
+file path=usr/lib/iconv/UCS-2BE%IBM-CP933.so
+file path=usr/lib/iconv/UCS-2BE%IBM-CP935.so
+file path=usr/lib/iconv/UCS-2BE%IBM-CP937.so
 file path=usr/lib/iconv/UCS-2BE%ISO-2022-JP-2004.so
+file path=usr/lib/iconv/UCS-2BE%ISO2022-CN.so
+file path=usr/lib/iconv/UCS-2BE%ISO2022-KR.so
+file path=usr/lib/iconv/UCS-2BE%JOHAP82.so
+file path=usr/lib/iconv/UCS-2BE%JOHAP92.so
+file path=usr/lib/iconv/UCS-2BE%MS-CP949.so
 file path=usr/lib/iconv/UCS-2BE%PCK.so
 file path=usr/lib/iconv/UCS-2BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UCS-2BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2BE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UCS-2BE%eucJP-ms.so
 file path=usr/lib/iconv/UCS-2BE%ms932.so
+file path=usr/lib/iconv/UCS-2LE%BIG5+.so
+file path=usr/lib/iconv/UCS-2LE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/UCS-2LE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/UCS-2LE%BIG5.so
 file path=usr/lib/iconv/UCS-2LE%EUC-JIS-2004.so
+file path=usr/lib/iconv/UCS-2LE%EUC-KR.so
+file path=usr/lib/iconv/UCS-2LE%EUC-TW.so
+file path=usr/lib/iconv/UCS-2LE%GB18030.so
+file path=usr/lib/iconv/UCS-2LE%GB2312.so
+file path=usr/lib/iconv/UCS-2LE%HZ-GB2312.so
+file path=usr/lib/iconv/UCS-2LE%IBM-CP933.so
+file path=usr/lib/iconv/UCS-2LE%IBM-CP935.so
+file path=usr/lib/iconv/UCS-2LE%IBM-CP937.so
 file path=usr/lib/iconv/UCS-2LE%ISO-2022-JP-2004.so
+file path=usr/lib/iconv/UCS-2LE%ISO2022-CN.so
+file path=usr/lib/iconv/UCS-2LE%ISO2022-KR.so
+file path=usr/lib/iconv/UCS-2LE%JOHAP82.so
+file path=usr/lib/iconv/UCS-2LE%JOHAP92.so
+file path=usr/lib/iconv/UCS-2LE%MS-CP949.so
 file path=usr/lib/iconv/UCS-2LE%PCK.so
 file path=usr/lib/iconv/UCS-2LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UCS-2LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-2LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UCS-2LE%eucJP-ms.so
 file path=usr/lib/iconv/UCS-2LE%ms932.so
+file path=usr/lib/iconv/UCS-4%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UCS-4-LITTLE-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%BIG5+.so
+file path=usr/lib/iconv/UCS-4BE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/UCS-4BE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/UCS-4BE%BIG5.so
+file path=usr/lib/iconv/UCS-4BE%EUC-KR.so
+file path=usr/lib/iconv/UCS-4BE%EUC-TW.so
+file path=usr/lib/iconv/UCS-4BE%GB18030.so
+file path=usr/lib/iconv/UCS-4BE%GB2312.so
+file path=usr/lib/iconv/UCS-4BE%HZ-GB2312.so
+file path=usr/lib/iconv/UCS-4BE%IBM-CP933.so
+file path=usr/lib/iconv/UCS-4BE%IBM-CP935.so
+file path=usr/lib/iconv/UCS-4BE%IBM-CP937.so
+file path=usr/lib/iconv/UCS-4BE%ISO2022-CN.so
+file path=usr/lib/iconv/UCS-4BE%ISO2022-KR.so
+file path=usr/lib/iconv/UCS-4BE%JOHAP82.so
+file path=usr/lib/iconv/UCS-4BE%JOHAP92.so
+file path=usr/lib/iconv/UCS-4BE%MS-CP949.so
+file path=usr/lib/iconv/UCS-4BE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4BE%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%BIG5+.so
+file path=usr/lib/iconv/UCS-4LE%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/UCS-4LE%BIG5-HKSCS2008.so
+file path=usr/lib/iconv/UCS-4LE%BIG5.so
+file path=usr/lib/iconv/UCS-4LE%EUC-KR.so
+file path=usr/lib/iconv/UCS-4LE%EUC-TW.so
+file path=usr/lib/iconv/UCS-4LE%GB18030.so
+file path=usr/lib/iconv/UCS-4LE%GB2312.so
+file path=usr/lib/iconv/UCS-4LE%HZ-GB2312.so
+file path=usr/lib/iconv/UCS-4LE%IBM-CP933.so
+file path=usr/lib/iconv/UCS-4LE%IBM-CP935.so
+file path=usr/lib/iconv/UCS-4LE%IBM-CP937.so
+file path=usr/lib/iconv/UCS-4LE%ISO2022-CN.so
+file path=usr/lib/iconv/UCS-4LE%ISO2022-KR.so
+file path=usr/lib/iconv/UCS-4LE%JOHAP82.so
+file path=usr/lib/iconv/UCS-4LE%JOHAP92.so
+file path=usr/lib/iconv/UCS-4LE%MS-CP949.so
+file path=usr/lib/iconv/UCS-4LE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UCS-4LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-16%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-16%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-16%PCK.so
 file path=usr/lib/iconv/UTF-16%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-16%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-16%eucJP-ms.so
 file path=usr/lib/iconv/UTF-16%ms932.so
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UTF-16-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-32-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-32.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-32BE.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-32LE.so mode=0555
+file path=usr/lib/iconv/UTF-16-LITTLE-ENDIAN%UTF-8.so mode=0555
 file path=usr/lib/iconv/UTF-16BE%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-16BE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-16BE%PCK.so
 file path=usr/lib/iconv/UTF-16BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-16BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16BE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16BE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-16BE%eucJP-ms.so
 file path=usr/lib/iconv/UTF-16BE%ms932.so
 file path=usr/lib/iconv/UTF-16LE%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-16LE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-16LE%PCK.so
 file path=usr/lib/iconv/UTF-16LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-16LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16LE%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-16LE%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-16LE%eucJP-ms.so
 file path=usr/lib/iconv/UTF-16LE%ms932.so
 file path=usr/lib/iconv/UTF-32%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-32%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-32%PCK.so
 file path=usr/lib/iconv/UTF-32%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-32%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-32%eucJP-ms.so
 file path=usr/lib/iconv/UTF-32%ms932.so
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-BIG-ENDIAN%UTF-8.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%646.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-1.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-10.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-13.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-14.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-15.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-16.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-2.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-3.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-4.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-5.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-6.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-7.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-8.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%8859-9.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1250.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1251.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1252.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1253.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1254.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1255.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1256.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1257.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP1258.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP437.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP720.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP737.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP775.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP850.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP852.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP855.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP857.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP860.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP861.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP862.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP863.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP864.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP865.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP866.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP869.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%CP874.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%KOI8-R.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%KOI8-U.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%PTCP154.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-2.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-2BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-2LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-4.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-4BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UCS-4LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-16.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-16BE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-16LE.so mode=0555
+file path=usr/lib/iconv/UTF-32-LITTLE-ENDIAN%UTF-8.so mode=0555
 file path=usr/lib/iconv/UTF-32BE%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-32BE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-32BE%PCK.so
 file path=usr/lib/iconv/UTF-32BE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-32BE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32BE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32BE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32BE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32BE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32BE%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-32BE%eucJP-ms.so
 file path=usr/lib/iconv/UTF-32BE%ms932.so
 file path=usr/lib/iconv/UTF-32LE%EUC-JIS-2004.so
 file path=usr/lib/iconv/UTF-32LE%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-32LE%PCK.so
 file path=usr/lib/iconv/UTF-32LE%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-32LE%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32LE%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32LE%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32LE%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32LE%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-32LE%UTF-16-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-32LE%eucJP-ms.so
 file path=usr/lib/iconv/UTF-32LE%ms932.so
+file path=usr/lib/iconv/UTF-8%BIG5+.so
+file path=usr/lib/iconv/UTF-8%BIG5-HKSCS2004.so
+file path=usr/lib/iconv/UTF-8%BIG5-HKSCS2008.so
 file path=usr/lib/iconv/UTF-8%EUC-JIS-2004.so
+file path=usr/lib/iconv/UTF-8%EUC-KR.so
+file path=usr/lib/iconv/UTF-8%EUC-TW.so
+file path=usr/lib/iconv/UTF-8%GB2312.so
+file path=usr/lib/iconv/UTF-8%HZ-GB2312.so
+file path=usr/lib/iconv/UTF-8%IBM-CP933.so
+file path=usr/lib/iconv/UTF-8%IBM-CP935.so
+file path=usr/lib/iconv/UTF-8%IBM-CP937.so
 file path=usr/lib/iconv/UTF-8%ISO-2022-JP-2004.so
 file path=usr/lib/iconv/UTF-8%ISO-2022-JP.RFC1468.so
 file path=usr/lib/iconv/UTF-8%ISO-2022-JP.so
+file path=usr/lib/iconv/UTF-8%ISO2022-CN.so
+file path=usr/lib/iconv/UTF-8%ISO2022-KR.so
+file path=usr/lib/iconv/UTF-8%JOHAP82.so
+file path=usr/lib/iconv/UTF-8%JOHAP92.so
+file path=usr/lib/iconv/UTF-8%MS-CP949.so
 file path=usr/lib/iconv/UTF-8%PCK.so
 file path=usr/lib/iconv/UTF-8%Shift_JIS-2004.so
+file path=usr/lib/iconv/UTF-8%UCS-2-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UCS-2-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UCS-4-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UCS-4-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UTF-16-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UTF-16-LITTLE-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UTF-32-BIG-ENDIAN.so mode=0555
+file path=usr/lib/iconv/UTF-8%UTF-32-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/UTF-8%UTF-8-ms932.so
 file path=usr/lib/iconv/UTF-8%eucJP-ms.so
 file path=usr/lib/iconv/UTF-8%iscii91.so
@@ -467,172 +2393,6 @@ file path=usr/lib/iconv/ms932%UTF-32.so
 file path=usr/lib/iconv/ms932%UTF-32BE.so
 file path=usr/lib/iconv/ms932%UTF-32LE.so
 file path=usr/lib/iconv/ms932%UTF-8.so
-file path=usr/lib/iconv/GB18030%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%GB18030.so
-file path=usr/lib/iconv/GB18030%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%GB18030.so
-file path=usr/lib/iconv/GB18030%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%GB18030.so
-file path=usr/lib/iconv/GB18030%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%GB18030.so
-file path=usr/lib/iconv/ISO2022-KR%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%ISO2022-KR.so
-file path=usr/lib/iconv/ISO2022-KR%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%ISO2022-KR.so
-file path=usr/lib/iconv/ISO2022-KR%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%ISO2022-KR.so
-file path=usr/lib/iconv/ISO2022-KR%UTF-8.so
-file path=usr/lib/iconv/UTF-8%ISO2022-KR.so
-file path=usr/lib/iconv/ISO2022-KR%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%ISO2022-KR.so
-file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/BIG5-HKSCS2004%UTF-8.so
-file path=usr/lib/iconv/UTF-8%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/BIG5-HKSCS2004%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%BIG5-HKSCS2004.so
-file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/BIG5-HKSCS2008%UTF-8.so
-file path=usr/lib/iconv/UTF-8%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/BIG5-HKSCS2008%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%BIG5-HKSCS2008.so
-file path=usr/lib/iconv/IBM-CP937%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%IBM-CP937.so
-file path=usr/lib/iconv/IBM-CP937%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%IBM-CP937.so
-file path=usr/lib/iconv/IBM-CP937%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%IBM-CP937.so
-file path=usr/lib/iconv/IBM-CP937%UTF-8.so
-file path=usr/lib/iconv/UTF-8%IBM-CP937.so
-file path=usr/lib/iconv/IBM-CP937%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%IBM-CP937.so
-file path=usr/lib/iconv/EUC-KR%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%EUC-KR.so
-file path=usr/lib/iconv/EUC-KR%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%EUC-KR.so
-file path=usr/lib/iconv/EUC-KR%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%EUC-KR.so
-file path=usr/lib/iconv/EUC-KR%UTF-8.so
-file path=usr/lib/iconv/UTF-8%EUC-KR.so
-file path=usr/lib/iconv/EUC-KR%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%EUC-KR.so
-file path=usr/lib/iconv/BIG5+%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%BIG5+.so
-file path=usr/lib/iconv/BIG5+%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%BIG5+.so
-file path=usr/lib/iconv/BIG5+%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%BIG5+.so
-file path=usr/lib/iconv/BIG5+%UTF-8.so
-file path=usr/lib/iconv/UTF-8%BIG5+.so
-file path=usr/lib/iconv/BIG5+%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%BIG5+.so
-file path=usr/lib/iconv/GB2312%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%GB2312.so
-file path=usr/lib/iconv/GB2312%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%GB2312.so
-file path=usr/lib/iconv/GB2312%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%GB2312.so
-file path=usr/lib/iconv/GB2312%UTF-8.so
-file path=usr/lib/iconv/UTF-8%GB2312.so
-file path=usr/lib/iconv/GB2312%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%GB2312.so
-file path=usr/lib/iconv/IBM-CP935%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%IBM-CP935.so
-file path=usr/lib/iconv/IBM-CP935%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%IBM-CP935.so
-file path=usr/lib/iconv/IBM-CP935%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%IBM-CP935.so
-file path=usr/lib/iconv/IBM-CP935%UTF-8.so
-file path=usr/lib/iconv/UTF-8%IBM-CP935.so
-file path=usr/lib/iconv/IBM-CP935%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%IBM-CP935.so
-file path=usr/lib/iconv/BIG5%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%BIG5.so
-file path=usr/lib/iconv/BIG5%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%BIG5.so
-file path=usr/lib/iconv/BIG5%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%BIG5.so
-file path=usr/lib/iconv/BIG5%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%BIG5.so
-file path=usr/lib/iconv/HZ-GB2312%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%HZ-GB2312.so
-file path=usr/lib/iconv/HZ-GB2312%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%HZ-GB2312.so
-file path=usr/lib/iconv/HZ-GB2312%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%HZ-GB2312.so
-file path=usr/lib/iconv/HZ-GB2312%UTF-8.so
-file path=usr/lib/iconv/UTF-8%HZ-GB2312.so
-file path=usr/lib/iconv/HZ-GB2312%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%HZ-GB2312.so
-file path=usr/lib/iconv/EUC-TW%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%EUC-TW.so
-file path=usr/lib/iconv/EUC-TW%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%EUC-TW.so
-file path=usr/lib/iconv/EUC-TW%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%EUC-TW.so
-file path=usr/lib/iconv/EUC-TW%UTF-8.so
-file path=usr/lib/iconv/UTF-8%EUC-TW.so
-file path=usr/lib/iconv/EUC-TW%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%EUC-TW.so
-file path=usr/lib/iconv/IBM-CP933%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%IBM-CP933.so
-file path=usr/lib/iconv/IBM-CP933%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%IBM-CP933.so
-file path=usr/lib/iconv/IBM-CP933%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%IBM-CP933.so
-file path=usr/lib/iconv/IBM-CP933%UTF-8.so
-file path=usr/lib/iconv/UTF-8%IBM-CP933.so
-file path=usr/lib/iconv/IBM-CP933%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%IBM-CP933.so
-file path=usr/lib/iconv/MS-CP949%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%MS-CP949.so
-file path=usr/lib/iconv/MS-CP949%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%MS-CP949.so
-file path=usr/lib/iconv/MS-CP949%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%MS-CP949.so
-file path=usr/lib/iconv/MS-CP949%UTF-8.so
-file path=usr/lib/iconv/UTF-8%MS-CP949.so
-file path=usr/lib/iconv/MS-CP949%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%MS-CP949.so
-file path=usr/lib/iconv/ISO2022-CN%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%ISO2022-CN.so
-file path=usr/lib/iconv/ISO2022-CN%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%ISO2022-CN.so
-file path=usr/lib/iconv/ISO2022-CN%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%ISO2022-CN.so
-file path=usr/lib/iconv/ISO2022-CN%UTF-8.so
-file path=usr/lib/iconv/UTF-8%ISO2022-CN.so
-file path=usr/lib/iconv/ISO2022-CN%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%ISO2022-CN.so
-file path=usr/lib/iconv/JOHAP82%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%JOHAP82.so
-file path=usr/lib/iconv/JOHAP82%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%JOHAP82.so
-file path=usr/lib/iconv/JOHAP82%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%JOHAP82.so
-file path=usr/lib/iconv/JOHAP82%UTF-8.so
-file path=usr/lib/iconv/UTF-8%JOHAP82.so
-file path=usr/lib/iconv/JOHAP82%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%JOHAP82.so
-file path=usr/lib/iconv/JOHAP92%UCS-4BE.so
-file path=usr/lib/iconv/UCS-4BE%JOHAP92.so
-file path=usr/lib/iconv/JOHAP92%UCS-4LE.so
-file path=usr/lib/iconv/UCS-4LE%JOHAP92.so
-file path=usr/lib/iconv/JOHAP92%UCS-2LE.so
-file path=usr/lib/iconv/UCS-2LE%JOHAP92.so
-file path=usr/lib/iconv/JOHAP92%UTF-8.so
-file path=usr/lib/iconv/UTF-8%JOHAP92.so
-file path=usr/lib/iconv/JOHAP92%UCS-2BE.so
-file path=usr/lib/iconv/UCS-2BE%JOHAP92.so
 license copyright.unicode license=copyright.unicode
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4.so target=./EUC-JIS-2004%UTF-32.so
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4BE.so target=./EUC-JIS-2004%UTF-32BE.so
