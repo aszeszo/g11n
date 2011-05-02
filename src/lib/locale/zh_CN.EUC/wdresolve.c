@@ -18,8 +18,9 @@
  *
  * CDDL HEADER END
  */
+
 /*
- * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1991, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ident	"$Id: wdresolve.c,v 1.1 1998/10/20 15:34:48 jkang Exp $"
@@ -28,7 +29,32 @@
 #include <wctype.h>
 #include <widec.h>
 #include <locale.h>
-#include <zh/xctype.h>
+/* #include <zh/xctype.h> */
+#define iscalpha(C)     _iswctype((C), _E3)     /* 1 Roman chars in cs1 */
+#define iscblank(C)     iscspace(C)             /* 2 space char */
+#define iscdigit(C)     _iswctype((C), _N)      /* 3 GB cs1 numeric. */
+#define iscgb(C)        _iswctype((C), _E9)     /* 4 GB char */
+#define iscgen(C)       _iswctype((C), _E19)    /* 5 General symbols.*/
+#define iscgreek(C)     _iswctype((C), _E13)    /* 6 Greek chars in cs1 */
+#define ischanzi(C)     _iswctype((C), _E2)     /* 7 Hanzi: 0xb0a1 - 0xfr7 */
+#define ischira(C)      _iswctype((C),  _E11)   /* 8 Hiragana char in GB */
+#define isckata(C)      _iswctype((C),  _E12)   /* 9 katakana char in GB */
+#define iscline(C)      _iswctype((C), _E16)    /* 10 Ruled line symbols */
+#define isclower(C)     _iswctype((C), _L)      /* 11 Lowercase char */
+#define iscnumber(C)    _iswctype((C), _E4)     /* 12 number chars */
+#define iscparen(C)     _iswctype((C), _E10)    /* 13 parenthese chars */
+#define iscaccent(C)    _iswctype((C), _E14)    /* 14 phonetic accent */
+#define iscphonetic(C)  _iswctype((C), _E21)    /* 15 phonetic symbols */
+#define iscpinyin(C)    _iswctype((C), _E20)    /* 16 pinyin symbols */
+#define iscpunct(C)     _iswctype((C), _P)      /* 17 punctuation */
+#define iscrussian(C)   _iswctype((C), _E15)    /* 18 Russian character */
+#define iscsci(C)       _iswctype((C), _E18)    /* 19 Scientific symbols */
+#define iscspace(C)     _iswctype((C), _S)      /* 20 space char */
+
+#define iscspecial(C)   _iswctype((C), _E6)     /* 21 special characters */
+#define iscunit(C)      _iswctype((C), _E17)    /* 22 unit symbols */
+#define iscupper(C)     _iswctype((C), _U)      /* 23 uppercase chars */
+
 
 #define is_pinyin(c)	((c) > 127 ? _iswctype(c, _E20) : 0)
 #define is_chuyin(c)    ((c) > 127 ? _iswctype(c, _E21) : 0)

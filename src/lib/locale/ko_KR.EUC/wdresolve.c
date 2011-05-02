@@ -17,9 +17,10 @@
  * information: Portions Copyright [yyyy] [name of copyright owner]
  *
  * CDDL HEADER END
- *
- * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 1991, Nihon Sun Microsystems K.K.
+ */
+
+/*
+ * Copyright (c) 1991, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ident	" @(#)wdresolve.c	1.8 96/01/10 "
@@ -28,7 +29,24 @@
 #include <locale.h>
 #include <wctype.h>
 #include <widec.h>
-#include <ko/xctype.h>
+/* #include <ko/xctype.h> */
+#define iskhangul(c)    isphonogram(c)
+#define iskhanja(c)     isideogram(c)
+#define iskparen(c)     _iswctype((c),_E10)
+#define iskroman(c)     _iswctype((c),_E11)
+#define iskletter(c)    _iswctype((c),_E12)
+#define iskgreek(c)     _iswctype((c),_E13)
+#define iskromannum(c)  _iswctype((c),_E14)
+#define iskline(c)      _iswctype((c),_E15)
+#define iskunit(c)      _iswctype((c),_E16)
+#define isksymbol(c)    _iswctype((c),_E17)
+#define iskhira(c)      _iswctype((c),_E18)
+#define iskkata(c)      _iswctype((c),_E19)
+#define iskrussian(c)   _iswctype((c),_E20)
+#define iskuser(c)      _iswctype((c),_E21)
+#define isksci(c)       _iswctype((c),_E22)
+#define iskgen(c)       _iswctype((c),_E23)
+#define isklatin(c)     _iswctype((c),_E24)
 
 static int	initialized = 0;
 static int	conservative_edit = 0;

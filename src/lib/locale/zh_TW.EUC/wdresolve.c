@@ -18,9 +18,9 @@
  *
  * CDDL HEADER END
  */
+
 /*
- * Copyright (c) 1991, 2010, Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 1991, Nihon Sun Microsystems K.K.
+ * Copyright (c) 1991, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ident	"@(#)wdresolve.c	1.9 96/01/10 SMI"
@@ -29,8 +29,27 @@
 #include <stdlib.h>
 #include <widec.h>
 #include <wctype.h>
-#include <zh_TW/xctype.h>
+/* #include <zh_TW/xctype.h> */
 #include <locale.h>
+
+#define ishparen(c)     _iswctype((c),_E10)
+#define ishphontone(c)  _iswctype((c),_E11)
+#define ishradical(c)   _iswctype((c),_E12)
+#define ishgreek(c)     _iswctype((c),_E13)
+#define ishunit(c)      _iswctype((c),_E15)
+#define ishline(c)      _iswctype((c),_E16)
+#define ishsci(c)       _iswctype((c),_E17)
+#define ishgen(c)       _iswctype((c),_E18)
+
+#define ishspace(c)     _iswctype((c),_S)       /* CNS space */
+#define ishdigit(c)     _iswctype((c),_N)       /* CNS numeric */
+#define ishpunct(c)     _iswctype((c),_P)
+#define ishupper(c)     _iswctype((c),_U)
+#define ishlower(c)     _iswctype((c),_L)
+
+#define ishchuyin(c)    _iswctype((c),_E1)
+#define ishantzu(c)     _iswctype((c),_E2)
+#define ishalpha(c)     _iswctype((c),_E3)
 
 static int wd_bind_strength[][10] = {
 	2, 3, 3, 3, 3, 3, 3, 3, 3, -1,

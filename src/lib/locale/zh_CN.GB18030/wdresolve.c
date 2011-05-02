@@ -18,9 +18,9 @@
  *
  * CDDL HEADER END
  */
+
 /*
- * Copyright (c) 1991, Sun Microsystems, Inc.
- * Copyright (c) 1991, Nihon Sun Microsystems K.K.
+ * Copyright (c) 1991, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #ident	"@(#)wdresolve.c	1.2 99/05/05"
@@ -29,8 +29,34 @@
 #include <stdlib.h>
 #include <widec.h>
 #include <wctype.h>
-#include <zh.GBK/xctype.h>
+/* #include <zh.GBK/xctype.h> */
 #include <locale.h>
+
+#define iscalpha(C)     _iswctype((C), _E3)     /* 1 Roman chars in cs1 */
+#define iscblank(C)     iscspace(C)             /* 2 space char */
+#define iscdigit(C)     _iswctype((C), _N)      /* 3 GB cs1 numeric. */
+#define iscgb(C)        _iswctype((C), _E7)     /* 4 GB char */
+#define iscgbk(C)               _iswctype((C), _E9)
+#define iscgen(C)       _iswctype((C), _E19)    /* 5 General symbols.*/
+#define iscgreek(C)     _iswctype((C), _E13)    /* 6 Greek chars in cs1 */
+#define ischanzi(C)     _iswctype((C), _E2)     /* 7 Hanzi: 0xb0a1 - 0xfr7 */
+#define ischira(C)      _iswctype((C),  _E11)   /* 8 Hiragana char in GB */
+#define isckata(C)      _iswctype((C),  _E12)   /* 9 katakana char in GB */
+#define iscline(C)      _iswctype((C), _E16)    /* 10 Ruled line symbols */
+#define isclower(C)     _iswctype((C), _L)      /* 11 Lowercase char */
+#define iscnumber(C)    _iswctype((C), _E4)     /* 12 number chars */
+#define iscparen(C)     _iswctype((C), _E10)    /* 13 parenthese chars */
+#define iscaccent(C)    _iswctype((C), _E14)    /* 14 phonetic accent */
+#define iscphonetic(C)  _iswctype((C), _E21)    /* 15 phonetic symbols */
+#define iscpinyin(C)    _iswctype((C), _E20)    /* 16 pinyin symbols */
+#define iscpunct(C)     _iswctype((C), _P)      /* 17 punctuation */
+#define iscrussian(C)   _iswctype((C), _E15)    /* 18 Russian character */
+#define iscsci(C)       _iswctype((C), _E18)    /* 19 Scientific symbols */
+#define iscspace(C)     _iswctype((C), _S)      /* 20 space char */
+
+#define iscspecial(C)   _iswctype((C), _E6)     /* 21 special characters */
+#define iscunit(C)      _iswctype((C), _E17)    /* 22 unit symbols */
+#define iscupper(C)     _iswctype((C), _U)      /* 23 uppercase chars */
 
 static int wd_bind_strength[][10] = {
 	2, 3, 3, 3, 3, 3, 3, 3, 3, -1,

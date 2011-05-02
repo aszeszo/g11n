@@ -29,11 +29,6 @@ set name=pkg.summary value="language support components extra files"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
 dir path=usr/bin
-dir path=usr/include
-dir path=usr/include/ko facet.locale.ko_KR=true
-dir path=usr/include/zh facet.locale.zh_CN=true
-dir path=usr/include/zh.GBK facet.locale.zh_CN=true
-dir path=usr/include/zh_TW facet.locale.zh_TW=true
 dir path=usr/kernel group=sys
 dir path=usr/kernel/strmod group=sys
 dir path=usr/kernel/strmod/$(ARCH64) group=sys
@@ -832,9 +827,6 @@ dir path=usr/lib/lp/locale/ko.UTF-8/mp group=lp facet.locale.ko=true
 dir path=usr/lib/lp/locale/ko/mp group=lp facet.locale.ko=true
 dir path=usr/lib/lp/locale/th_TH group=lp facet.locale.th_TH=true
 dir path=usr/lib/lp/locale/th_TH/mp group=lp facet.locale.th_TH=true
-dir path=usr/lib/mle
-dir path=usr/lib/mle/ko
-dir path=usr/lib/mle/ko.UTF-8
 dir path=usr/share group=sys
 dir path=usr/share/lib group=sys
 dir path=usr/share/lib/setterm
@@ -843,10 +835,6 @@ dir path=usr/share/lib/setterm/ja
 dir path=usr/share/lib/setterm/ja_JP.PCK
 dir path=usr/share/lib/setterm/ja_JP.UTF-8
 file path=usr/bin/setterm mode=0555
-file path=usr/include/ko/xctype.h facet.locale.ko_KR=true
-file path=usr/include/zh.GBK/xctype.h facet.locale.zh_CN=true
-file path=usr/include/zh/xctype.h facet.locale.zh_CN=true
-file path=usr/include/zh_TW/xctype.h facet.locale.zh_TW=true
 file path=usr/kernel/strmod/$(ARCH64)/b5euc group=sys mode=0755 facet.locale.zh_TW=true
 file path=usr/kernel/strmod/$(ARCH64)/big5euc group=sys mode=0755 facet.locale.zh_TW=true
 file path=usr/kernel/strmod/$(ARCH64)/jconv7 group=sys mode=0755 facet.locale.ja=true
@@ -859,12 +847,6 @@ file path=usr/kernel/strmod/$(ARCH64)/kpack group=sys mode=0755 facet.locale.ko=
 file path=usr/kernel/strmod/$(ARCH64)/u8koi8 group=sys mode=0755
 file path=usr/kernel/strmod/$(ARCH64)/u8lat1 group=sys mode=0755
 file path=usr/kernel/strmod/$(ARCH64)/u8lat2 group=sys mode=0755
-file path=usr/lib/$(ARCH64)/libhle.a mode=0755 facet.locale.zh_TW=true
-file path=usr/lib/$(ARCH64)/libhle.so.1 facet.locale.zh_TW=true
-file path=usr/lib/$(ARCH64)/libkle.a mode=0755 facet.locale.ko_KR=true
-file path=usr/lib/$(ARCH64)/libkle.so.1 facet.locale.ko_KR=true
-file path=usr/lib/libkle.a mode=0755 facet.locale.ko_KR=true
-file path=usr/lib/libkle.so.1 facet.locale.ko_KR=true
 file path=usr/lib/locale/ar_EG.ISO8859-6/$(ARCH64)/ar_EG.ISO8859-6.so.3 mode=0555
 file path=usr/lib/locale/ar_EG.ISO8859-6/ar_EG.ISO8859-6.so.3 mode=0555
 file path=usr/lib/locale/ar_EG.ISO8859-6/locale_description
@@ -1376,24 +1358,6 @@ file path=usr/lib/locale/zh_TW.UTF-8@stroke/$(ARCH64)/zh_TW.UTF-8@stroke.so.3 mo
 file path=usr/lib/locale/zh_TW.UTF-8@stroke/zh_TW.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/$(ARCH64)/zh_TW.UTF-8@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/zh_TW.UTF-8@zhuyin.so.3 mode=0555
-file path=usr/lib/lp/files/TAC11x10.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x11.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x12.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x13.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x14.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x15.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x16.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x17.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x18.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x19.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x20.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x21.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x22.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x40.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x41.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x42.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11x43.COD group=lp mode=0444
-file path=usr/lib/lp/files/TAC11xAA.COD group=lp mode=0444
 file path=usr/lib/lp/locale/ar/mp/mp.conf group=lp mode=0444 facet.locale.ar=true
 file path=usr/lib/lp/locale/he/mp/mp.conf group=lp mode=0444 facet.locale.he=true
 file path=usr/lib/lp/locale/ja_JP.PCK/mp/mp.conf group=lp mode=0444 facet.locale.ja_JP=true
@@ -1407,15 +1371,6 @@ file path=usr/lib/lp/locale/ko/mp/xwcksc5601_1987_udc.so group=lp mode=0555 face
 file path=usr/lib/lp/locale/ko/mp/xwcksc5601_1987_unicode.so group=lp mode=0555 facet.locale.ko=true
 file path=usr/lib/lp/locale/th_TH/mp/ctlthai.so group=lp mode=0555 facet.locale.th_TH=true
 file path=usr/lib/lp/locale/th_TH/mp/mp.conf group=lp mode=0555 facet.locale.th_TH=true
-file path=usr/lib/lp/locale/th_TH/thaifilter group=lp mode=0444 facet.locale.th_TH=true
-file path=usr/lib/mle/ko.UTF-8/keybind.dat group=daemon mode=0555 facet.locale.ko_KR=true
-file path=usr/lib/mle/ko.UTF-8/libmle.a mode=0755 facet.locale.ko_KR=true
-file path=usr/lib/mle/ko.UTF-8/mle.so facet.locale.ko_KR=true
-file path=usr/lib/mle/ko.UTF-8/syshjd mode=0555 facet.locale.ko_KR=true
-file path=usr/lib/mle/ko/keybind.dat group=daemon mode=0555 facet.locale.ko_KR=true
-file path=usr/lib/mle/ko/libmle.a mode=0755 facet.locale.ko_KR=true
-file path=usr/lib/mle/ko/mle.so facet.locale.ko_KR=true
-file path=usr/lib/mle/ko/syshjd mode=0555 facet.locale.ko_KR=true
 file path=usr/share/lib/setterm/NOTES mode=0444
 file path=usr/share/lib/setterm/en_US.UTF-8/conf.file mode=0555 facet.locale.en_US=true
 file path=usr/share/lib/setterm/ja/conf.file mode=0555 facet.locale.ja_JP=true
@@ -1465,14 +1420,6 @@ legacy pkg=SUNWlang-zhHK-extra category=ALE,system desc="Traditional Chinese (Ho
 legacy pkg=SUNWlang-zhTW-extra category=ALE,system desc="Traditional Chinese language support extra files" name="Traditional Chinese language support extra files" version=110.0,REV= facet.locale.zh_TW=true
 license copyright.oracle license=copyright.oracle
 license copyright.unicode license=copyright.unicode
-link path=usr/include/ko_KR.EUC target=./ko facet.locale.ko_KR=true
-link path=usr/include/zh_CN.EUC target=./zh facet.locale.zh_CN=true
-link path=usr/include/zh_CN.GB18030 target=./zh.GBK facet.locale.zh_CN=true
-link path=usr/include/zh_CN.GBK target=./zh.GBK facet.locale.zh_CN=true
-link path=usr/include/zh_TW.EUC target=./zh_TW facet.locale.zh_TW=true
-link path=usr/lib/$(ARCH64)/libhle.so target=libhle.so.1 facet.locale.zh_TW=true
-link path=usr/lib/$(ARCH64)/libkle.so target=libkle.so.1 facet.locale.ko_KR=true
-link path=usr/lib/libkle.so target=libkle.so.1 facet.locale.ko_KR=true
 link path=usr/lib/locale/ar_EG.ISO8859-6/LC_CTYPE/LCL_DEF target=../../iso_8859_6/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bg_BG.ISO8859-5/LC_CTYPE/LCL_DEF target=../../iso_8859_5/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bs_BA.ISO8859-2/LC_CTYPE/LCL_DEF target=../../iso_8859_2/LC_CTYPE/LCL_DEF
@@ -1918,6 +1865,4 @@ link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_TIME target=../zh_TW.UTF-8/LC_TIM
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LO_LTYPE target=../zh_TW.UTF-8/LO_LTYPE
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/methods_unicode.so.3 target=../zh_TW.UTF-8/methods_unicode.so.3
 link path=usr/lib/lp/locale/ja target=./ja_JP.eucJP facet.locale.ja=true
-link path=usr/lib/mle/ko_KR.EUC target=./ko facet.locale.ko_KR=true
-link path=usr/lib/mle/ko_KR.UTF-8 target=./ko.UTF-8 facet.locale.ko_KR=true
 link path=usr/share/lib/setterm/ja_JP.eucJP target=./ja facet.locale.ja_JP=true
