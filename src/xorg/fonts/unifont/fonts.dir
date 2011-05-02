@@ -1,5 +1,5 @@
 43
-unifont.pcf.gz -gnu-unifont-medium-r-normal--16-160-75-75-c-80-iso10646-1
+unifont.pcf -gnu-unifont-medium-r-normal--16-160-75-75-c-80-iso10646-1
 unifont.ttf -misc-unifont-medium-r-normal--0-0-0-0-p-0-adobe-standard
 unifont.ttf -misc-unifont-medium-r-normal--0-0-0-0-p-0-adobe-symbol
 unifont.ttf -misc-unifont-medium-r-normal--0-0-0-0-p-0-big5-0

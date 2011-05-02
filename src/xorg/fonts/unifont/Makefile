@@ -20,8 +20,7 @@
 #
 
 #
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -33,7 +32,7 @@ TARBALL		= $(VER).tar.bz2
 ROOT_FONT_DIR 	= $(FONTROOT)/$(PROJECT)
 ROOT_DOC_DIR 	= $(FILEROOT)/usr/share/doc/ttf-$(PROJECT)
 
-FONTS = unifont.pcf.gz \
+FONTS = unifont.pcf \
 	unifont.ttf \
 	../fonts.dir \
 	../fonts.scale
@@ -45,6 +44,7 @@ all: $(VER)/.unpacked
 $(VER)/.unpacked: $(TARBALL)
 	-$(RM) -r $(VER)
 	$(UNPACKARCHIVE) $(TARBALL) $(VER)
+	/usr/bin/gunzip $(VER)/unifont.pcf.gz
 	touch $@
 
 install: $(VER)/.installed

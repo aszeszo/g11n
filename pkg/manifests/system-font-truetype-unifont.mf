@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/unifont@$(PKGVERS)
@@ -41,6 +41,6 @@ dir path=usr/share/fonts/TrueType/unifont
 file path=usr/share/doc/ttf-unifont/unifont-intro.txt.bz2 mode=0444
 file path=usr/share/fonts/TrueType/unifont/fonts.dir
 file path=usr/share/fonts/TrueType/unifont/fonts.scale
-file path=usr/share/fonts/TrueType/unifont/unifont.pcf.gz
+file path=usr/share/fonts/TrueType/unifont/unifont.pcf
 file path=usr/share/fonts/TrueType/unifont/unifont.ttf
 license copyright.unifont license=copyright.unifont
