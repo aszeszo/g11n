@@ -457,7 +457,7 @@ file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
 file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
 file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
 file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
-license copyright.unicode license=copyright.unicode
+license copyright.unicode+hkscs license=copyright.unicode+hkscs
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%GBK.so target=./646%CODESET.so
