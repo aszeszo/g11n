@@ -46,7 +46,6 @@ file path=usr/lib/localedef/src/charmaps/ISO8859-7.charmap
 file path=usr/lib/localedef/src/charmaps/ISO8859-8.charmap
 file path=usr/lib/localedef/src/charmaps/ISO8859-9.charmap
 file path=usr/lib/localedef/src/charmaps/KOI8-R.charmap
-file path=usr/lib/localedef/src/charmaps/UTF-8.APAC.charmap
 file path=usr/lib/localedef/src/charmaps/UTF-8.charmap
 file path=usr/lib/localedef/src/charmaps/ja_JP.PCK.charmap
 file path=usr/lib/localedef/src/charmaps/ja_JP.eucJP.charmap

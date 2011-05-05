@@ -213,7 +213,8 @@ install_src: all
 	for i in $(_CHARMAPS)/ja* $(_CHARMAPS)/ko* $(_CHARMAPS)/zh* $(_CHARMAPS)/th*; do \
 		$(INS) $(FILEROOT)/usr/lib/localedef/src/charmaps $$i; \
 	done
-	$(CP) $(_CHARMAPS)/UTF-8.charmap $(FILEROOT)/usr/lib/localedef/src/charmaps/UTF-8.APAC.charmap
+	#the charmap is identical with the charmap from g11n-locale, no need to include it
+	#$(CP) $(_CHARMAPS)/UTF-8.charmap $(FILEROOT)/usr/lib/localedef/src/charmaps/UTF-8.APAC.charmap
 	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/extensions
 	for i in $(_METHODSRC)/*; do \
 		$(INS) $(FILEROOT)/usr/lib/localedef/src/extensions $$i; \
