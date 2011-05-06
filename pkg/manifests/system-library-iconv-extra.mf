@@ -138,6 +138,8 @@ file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%UCS-2BE.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-BIG5.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-UTF-8%HZ-GB2312.so
 file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%GB18030.so
+file path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-GB18030.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-4BE.so
 file path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-EUC-TW.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%UCS-4LE.so
@@ -403,6 +405,8 @@ file path=usr/lib/iconv/wchar_t-BIG5-HKSCS2008%BIG5+.so
 file path=usr/lib/iconv/BIG5+%wchar_t-BIG5-HKSCS2008.so
 file path=usr/lib/iconv/GB2312%HZ-GB2312.so
 file path=usr/lib/iconv/HZ-GB2312%GB2312.so
+file path=usr/lib/iconv/HZ-GB2312%GB18030.so
+file path=usr/lib/iconv/HZ-GB2312%wchar_t-GB18030.so
 file path=usr/lib/iconv/wchar_t-GB2312%HZ-GB2312.so
 file path=usr/lib/iconv/HZ-GB2312%wchar_t-GB2312.so
 file path=usr/lib/iconv/EUC-TW%BIG5.so
@@ -478,8 +482,6 @@ link path=usr/lib/iconv/$(ARCH64)/eucJP%SJIS.so target=./eucJP%PCK.so
 link path=usr/lib/iconv/$(ARCH64)/jis%SJIS.so target=./jis%PCK.so
 link path=usr/lib/iconv/$(ARCH64)/tcvn%UCS-2.so target=./tcvn%UCS-2BE.so
 link path=usr/lib/iconv/$(ARCH64)/viscii%UCS-2.so target=./viscii%UCS-2BE.so
-link path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%GB18030.so target=./HZ-GB2312%GB2312.so
-link path=usr/lib/iconv/$(ARCH64)/HZ-GB2312%wchar_t-GB18030.so target=./HZ-GB2312%wchar_t-GB2312.so
 link path=usr/lib/iconv/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%BIG5.so target=./646%CODESET.so
 link path=usr/lib/iconv/646%GBK.so target=./646%CODESET.so
@@ -500,8 +502,6 @@ link path=usr/lib/iconv/eucJP%SJIS.so target=./eucJP%PCK.so
 link path=usr/lib/iconv/jis%SJIS.so target=./jis%PCK.so
 link path=usr/lib/iconv/tcvn%UCS-2.so target=./tcvn%UCS-2BE.so
 link path=usr/lib/iconv/viscii%UCS-2.so target=./viscii%UCS-2BE.so
-link path=usr/lib/iconv/HZ-GB2312%GB18030.so target=./HZ-GB2312%GB2312.so
-link path=usr/lib/iconv/HZ-GB2312%wchar_t-GB18030.so target=./HZ-GB2312%wchar_t-GB2312.so
 link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
 link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
 link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
