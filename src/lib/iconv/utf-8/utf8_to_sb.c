@@ -187,6 +187,7 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 		 * according to flags.
 		 */
 		if (u8_sb_tbl[i].u8 == u8) {
+			CHECK_OB(1);
 			*ob++ = u8_sb_tbl[i].sb;
 			ib += sz;
 			continue;
@@ -217,6 +218,7 @@ NON_IDENTICAL_CHAR:
 		}
 
 		/* Default scenario */
+		CHECK_OB(1);
 		*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
 		ib += sz;
 		continue;
