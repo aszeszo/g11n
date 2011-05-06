@@ -330,17 +330,17 @@ $(UTF_7_TO_UCS_SOS): $(CMN)/common_defs.h $(CMN)/utf7_to_ucs.h $(CMN)/utf7_to_uc
 	$(CC) $(CFLAGS64) $(CMN)/utf7_to_ucs.c -c -o $(MACH64)/$@.o
 	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
 
-$(UTF_8_TO_UTF_EBCDIC_SO): $(CMN)/common_defs.h $(CMN)/utf8_to_utf_ebcdic.h $(CMN)/utf8_to_utf_ebcdic.c
+$(UTF_8_TO_UTF_EBCDIC_SO): $(CMN)/utf8_to_utf_ebcdic.h $(CMN)/utf8_to_utf_ebcdic.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/utf8_to_utf_ebcdic.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/utf8_to_utf_ebcdic.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-$(UTF_EBCDIC_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf_ebcdic_to_utf8.h $(CMN)/utf_ebcdic_to_utf8.c
+$(UTF_EBCDIC_TO_UTF_8_SO): $(CMN)/utf_ebcdic_to_utf8.h $(CMN)/utf_ebcdic_to_utf8.c $(CMNDEPS)
 	$(CC) $(CFLAGS) $(CMN)/utf_ebcdic_to_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
 	$(CC) $(CFLAGS64) $(CMN)/utf_ebcdic_to_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
 $(ACE_TO_UTF_8_SO): $(CMN)/ace.h $(CMN)/ace_utf8.c
 	$(CC) $(CFLAGS) $(CMN)/ace_utf8.c -c -o $@.o
