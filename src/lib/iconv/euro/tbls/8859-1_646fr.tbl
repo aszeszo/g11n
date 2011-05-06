@@ -18,12 +18,8 @@
  *
  * CDDL HEADER END
  */
-
 /*
- * Automatically generated from: 8859%646fr.c
- */
-/*
- * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 /* 0x00 */  {  0x00, 1  },
@@ -61,7 +57,7 @@
 /* 0x20 */  {  0x20, 1  },
 /* 0x21 */  {  0x21, 1  },
 /* 0x22 */  {  0x22, 1  },
-/* 0x23 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0x23 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0x24 */  {  0x24, 1  },
 /* 0x25 */  {  0x25, 1  },
 /* 0x26 */  {  0x26, 1  },
@@ -90,7 +86,7 @@
 /* 0x3D */  {  0x3D, 1  },
 /* 0x3E */  {  0x3E, 1  },
 /* 0x3F */  {  0x3F, 1  },
-/* 0x40 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0x40 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0x41 */  {  0x41, 1  },
 /* 0x42 */  {  0x42, 1  },
 /* 0x43 */  {  0x43, 1  },
@@ -117,9 +113,9 @@
 /* 0x58 */  {  0x58, 1  },
 /* 0x59 */  {  0x59, 1  },
 /* 0x5A */  {  0x5A, 1  },
-/* 0x5B */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x5C */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x5D */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0x5B */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x5C */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x5D */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0x5E */  {  0x5E, 1  },
 /* 0x5F */  {  0x5F, 1  },
 /* 0x60 */  {  0x60, 1  },
@@ -149,136 +145,136 @@
 /* 0x78 */  {  0x78, 1  },
 /* 0x79 */  {  0x79, 1  },
 /* 0x7A */  {  0x7A, 1  },
-/* 0x7B */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x7C */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x7D */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x7E */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0x7B */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x7C */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x7D */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x7E */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0x7F */  {  0x7F, 1  },
-/* 0x80 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x81 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x82 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x83 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x84 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x85 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x86 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x87 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x88 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x89 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8A */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8B */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8C */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8D */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8E */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x8F */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x90 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x91 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x92 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x93 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x94 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x95 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x96 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x97 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x98 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x99 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9A */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9B */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9C */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9D */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9E */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0x9F */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xA0 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xA1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xA2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0x80 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x81 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x82 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x83 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x84 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x85 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x86 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x87 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x88 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x89 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8A */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8B */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8C */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8D */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8E */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x8F */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x90 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x91 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x92 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x93 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x94 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x95 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x96 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x97 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x98 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x99 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9A */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9B */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9C */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9D */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9E */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0x9F */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xA0 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xA1 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xA2 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0xA3 */  {  0x23, 1  },
-/* 0xA4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xA5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xA6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0xA4 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xA5 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xA6 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0xA7 */  {  0x5D, 1  },
 /* 0xA8 */  {  0x7E, 1  },
-/* 0xA9 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAD */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xAF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0xA9 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAA */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAB */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAC */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAD */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAE */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xAF */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
 /* 0xB0 */  {  0x5B, 1  },
-/* 0xB1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB3 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB7 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB8 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xB9 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBD */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xBF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC0 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC3 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC7 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC8 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xC9 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCD */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xCF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD0 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD3 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD7 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD8 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xD9 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDD */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xDF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0xB1 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB2 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB3 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB4 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB5 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB6 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB7 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB8 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xB9 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBA */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBB */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBC */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBD */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBE */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xBF */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xC0 */  {  0x00004160, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A` */
+/* 0xC1 */  {  0x00004127, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A' */
+/* 0xC2 */  {  0x0000415E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A^ */
+/* 0xC3 */  {  0x0000417E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A~ */
+/* 0xC4 */  {  0x00004122, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A" */
+/* 0xC5 */  {  0x0000412A, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* A* */
+/* 0xC6 */  {  0x00004145, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* AE */
+/* 0xC7 */  {  0x0000432C, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* C, */
+/* 0xC8 */  {  0x00004560, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* E` */
+/* 0xC9 */  {  0x00004527, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* E' */
+/* 0xCA */  {  0x0000455E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* E^ */
+/* 0xCB */  {  0x00004522, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* E" */
+/* 0xCC */  {  0x00004960, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* I` */
+/* 0xCD */  {  0x00004927, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* I' */
+/* 0xCE */  {  0x0000495E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* I^ */
+/* 0xCF */  {  0x00004922, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* I" */
+/* 0xD0 */  {  0x00000044, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* D */
+/* 0xD1 */  {  0x00004E7E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* N~ */
+/* 0xD2 */  {  0x00004F60, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O` */
+/* 0xD3 */  {  0x00004F27, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O' */
+/* 0xD4 */  {  0x00004F5E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O^ */
+/* 0xD5 */  {  0x00004F7E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O~ */
+/* 0xD6 */  {  0x00004F22, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O" */
+/* 0xD7 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xD8 */  {  0x00004F2F, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* O/ */
+/* 0xD9 */  {  0x00005560, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* U` */
+/* 0xDA */  {  0x00005527, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* U' */
+/* 0xDB */  {  0x0000555E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* U^ */
+/* 0xDC */  {  0x00005522, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* U" */
+/* 0xDD */  {  0x00005927, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* Y' */
+/* 0xDE */  {  0x00005448, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* TH */
+/* 0xDF */  {  0x00007373, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* ss */
 /* 0xE0 */  {  0x40, 1  },
-/* 0xE1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xE2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xE3 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xE4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xE5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xE6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0xE1 */  {  0x00006127, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* a' */
+/* 0xE2 */  {  0x0000615E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* a^ */
+/* 0xE3 */  {  0x0000617E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* a~ */
+/* 0xE4 */  {  0x00006122, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* a" */
+/* 0xE5 */  {  0x0000612A, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* a* */
+/* 0xE6 */  {  0x00006165, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* ae */
 /* 0xE7 */  {  0x5C, 1  },
 /* 0xE8 */  {  0x7D, 1  },
 /* 0xE9 */  {  0x7B, 1  },
-/* 0xEA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xEB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xEC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xED */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xEE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xEF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF0 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF1 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF2 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF3 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF4 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF5 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF6 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF7 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xF8 */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
+/* 0xEA */  {  0x0000655E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* e^ */
+/* 0xEB */  {  0x00006522, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* e" */
+/* 0xEC */  {  0x00006960, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* i` */
+/* 0xED */  {  0x00006927, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* i' */
+/* 0xEE */  {  0x0000695E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* i^ */
+/* 0xEF */  {  0x00006922, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* i" */
+/* 0xF0 */  {  0x00000064, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* d */
+/* 0xF1 */  {  0x00006E7E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* n~ */
+/* 0xF2 */  {  0x00006F60, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o` */
+/* 0xF3 */  {  0x00006F27, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o' */
+/* 0xF4 */  {  0x00006F5E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o^ */
+/* 0xF5 */  {  0x00006F7E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o~ */
+/* 0xF6 */  {  0x00006F22, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o" */
+/* 0xF7 */  {  0x00, ICV_TYPE_NON_IDENTICAL_CHAR  },
+/* 0xF8 */  {  0x00006F2F, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* o/ */
 /* 0xF9 */  {  0x7C, 1  },
-/* 0xFA */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xFB */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xFC */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xFD */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xFE */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  },
-/* 0xFF */  {  0x5F, ICV_TYPE_ILLEGAL_CHAR  }
+/* 0xFA */  {  0x00007527, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* u' */
+/* 0xFB */  {  0x0000755E, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* u^ */
+/* 0xFC */  {  0x00007522, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* u" */
+/* 0xFD */  {  0x00007927, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* y' */
+/* 0xFE */  {  0x00007468, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* th */
+/* 0xFF */  {  0x00007922, ICV_TYPE_NON_IDENTICAL_CHAR  },  /* y" */

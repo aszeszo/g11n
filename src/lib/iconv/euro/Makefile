@@ -19,11 +19,21 @@
 # CDDL HEADER END
 #
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
 
+SUBDIRS		= tbls
+
+all		:=	TARGET = all
+clean		:=	TARGET = clean
+clobber		:=	TARGET = clobber
+
+all install lint clean clobber: $(SUBDIRS)
+
+$(SUBDIRS): FRC
+	cd $@; $(MAKE) $(TARGET)
 
 # let the .so compilation be driven by present recoding tables
 TABLES:sh =	cd tbls/ && ls *tbl
@@ -37,8 +47,11 @@ CFLAGS64	+= $(XREGSFLAG64) -KPIC -G -dy -D_REENTRANT
 LDFLAGS		= -G -z defs
 LDLIBS		= -lc
 
-ROOT_DIR		= $(FILEROOT)/usr/lib/iconv
-ROOT_DIR64		= $(ROOT_DIR)/$(MACH64)
+ROOT_DIR	= $(FILEROOT)/usr/lib/iconv
+ROOT_DIR64	= $(ROOT_DIR)/$(MACH64)
+
+CMN		= ../utf-8
+GEN_INCLUDE	= ./gen-include
 
 .NO_PARALLEL:
 
@@ -58,22 +71,32 @@ install: all $(ROOT_DIR) $(ROOT_DIR64)
 	done
 	-@echo "done."
 
-
 $(ROOT_DIR) $(ROOT_DIR64) $(MACH64): FRC
 	/usr/bin/test -d $@ || $(INSDIR) $@
 
-$(ALL_SOS): $(MACH64) euro.h euro.c tbl.h
+common.o: $(CMN)/common.c $(CMN)/common.h $(CMN)/common_defs.h
+	$(CC) $(CFLAGS) -c -o $@ $(CMN)/common.c
+
+$(MACH64)/common.o: $(CMN)/common.c $(CMN)/common.h $(CMN)/common_defs.h $(MACH64)
+	$(CC) $(CFLAGS64) -c -o $@ $(CMN)/common.c
+
+CMNDEPS		= $(CMN)/common_defs.h common.o $(MACH64)/common.o
+LDLIBS32	= common.o $(LDLIBS)
+LDLIBS64	= $(MACH64)/common.o $(LDLIBS)
+
+$(ALL_SOS): $(MACH64) euro.h euro.c tbl.h $(CMNDEPS)
 	TABLE=`echo $@ | $(TR) -d "-" "" | /usr/bin/cut -d. -f1` ; \
 	$(CC) $(CFLAGS) -DT_$$TABLE euro.c -c -o $@.o ; \
 	$(CC) $(CFLAGS64) -DT_$$TABLE euro.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
+	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS32)
+	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS64)
 
-tbl.h: genincl $(TABLES:%=tbls/%)
-	./genincl > $@
+
+tbl.h: $(SUBDIRS) $(GEN_INCLUDE) $(TABLES:%=tbls/%)
+	$(GEN_INCLUDE) > $@
 
 clean: 
-	$(RM) *.o *.so *.s core tbl.h
+	$(RM) *.o *.so *.s tbl.h
 	$(RM) -r $(MACH64)
 
 clobber: clean

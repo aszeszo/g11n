@@ -19,35 +19,26 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
+ * Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
-#ifndef	EURO_H
-#define	EURO_H
+#include "../utf-8/common.h"
 
+#define STATE_T		icv_state_t
 
-#define	MAGIC_NUMBER			201201
-
-/*
- * Excerpt from ../utf-8/common_defs.h
- */
-#define	ICV_TYPE_ILLEGAL_CHAR		(-2)
-
+/* Conversion table structure */
 typedef struct {
-	unsigned char	ch;
+	unsigned int	ch;
 	signed char	sz;
 } table_component_t;
 
-
 /*
- * Mapping table
- * tbl.h generated from tbls/ files using ./genincl script
+ * Mapping tables
+ * tbl.h generated from tbls/ files using ./gen-include script
  */
-static const table_component_t tbl[256] = {
-
 #include "tbl.h"
 
-};
+#ifndef ICV_NON_IDENTICAL_REPLACEMENT_CHAR
+#error "ICV_NON_IDENTICAL_REPLACEMENT_CHAR not defined"
+#endif
 
-#endif	/* EURO_H */

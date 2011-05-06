@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # CDDL HEADER START
 #
@@ -20,39 +19,39 @@
 # CDDL HEADER END
 #
 #
-# Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
-# Create the table of includes for euro.h
-# from the list recoding tables in tbls/.
-# Sanitize '-'.
+include $(SRC)/Makefile.master
 
-print_includes() {
+TABLES:sh	= ls *tbl
 
-	[[ -z "$1" ]] && { echo "ERROR: missing files: tbls/*tbl"; exit 1; }
+# non-identical fallback character definitions
+FALLBACKS	= $(TABLES:%.tbl=%.fb)
 
-	perlre='s:tbls/:T_: ; s:\.tbl:: ; s:-::g'
+all: $(FALLBACKS)
 
-	# first entry
-	T_=`echo $1 | perl -pe "$perlre"`; 
-	printf "#if defined($T_)\n"
-	printf "#include \"$1\"\n"
-	shift
-	
-	# elifs
-	while [[ -n "$1" ]]; do
-		T_=`echo $1 | perl -pe "$perlre"`; 
-		printf "\n#elif defined ($T_)\n"
-		printf "#include \"$1\"\n"
-		shift
-	done
 
-	# else
-	printf "\n#else\n"
-	printf "#error	\"Error - nothing defined.\"\n"
-	printf "#endif\n"
-}
+CP1250_dhn.fb \
+CP852_dhn.fb \
+dhn_maz.fb \
+maz_dhn.fb \
+8859-2_dhn.fb:
+	echo "0x20" > $@
 
-print_includes $(ls tbls/*tbl)
+8859-1_IBM-037.fb \
+8859-1_IBM-500.fb \
+8859-16_IBM-870.fb:
+	echo "0x6F" > $@
+
+%.fb:
+	echo "0x3F" > $@
+
+
+clean: 
+	$(RM) *.fb
+
+clobber: clean
+
+FRC:
 
