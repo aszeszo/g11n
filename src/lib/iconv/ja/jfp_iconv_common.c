@@ -24,6 +24,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include <iconv.h>
 #include <errno.h>
 #include "japanese.h"
@@ -154,9 +155,23 @@ _icv_iconvstr(
 	size_t ret;
         iconv_t cd;
 
-	if ((flag & ICONV_IGNORE_NULL) == 0 &&
-	    (np = (char *)memchr((const void *)inarray, 0, *inlen)) 
-			!= NULL) {
+	if (!(flag & ICONV_IGNORE_NULL) &&
+
+#if	defined(JFP_ICONV_FROMCODE_UTF32) || \
+	defined(JFP_ICONV_FROMCODE_UTF16) || \
+	defined(JFP_ICONV_FROMCODE_UCS2) || \
+	defined(JFP_ICONV_FROMCODE_WCHAR)
+
+	    (np = (char *)__index_of_nullchar((const void *)inarray,
+			*inlen)) != NULL)
+
+#else /* ASCII compatible incl. UTF-8 */
+
+	    (np = (char *)memchr((const void *)inarray, '\0', *inlen))
+			!= NULL)
+
+#endif
+	{
 		len = np - inarray;
 	} else {
 		len = *inlen;
@@ -240,6 +255,7 @@ __icv_open_attr(int flag)
 	st->bom_written = B_FALSE;
 	st->little_endian = B_FALSE;
 	st->replacement = NULL;
+	st->tmpbuf = NULL;
 
 	return (st);
 }
@@ -306,7 +322,8 @@ __icv_illegal(
 
 #if	defined(JFP_ICONV_FROMCODE_UTF32) || \
 	defined(JFP_ICONV_FROMCODE_UTF16) || \
-	defined(JFP_ICONV_FROMCODE_UCS2)
+	defined(JFP_ICONV_FROMCODE_UCS2) || \
+	defined(JFP_ICONV_FROMCODE_WCHAR)
 
 	int i;
 	if (cd->_icv_flag & ICONV_CONV_ILLEGAL_DISCARD) {
@@ -420,6 +437,7 @@ __replace_hex_ascii(
 	unsigned char	**pip,	 /* point pointer to input buf */
 	char		**pop,	 /* point pointer to output buf */
 	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd,	 /* state */
 	int		caller)	 /* caller */
 {
 	unsigned char	*ip = *pip;
@@ -429,6 +447,13 @@ __replace_hex_ascii(
 	
 	unsigned char	first_half = ((hex >> 4) & 0x0f);
 	unsigned char	second_half = (hex & 0x0f);
+
+	if ((cd->tmpbuf != NULL) && !(caller & __NEXT_OF_ESC_SEQ)) {
+		if((rv = __next_of_esc_seq(&ip, &op, &oleft,
+				cd, caller)) == -1) {
+			goto ret;
+		}
+	}
 
 	if (first_half < 0xa) {
 		first_half += 0x30;
@@ -442,7 +467,7 @@ __replace_hex_ascii(
 		second_half += 0x37;
 	}
 
-	if (caller == __ICV_ILLEGAL) {
+	if ((caller & ~__NEXT_OF_ESC_SEQ) == __ICV_ILLEGAL) {
 		NPUT('I', "REPLACE_HEX");
 		NPUT('L', "REPLACE_HEX");
 	} else { /* __ICV_NON_IDENTICAL */
@@ -623,6 +648,8 @@ ret:
 }
 
 /*
+ * __restore_hex_ascii
+ *
  * Restore hex value when "IL--XX" or "NI--XX' is encountered.
  * return value:
  * 	0: done nothing 
@@ -687,3 +714,127 @@ ret:
 	return (rv);
 }
 
+/* see jfp_iconv_common.h */
+void
+__clearbuf(__tmpbuf_t *buf)
+{
+	int	i;
+
+	buf->ix = 0;
+	for (i = 0; i < __TMPBUF_SIZE; i++) {
+		buf->data[i] = 0;
+	}
+	return;
+}
+
+/* see jfp_iconv_common.h */
+void
+__putbuf(__tmpbuf_t *buf, char ic)
+{
+	char	tmpbuf[__TMPBUF_SIZE];
+
+	if (buf->ix < __TMPBUF_SIZE) {
+		buf->data[buf->ix] = ic;
+		buf->ix++;
+	} else {
+		memcpy(tmpbuf, buf->data + 1, __TMPBUF_SIZE - 1);
+		tmpbuf[__TMPBUF_SIZE - 1] = ic;
+		memcpy(buf->data, tmpbuf, __TMPBUF_SIZE);
+	}
+	return;
+}
+
+/* see jfp_iconv_common.h */
+int
+__cmpbuf(__tmpbuf_t *buf, char *str, size_t strlen)
+{
+	char	*ptr;
+	int	i;
+
+	if (buf->ix < __TMPBUF_SIZE) {
+		i = buf->ix - strlen - 1;
+	} else {
+		i = __TMPBUF_SIZE - strlen - 1;
+	}
+
+	if (i < 0) {
+		return i;
+	}
+	ptr = &(buf->data[i]);
+	return(memcmp(ptr, str, strlen));
+}
+
+
+size_t 
+__next_of_esc_seq(
+	unsigned char	**pip,	 /* point pointer to input buf */
+	char		**pop,	 /* point pointer to output buf */
+	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd,	 /* state */
+	int		caller)	 /* caller */
+{
+	size_t		rv = 0;	 /* return value */
+
+	int		i, j;
+
+	char *esc_seq[12] = {
+		"\x1b(B",
+		"\x1b(I",
+		"\x1b(J",
+		"\x1b$@",
+		"\x1b$B",
+		"\x1b$(B",
+		"\x1b$(D",
+		"\x1b&@\x1b$B",
+		"\x1b&@\x1b$(B",
+		"\x1b$(O",
+		"\x1b$(P",
+		"\x1b$(Q"
+	};
+
+	for (i = 0; i < 12; i++) {
+		if (__cmpbuf(cd->tmpbuf, esc_seq[i], strlen(esc_seq[i]))
+				== 0) {
+			for (j = 0; j < strlen(esc_seq[i]); j++) {
+				caller |= __NEXT_OF_ESC_SEQ;
+				if ((rv = __replace_hex(
+					esc_seq[i][j], pip, pop, poleft,
+						cd, caller)) == -1) {
+					goto ret;
+				}
+			}
+			goto ret;
+		}
+	}
+
+ret:
+	return(rv);
+}
+
+void*
+__index_of_nullchar(const void *asp, size_t n)
+{
+
+#if	defined(JFP_ICONV_FROMCODE_UTF32) || \
+	defined(JFP_ICONV_FROMCODE_WCHAR)
+
+	register const uint32_t*	sp = (uint32_t *)asp;
+	register const uint32_t*	ep = sp + n;
+
+	while (sp < ep)
+		if (*sp++ == '\0')
+			return((void *)--sp);
+	return(0);
+
+#else /* JFP_ICONV_FROMCODE_UTF16 || JFP_ICONV_FROMCODE_UCS2 */
+
+	register const uint16_t*	sp = (uint16_t *)asp;
+	register const uint16_t*	ep = sp + n;
+
+	while (sp < ep)
+		if (*sp++ == '\0')
+			return((void *)--sp);
+	return(0);
+
+#endif
+}

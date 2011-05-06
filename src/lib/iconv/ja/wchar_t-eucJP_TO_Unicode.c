@@ -19,26 +19,21 @@
  * CDDL HEADER END
  */
 /*
- * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <euc.h>
+#include <wchar.h>
 
 #include "japanese.h"
 #include "jfp_iconv_common.h"
+#include "jfp_iconv_wchar.h"
 #include "jfp_iconv_unicode_enhance.h"
 
-#ifdef JAVA_CONV_COMPAT
-#define	JFP_U2E_ICONV_JAVA
-#elif	JFP_ICONV_MS932
-#define	JFP_U2E_ICONV_MS932
-#else
-#define	JFP_U2E_ICONV
-#endif
-#include "jfp_ucs2_to_euc16.h"
+#define	JFP_J2U_ICONV
+#include "jfp_jis_to_ucs2.h"
 
 #define	DEF_SINGLE	'?'
 
@@ -49,7 +44,6 @@ _icv_open_attr(int flag, void *reserved)
 
 	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
 		_icv_reset_unicode((void *)cd);
-		cd->replacement = DEF_SINGLE;
 	}
 
 	return ((iconv_t)cd);
@@ -61,17 +55,16 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 {
 	__icv_state_t	*st;
 
-	unsigned char	ic;
+	unsigned char	ic1, ic2;
 	size_t		rv = (size_t)0;
-	unsigned int	ucs4;
-	unsigned short	euc16;
+
+	unsigned int	u32;		/* UTF-32 */
+	unsigned short	euc16;		/* 16bit EUC */
 
 	unsigned char	*ip;
         size_t		ileft, pre_ileft;
 	char		*op;
         size_t		oleft;
-
-	int		cset; /* not used but needed for GETU() */
 
 	st = (__icv_state_t *)cd;
 
@@ -80,7 +73,6 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -90,53 +82,41 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		pre_ileft = ileft; /* value before reading input bytes */
-		GETU(&ucs4);
 
-		if (ucs4 > 0xffff) {
-			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
-				CALL_NON_IDENTICAL()
+		GET_WCHAR(__read_eucwchar, &euc16);
+
+		switch (euc16 & 0x8080) {
+		case 0x0000:	/* CS0 */
+			ic1 = (unsigned char)euc16;
+			u32 = _jfp_tbl_jisx0201roman_to_ucs2[ic1];
+			PUTU(u32, "ASCII", 1);
+			break;
+		case 0x8080:	/* CS1 */
+			ic1 = (unsigned char)((euc16 >> 8) & 0xff);
+			ic2 = (unsigned char)(euc16 & 0xff);
+			u32 = _jfp_tbl_jisx0208_to_ucs2[
+				(ic1 - 0xa1) * 94 + (ic2 - 0xa1)];
+			PUTU(u32, "CS1", 2);
+			break;
+		case 0x0080:	/* CS2 */
+			/* wctomb(3C) pass 0x80 - 0xff */
+			if ((euc16 >= 0x1080) && (euc16 <= 0x10ff)) {
+				u32 = (unsigned int)(euc16 & 0xff);
 			} else {
-				/* non-BMP */
-				ic = (unsigned char)DEF_SINGLE;
-				NPUT(ic, "DEF for non-BMP");
+				ic1 = (unsigned char)euc16;
+				u32 = _jfp_tbl_jisx0201kana_to_ucs2[
+					(ic1 - 0xa1)];
 			}
-		} else {
-			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
-
-			if(euc16 == 0xffff) {
-				if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
-					CALL_NON_IDENTICAL()
-					goto next;
-				} else {
-					euc16 = DEF_SINGLE; /* replacement char */
-				}
-			}
-
-			switch (euc16 & 0x8080) {
-			case 0x0000:	/* CS0 */
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS0");
-				break;
-			case 0x8080:	/* CS1 */
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS1-1");
-				ic = (unsigned char)(euc16 & 0xff);
-				NPUT(ic, "CS1-2");
-				break;
-			case 0x0080:	/* CS2 */
-				NPUT(SS2, "CS2-1");
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS2-2");
-				break;
-			case 0x8000:	/* CS3 */
-				NPUT(SS3, "E2BIG at CS3-1");
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS3-2");
-				ic = (unsigned char)(euc16 & CMASK);
-				NPUT(ic | CMSB, "CS3-3");
-				break;
-			}
+			PUTU(u32, "CS2", 2);
+			break;
+		case 0x8000:	/* CS3 */
+			ic1 = (unsigned char)((euc16 >> 8) & 0xff);
+			ic2 = (unsigned char)((euc16 & CMASK) | CMSB);
+			u32 = _jfp_tbl_jisx0212_to_ucs2[
+				((ic1 - 0xa1) * 94 +
+				(ic2 - 0xa1))];
+			PUTU(u32, "CS3", 3);
+			break;
 		}
 
 next:
@@ -170,7 +150,7 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
+	return (__replace_hex_utf32(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */
@@ -181,5 +161,5 @@ __replace_invalid(
 	size_t		*poleft,
 	__icv_state_t	*cd)
 {
-	return (__replace_invalid_ascii(pop, poleft, cd));
+	return (__replace_invalid_utf32(pip, pop, poleft, cd));
 }

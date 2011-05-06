@@ -62,6 +62,8 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	char		*op;
         size_t		oleft;
 
+	__tmpbuf_t	tmpbuf;
+
 	st = (__icv_state_t *)cd;
 
 	/*
@@ -79,17 +81,24 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	op = *outbuf;
 	oleft = *outbytesleft;
 
+	/*
+	 * clear temporary buffer, and set buffer address into the
+	 * conversion descriptor
+	 */
+	__clearbuf(&tmpbuf); /* clear temporary buffer */
+	st->tmpbuf = &tmpbuf;
+
 	while (ileft != 0) {
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETB(ic1, "never fail here"); /* get 1st byte */
 
 		if (ic1 == ESC) { /* Escape */
-			NGET(ic2, "ESC-2");
+			NGETB(ic2, "ESC-2");
 			switch (ic2) {
 			case 0x24: /* $ */
-				NGET(ic3, "ESC$-3");
+				NGETB(ic3, "ESC$-3");
 				switch (ic3) {
 				case 0x28: /* $( */
-					NGET(ic4, "ESC$(-4");
+					NGETB(ic4, "ESC$(-4");
 					switch (ic4) {
 					case 0x4f: /* 24-28-4F ESC$(O */
 						st->_st_cset = CS_1;
@@ -112,7 +121,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				}
 				break;
 			case 0x28: /* ( */
-				NGET(ic3, "ESC(-3");
+				NGETB(ic3, "ESC(-3");
 				switch (ic3) {
 				case 0x42: /* 28-42 ESC(B */
 					st->_st_cset = CS_0;
@@ -135,7 +144,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
 				RET_EILSEQ("PLANE1-1", 1)
 			}
-			NGET(ic2, "PLANE1-2");
+			NGETB(ic2, "PLANE1-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
 				RET_EILSEQ("PLANE1-2", 2)
 			}
@@ -158,7 +167,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
 				RET_EILSEQ("PLANE2-1", 1)
 			}
-			NGET(ic2, "PLANE2-2");
+			NGETB(ic2, "PLANE2-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
 				RET_EILSEQ("PLANE2-2", 2)
 			}
@@ -172,7 +181,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				PUTU(u32, "PLANE2->BMP", 2);
 			}
 		}
-cont:
+next:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.

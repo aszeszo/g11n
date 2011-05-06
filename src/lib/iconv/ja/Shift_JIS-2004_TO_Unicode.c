@@ -245,7 +245,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 		} else { /* 1st byte check failed */
 			RET_EILSEQ("EILSEQ at 1st", 1)
 		}
-cont:
+next:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.

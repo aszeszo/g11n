@@ -244,6 +244,10 @@ file path=usr/lib/iconv/$(ARCH64)/wchar_t-BIG5%BIG5.so
 file path=usr/lib/iconv/$(ARCH64)/BIG5%wchar_t-BIG5.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-EUC-TW%EUC-TW.so
 file path=usr/lib/iconv/$(ARCH64)/EUC-TW%wchar_t-EUC-TW.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%eucJP.so
 file path=usr/lib/iconv/646%CODESET.so mode=0644
 file path=usr/lib/iconv/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/ISO-2022-JP%eucJP.so
@@ -457,6 +461,10 @@ file path=usr/lib/iconv/$(ARCH64)/ko_KR-euc%ko_KR-nbyte.so
 file path=usr/lib/iconv/$(ARCH64)/ko_KR-nbyte%ko_KR-euc.so
 file path=usr/lib/iconv/ko_KR-euc%ko_KR-nbyte.so
 file path=usr/lib/iconv/ko_KR-nbyte%ko_KR-euc.so
+file path=usr/lib/iconv/PCK%wchar_t-PCK.so
+file path=usr/lib/iconv/eucJP%wchar_t-eucJP.so
+file path=usr/lib/iconv/wchar_t-PCK%PCK.so
+file path=usr/lib/iconv/wchar_t-eucJP%eucJP.so
 license copyright.unicode+hkscs license=copyright.unicode+hkscs
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so

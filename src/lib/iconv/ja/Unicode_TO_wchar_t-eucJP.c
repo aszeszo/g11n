@@ -19,25 +19,21 @@
  * CDDL HEADER END
  */
 /*
- * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <euc.h>
+#include <wchar.h>
 
 #include "japanese.h"
 #include "jfp_iconv_common.h"
+#include "jfp_iconv_wchar.h"
 #include "jfp_iconv_unicode_enhance.h"
 
-#ifdef JAVA_CONV_COMPAT
-#define	JFP_U2E_ICONV_JAVA
-#elif	JFP_ICONV_MS932
-#define	JFP_U2E_ICONV_MS932
-#else
 #define	JFP_U2E_ICONV
-#endif
 #include "jfp_ucs2_to_euc16.h"
 
 #define	DEF_SINGLE	'?'
@@ -61,10 +57,11 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 {
 	__icv_state_t	*st;
 
-	unsigned char	ic;
+	unsigned char	ic1, ic2, oc;
 	size_t		rv = (size_t)0;
 	unsigned int	ucs4;
 	unsigned short	euc16;
+	wchar_t		eucwchar;
 
 	unsigned char	*ip;
         size_t		ileft, pre_ileft;
@@ -98,8 +95,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				CALL_NON_IDENTICAL()
 			} else {
 				/* non-BMP */
-				ic = (unsigned char)DEF_SINGLE;
-				NPUT(ic, "DEF for non-BMP");
+				ic1 = (unsigned char)DEF_SINGLE;
+				eucwchar = __get_eucwchar(CS_0, ic1, NULL);
+				NPUT_WCHAR(eucwchar, "DEF for non-BMP");
 			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
@@ -115,26 +113,26 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 
 			switch (euc16 & 0x8080) {
 			case 0x0000:	/* CS0 */
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS0");
+				ic1 = (unsigned char)euc16;
+				eucwchar = __get_eucwchar(CS_0, ic1, NULL);
+				NPUT_WCHAR(eucwchar, "CS0");
 				break;
 			case 0x8080:	/* CS1 */
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS1-1");
-				ic = (unsigned char)(euc16 & 0xff);
-				NPUT(ic, "CS1-2");
+				ic1 = (unsigned char)((euc16 >> 8) & 0xff);
+				ic2 = (unsigned char)(euc16 & 0xff);
+				eucwchar = __get_eucwchar(CS_1, ic1, ic2);
+				NPUT_WCHAR(eucwchar, "CS1");
 				break;
 			case 0x0080:	/* CS2 */
-				NPUT(SS2, "CS2-1");
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS2-2");
+				ic1 = (unsigned char)euc16;
+				eucwchar = __get_eucwchar(CS_2, ic1, NULL);
+				NPUT_WCHAR(eucwchar, "CS2");
 				break;
 			case 0x8000:	/* CS3 */
-				NPUT(SS3, "E2BIG at CS3-1");
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS3-2");
-				ic = (unsigned char)(euc16 & CMASK);
-				NPUT(ic | CMSB, "CS3-3");
+				ic1 = (unsigned char)((euc16 >> 8) & 0xff);
+				ic2 = (unsigned char)(euc16 & CMASK);
+				eucwchar = __get_eucwchar(CS_3, ic1, ic2);
+				NPUT_WCHAR(eucwchar, "CS3");
 				break;
 			}
 		}
@@ -170,7 +168,7 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
+	return (__replace_hex_wchar(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */
@@ -181,5 +179,5 @@ __replace_invalid(
 	size_t		*poleft,
 	__icv_state_t	*cd)
 {
-	return (__replace_invalid_ascii(pop, poleft, cd));
+	return (__replace_invalid_wchar(pop, poleft, cd));
 }

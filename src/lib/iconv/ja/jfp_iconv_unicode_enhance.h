@@ -27,38 +27,11 @@
  * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
-#pragma ident	"@(#)jfp_iconv_unicode.h 1.20 07/05/25 SMI"
-
 #include	<sys/types.h>
-#include	"jfp_iconv_common.h"
-
-#if	defined(JFP_ICONV_FROMCODE_UTF32BE)||defined(JFP_ICONV_FROMCODE_UTF32LE)
-#define	JFP_ICONV_FROMCODE_UTF32
-#endif
-
-#if	defined(JFP_ICONV_FROMCODE_UTF16BE)||defined(JFP_ICONV_FROMCODE_UTF16LE)
-#define	JFP_ICONV_FROMCODE_UTF16
-#endif
-
-#if	defined(JFP_ICONV_FROMCODE_UCS2BE)||defined(JFP_ICONV_FROMCODE_UCS2LE)
-#define	JFP_ICONV_FROMCODE_UCS2
-#endif
-
-#if	defined(JFP_ICONV_TOCODE_UTF32BE)||defined(JFP_ICONV_TOCODE_UTF32LE)
-#define	JFP_ICONV_TOCODE_UTF32
-#endif
-
-#if	defined(JFP_ICONV_TOCODE_UTF16BE)||defined(JFP_ICONV_TOCODE_UTF16LE)
-#define	JFP_ICONV_TOCODE_UTF16
-#endif
-
-#if	defined(JFP_ICONV_TOCODE_UCS2BE)||defined(JFP_ICONV_TOCODE_UCS2LE)
-#define	JFP_ICONV_TOCODE_UCS2
-#endif
-
+#include 	"jfp_iconv_predefine.h"
 
 #define	BOM	0xfeff
 #define	BSBOM16	0xfffe
@@ -152,7 +125,7 @@ read_unicode(
 	*p = u32;
 	rv = *pileft - ileft;
 
-cont:
+next:
 ret:
 	if (rv != (size_t)-1) {
 		/* update pointers only on successful return */
@@ -251,7 +224,7 @@ read_unicode(
 	*p = u32;
 	rv = *pileft - ileft;
 
-cont:
+next:
 ret:
 	if (rv != (size_t)-1) {
 		/* update pointers only on sucessful return */
@@ -461,7 +434,7 @@ utf8_ucs(
 	} else {
 		RET_EILSEQ("1st byte is invalid", 1)
 	}
-cont:
+next:
 ret:
 	if (rv != (size_t)-1) {
 		/*
@@ -793,6 +766,14 @@ __replace_hex_utf32(
 	unsigned char	first_half = ((hex >> 4) & 0x0f);
 	unsigned char	second_half = (hex & 0x0f);
 
+	if ((st->tmpbuf != (__tmpbuf_t *)NULL) && 
+			!(caller & __NEXT_OF_ESC_SEQ)) {
+		if((rv = __next_of_esc_seq(&ip, &op, &oleft,
+				st, caller)) == -1) {
+			goto ret;
+		}
+	}
+
 	if(first_half < 0xa) {
 		first_half += 0x30;
 	} else {
@@ -805,7 +786,7 @@ __replace_hex_utf32(
 		second_half += 0x37;
 	}
 
-	if (caller == __ICV_ILLEGAL) {
+	if ((caller & ~__NEXT_OF_ESC_SEQ) == __ICV_ILLEGAL) {
 		PUTU('I', "REPLACE_HEX", 1);
 		PUTU('L', "REPLACE_HEX", 1);
 	} else { /* __ICV_NON_IDENTICAL */
@@ -971,7 +952,7 @@ __restore_hex_ucs(
 				(unsigned int)restore_buf[i++] << 8;
 			first_half |= 
 				(unsigned int)restore_buf[i++] << 0;
-			first_half = 0U;
+			second_half = 0U;
 			second_half |= 
 				(unsigned int)restore_buf[i++] << 24;
 			second_half |= 

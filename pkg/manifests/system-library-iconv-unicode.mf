@@ -1214,6 +1214,46 @@ file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/ms932%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UCS-2LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-16LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-32LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-PCK.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%wchar_t-eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-2.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-16.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-16BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-16LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-32.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-32BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-32LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-2.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-2BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-2LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-16.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-16BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-16LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32BE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32LE.so
+file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-8.so
 file path=usr/lib/iconv/646%UCS-2-BIG-ENDIAN.so mode=0555
 file path=usr/lib/iconv/646%UCS-2-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/646%UCS-4-BIG-ENDIAN.so mode=0555
@@ -2393,6 +2433,46 @@ file path=usr/lib/iconv/ms932%UTF-32.so
 file path=usr/lib/iconv/ms932%UTF-32BE.so
 file path=usr/lib/iconv/ms932%UTF-32LE.so
 file path=usr/lib/iconv/ms932%UTF-8.so
+file path=usr/lib/iconv/UCS-2%wchar_t-PCK.so
+file path=usr/lib/iconv/UCS-2%wchar_t-eucJP.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-PCK.so
+file path=usr/lib/iconv/UCS-2BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-PCK.so
+file path=usr/lib/iconv/UCS-2LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-16%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-16%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-16BE%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-16BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-16LE%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-16LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-32%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-32%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-32BE%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-32BE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-32LE%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-32LE%wchar_t-eucJP.so
+file path=usr/lib/iconv/UTF-8%wchar_t-PCK.so
+file path=usr/lib/iconv/UTF-8%wchar_t-eucJP.so
+file path=usr/lib/iconv/wchar_t-PCK%UCS-2.so
+file path=usr/lib/iconv/wchar_t-PCK%UCS-2BE.so
+file path=usr/lib/iconv/wchar_t-PCK%UCS-2LE.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-16.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-16BE.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-16LE.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-32.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-32BE.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-32LE.so
+file path=usr/lib/iconv/wchar_t-PCK%UTF-8.so
+file path=usr/lib/iconv/wchar_t-eucJP%UCS-2.so
+file path=usr/lib/iconv/wchar_t-eucJP%UCS-2BE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UCS-2LE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-16.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-16BE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-16LE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-32.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-32BE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-32LE.so
+file path=usr/lib/iconv/wchar_t-eucJP%UTF-8.so
 license copyright.unicode+hkscs license=copyright.unicode+hkscs
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4.so target=./EUC-JIS-2004%UTF-32.so
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4BE.so target=./EUC-JIS-2004%UTF-32BE.so
@@ -2495,3 +2575,27 @@ link path=usr/lib/iconv/wchar_t-UTF-8%UTF-16-BIG-ENDIAN.so target=./UTF-32BE%UTF
 link path=usr/lib/iconv/wchar_t-UTF-8%UTF-16-BIG-ENDIAN.so target=./UTF-32LE%UTF-16-BIG-ENDIAN.so variant.arch=i386
 link path=usr/lib/iconv/wchar_t-UTF-8%UTF-16-LITTLE-ENDIAN.so target=./UTF-32BE%UTF-16-LITTLE-ENDIAN.so variant.arch=sparc
 link path=usr/lib/iconv/wchar_t-UTF-8%UTF-16-LITTLE-ENDIAN.so target=./UTF-32LE%UTF-16-LITTLE-ENDIAN.so variant.arch=i386
+link path=usr/lib/iconv/UCS-4%wchar_t-PCK.so target=./UTF-32%wchar_t-PCK.so
+link path=usr/lib/iconv/UCS-4%wchar_t-eucJP.so target=./UTF-32%wchar_t-eucJP.so
+link path=usr/lib/iconv/UCS-4BE%wchar_t-PCK.so target=./UTF-32BE%wchar_t-PCK.so
+link path=usr/lib/iconv/UCS-4BE%wchar_t-eucJP.so target=./UTF-32BE%wchar_t-eucJP.so
+link path=usr/lib/iconv/UCS-4LE%wchar_t-PCK.so target=./UTF-32LE%wchar_t-PCK.so
+link path=usr/lib/iconv/UCS-4LE%wchar_t-eucJP.so target=./UTF-32LE%wchar_t-eucJP.so
+link path=usr/lib/iconv/wchar_t-PCK%UCS-4.so target=./wchar_t-PCK%UTF-32.so
+link path=usr/lib/iconv/wchar_t-PCK%UCS-4BE.so target=./wchar_t-PCK%UTF-32BE.so
+link path=usr/lib/iconv/wchar_t-PCK%UCS-4LE.so target=./wchar_t-PCK%UTF-32LE.so
+link path=usr/lib/iconv/wchar_t-eucJP%UCS-4.so target=./wchar_t-eucJP%UTF-32.so
+link path=usr/lib/iconv/wchar_t-eucJP%UCS-4BE.so target=./wchar_t-eucJP%UTF-32BE.so
+link path=usr/lib/iconv/wchar_t-eucJP%UCS-4LE.so target=./wchar_t-eucJP%UTF-32LE.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4%wchar_t-PCK.so target=./UTF-32%wchar_t-PCK.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4%wchar_t-eucJP.so target=./UTF-32%wchar_t-eucJP.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-PCK.so target=./UTF-32BE%wchar_t-PCK.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4BE%wchar_t-eucJP.so target=./UTF-32BE%wchar_t-eucJP.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-PCK.so target=./UTF-32LE%wchar_t-PCK.so
+link path=usr/lib/iconv/$(ARCH64)/UCS-4LE%wchar_t-eucJP.so target=./UTF-32LE%wchar_t-eucJP.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-4.so target=./wchar_t-PCK%UTF-32.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-4BE.so target=./wchar_t-PCK%UTF-32BE.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-4LE.so target=./wchar_t-PCK%UTF-32LE.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4.so target=./wchar_t-eucJP%UTF-32.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4BE.so target=./wchar_t-eucJP%UTF-32BE.so
+link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4LE.so target=./wchar_t-eucJP%UTF-32LE.so

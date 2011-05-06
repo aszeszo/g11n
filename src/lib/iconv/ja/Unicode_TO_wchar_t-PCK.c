@@ -27,7 +27,7 @@
  * This file has been modified by Oracle and/or its affiliates.
  */
 /*
- * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
 #include <stdio.h>
@@ -37,15 +37,10 @@
 
 #include "japanese.h"
 #include "jfp_iconv_common.h"
+#include "jfp_iconv_wchar.h"
 #include "jfp_iconv_unicode_enhance.h"
 
-#ifdef JAVA_CONV_COMPAT
-#define	JFP_U2E_ICONV_JAVA
-#elif	JFP_ICONV_MS932
-#define	JFP_U2E_ICONV_MS932
-#else
 #define	JFP_U2E_ICONV
-#endif
 #include "jfp_ucs2_to_euc16.h"
 
 #define	DEF_SINGLE	'?'
@@ -71,11 +66,12 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 {
 	__icv_state_t	*st;
 
-	unsigned char	ic;
+	unsigned char	ic1, ic2, ku, ten, oc;
 	size_t		rv = (size_t)0;
 	unsigned int	ucs4;
 	unsigned short	euc16;
 	unsigned short	dest;
+	wchar_t		pckwchar;
 
 	unsigned char	*ip;
         size_t		ileft, pre_ileft;
@@ -109,7 +105,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				CALL_NON_IDENTICAL()
 			} else {
 				/* non-BMP */
-				NPUT((unsigned char)DEF_SINGLE, "non-BMP(replaced)");
+				ic1 = (unsigned char)DEF_SINGLE;
+				pckwchar = __get_pckwchar(__ASCII, ic1, NULL);
+				NPUT_WCHAR(pckwchar, "DEF for non-BMP");
 			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
@@ -129,81 +127,91 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
 						CALL_NON_IDENTICAL()
 					} else {
-						NPUT((unsigned char)'?',
+						ic1 = (unsigned char)DEF_SINGLE;
+						pckwchar = __get_pckwchar(__ASCII, 
+									ic1, NULL);
+						NPUT_WCHAR(pckwchar,
 							"CS0-C1CTRL(replaced)")
 					}
 				} else {
-					ic = (unsigned char)euc16;
-					NPUT(ic, "CS0-1");
+					ic1 = (unsigned char)euc16;
+					pckwchar = __get_pckwchar(__ASCII, ic1, NULL);
+					NPUT_WCHAR(pckwchar, "CS0-1");
 				}
 				break;
 			case 0x8080:	/* CS1 */
-				ic = (unsigned short)((euc16 >> 8) & 0x7f);
-				NPUT(jis208tosj1[ic], "CS1-1");
+				ku = (unsigned short)((euc16 >> 8) & 0x7f);
+				ic1 = jis208tosj1[ku];
+
 				/*
 				 * for even number row (Ku), add 0x80 to
 				 * look latter half of jistosj2[] array
 				 */
-				ic = (unsigned char)((euc16 & 0x7f)
-					+ (((ic % 2) == 0) ? 0x80 : 0x00));
-				NPUT(jistosj2[ic], "CS1-2");
+				ten = (unsigned char)((euc16 & 0x7f)
+					+ (((ku % 2) == 0) ? 0x80 : 0x00));
+				ic2 = jistosj2[ten];
+
+				pckwchar = __get_pckwchar(__PCK_KANJI, ic1, ic2);
+				NPUT_WCHAR(pckwchar, "CS1");
 				break;
 			case 0x0080:	/* CS2 */
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS2-1");
+				ic1 = (unsigned char)euc16;
+				pckwchar = __get_pckwchar(__PCK_KANA, ic1, NULL);
+				NPUT_WCHAR(pckwchar, "CS2");
 				break;
 			case 0x8000:	/* CS3 */
-				ic = (unsigned short)((euc16 >> 8) & 0x7f);
+				ku = (unsigned short)((euc16 >> 8) & 0x7f);
 				if (euc16 == 0xa271) {
 					/* NUMERO SIGN */
-					NPUT(0x87, "CS3-NUMERO-1");
-					NPUT(0x82, "CS3-NUMERO-2"); 
-				} else if (ic < 0x75) { /* check if IBM VDC */
+					pckwchar = __get_pckwchar(__PCK_KANJI, 0x87, 0x82);
+					NPUT_WCHAR(pckwchar, "CS3-NUMERO");
+				} else if (ku < 0x75) { /* check if IBM VDC */
 					dest = lookuptbl(euc16 & 0x7f7f);
 					if (dest == 0xffff) {
 						if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
 							CALL_NON_IDENTICAL()
 						} else {
-							NPUT((unsigned char)'?',
+							ic1 = (unsigned char)DEF_SINGLE;
+							pckwchar = __get_pckwchar(__ASCII,
+									ic1, NULL);
+							NPUT_WCHAR(pckwchar,
 								"CS3-NoSJIS(replaced)")
 						}
 					} else {
-#ifdef	JAVA_CONV_COMPAT
-						if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
-							CALL_NON_IDENTICAL()
-						} else {
-							NPUT((unsigned char)'?',
-								"CS3-IBM(replaced)")
-						}
-#else	/* !JAVA_CONV_COMPAT */
 						/* avoid putting NUL ('\0') */
 						if (dest > 0xff) {
-							NPUT((dest >> 8) & 0xff,
-								"CS3-IBM-1");
-							NPUT(dest & 0xff,
-								"CS3-IBM-2");
+							ic1 = (dest >> 8) & 0xff;
+							ic2 = dest & 0xff;
+							pckwchar = __get_pckwchar(__PCK_KANJI,
+									ic1, ic2);
+							NPUT_WCHAR(pckwchar, "CS3-IBM");
 						} else {
 							if ((dest == 0x3f)
 								&& (st->_icv_flag 
 									& __ICONV_CONV_NON_IDENTICAL)) {
 								CALL_NON_IDENTICAL()
 							} else {
-								NPUT(dest & 0xff,
-									"CS3-IBM-1");
+								ic1 = dest & 0xff;
+								pckwchar = __get_pckwchar(__PCK_KANA,
+										ic1, NULL);
+								NPUT_WCHAR(pckwchar, "CS3-IBM-1");
 							}
 						}
-#endif	/* JAVA_CONV_COMPAT */
 					}
 				} else {
-					NPUT(jis212tosj1[ic], "CS3-1");
+					ic1 = jis212tosj1[ku];
 					/*
 					 * for even number row (Ku), add 0x80 to
 					 * look latter half of jistosj2[] array
 					 */
-					ic = (unsigned short)((euc16 & 0x7f)
-						+ (((ic % 2) == 0) ?
+					ten = (unsigned short)((euc16 & 0x7f)
+						+ (((ku % 2) == 0) ?
 						0x80 : 0x00));
-					NPUT(jistosj2[ic], "CS3-2");
+					ic2 = jistosj2[ten];
+
+					pckwchar = __get_pckwchar(__PCK_KANJI,
+								ic1, ic2);
+					NPUT_WCHAR(pckwchar, "CS3");
 				}
 				break;
 			}
@@ -265,7 +273,7 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
+	return (__replace_hex_wchar(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */
@@ -276,5 +284,5 @@ __replace_invalid(
 	size_t		*poleft,
 	__icv_state_t	*cd)
 {
-	return (__replace_invalid_ascii(pop, poleft, cd));
+	return (__replace_invalid_wchar(pop, poleft, cd));
 }

@@ -101,7 +101,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 		 */
 		if ((errno == EILSEQ) &&
 			st->_icv_flag & __ICONV_CONV_ILLEGAL) {
-			goto cont;
+			goto next;
 		}
 
 		if (ucs4 == 0x301c)		/* WAVE DASH */
@@ -118,7 +118,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			ucs4 = 0xffe2;		/* FULLWIDTH NOT SIGN */
 
 		PUTUCS2((unsigned short)ucs4, "E2BIG");
-cont:
+next:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.

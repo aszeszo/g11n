@@ -18,17 +18,13 @@
 #
 # CDDL HEADER END
 #
-#
-# Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
-#
-#ident	"@(#)Makefile	1.9	07/01/11 SMI"
-#
+# Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
 
 include Makefile.iconv
+include Makefile.link
 
 ICONV_DIR = $(FILEROOT)/usr/lib/iconv
 
@@ -42,157 +38,8 @@ clean		:=	TARGET = clean
 clobber		:=	TARGET = clobber
 
 DBGCOMP=
-COMMON_OBJS = jfp_iconv_common.o
-COMMON_OBJS64 = $(MACH64)/jfp_iconv_common.o
-
-LINKS= \
-	eucJP_TO_ISO-2022-JP.RFC1468.c \
-	PCK_TO_ISO-2022-JP.RFC1468.c \
-	UTF-8_TO_ISO-2022-JP.RFC1468.c \
-	eucJP_TO_UTF-8-Java.c \
-	UTF-8-Java_TO_eucJP.c \
-	PCK_TO_UTF-8-Java.c \
-	UTF-8-Java_TO_PCK.c \
-	eucJP_TO_UTF-8.c \
-	eucJP_TO_UTF-16.c \
-	eucJP_TO_UTF-16BE.c \
-	eucJP_TO_UTF-16LE.c \
-	eucJP_TO_UCS-2.c \
-	eucJP_TO_UCS-2BE.c \
-	eucJP_TO_UCS-2LE.c \
-	eucJP_TO_UTF-32.c \
-	eucJP_TO_UTF-32BE.c \
-	eucJP_TO_UTF-32LE.c \
-	UTF-8_TO_eucJP.c \
-	UTF-16_TO_eucJP.c \
-	UTF-16BE_TO_eucJP.c \
-	UTF-16LE_TO_eucJP.c \
-	UCS-2_TO_eucJP.c \
-	UCS-2BE_TO_eucJP.c \
-	UCS-2LE_TO_eucJP.c \
-	UTF-32_TO_eucJP.c \
-	UTF-32BE_TO_eucJP.c \
-	UTF-32LE_TO_eucJP.c \
-	PCK_TO_UTF-8.c \
-	PCK_TO_UTF-16.c \
-	PCK_TO_UTF-16BE.c \
-	PCK_TO_UTF-16LE.c \
-	PCK_TO_UCS-2.c \
-	PCK_TO_UCS-2BE.c \
-	PCK_TO_UCS-2LE.c \
-	PCK_TO_UTF-32.c \
-	PCK_TO_UTF-32BE.c \
-	PCK_TO_UTF-32LE.c \
-	UTF-8_TO_PCK.c \
-	UTF-16_TO_PCK.c \
-	UTF-16BE_TO_PCK.c \
-	UTF-16LE_TO_PCK.c \
-	UCS-2_TO_PCK.c \
-	UCS-2BE_TO_PCK.c \
-	UCS-2LE_TO_PCK.c \
-	UTF-32_TO_PCK.c \
-	UTF-32BE_TO_PCK.c \
-	UTF-32LE_TO_PCK.c \
-	eucJP-ms_TO_UTF-8.c \
-	eucJP-ms_TO_UTF-16.c \
-	eucJP-ms_TO_UTF-16BE.c \
-	eucJP-ms_TO_UTF-16LE.c \
-	eucJP-ms_TO_UCS-2.c \
-	eucJP-ms_TO_UCS-2BE.c \
-	eucJP-ms_TO_UCS-2LE.c \
-	eucJP-ms_TO_UTF-32.c \
-	eucJP-ms_TO_UTF-32BE.c \
-	eucJP-ms_TO_UTF-32LE.c \
-	UTF-8_TO_eucJP-ms.c \
-	UTF-16_TO_eucJP-ms.c \
-	UTF-16BE_TO_eucJP-ms.c \
-	UTF-16LE_TO_eucJP-ms.c \
-	UCS-2_TO_eucJP-ms.c \
-	UCS-2BE_TO_eucJP-ms.c \
-	UCS-2LE_TO_eucJP-ms.c \
-	UTF-32_TO_eucJP-ms.c \
-	UTF-32BE_TO_eucJP-ms.c \
-	UTF-32LE_TO_eucJP-ms.c \
-	ms932_TO_UTF-8.c \
-	ms932_TO_UTF-16.c \
-	ms932_TO_UTF-16BE.c \
-	ms932_TO_UTF-16LE.c \
-	ms932_TO_UCS-2.c \
-	ms932_TO_UCS-2BE.c \
-	ms932_TO_UCS-2LE.c \
-	ms932_TO_UTF-32.c \
-	ms932_TO_UTF-32BE.c \
-	ms932_TO_UTF-32LE.c \
-	UTF-8_TO_ms932.c \
-	UTF-16_TO_ms932.c \
-	UTF-16BE_TO_ms932.c \
-	UTF-16LE_TO_ms932.c \
-	UCS-2_TO_ms932.c \
-	UCS-2BE_TO_ms932.c \
-	UCS-2LE_TO_ms932.c \
-	UTF-32_TO_ms932.c \
-	UTF-32BE_TO_ms932.c \
-	UTF-32LE_TO_ms932.c \
-	EUC-JIS-2004_TO_UTF-8.c \
-	EUC-JIS-2004_TO_UTF-16.c \
-	EUC-JIS-2004_TO_UTF-16BE.c \
-	EUC-JIS-2004_TO_UTF-16LE.c \
-	EUC-JIS-2004_TO_UCS-2.c \
-	EUC-JIS-2004_TO_UCS-2BE.c \
-	EUC-JIS-2004_TO_UCS-2LE.c \
-	EUC-JIS-2004_TO_UTF-32.c \
-	EUC-JIS-2004_TO_UTF-32BE.c \
-	EUC-JIS-2004_TO_UTF-32LE.c \
-	UTF-8_TO_EUC-JIS-2004.c \
-	UTF-16_TO_EUC-JIS-2004.c \
-	UTF-16BE_TO_EUC-JIS-2004.c \
-	UTF-16LE_TO_EUC-JIS-2004.c \
-	UCS-2_TO_EUC-JIS-2004.c \
-	UCS-2BE_TO_EUC-JIS-2004.c \
-	UCS-2LE_TO_EUC-JIS-2004.c \
-	UTF-32_TO_EUC-JIS-2004.c \
-	UTF-32BE_TO_EUC-JIS-2004.c \
-	UTF-32LE_TO_EUC-JIS-2004.c \
-	Shift_JIS-2004_TO_UTF-8.c \
-	Shift_JIS-2004_TO_UTF-16.c \
-	Shift_JIS-2004_TO_UTF-16BE.c \
-	Shift_JIS-2004_TO_UTF-16LE.c \
-	Shift_JIS-2004_TO_UCS-2.c \
-	Shift_JIS-2004_TO_UCS-2BE.c \
-	Shift_JIS-2004_TO_UCS-2LE.c \
-	Shift_JIS-2004_TO_UTF-32.c \
-	Shift_JIS-2004_TO_UTF-32BE.c \
-	Shift_JIS-2004_TO_UTF-32LE.c \
-	UTF-8_TO_Shift_JIS-2004.c \
-	UTF-16_TO_Shift_JIS-2004.c \
-	UTF-16BE_TO_Shift_JIS-2004.c \
-	UTF-16LE_TO_Shift_JIS-2004.c \
-	UCS-2_TO_Shift_JIS-2004.c \
-	UCS-2BE_TO_Shift_JIS-2004.c \
-	UCS-2LE_TO_Shift_JIS-2004.c \
-	UTF-32_TO_Shift_JIS-2004.c \
-	UTF-32BE_TO_Shift_JIS-2004.c \
-	UTF-32LE_TO_Shift_JIS-2004.c \
-	ISO-2022-JP-2004_TO_UTF-8.c \
-	ISO-2022-JP-2004_TO_UTF-16.c \
-	ISO-2022-JP-2004_TO_UTF-16BE.c \
-	ISO-2022-JP-2004_TO_UTF-16LE.c \
-	ISO-2022-JP-2004_TO_UCS-2.c \
-	ISO-2022-JP-2004_TO_UCS-2BE.c \
-	ISO-2022-JP-2004_TO_UCS-2LE.c \
-	ISO-2022-JP-2004_TO_UTF-32.c \
-	ISO-2022-JP-2004_TO_UTF-32BE.c \
-	ISO-2022-JP-2004_TO_UTF-32LE.c \
-	UTF-8_TO_ISO-2022-JP-2004.c \
-	UTF-16_TO_ISO-2022-JP-2004.c \
-	UTF-16BE_TO_ISO-2022-JP-2004.c \
-	UTF-16LE_TO_ISO-2022-JP-2004.c \
-	UCS-2_TO_ISO-2022-JP-2004.c \
-	UCS-2BE_TO_ISO-2022-JP-2004.c \
-	UCS-2LE_TO_ISO-2022-JP-2004.c \
-	UTF-32_TO_ISO-2022-JP-2004.c \
-	UTF-32BE_TO_ISO-2022-JP-2004.c \
-	UTF-32LE_TO_ISO-2022-JP-2004.c
+COMMON_OBJS = jfp_iconv_common.o $(WCHAR_COMMON_OBJS)
+COMMON_OBJS64 = $(MACH64)/jfp_iconv_common.o $(WCHAR_COMMON_OBJS64)
 
 dummy: all
 
@@ -304,6 +151,18 @@ UTF-32_TO_ISO-2022-JP-2004.c \
 UTF-32BE_TO_ISO-2022-JP-2004.c UTF-32LE_TO_ISO-2022-JP-2004.c:
 	$(SYMLINK) ./Unicode_TO_ISO-2022-JP-2004.c $@
 
+$(LINKS_wchareucJP_toUnicode):
+	$(SYMLINK) ./wchar_t-eucJP_TO_Unicode.c $@
+
+$(LINKS_wchareucJP_fromUnicode):
+	$(SYMLINK) ./Unicode_TO_wchar_t-eucJP.c $@
+
+$(LINKS_wcharPCK_toUnicode):
+	$(SYMLINK) ./wchar_t-PCK_TO_Unicode.c $@
+
+$(LINKS_wcharPCK_fromUnicode):
+	$(SYMLINK) ./Unicode_TO_wchar_t-PCK.c $@
+
 $(MACH64):
 	$(INSDIR) $(MACH64)
 
@@ -314,8 +173,10 @@ $(ICONV_DIR):
 %.o: %.c
 	$(CC) $(CFLAGS) $(DBGCOMP) -o $@ -c $<
 	$(CC) $(CFLAGS) $(DBGCOMP) -o jfp_iconv_common.o -c jfp_iconv_common.c
+	$(CC) $(CFLAGS) $(DBGCOMP) -o jfp_iconv_wchar.o -c jfp_iconv_wchar.c
 	$(CC) $(CFLAGS64) $(DBGCOMP) -o $(MACH64)/$@ -c $<
 	$(CC) $(CFLAGS64) $(DBGCOMP) -o $(MACH64)/jfp_iconv_common.o -c jfp_iconv_common.c
+	$(CC) $(CFLAGS64) $(DBGCOMP) -o $(MACH64)/jfp_iconv_wchar.o -c jfp_iconv_wchar.c
 
 %.so: %.o
 	$(LD) $(LDFLAGS) -o $@ $< $(COMMON_OBJS)

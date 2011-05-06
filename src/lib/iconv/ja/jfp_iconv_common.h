@@ -39,6 +39,7 @@
 
 #include <sys/types.h>
 #include <iconv.h>
+#include "jfp_iconv_predefine.h"
 
 /*
  * flag to detect ICONV_CONV_ILLEGAL_* and ICONV_REPLACE_INVALID
@@ -89,8 +90,9 @@
  * symbol to be used to check which function call
  * __icv_replace_hex().
  */
-#define __ICV_ILLEGAL		0
-#define __ICV_NON_IDENTICAL	1
+#define __ICV_ILLEGAL		0x0000
+#define __ICV_NON_IDENTICAL	0x0001
+#define __NEXT_OF_ESC_SEQ	0x0010
 
 /*
  * prefix of illegal byte or non identical byte when
@@ -103,10 +105,20 @@
 #define PREFIX_LENGTH		4
 
 /*
+ * structure of the temporary buffer
+ * see "Temporary buffer functions" below
+ */
+#define __TMPBUF_SIZE	8 /* size of temporary buffer */
+
+typedef struct __tmpbuf {
+	char	data[__TMPBUF_SIZE];	/* data buffer */
+	char	ix;			/* index of data */
+} __tmpbuf_t;
+
+/*
  * structure to keep state
  * Members have been merged from past implementation. And new member
- * _icv_flag and replacement are added to support attribute from 
- * _icv_open_attr(), and _icv_iconvctr().
+ * are added. 
  */
 typedef struct {
 	int		_st_cset;	/* codeset */
@@ -117,6 +129,7 @@ typedef struct {
 	int		_icv_flag;	/* flag ICONV_* in iconv.h */
 	unsigned int	replacement;	/* only for _icv_iconvstr() */
 	int		trivialp;	/* 1: trivial, 0: otherwise */
+	__tmpbuf_t	*tmpbuf;	/* temporarly buffer */
 } __icv_state_t;
 
 /*
@@ -170,6 +183,7 @@ void	_icv_close(iconv_t cd);
  *   RESTORE_HEX_ASCII_JUMP
  *   RESTORE_HEX_ASCII_CONTINUE
  *   RESTORE_HEX_UNICODE
+ *   RESTORE_HEX_WCHAR (defined in jfp_iconv_wchar.h)
  *
  * RESTORE_HEX_ASCII_JUMP and RESTORE_HEX_ASCII_CONTINUE are prepared
  * to fit to the loop implemented in existing conversion modules. 
@@ -183,7 +197,7 @@ void	_icv_close(iconv_t cd);
 			switch (__restore_hex_ascii(&ip, &ileft, \
 					&op, &oleft, st)) { \
 				case (size_t)1: \
-					goto cont; \
+					goto next; \
 				case (size_t)-1: \
 					rv = ((size_t)-1); \
 					goto ret; \
@@ -221,7 +235,7 @@ void	_icv_close(iconv_t cd);
 					&op, &oleft, st)) { \
 				case (size_t)1: \
 					rv = ((size_t)0); \
-					goto cont; \
+					goto next; \
 				case (size_t)-1: \
 					rv = ((size_t)-1); \
 					goto ret; \
@@ -254,10 +268,10 @@ void	_icv_close(iconv_t cd);
  * byte_num is an integer number which byte is currently being 
  * processed (if it's 2nd byte, num_of_byte should be 2).
  *
- * Once stepping in this code fragment, program do jump to 'cont:' 
+ * Once stepping in this code fragment, program do jump to 'next:' 
  * or 'ret:'
  *
- * cont: go to top of the loop to get next byte to avoid EILSEQ
+ * next: go to top of the loop to get next byte to avoid EILSEQ
  * ret:	 error return with EILSEQ, conversion will be aborted
  *
  */
@@ -270,7 +284,7 @@ void	_icv_close(iconv_t cd);
 				rv = ((size_t)-1); \
 				goto ret; \
 			} \
-			goto cont; \
+			goto next; \
 		} else {\
 			rv = ((size_t)-1); \
 			goto ret; \
@@ -415,6 +429,9 @@ __icv_non_identical(
         __icv_state_t   *cd,	 /* state */
         int             num_of_bytes); /* num of non-identical bytes */
 
+void *
+__index_of_nullchar(const void *asp, size_t n);
+
 /*
  * prototype related with  __replace_hex()
  *
@@ -453,6 +470,7 @@ size_t __replace_hex_ascii(
 	unsigned char	**pip,	 /* point pointer to input buf */
 	char		**pop,	 /* point pointer to output buf */
 	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd,	 /* state */
 	int		caller); /* caller */
 
 size_t __replace_hex_iso2022jp(
@@ -523,4 +541,75 @@ __restore_hex_ucs(
 	size_t		*poleft, /* point #bytes left in output buf */
         __icv_state_t   *st);	 /* state */
 
+/*
+ * Temporary buffer functions
+ * definition for the temporary buffer, and functions to operate the
+ * temporary buffer. The temporary buffer is used to buffer the input
+ * byte. The size of buffered byte is up to __TMPBUF_SIZE. The stored 
+ * byte is compared when __replace_hex_ascii() or __replace_hex_unicode
+ * is called. If the temporary buffer ends with the valid escape 
+ * sequence (e.g. <ESC>$B), that escape sequence also put into the 
+ * output buffer. 
+ *
+ * The conversion before implementing this buffer, was as follows:
+ * XX: non-identical byte, or illegal byte
+ *
+ * (valid ascii)(valid esc-seq.)XX(valid multi-byte)
+ *
+ * When ICONV_CONV_NON_IDENTICAL_REPLACE_HEX is specifed, it's
+ * converted to:
+ *
+ * (converted ascii)"NI--XX"(converted multi-byte)
+ *
+ * And when it's back converted with
+ * ICONV_CONV_NON_IDENTICAL_RESTORE_HEX:
+ *
+ * (original ascii)XX(valid esc-seq.)(original multi-byte)
+ *
+ * The location of escape sequence is changed when back conversion. The
+ * XX is now part of ascii, but it should be part of multi-byte. It's
+ * converted as follows:
+ * XX: non-identical byte, or illegal byte
+ *
+ * (valid ascii)(valid esc-seq.)XX(valid multi-byte)
+ *
+ * When ICONV_CONV_ILLEGAL_REPLACE_HEX is specifed, it's converted to:
+ *
+ * (converted ascii)"NI--1B...NI--XX"(converted multi-byte)
+ *
+ * "NI-1B..." is a replacement string of escape sequence. If the escape
+ * sequence is "<ESC>$B", the replacement string will be
+ * "NI--1BNI--24NI--NI-42". And when it's back converted with 
+ * ICONV_CONV_ILLEGAL_RESTORE_HEX:
+ *
+ * (original ascii)(restored esc-seq.)XX(valid esc-seq.)(original multi-byte)
+ * THe XX ca be part of multi-byte by restored escape sequence. To
+ * output replacement string of escape sequence, the buffering is
+ * needed.
+ */
+void __clearbuf(__tmpbuf_t *tmpbuf);
+void __putbuf(__tmpbuf_t *tmpbuf, char ic);
+int __cmpbuf(__tmpbuf_t *tmpbuf, char *str, size_t strlen);
+
+size_t __next_of_esc_seq(
+	unsigned char	**pip,	 /* point pointer to input buf */
+	char		**pop,	 /* point pointer to output buf */
+	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd,	 /* state */
+	int		caller); /* caller */
+
+/* A variant of NGET to do buffering */
+#define NGETB(c, msg) \
+	if (ileft-- == 0) {\
+		RETERROR(EINVAL, msg)\
+	} else {\
+		(c) = *ip++;\
+		__putbuf(&tmpbuf, (c));\
+	}
+
+/* A variant of GET to do buffering */
+#define GETB(c) \
+	((c) = *ip, ip++, ileft--); \
+	__putbuf(&tmpbuf, (c));\
+	
 #endif /* !_JFP_ICONV_COMMON_H */

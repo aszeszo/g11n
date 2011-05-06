@@ -155,7 +155,7 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, caller));
+	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */

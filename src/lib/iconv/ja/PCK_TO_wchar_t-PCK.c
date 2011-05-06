@@ -19,28 +19,14 @@
  * CDDL HEADER END
  */
 /*
- * Copyright (c) 2007, 2011, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <euc.h>
-
 #include "japanese.h"
 #include "jfp_iconv_common.h"
-#include "jfp_iconv_unicode_enhance.h"
-
-#ifdef JAVA_CONV_COMPAT
-#define	JFP_U2E_ICONV_JAVA
-#elif	JFP_ICONV_MS932
-#define	JFP_U2E_ICONV_MS932
-#else
-#define	JFP_U2E_ICONV
-#endif
-#include "jfp_ucs2_to_euc16.h"
-
-#define	DEF_SINGLE	'?'
+#include "jfp_iconv_wchar.h"
 
 iconv_t
 _icv_open_attr(int flag, void *reserved)
@@ -48,8 +34,7 @@ _icv_open_attr(int flag, void *reserved)
 	__icv_state_t *cd;
 
 	if ((cd = __icv_open_attr(flag)) != (__icv_state_t *)-1) {
-		_icv_reset_unicode((void *)cd);
-		cd->replacement = DEF_SINGLE;
+		cd->replacement = PCKWGETA;
 	}
 
 	return ((iconv_t)cd);
@@ -61,17 +46,16 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 {
 	__icv_state_t	*st;
 
-	unsigned char	ic;
-	size_t		rv = (size_t)0;
-	unsigned int	ucs4;
-	unsigned short	euc16;
+	wchar_t		pckwchar;	/* PCK wchar */
+	unsigned int	index;		/* index for table lookup */
+	unsigned char	ic1, ic2;	/* 1st and 2nd bytes of a char */
+	size_t		rv = (size_t)0;	/* return value of this function */
+	unsigned char	oc;
 
 	unsigned char	*ip;
-        size_t		ileft, pre_ileft;
+	size_t		ileft, pre_ileft;
 	char		*op;
-        size_t		oleft;
-
-	int		cset; /* not used but needed for GETU() */
+	size_t		oleft;
 
 	st = (__icv_state_t *)cd;
 
@@ -80,7 +64,6 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	 * and put escape sequence if needed.
 	 */
 	if ((inbuf == NULL) || (*inbuf == NULL)) {
-		_icv_reset_unicode(st);
 		return ((size_t)0);
 	}
 
@@ -91,54 +74,42 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 
 	while (ileft != 0) {
 		pre_ileft = ileft; /* value before reading input bytes */
-		GETU(&ucs4);
+		NGET(ic1, "never fail here"); /* get 1st byte */
 
-		if (ucs4 > 0xffff) {
-			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
-				CALL_NON_IDENTICAL()
-			} else {
-				/* non-BMP */
-				ic = (unsigned char)DEF_SINGLE;
-				NPUT(ic, "DEF for non-BMP");
-			}
-		} else {
-			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
-
-			if(euc16 == 0xffff) {
-				if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
-					CALL_NON_IDENTICAL()
-					goto next;
+		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
+			RESTORE_HEX_ASCII_JUMP(ic1)
+			pckwchar = __get_pckwchar(__ASCII, ic1, NULL);
+			NPUT_WCHAR(pckwchar, "ASCII");
+		} else if (ISSJKANA(ic1)) { /* JIS X 0201 Kana; 1 byte */
+			pckwchar = __get_pckwchar(__PCK_KANA, ic1, NULL);
+			NPUT_WCHAR(pckwchar, "KANA");
+		} else if (ISSJMB_1(ic1)) { /* valid SJIS 1st byte */
+			NGET(ic2, "CS1-2");
+			/*
+			 * mbtowc(3C) return -1 and set EILSEQ when
+			 * the first byte is 0xeb or 0xec. But in
+			 * iconv(3C), it's processed not EILSEQ, but
+			 * non-identical conversion, because it's not
+			 * a detection of illegal byte. The detected
+			 * 0xeb or 0xec should not be discarded.
+			 */
+			if (ISSJKANJI2(ic2)) {
+				if ((ic1 == 0xeb) || (ic1 == 0xec)) {
+					if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
+						CALL_NON_IDENTICAL()
+					} else {
+						NPUT((unsigned char)PCKWGETA, "replacement area");
+					}
 				} else {
-					euc16 = DEF_SINGLE; /* replacement char */
+					pckwchar = __get_pckwchar(__PCK_KANJI, ic1, ic2);
+					NPUT_WCHAR(pckwchar, "KANJI");
 				}
+			} else { /* 2nd byte check failed */
+				RET_EILSEQ("EILSEQ at CS1-2", 2)
 			}
-
-			switch (euc16 & 0x8080) {
-			case 0x0000:	/* CS0 */
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS0");
-				break;
-			case 0x8080:	/* CS1 */
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS1-1");
-				ic = (unsigned char)(euc16 & 0xff);
-				NPUT(ic, "CS1-2");
-				break;
-			case 0x0080:	/* CS2 */
-				NPUT(SS2, "CS2-1");
-				ic = (unsigned char)euc16;
-				NPUT(ic, "CS2-2");
-				break;
-			case 0x8000:	/* CS3 */
-				NPUT(SS3, "E2BIG at CS3-1");
-				ic = (unsigned char)((euc16 >> 8) & 0xff);
-				NPUT(ic, "CS3-2");
-				ic = (unsigned char)(euc16 & CMASK);
-				NPUT(ic | CMSB, "CS3-3");
-				break;
-			}
+		} else { /* 1st byte check failed */
+			RET_EILSEQ("EILSEQ at 1st", 1)
 		}
-
 next:
 		/*
 		 * One character successfully converted so update
@@ -161,8 +132,7 @@ ret:
 }
 
 /* see jfp_iconv_common.h */
-size_t
-__replace_hex(
+size_t __replace_hex(
 	unsigned char	hex,
 	unsigned char	**pip,
 	char		**pop,
@@ -170,16 +140,15 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
+	return (__replace_hex_wchar(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */
-size_t
-__replace_invalid(
+size_t __replace_invalid(
 	unsigned char	**pip,
 	char		**pop,
 	size_t		*poleft,
 	__icv_state_t	*cd)
 {
-	return (__replace_invalid_ascii(pop, poleft, cd));
+	return (__replace_invalid_wchar(pop, poleft, cd));
 }

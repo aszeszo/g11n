@@ -92,6 +92,8 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	char		*op;
 	size_t		oleft;
 
+	__tmpbuf_t	tmpbuf;
+
 	st = (__icv_state_t *)cd;
 
 	/*
@@ -102,6 +104,13 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 		st->_st_cset_sav = st->_st_cset = CS_0;
 		return ((size_t)0);
 	}
+
+	/*
+	 * clear temporary buffer, and set buffer address into the
+	 * conversion descriptor
+	 */
+	__clearbuf(&tmpbuf); /* clear temporary buffer */
+	st->tmpbuf = &tmpbuf;
 
 	cset = st->_st_cset;
 	stat = ST_INIT;
@@ -116,7 +125,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	 */
 
 	while ((int)ileft > 0) {
-		GET(ic);
+		GETB(ic);
 		if (stat == ST_ESC) {
 			if (ic == MBTOG0_1) {
 				if ((int)ileft > 0) {
@@ -335,7 +344,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						/* 1st byte check failed */
 						UNGET_EILSEQ_STATELESS(1)
 					}
-					GET(ic2);
+					GETB(ic2);
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						/* 2nd byte check failed */
 						UNGET_EILSEQ_STATELESS(2)
@@ -397,7 +406,7 @@ __replace_hex(
 	__icv_state_t	*cd,
 	int		caller)
 {
-	return (__replace_hex_ascii(hex, pip, pop, poleft, caller));
+	return (__replace_hex_ascii(hex, pip, pop, poleft, cd, caller));
 }
 
 /* see jfp_iconv_common.h */

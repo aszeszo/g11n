@@ -125,7 +125,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				cset = CS_0;
 			}
 
-			goto cont;
+			goto next;
 		}
 
 		if (ucs4 > 0xffff) {
@@ -155,7 +155,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					if(st->_icv_flag & __ICONV_CONV_REPLACE_HEX) {
 						cset = CS_0;
 					}
-					goto cont;
+					goto next;
 				} else {
 					euc16 = DEF_SINGLE; /* replacement char */
 				}
@@ -224,7 +224,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				break;
 			}
 		}
-cont:
+next:
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
