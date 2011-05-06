@@ -68,7 +68,7 @@
 
 --- rules/base.m_k.part	2010-10-01 15:10:31.046043492 +0200
 +++ rules/base.m_k.part	2010-10-01 15:50:13.182500580 +0200
-@@ -1,11 +1,10 @@
+@@ -1,10 +1,8 @@
    amiga		=	amiga(de)
    ataritt	=	ataritt(de)
    empty         =       empty
@@ -79,10 +79,8 @@
 + $sun_jp	=	sun(type6_jp_usb)
 + $sun		=	sun(type6_usb)
    pc98		=	xfree98(pc98)
-+  jp106		=	sun(type6_jp_usb)
   $applealu	=	macintosh(alukbd)
    macintosh_hhk	=	macintosh(hhk)
-   macintosh_old	=	macintosh(old)
 
 --- rules/base.m_s.part	2010-10-01 15:10:31.036572447 +0200
 +++ rules/base.m_s.part	2010-10-01 16:29:56.382231157 +0200
@@ -92,18 +90,22 @@
    $macs	        =       +inet(apple)
 +  $sun		=	+sun_vndr/solaris(defaults)
 
---- rules/base.ml_c.part	2010-10-01 15:10:31.052773961 +0200
-+++ rules/base.ml_c.part	2010-10-01 15:50:13.173051637 +0200
-@@ -1,3 +1,5 @@
-+ $sun_jp	jp		=	complete+japan(kana_lock)
-+  jp106		jp		=	complete+japan(kana_lock)
+--- rules/base.mlv_c.part   1970-01-01 01:00:00.000000000 +0100 
++++ rules/base.mlv_c.part   2011-02-01 16:38:58.143100534 +0200
+@@ -0,0 +1 @@
++ sun_type7_jp_usb  jp      suncompat   =   complete+japan(kana_lock)
+
+--- rules/base.ml_c.part	Sat Nov 29 16:57:56 2008
++++ rules/base.ml_c.part	Tue Apr 26 15:25:20 2011
+@@ -1,3 +1,4 @@
++  sun_type6_jp_usb	jp	= 	complete+japan(kana_lock)
    pc98		nec_vndr/jp	=	pc98(basic)
    *		jp		=	complete+japan
    olpc         *               =       olpc
 
---- rules/base.ml_s.part	2010-10-01 15:10:31.048127359 +0200
-+++ rules/base.ml_s.part	2010-10-04 10:48:29.467904091 +0200
-@@ -5,18 +5,10 @@
+--- rules/base.ml_s.part	Sat Mar 27 02:35:10 2010
++++ rules/base.ml_s.part	Tue Apr 26 15:23:32 2011
+@@ -5,18 +5,9 @@
    classmate	us			=	pc+%l(classmate)
    empty         *                       =       empty(basic)
    *             empty                   =       empty(basic)
@@ -121,8 +123,7 @@
 -  sun6euro	*			=	pc+sun_vndr/us(type6)+%l%(v)
 + $sun_type6	jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type6)+sun_vndr/solaris(defaults)
 + $sun_type6	tw			=	sun_vndr/us_old(type6)+sun_vndr/tw(type6)
-+ $sun_type7	jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type7)+sun_vndr/solaris(defaults_type7jp)
-+  jp106		jp			=	sun_vndr/us_old(type6)+sun_vndr/jp(type7)+sun_vndr/solaris(defaults_type7jp)
++ $sun_type7	jp			=	pc+jp
    pc98		nec_vndr/jp		=	nec_vndr/jp(pc98)
    macintosh_old	us			=	macintosh_vndr/us(oldmac)
    macintosh_old	en_US			=	macintosh_vndr/us(oldmac)
@@ -159,13 +160,14 @@
 @@ -0,0 +1 @@
 + $sun_type6	$sun_t6_custom	type6	=	+sun_vndr/%l[4]%(v[4]):4
 
---- rules/base.mlv_s.part	2010-10-01 15:10:31.042287877 +0200
-+++ rules/base.mlv_s.part	2010-10-01 16:00:50.812695480 +0200
-@@ -1,3 +1,11 @@
+--- rules/base.mlv_s.part	Mon Dec 21 23:11:44 2009
++++ rules/base.mlv_s.part	Tue Apr 26 15:22:15 2011
+@@ -1,3 +1,12 @@
 + $sun_type6	us		type6		=	pc+sun_vndr/us(type6)
 + $sun_type6	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(de_type6)
 + $sun_type6	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(fr_type6)
 + $sun_type6	$sun_t6_custom	type6		=	pc+sun_vndr/us(type6)+sun_vndr/%l%(v)
++ $sun_type7	jp		suncompat	=	sun_vndr/us_old(type6)+sun_vndr/jp(type7)+sun_vndr/solaris(defaults_type7jp)
 + $sun_type7	us		type6		=	pc+sun_vndr/us(type6)
 + $sun_type7	ch		de_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(de_type6)
 + $sun_type7	ch		fr_type6	=	pc+sun_vndr/us(type6)+sun_vndr/ch(fr_type6)
@@ -174,8 +176,19 @@
    classmate	us		alt-intl	=	pc+us(classmate-alt-intl)
    classmate	us		altgr-intl	=	pc+us(classmate-altgr-intl)
 
---- rules/base.xml.in	2010-10-01 15:10:31.038444923 +0200
-+++ rules/base.xml.in	2010-10-01 16:12:09.943957215 +0200
+--- rules/base.o_s.part	Tue May  4 22:23:25 2010
++++ rules/base.o_s.part	Tue Apr 26 15:14:20 2011
+@@ -119,6 +119,7 @@
+   shift:both_shiftlock               =       +shift(both_shiftlock)
+   shift:lshift_both_shiftlock        =       +shift(lshift_both_shiftlock)
+   shift:rshift_both_shiftlock        =       +shift(rshift_both_shiftlock)
++  solaris:sun_compat                 =       +sun_vndr/solaris(sun_compat)
+   lv3:caps_switch                    =       +level3(caps_switch)
+   lv3:bksl_switch                    =       +level3(bksl_switch)
+   lv3:lsgt_switch                    =       +level3(lsgt_switch)
+
+--- rules/base.xml.in	Fri May  7 00:40:58 2010
++++ rules/base.xml.in	Tue Apr 26 15:38:34 2011
 @@ -1,5 +1,27 @@
  <?xml version="1.0" encoding="utf-8"?>
  <!DOCTYPE xkbConfigRegistry SYSTEM "xkb.dtd">
@@ -204,7 +217,7 @@
  <xkbConfigRegistry>
    <modelList>
      <model>
-@@ -1170,8 +1192,85 @@
+@@ -1170,13 +1192,90 @@
      </model>
      <model>
        <configItem>
@@ -212,11 +225,11 @@
 -        <_description>Sun Type 5/6</_description>
 +        <name>sun_type7_usb</name>
 +        <_description>Sun Type 7 USB</_description>
-+        <vendor>Sun Microsystems</vendor>
-+      </configItem>
-+    </model>
-+    <model>
-+      <configItem>
+         <vendor>Sun Microsystems</vendor>
+       </configItem>
+     </model>
+     <model>
+       <configItem>
 +        <name>sun_type7_euro_usb</name>
 +        <_description>Sun Type 7 USB (European layout)</_description>
 +        <vendor>Sun Microsystems</vendor>
@@ -289,9 +302,14 @@
 +      <configItem>
 +        <name>sun_type6_unix</name>
 +        <_description>Sun Type 6 (Unix layout)</_description>
-         <vendor>Sun Microsystems</vendor>
-       </configItem>
-     </model>
++        <vendor>Sun Microsystems</vendor>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
+         <name>targa_v811</name>
+         <_description>Targa Visionary 811</_description>
+         <vendor>Targa</vendor>
 @@ -1316,6 +1415,12 @@
          </variant>
          <variant>
@@ -474,7 +492,20 @@
        </variantList>
      </layout>
      <layout>
-@@ -3065,6 +3248,12 @@
+@@ -2914,6 +3097,12 @@
+             <_description>Macintosh</_description>
+           </configItem>
+         </variant>
++        <variant>
++          <configItem>
++            <name>suncompat</name>
++            <_description>Sun Japanese keyboard compatible</_description>
++          </configItem>
++        </variant>
+       </variantList>
+     </layout>
+     <layout>
+@@ -3065,6 +3254,12 @@
              <_description>LEKPa</_description>
            </configItem>
          </variant>
@@ -487,7 +518,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3093,6 +3282,12 @@
+@@ -3093,6 +3288,12 @@
              <_description>F-letter (F) variant</_description>
            </configItem>
          </variant>
@@ -500,7 +531,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3243,6 +3438,12 @@
+@@ -3243,6 +3444,12 @@
              <_description>Macintosh, eliminate dead keys</_description>
            </configItem>
          </variant>
@@ -513,7 +544,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3297,6 +3498,12 @@
+@@ -3297,6 +3504,12 @@
              <_description>Programmer Dvorak</_description>
            </configItem>
          </variant>
@@ -526,7 +557,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3356,6 +3563,12 @@
+@@ -3356,6 +3569,12 @@
              <languageList><iso639Id>epo</iso639Id></languageList>
            </configItem>
          </variant>
@@ -539,7 +570,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3418,6 +3631,12 @@
+@@ -3418,6 +3637,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -552,7 +583,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3542,6 +3761,12 @@
+@@ -3542,6 +3767,12 @@
              <languageList><iso639Id>bak</iso639Id></languageList>
            </configItem>
          </variant>
@@ -565,7 +596,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3651,6 +3876,12 @@
+@@ -3651,6 +3882,12 @@
              <_description>qwerty, extended Backslash</_description>
            </configItem>
          </variant>
@@ -578,7 +609,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3705,6 +3936,12 @@
+@@ -3705,6 +3942,12 @@
              <_description>Macintosh</_description>
            </configItem>
          </variant>
@@ -591,7 +622,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3760,6 +3997,12 @@
+@@ -3760,6 +4003,12 @@
              <_description>Svdvorak</_description>
            </configItem>
          </variant>
@@ -604,7 +635,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -3823,6 +4066,18 @@
+@@ -3823,6 +4072,18 @@
              <_description>German (Macintosh)</_description>
            </configItem>
          </variant>
@@ -623,7 +654,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -4004,6 +4259,12 @@
+@@ -4004,6 +4265,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -636,7 +667,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -4079,6 +4340,12 @@
+@@ -4079,6 +4346,12 @@
              <languageList><iso639Id>crh</iso639Id></languageList>
            </configItem>
          </variant>
@@ -649,7 +680,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -4125,6 +4392,12 @@
+@@ -4125,6 +4398,12 @@
              <_description>Colemak</_description>
            </configItem>
          </variant>
@@ -662,7 +693,7 @@
        </variantList>
      </layout>
      <layout>
-@@ -4187,6 +4460,12 @@
+@@ -4187,6 +4466,12 @@
  	    <_description>101/104 key Compatible</_description>
  	  </configItem>
  	</variant>
@@ -675,6 +706,286 @@
        </variantList>
      </layout>
      <layout>
+@@ -5472,6 +5757,18 @@
+        </configItem>
+       </option>
+     </group>
++    <group allowMultipleSelection="true">
++      <configItem>
++        <name>solaris</name>
++        <_description>Maintain key compatibility with old Solaris keycodes</_description>
++      </configItem>
++      <option>
++        <configItem>
++          <name>solaris:sun_compat</name>
++          <_description>Sun Key compatibility</_description>
++        </configItem>
++      </option>
++    </group>
+     <group allowMultipleSelection="true">
+       <configItem>
+         <name>terminate</name>
+
+--- rules/HDR	2011-04-28 14:48:26.370943004 +0200
++++ rules/HDR	2011-04-28 14:50:42.082943002 +0200
+@@ -20,6 +20,7 @@
+ ! layout[2]	variant[2]	=	compat
+ ! layout[3]	variant[3]	=	compat
+ ! layout[4]	variant[4]	=	compat
++! model		layout		variant		=	compat
+ ! model		layout		=	compat
+ ! model		layout[1]	=	compat
+ ! model		=	types
+
+--- rules/Makefile.am	2011-04-27 11:10:48.505939998 +0200
++++ rules/Makefile.am	2011-04-27 11:34:44.025939972 +0200
+@@ -33,19 +33,20 @@
+ HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
+ HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
+ HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
+-HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
++HDR compat/base.ml1v1_s.part    extras/base.ml1v1_s.part    base.ml1v1_s.part \
+ HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
+ HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
+ HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
+-HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
+-HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
+-HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
++HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part  base.ml2v2_s.part \
++HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part  base.ml3v3_s.part \
++HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part  base.ml4v4_s.part \
+ HDR base.m_s.part \
+ HDR compat/base.lv_c.part   \
+ HDR compat/base.l1v1_c.part \
+ HDR compat/base.l2v2_c.part \
+ HDR compat/base.l3v3_c.part \
+ HDR compat/base.l4v4_c.part \
++HDR base.mlv_c.part \
+ HDR base.ml_c.part \
+ HDR base.ml1_c.part \
+ HDR base.m_t.part \
+@@ -69,19 +70,20 @@
+ HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
+ HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
+ HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
+-HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
++HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part base.ml1v1_s.part \
+ HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
+ HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
+ HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
+-HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
+-HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
+-HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
++HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part  base.ml2v2_s.part \
++HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part  base.ml3v3_s.part \
++HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part  base.ml4v4_s.part \
+ HDR evdev.m_s.part \
+ HDR compat/base.lv_c.part   \
+ HDR compat/base.l1v1_c.part \
+ HDR compat/base.l2v2_c.part \
+ HDR compat/base.l3v3_c.part \
+ HDR compat/base.l4v4_c.part \
++HDR base.mlv_c.part \
+ HDR base.ml_c.part \
+ HDR base.ml1_c.part \
+ HDR base.m_t.part \
+@@ -106,19 +108,20 @@
+ HDR extras/base.mlv_s.part   base.mlv_s.part \
+ HDR extras/base.ml_s.part    base.ml_s.part  \
+ HDR extras/base.ml1_s.part   base.ml1_s.part \
+-HDR extras/base.ml1v1_s.part \
++HDR extras/base.ml1v1_s.part base.ml1v1_s.part \
+ HDR extras/base.ml2_s.part    base.ml2_s.part  \
+ HDR extras/base.ml3_s.part    base.ml3_s.part  \
+ HDR extras/base.ml4_s.part    base.ml4_s.part  \
+-HDR extras/base.ml2v2_s.part \
+-HDR extras/base.ml3v3_s.part \
+-HDR extras/base.ml4v4_s.part \
++HDR extras/base.ml2v2_s.part    base.ml2v2_s.part \
++HDR extras/base.ml3v3_s.part    base.ml3v3_s.part \
++HDR extras/base.ml4v4_s.part    base.ml4v4_s.part \
+ HDR base.m_s.part \
+ HDR \
+ HDR \
+ HDR \
+ HDR \
+ HDR \
++HDR base.mlv_c.part \
+ HDR base.ml_c.part \
+ HDR base.ml1_c.part \
+ HDR base.m_t.part \
+@@ -141,19 +144,20 @@
+ HDR extras/base.mlv_s.part   base.mlv_s.part \
+ HDR extras/base.ml_s.part    base.ml_s.part  \
+ HDR extras/base.ml1_s.part   base.ml1_s.part \
+-HDR extras/base.ml1v1_s.part \
++HDR extras/base.ml1v1_s.part base.ml1v1_s.part \
+ HDR extras/base.ml2_s.part    base.ml2_s.part  \
+ HDR extras/base.ml3_s.part    base.ml3_s.part  \
+ HDR extras/base.ml4_s.part    base.ml4_s.part  \
+-HDR extras/base.ml2v2_s.part \
+-HDR extras/base.ml3v3_s.part \
+-HDR extras/base.ml4v4_s.part \
++HDR extras/base.ml2v2_s.part    base.ml2v2_s.part \
++HDR extras/base.ml3v3_s.part    base.ml3v3_s.part \
++HDR extras/base.ml4v4_s.part    base.ml4v4_s.part \
+ HDR evdev.m_s.part \
+ HDR \
+ HDR \
+ HDR \
+ HDR \
+ HDR \
++HDR base.mlv_c.part \
+ HDR base.ml_c.part \
+ HDR base.ml1_c.part \
+ HDR base.m_t.part \
+@@ -179,10 +183,15 @@
+ base.mlv_s.part \
+ base.ml_s.part \
+ base.ml1_s.part \
++base.ml1v1_s.part \
+ base.ml2_s.part \
+ base.ml3_s.part \
+ base.ml4_s.part \
++base.ml2v2_s.part \
++base.ml3v3_s.part \
++base.ml4v4_s.part \
+ base.m_s.part \
++base.mlv_c.part \
+ base.ml_c.part \
+ base.ml1_c.part \
+ base.m_t.part \
+
+--- rules/Makefile.in	2011-04-27 11:10:48.509939998 +0200
++++ rules/Makefile.in	2011-04-27 11:46:35.421940049 +0200
+@@ -231,19 +231,20 @@
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.mlv_s.part   base.mlv_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml_s.part    base.ml_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml1_s.part   base.ml1_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml1v1_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml1v1_s.part    base.ml1v1_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml2_s.part    base.ml2_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml3_s.part    base.ml3_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml4_s.part    base.ml4_s.part  \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml2v2_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml3v3_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml4v4_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml2v2_s.part    base.ml2v2_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml3v3_s.part    base.ml3v3_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml4v4_s.part    base.ml4v4_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.m_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
++@USE_COMPAT_RULES_FALSE@HDR base.mlv_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.ml_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.ml1_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.m_t.part \
+@@ -267,19 +268,20 @@
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part    base.ml1v1_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part   base.ml2v2_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part   base.ml3v3_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part   base.ml4v4_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.m_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.lv_c.part   \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l1v1_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l2v2_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l3v3_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l4v4_c.part \
++@USE_COMPAT_RULES_TRUE@HDR base.mlv_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.ml_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.ml1_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.m_t.part \
+@@ -302,19 +304,20 @@
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.mlv_s.part   base.mlv_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml_s.part    base.ml_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml1_s.part   base.ml1_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml1v1_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml1v1_s.part    base.ml1v1_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml2_s.part    base.ml2_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml3_s.part    base.ml3_s.part  \
+ @USE_COMPAT_RULES_FALSE@HDR extras/base.ml4_s.part    base.ml4_s.part  \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml2v2_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml3v3_s.part \
+-@USE_COMPAT_RULES_FALSE@HDR extras/base.ml4v4_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml2v2_s.part    base.ml2v2_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml3v3_s.part    base.ml3v3_s.part \
++@USE_COMPAT_RULES_FALSE@HDR extras/base.ml4v4_s.part    base.ml4v4_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR evdev.m_s.part \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
+ @USE_COMPAT_RULES_FALSE@HDR \
++@USE_COMPAT_RULES_FALSE@HDR base.mlv_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.ml_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.ml1_c.part \
+ @USE_COMPAT_RULES_FALSE@HDR base.m_t.part \
+@@ -338,19 +341,20 @@
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part    base.ml1v1_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
+-@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part   base.ml2v2_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part   base.ml3v3_s.part \
++@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part   base.ml4v4_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR evdev.m_s.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.lv_c.part   \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l1v1_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l2v2_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l3v3_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR compat/base.l4v4_c.part \
++@USE_COMPAT_RULES_TRUE@HDR base.mlv_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.ml_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.ml1_c.part \
+ @USE_COMPAT_RULES_TRUE@HDR base.m_t.part \
+@@ -374,10 +378,15 @@
+ base.mlv_s.part \
+ base.ml_s.part \
+ base.ml1_s.part \
++base.ml1v1_s.part \
+ base.ml2_s.part \
+ base.ml3_s.part \
+ base.ml4_s.part \
++base.ml2v2_s.part \
++base.ml3v3_s.part \
++base.ml4v4_s.part \
+ base.m_s.part \
++base.mlv_c.part \
+ base.ml_c.part \
+ base.ml1_c.part \
+ base.m_t.part \
+
+--- rules/compat/layoutsMapping.lst	2011-04-27 11:10:48.509939998 +0200
++++ rules/compat/layoutsMapping.lst	2011-04-27 14:53:23.009939998 +0200
+@@ -14,7 +14,7 @@
+ lo	la
+ kan	in(kan)
+ mi	mao
+-ml	in(mal)
++mal	in(mal)
+ ogham	ie(ogam)
+ ori	ie(ori)
+ sapmi	no(smi)
 
 --- symbols/ara	2010-10-01 15:10:31.127104254 +0200
 +++ symbols/ara	2010-10-04 11:46:41.549644345 +0200
@@ -689,57 +1000,57 @@
 +    name[Group1]= "Arabic - type6";
 +    include "us(basic)"
 +
-+    key <TLDE> {  [   Arabic_thal,      Arabic_shadda, grave,    asciitilde   ]	};
-+    key <AE01> {  [               1,          exclam, 1,          exclam      ] };
-+    key <AE02> {  [               2,              at, 2,              at      ] };
-+    key <AE03> {  [               3,      numbersign, 3,      numbersign      ] };
-+    key <AE04> {  [               4,          dollar, 4,          dollar      ] };
-+    key <AE05> {  [               5,         percent, 5,         percent      ] };
-+    key <AE06> {  [               6,     asciicircum, 6,     asciicircum      ] };
-+    key <AE07> {  [               7,       ampersand, 7,       ampersand      ] };
-+    key <AE08> {  [               8,        asterisk, 8,        asterisk      ] };
-+    key <AE09> {  [               9,      parenright, 9,      parenright      ] };
-+    key <AE10> {  [               0,       parenleft, 0,       parenleft      ] };
-+    key <AE11> {  [       minus,      underscore, minus,      underscore      ] };
-+    key <AE12> {  [       equal,            plus, equal,            plus      ] };
-+						
-+    key <AD01> {  [      Arabic_dad,     Arabic_fatha, q,    Q     ]     };
-+    key <AD02> {  [      Arabic_sad,     Arabic_fathatan, w,    W  ]     };
-+    key <AD03> {  [     Arabic_theh,     Arabic_damma, e,    E     ]     };
-+    key <AD04> {  [      Arabic_qaf,     Arabic_dammatan, r,    R  ]     };
-+    key <AD05> {  [      Arabic_feh,     0x100fef9, t,    T        ]     };
-+    key <AD06> {  [   Arabic_ghain, Arabic_hamzaunderalef, y,    Y ]     };
-+    key <AD07> {  [      Arabic_ain,         grave, u,    U        ]     };
-+    key <AD08> {  [       Arabic_ha,        division, i,    I      ]     };
-+    key <AD09> {  [     Arabic_khah,       multiply, o,    O       ]     };
-+    key <AD10> {  [      Arabic_hah,   Arabic_semicolon, p,    P  ]     };
-+    key <AD11> {  [     Arabic_jeem,        greater, bracketleft,  braceleft       ]     };
-+    key <AD12> {  [      Arabic_dal,        less,    bracketright, braceright      ]     };
++    key <TLDE> { [ Arabic_thal, Arabic_shadda, grave,  asciitilde ] };
++    key <AE01> { [   0x1000661,        exclam, 1,          exclam ] };
++    key <AE02> { [   0x1000662,            at, 2,              at ] };
++    key <AE03> { [   0x1000663,    numbersign, 3,      numbersign ] };
++    key <AE04> { [   0x1000664,        dollar, 4,          dollar ] };
++    key <AE05> { [   0x1000665,       percent, 5,         percent ] };
++    key <AE06> { [   0x1000666,   asciicircum, 6,     asciicircum ] };
++    key <AE07> { [   0x1000667,     ampersand, 7,       ampersand ] };
++    key <AE08> { [   0x1000668,      asterisk, 8,        asterisk ] };
++    key <AE09> { [   0x1000669,    parenright, 9,      parenright ] };
++    key <AE10> { [   0x1000660,     parenleft, 0,       parenleft ] };
++    key <AE11> { [       minus,    underscore, minus,  underscore ] };
++    key <AE12> { [       equal,          plus, equal,        plus ] };
++                                                
++    key <AD01> { [   Arabic_dad, Arabic_fatha,          q,            Q          ] };
++    key <AD02> { [   Arabic_sad, Arabic_fathatan,       w,            W          ] };
++    key <AD03> { [  Arabic_theh, Arabic_damma,          e,            E          ] };
++    key <AD04> { [   Arabic_qaf, Arabic_dammatan,       r,            R          ] };
++    key <AD05> { [   Arabic_feh, 0x100fef9,             t,            T          ] };
++    key <AD06> { [ Arabic_ghain, Arabic_hamzaunderalef, y,            Y          ] };
++    key <AD07> { [   Arabic_ain, grave,                 u,            U          ] };
++    key <AD08> { [    Arabic_ha, division,              i,            I          ] };
++    key <AD09> { [  Arabic_khah, multiply,              o,            O          ] };
++    key <AD10> { [   Arabic_hah, Arabic_semicolon,      p,            P          ] };
++    key <AD11> { [  Arabic_jeem, greater,               bracketleft,  braceleft  ] };
++    key <AD12> { [   Arabic_dal, less,                  bracketright, braceright ] };
 +
-+    key <AC01> {  [    Arabic_sheen,   Arabic_kasra, a,    A       ]     };
-+    key <AC02> {  [     Arabic_seen,   Arabic_kasratan, s,    S    ]     };
-+    key <AC03> {  [      Arabic_yeh,       bracketright, d,    D   ]     };
-+    key <AC04> {  [      Arabic_beh,       bracketleft, f,    F    ]     };
-+    key <AC05> {  [      Arabic_lam,       0x100fef7, g,    G      ]     };
-+    key <AC06> {  [     Arabic_alef,   Arabic_hamzaonalef, h,    H ]     };
-+    key <AC07> {  [      Arabic_teh,      Arabic_tatweel, j,    J  ]     };
-+    key <AC08> {  [     Arabic_noon,      Arabic_comma, k,    K    ]     };
-+    key <AC09> {  [     Arabic_meem,         slash, l,    L        ]     };
-+    key <AC10> {  [      Arabic_kaf,           colon, semicolon,    colon      ]     };
-+    key <AC11> {  [      Arabic_tah,        quotedbl, apostrophe,   quotedbl      ]     };
-+    key <BKSL> {  [       backslash,             bar, backslash,             bar      ]     };
++    key <AC01> { [ Arabic_sheen, Arabic_kasra,       a,          A        ] };
++    key <AC02> { [  Arabic_seen, Arabic_kasratan,    s,          S        ] };
++    key <AC03> { [   Arabic_yeh, bracketright,       d,          D        ] };
++    key <AC04> { [   Arabic_beh, bracketleft,        f,          F        ] };
++    key <AC05> { [   Arabic_lam, 0x100fef7,          g,          G        ] };
++    key <AC06> { [  Arabic_alef, Arabic_hamzaonalef, h,          H        ] };
++    key <AC07> { [   Arabic_teh, Arabic_tatweel,     j,          J        ] };
++    key <AC08> { [  Arabic_noon, Arabic_comma,       k,          K        ] };
++    key <AC09> { [  Arabic_meem, slash,              l,          L        ] };
++    key <AC10> { [   Arabic_kaf, colon,              semicolon,  colon    ] };
++    key <AC11> { [   Arabic_tah, quotedbl,           apostrophe, quotedbl ] };
++    key <BKSL> { [    backslash, bar,                backslash,  bar      ] };
 +
-+    key <LSGT> {  [             bar,      brokenbar, bar,      brokenbar	  ]     };
-+    key <AB01> {  [Arabic_hamzaonyeh,    asciitilde, z,    Z       ]     };
-+    key <AB02> {  [    Arabic_hamza,      Arabic_sukun, x,    X    ]     };
-+    key <AB03> {  [Arabic_hamzaonwaw,      braceright, c,    C     ]     };
-+    key <AB04> {  [       Arabic_ra,       braceleft, v,    V      ]     };
-+    key <AB05> {  [       0x100fefb,       0x100fef5, b,    B      ]     };
-+    key <AB06> {  [Arabic_alefmaksura, Arabic_maddaonalef, n,    N ]     };
-+    key <AB07> {  [Arabic_tehmarbuta,    apostrophe, m,    M       ]     };
-+    key <AB08> {  [      Arabic_waw,         comma,  comma,    less        ]     };
-+    key <AB09> {  [     Arabic_zain,         period, period,    greater       ]     };
-+    key <AB10> {  [      Arabic_zah, Arabic_question_mark, slash,    question ]     };
++    key <LSGT> { [                bar,            brokenbar,    bar, brokenbar ] };
++    key <AB01> { [  Arabic_hamzaonyeh,           asciitilde,      z, Z         ] };
++    key <AB02> { [       Arabic_hamza,         Arabic_sukun,      x, X         ] };
++    key <AB03> { [  Arabic_hamzaonwaw,           braceright,      c, C         ] };
++    key <AB04> { [          Arabic_ra,            braceleft,      v, V         ] };
++    key <AB05> { [          0x100fefb,            0x100fef5,      b, B         ] };
++    key <AB06> { [ Arabic_alefmaksura,   Arabic_maddaonalef,      n, N         ] };
++    key <AB07> { [  Arabic_tehmarbuta,           apostrophe,      m, M         ] };
++    key <AB08> { [         Arabic_waw,                comma,  comma, less      ] };
++    key <AB09> { [        Arabic_zain,               period, period, greater   ] };
++    key <AB10> { [         Arabic_zah, Arabic_question_mark,  slash, question  ] };
 +
 +	include "level3(ralt_switch)"
 +
@@ -1421,6 +1732,46 @@
 +
 +};
 
+--- symbols/in	Tue Apr 12 13:33:18 2011
++++ symbols/in	Tue Apr 12 13:40:29 2011
+@@ -85,7 +85,7 @@
+ 	key <AB10> { [ U092f, U095f, slash, question ] };
+ 
+ 	// space, space, Zero-Width-Non-Joiner (ZWNJ), Zero-Width-Joiner (ZWJ):
+-	include "nbsp(zwnj3zwj4)";
++	include "nbsp(zwnj3zwj4)"
+ };
+ 
+ //Name		:	Bolnagri (Combined)
+@@ -1263,7 +1263,7 @@
+   key <AB10> { [	U092F,	U095F ] }; // DEVANAGARI LETTER YA; DEVANAGARI LETTER YYA
+ 
+   // space, space, Zero-Width-Non-Joiner (ZWNJ), Zero-Width-Joiner (ZWJ):
+-  include "nbsp(zwnj3zwj4)";
++  include "nbsp(zwnj3zwj4)"
+ 
+   include "group(olpc)"
+ };
+
+--- symbols/ir	Tue Apr 12 13:33:18 2011
++++ symbols/ir	Tue Apr 12 13:41:33 2011
+@@ -18,11 +18,11 @@
+ xkb_symbols "pes" {
+     name[Group1]= "Iran";
+ 
+-    include "ir(pes_part_basic)";
+-    include "ir(pes_part_ext)";
++    include "ir(pes_part_basic)"
++    include "ir(pes_part_ext)"
+ 
+-    include "nbsp(zwnj2nb3nnb4)";
+-    include "level3(ralt_switch)";
++    include "nbsp(zwnj2nb3nnb4)"
++    include "level3(ralt_switch)"
+ };
+
+
+
 --- symbols/it	2010-10-01 15:10:31.086176555 +0200
 +++ symbols/it	2010-10-04 13:09:49.983979186 +0200
 @@ -216,3 +216,33 @@
@@ -1480,6 +1831,18 @@
 +
 +};
 +
+
+--- symbols/lk	Tue Apr 12 13:33:18 2011
++++ symbols/lk	Tue Apr 12 13:42:23 2011
+@@ -74,7 +74,7 @@
+   key <AB10> { [ any, any, 0x0100200d, NoSymbol ] };
+ 
+   // Space
+-  include "nbsp(zwnj2nb3s)";
++  include "nbsp(zwnj2nb3s)"
+ 
+   include "level3(ralt_switch)"
+ };
 
 --- symbols/lt	2010-10-01 15:10:31.105127622 +0200
 +++ symbols/lt	2010-10-04 13:12:02.594230636 +0200
@@ -2077,6 +2440,18 @@
 +};
 +
 
+--- symbols/sy	Tue Apr 12 13:33:19 2011
++++ symbols/sy	Tue Apr 12 13:42:53 2011
+@@ -68,7 +68,7 @@
+     // End Alphanumeric Section
+ 
+     // Space
+-    include "nbsp(zwnj2)";
++    include "nbsp(zwnj2)"
+     
+     // Begin Modifier Mappings
+     
+
 --- symbols/tr	2010-10-01 15:10:31.088341664 +0200
 +++ symbols/tr	2010-10-04 13:22:28.951088334 +0200
 @@ -354,3 +354,41 @@
@@ -2221,45 +2596,3 @@
 +
 +    key <SYRQ> { [ SunSys_Req                   ]};
 +};
-
---- rules/Makefile.in	2010-10-01 15:23:12.828588204 +0200
-+++ rules/Makefile.in	2010-10-08 11:27:36.089394738 +0200
-@@ -267,13 +267,13 @@
- @USE_COMPAT_RULES_TRUE@HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
--@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
-+@USE_COMPAT_RULES_TRUE@HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part	base.ml1v1_s.part \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
--@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
--@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
--@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
-+@USE_COMPAT_RULES_TRUE@HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part	base.ml2v2_s.part \
-+@USE_COMPAT_RULES_TRUE@HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part	base.ml3v3_s.part \
-+@USE_COMPAT_RULES_TRUE@HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part	base.ml4v4_s.part \
- @USE_COMPAT_RULES_TRUE@HDR base.m_s.part \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.lv_c.part   \
- @USE_COMPAT_RULES_TRUE@HDR compat/base.l1v1_c.part \
-
---- rules/Makefile.am	2010-10-01 15:23:12.829718403 +0200
-+++ rules/Makefile.am	2010-10-08 11:26:09.962269852 +0200
-@@ -33,13 +33,13 @@
- HDR compat/base.mlv_s.part   extras/base.mlv_s.part   base.mlv_s.part \
- HDR compat/base.ml_s.part    extras/base.ml_s.part    base.ml_s.part  \
- HDR compat/base.ml1_s.part   extras/base.ml1_s.part   base.ml1_s.part \
--HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part \
-+HDR compat/base.ml1v1_s.part extras/base.ml1v1_s.part	base.ml1v1_s.part \
- HDR compat/base.ml2_s.part    extras/base.ml2_s.part    base.ml2_s.part  \
- HDR compat/base.ml3_s.part    extras/base.ml3_s.part    base.ml3_s.part  \
- HDR compat/base.ml4_s.part    extras/base.ml4_s.part    base.ml4_s.part  \
--HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part \
--HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part \
--HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part \
-+HDR compat/base.ml2v2_s.part  extras/base.ml2v2_s.part	base.ml2v2_s.part \
-+HDR compat/base.ml3v3_s.part  extras/base.ml3v3_s.part	base.ml3v3_s.part \
-+HDR compat/base.ml4v4_s.part  extras/base.ml4v4_s.part	base.ml4v4_s.part \
- HDR base.m_s.part \
- HDR compat/base.lv_c.part   \
- HDR compat/base.l1v1_c.part \

@@ -5,7 +5,7 @@
 # Common Development and Distribution License (the "License").
 # You may not use this file except in compliance with the License.
 #
-# You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
 # or http://www.opensolaris.org/os/licensing.
 # See the License for the specific language governing permissions
 # and limitations under the License.
@@ -31,8 +31,6 @@ TARBALL		= $(VER).tar.gz
 SOURCE_URL	= http://people.freedesktop.org/~svu/$(TARBALL)
 
 SOURCE_PATCH	= sun-additions.patch
-
-SOURCE_PATCH_TMP	= sun-additions-tmp.patch
 
 TARGETDIR	= $(FILEROOT)/usr/share/X11/xkb
 
@@ -74,15 +72,7 @@ $(VER)/config.status:	$(VER)/.patched
 			  PATH=/usr/gnu/bin:/usr/X11/bin:$$PATH && export PATH; \
 			  ./configure )
 
-# The following patch is temporarily needed due to
-# current issues in upstream xkeyboard-config. Once 
-# the sources are fixed we will remove this patch.
-$(VER)/.patched_tmp:        $(VER)/.built
-			( cd $(VER); \
-			gpatch -p0 < ../$(SOURCE_PATCH_TMP) )
-			touch $@
-
-$(VER)/.copied:		$(VER)/.patched_tmp
+$(VER)/.copied:		$(VER)/.built
 			for i in `cd sun-src ; find . -type f -print` ; \
 			do \
 			mkdir -p $(VER)/`dirname $$i` ; \
