@@ -382,9 +382,9 @@ ILLEGAL_CHAR:
 }
 
 
-int _icv_iconvctl(STATE_T *cd, int req, void *arg)
+int
+_icv_iconvctl(STATE_T *cd, int req, void *arg)
 {
-	return _icv_flag_action(&cd->flags, req, (int *)arg,
-	    ICONVCTL_NO_TRANSLIT);
+	return _icv_flag_action(&cd->flags, req, (int *)arg, 0);
 }
 

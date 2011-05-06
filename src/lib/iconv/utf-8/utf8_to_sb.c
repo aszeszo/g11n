@@ -56,7 +56,7 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 	uchar_t *ob;
 	uchar_t *ibtail;
 	uchar_t *obtail;
-       	int f;
+	int f;
 	size_t len;
 
 
