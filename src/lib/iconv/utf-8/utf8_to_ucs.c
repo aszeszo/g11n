@@ -163,8 +163,13 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 			}
 		}
 
-		if ((ibtail - ib) < sz)
+		if ((ibtail - ib) < sz) {
+			if (f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			ERR_INT(EINVAL);
+		}
 
 		u4 = (uint_t)(*ib & masks_tbl[sz]);
 		for (i = 1; i < sz; i++) {
@@ -289,6 +294,8 @@ ILLEGAL_CHAR:
 				continue;
 
 			} else if (f & ICONV_REPLACE_INVALID) {
+INCOMPLETE_CHAR:
+				u4_2 = 0;
 				obsz = (cd->bom_written) ? ICV_FETCH_UCS_SIZE
 				    : ICV_FETCH_UCS_SIZE_TWO;
 				CHECK_OB_AND_BOM(obsz, cd->bom_written);

@@ -80,6 +80,7 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 	uint_t u4;
 	uint_t u4_2;
 	int i, f;
+	signed char sz;
 
 
 	if (! cd) {
@@ -120,8 +121,13 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 	defined(UCS_2_LITTLE_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN) || \
 	defined(UTF_16_LITTLE_ENDIAN) || defined(UTF_32_LITTLE_ENDIAN)
 	if (! cd->bom_written) {
-		if ((ibtail - ib) < ICV_FETCH_UCS_SIZE)
+		if ((ibtail - ib) < ICV_FETCH_UCS_SIZE) {
+			if (f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			ERR_INT(EINVAL);
+		}
 
 		for (u4 = 0, i = 0; i < ICV_FETCH_UCS_SIZE; i++)
 			u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
@@ -141,15 +147,21 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 
 	while (ib < ibtail) {
 		int l, h;
+		signed char sz = 0;
 
 
 		i = _ucs_getc(cd->little_endian, (char **)&ib,
 		    ibtail - ib, &u4, &u4_2);
-		if (i == -1)
+		sz = (u4_2) ? ICV_FETCH_UCS_SIZE_TWO : ICV_FETCH_UCS_SIZE;
+		if (i == -1) {
+			if (errno == EINVAL && f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			return (-1);
+		}
 		if (i == -2)
 			goto ILLEGAL_CHAR;
-
 
 		/* Handle RESTORE_HEX */
 
@@ -226,9 +238,6 @@ NON_IDENTICAL_CHAR:
 		ret_val++;
 
 		if (f) {
-			int sz = (u4_2) ? ICV_FETCH_UCS_SIZE_TWO :
-				ICV_FETCH_UCS_SIZE;
-
 			if (f & ICONV_CONV_NON_IDENTICAL_DISCARD) {
 				ib += sz;
 				continue;
@@ -253,9 +262,6 @@ ILLEGAL_CHAR:
 		 * Handle ILLEGAL and REPLACE_INVALID
 		 */
 		if (f) {
-			int sz = (u4_2) ? ICV_FETCH_UCS_SIZE_TWO :
-				ICV_FETCH_UCS_SIZE;
-
 			if (f & ICONV_CONV_ILLEGAL_DISCARD) {
 				ib += sz;
 				continue;
@@ -269,6 +275,7 @@ ILLEGAL_CHAR:
 				continue;
 
 			} else if (f & ICONV_REPLACE_INVALID) {
+INCOMPLETE_CHAR:
 				CHECK_OB(1);
 				*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
 				ib += sz;

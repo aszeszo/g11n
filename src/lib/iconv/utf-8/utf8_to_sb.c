@@ -137,8 +137,13 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 		}
 
 		/* sz > 1 */
-		if ((ibtail - ib) < sz)
+		if ((ibtail - ib) < sz) {
+			if (f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			ERR_INT(EINVAL);
+		}
 
 		u8 = *ib;
 		for (i = 1; i < sz; i++) {
@@ -243,6 +248,7 @@ ILLEGAL_CHAR:
 				continue;
 
 			} else if (f & ICONV_REPLACE_INVALID) {
+INCOMPLETE_CHAR:
 				CHECK_OB(1);
 				*ob++ = ICV_CHAR_ASCII_REPLACEMENT;
 				ib += sz;

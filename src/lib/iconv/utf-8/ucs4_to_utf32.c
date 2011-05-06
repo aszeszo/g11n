@@ -91,6 +91,7 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 	uint_t u4;
 	uint_t u4_2;
 	int i, f;
+	signed char sz;
 
 
 	if (! cd) {
@@ -130,8 +131,13 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 
 #if defined(UCS_4) || defined(UCS_4_BIG_ENDIAN) || defined(UCS_4_LITTLE_ENDIAN)
 	if (! cd->input.bom_written) {
-		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE)
+		if ((ibtail - ib) < ICV_FETCH_UCS4_SIZE) {
+			if (f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			ERR_INT(EINVAL);
+		}
 
 		for (u4 = 0, i = 0; i < ICV_FETCH_UCS4_SIZE; i++)
 			u4 = (u4 << 8) | ((uint_t)(*(ib + i)));
@@ -155,8 +161,14 @@ _icv_iconv(STATE_T *cd, char **inbuf, size_t *inbufleft,
 
 		i = _ucs_getc(cd->input.little_endian, (char **)&ib,
 		    ibtail - ib, &u4, &u4_2);
-		if (i == -1)
+		sz = ICV_FETCH_UCS4_SIZE;
+		if (i == -1) {
+			if (errno == EINVAL && f & ICONV_REPLACE_INVALID) {
+				sz = ibtail - ib;
+				goto INCOMPLETE_CHAR;
+			}
 			return (-1);
+		}
 		if (i == -2)
 			goto ILLEGAL_CHAR;
 		if (i > 0)
@@ -265,10 +277,11 @@ ILLEGAL_CHAR:
 				continue;
 
 			} else if (f & ICONV_REPLACE_INVALID) {
+INCOMPLETE_CHAR:
 				obsz = (cd->output.bom_written) ? 4 : 8;
 				CHECK_OB_AND_BOM(obsz, cd->output.bom_written);
 				PUTC(ICV_CHAR_UCS2_REPLACEMENT);
-				ib += ICV_FETCH_UCS4_SIZE;
+				ib += sz;
 				ret_val++;
 				continue;
 			}
