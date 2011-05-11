@@ -1254,6 +1254,26 @@ file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32BE.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-32LE.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-code%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-face%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-code%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-face%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS83%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS90%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/NECJIPS%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%HitachiKEIS83.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%HitachiKEIS90.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%NECJIPS.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ibm930.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ibm931.so
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ibm939.so
+file path=usr/lib/iconv/$(ARCH64)/ibm930%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/ibm931%UTF-8.so
+file path=usr/lib/iconv/$(ARCH64)/ibm939%UTF-8.so
 file path=usr/lib/iconv/646%UCS-2-BIG-ENDIAN.so mode=0555
 file path=usr/lib/iconv/646%UCS-2-LITTLE-ENDIAN.so mode=0555
 file path=usr/lib/iconv/646%UCS-4-BIG-ENDIAN.so mode=0555
@@ -2473,6 +2493,26 @@ file path=usr/lib/iconv/wchar_t-eucJP%UTF-32.so
 file path=usr/lib/iconv/wchar_t-eucJP%UTF-32BE.so
 file path=usr/lib/iconv/wchar_t-eucJP%UTF-32LE.so
 file path=usr/lib/iconv/wchar_t-eucJP%UTF-8.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-code%UTF-8.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-face%UTF-8.so
+file path=usr/lib/iconv/FujitsuJEF-kana-code%UTF-8.so
+file path=usr/lib/iconv/FujitsuJEF-kana-face%UTF-8.so
+file path=usr/lib/iconv/HitachiKEIS83%UTF-8.so
+file path=usr/lib/iconv/HitachiKEIS90%UTF-8.so
+file path=usr/lib/iconv/NECJIPS%UTF-8.so
+file path=usr/lib/iconv/UTF-8%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/UTF-8%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/UTF-8%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/UTF-8%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/UTF-8%HitachiKEIS83.so
+file path=usr/lib/iconv/UTF-8%HitachiKEIS90.so
+file path=usr/lib/iconv/UTF-8%NECJIPS.so
+file path=usr/lib/iconv/UTF-8%ibm930.so
+file path=usr/lib/iconv/UTF-8%ibm931.so
+file path=usr/lib/iconv/UTF-8%ibm939.so
+file path=usr/lib/iconv/ibm930%UTF-8.so
+file path=usr/lib/iconv/ibm931%UTF-8.so
+file path=usr/lib/iconv/ibm939%UTF-8.so
 license copyright.unicode+hkscs license=copyright.unicode+hkscs
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4.so target=./EUC-JIS-2004%UTF-32.so
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4BE.so target=./EUC-JIS-2004%UTF-32BE.so
@@ -2599,3 +2639,11 @@ link path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%UCS-4LE.so target=./wchar_t-PCK%UT
 link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4.so target=./wchar_t-eucJP%UTF-32.so
 link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4BE.so target=./wchar_t-eucJP%UTF-32BE.so
 link path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%UCS-4LE.so target=./wchar_t-eucJP%UTF-32LE.so
+link path=usr/lib/iconv/$(ARCH64)/UTF-8%ibm5026.so target=./UTF-8%ibm930.so
+link path=usr/lib/iconv/$(ARCH64)/UTF-8%ibm5035.so target=./UTF-8%ibm939.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5026%UTF-8.so target=./ibm930%UTF-8.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5035%UTF-8.so target=./ibm939%UTF-8.so
+link path=usr/lib/iconv/UTF-8%ibm5026.so target=./UTF-8%ibm930.so
+link path=usr/lib/iconv/UTF-8%ibm5035.so target=./UTF-8%ibm939.so
+link path=usr/lib/iconv/ibm5026%UTF-8.so target=./ibm930%UTF-8.so
+link path=usr/lib/iconv/ibm5035%UTF-8.so target=./ibm939%UTF-8.so

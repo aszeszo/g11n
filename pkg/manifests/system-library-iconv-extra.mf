@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/library/iconv/extra@$(PKGVERS)
@@ -250,6 +250,54 @@ file path=usr/lib/iconv/$(ARCH64)/PCK%wchar_t-PCK.so
 file path=usr/lib/iconv/$(ARCH64)/eucJP%wchar_t-eucJP.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-PCK%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/wchar_t-eucJP%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-code%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-code%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-face%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-ascii-face%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-code%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-code%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-face%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/FujitsuJEF-kana-face%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS83%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS83%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS90%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/HitachiKEIS90%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/NECJIPS%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/NECJIPS%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%HitachiKEIS83.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%HitachiKEIS90.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%NECJIPS.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%ibm930.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%ibm931.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%ibm939.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%ibmj-EBCDIK.so
+file path=usr/lib/iconv/$(ARCH64)/PCK%ibmj.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%HitachiKEIS83.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%HitachiKEIS90.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%NECJIPS.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%ibm930.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%ibm931.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%ibm939.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%ibmj-EBCDIK.so
+file path=usr/lib/iconv/$(ARCH64)/eucJP%ibmj.so
+file path=usr/lib/iconv/$(ARCH64)/ibm930%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/ibm930%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/ibm931%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/ibm931%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/ibm939%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/ibm939%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/ibmj%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/ibmj%eucJP.so
+file path=usr/lib/iconv/$(ARCH64)/ibmj-EBCDIK%PCK.so
+file path=usr/lib/iconv/$(ARCH64)/ibmj-EBCDIK%eucJP.so
 file path=usr/lib/iconv/646%CODESET.so mode=0644
 file path=usr/lib/iconv/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/ISO-2022-JP%eucJP.so
@@ -469,6 +517,55 @@ file path=usr/lib/iconv/PCK%wchar_t-PCK.so
 file path=usr/lib/iconv/eucJP%wchar_t-eucJP.so
 file path=usr/lib/iconv/wchar_t-PCK%PCK.so
 file path=usr/lib/iconv/wchar_t-eucJP%eucJP.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-code%PCK.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-code%eucJP.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-face%PCK.so
+file path=usr/lib/iconv/FujitsuJEF-ascii-face%eucJP.so
+file path=usr/lib/iconv/FujitsuJEF-kana-code%PCK.so
+file path=usr/lib/iconv/FujitsuJEF-kana-code%eucJP.so
+file path=usr/lib/iconv/FujitsuJEF-kana-face%PCK.so
+file path=usr/lib/iconv/FujitsuJEF-kana-face%eucJP.so
+file path=usr/lib/iconv/HitachiKEIS83%PCK.so
+file path=usr/lib/iconv/HitachiKEIS83%eucJP.so
+file path=usr/lib/iconv/HitachiKEIS90%PCK.so
+file path=usr/lib/iconv/HitachiKEIS90%eucJP.so
+file path=usr/lib/iconv/NECJIPS%PCK.so
+file path=usr/lib/iconv/NECJIPS%eucJP.so
+file path=usr/lib/iconv/PCK%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/PCK%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/PCK%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/PCK%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/PCK%HitachiKEIS83.so
+file path=usr/lib/iconv/PCK%HitachiKEIS90.so
+file path=usr/lib/iconv/PCK%NECJIPS.so
+file path=usr/lib/iconv/PCK%ibm930.so
+file path=usr/lib/iconv/PCK%ibm931.so
+file path=usr/lib/iconv/PCK%ibm939.so
+file path=usr/lib/iconv/PCK%ibmj-EBCDIK.so
+file path=usr/lib/iconv/PCK%ibmj.so
+file path=usr/lib/iconv/eucJP%FujitsuJEF-ascii-code.so
+file path=usr/lib/iconv/eucJP%FujitsuJEF-ascii-face.so
+file path=usr/lib/iconv/eucJP%FujitsuJEF-kana-code.so
+file path=usr/lib/iconv/eucJP%FujitsuJEF-kana-face.so
+file path=usr/lib/iconv/eucJP%HitachiKEIS83.so
+file path=usr/lib/iconv/eucJP%HitachiKEIS90.so
+file path=usr/lib/iconv/eucJP%KUTEN.so
+file path=usr/lib/iconv/eucJP%NECJIPS.so
+file path=usr/lib/iconv/eucJP%ibm930.so
+file path=usr/lib/iconv/eucJP%ibm931.so
+file path=usr/lib/iconv/eucJP%ibm939.so
+file path=usr/lib/iconv/eucJP%ibmj-EBCDIK.so
+file path=usr/lib/iconv/eucJP%ibmj.so
+file path=usr/lib/iconv/ibm930%PCK.so
+file path=usr/lib/iconv/ibm930%eucJP.so
+file path=usr/lib/iconv/ibm931%PCK.so
+file path=usr/lib/iconv/ibm931%eucJP.so
+file path=usr/lib/iconv/ibm939%PCK.so
+file path=usr/lib/iconv/ibm939%eucJP.so
+file path=usr/lib/iconv/ibmj%PCK.so
+file path=usr/lib/iconv/ibmj%eucJP.so
+file path=usr/lib/iconv/ibmj-EBCDIK%PCK.so
+file path=usr/lib/iconv/ibmj-EBCDIK%eucJP.so
 license copyright.unicode+hkscs license=copyright.unicode+hkscs
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
@@ -514,3 +611,23 @@ link path=usr/lib/iconv/$(ARCH64)/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko
 link path=usr/lib/iconv/$(ARCH64)/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
 link path=usr/lib/iconv/ko_KR.euc%ko_KR.nbyte.so target=./ko_KR-euc%ko_KR-nbyte.so
 link path=usr/lib/iconv/ko_KR.nbyte%ko_KR.euc.so target=./ko_KR-nbyte%ko_KR-euc.so
+link path=usr/lib/iconv/$(ARCH64)/PCK%ibm5026.so target=./PCK%ibm930.so
+link path=usr/lib/iconv/$(ARCH64)/PCK%ibm5035.so target=./PCK%ibm939.so
+link path=usr/lib/iconv/$(ARCH64)/SJIS%ibmj.so target=./PCK%ibmj.so
+link path=usr/lib/iconv/$(ARCH64)/eucJP%ibm5026.so target=./eucJP%ibm930.so
+link path=usr/lib/iconv/$(ARCH64)/eucJP%ibm5035.so target=./eucJP%ibm939.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5026%PCK.so target=./ibm930%PCK.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5026%eucJP.so target=./ibm930%eucJP.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5035%PCK.so target=./ibm939%PCK.so
+link path=usr/lib/iconv/$(ARCH64)/ibm5035%eucJP.so target=./ibm939%eucJP.so
+link path=usr/lib/iconv/$(ARCH64)/ibmj%SJIS.so target=./ibmj%PCK.so
+link path=usr/lib/iconv/PCK%ibm5026.so target=./PCK%ibm930.so
+link path=usr/lib/iconv/PCK%ibm5035.so target=./PCK%ibm939.so
+link path=usr/lib/iconv/SJIS%ibmj.so target=./PCK%ibmj.so
+link path=usr/lib/iconv/eucJP%ibm5026.so target=./eucJP%ibm930.so
+link path=usr/lib/iconv/eucJP%ibm5035.so target=./eucJP%ibm939.so
+link path=usr/lib/iconv/ibm5026%PCK.so target=./ibm930%PCK.so
+link path=usr/lib/iconv/ibm5026%eucJP.so target=./ibm930%eucJP.so
+link path=usr/lib/iconv/ibm5035%PCK.so target=./ibm939%PCK.so
+link path=usr/lib/iconv/ibm5035%eucJP.so target=./ibm939%eucJP.so
+link path=usr/lib/iconv/ibmj%SJIS.so target=./ibmj%PCK.so
