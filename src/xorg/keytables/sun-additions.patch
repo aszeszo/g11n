@@ -1771,6 +1771,22 @@
  };
 
 
+@@ -30,11 +30,11 @@
+ xkb_symbols "pes_keypad" {
+     name[Group1]= "Iran - Persian, with Persian Keypad";
+
+-    include "ir(pes_part_basic)";
+-    include "ir(pes_part_keypad)";
++    include "ir(pes_part_basic)"
++    include "ir(pes_part_keypad)"
+
+-    include "nbsp(zwnj2nb3nnb4)";
+-    include "level3(ralt_switch)";
++    include "nbsp(zwnj2nb3nnb4)"
++    include "level3(ralt_switch)"
+ };
+
+ partial hidden alphanumeric_keys
 
 --- symbols/it	2010-10-01 15:10:31.086176555 +0200
 +++ symbols/it	2010-10-04 13:09:49.983979186 +0200
