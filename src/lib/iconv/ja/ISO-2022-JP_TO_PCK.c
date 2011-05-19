@@ -310,7 +310,7 @@ text:
 					if ((ic < 0x21) || (ic == 0x7f)) {
 						UNGET_EILSEQ_STATELESS(1) /* 1st byte check failed */
 					}
-					GETB(ic2); /* get 2nd byte */
+					GET(ic2); /* get 2nd byte */
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						UNGET_EILSEQ_STATELESS(2) /* 2nd byte check failed */
 					}
@@ -356,7 +356,7 @@ text:
 					if ((ic < 0x21) || (ic == 0x7f)) {
 						UNGET_EILSEQ_STATELESS(1) /* 1st byte check failed */
 					}
-					GETB(ic2); /* get 2nd byte */
+					GET(ic2); /* get 2nd byte */
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						UNGET_EILSEQ_STATELESS(2) /* 2nd byte check failed */
 					}

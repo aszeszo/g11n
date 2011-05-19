@@ -344,7 +344,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						/* 1st byte check failed */
 						UNGET_EILSEQ_STATELESS(1)
 					}
-					GETB(ic2);
+					GET(ic2);
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						/* 2nd byte check failed */
 						UNGET_EILSEQ_STATELESS(2)

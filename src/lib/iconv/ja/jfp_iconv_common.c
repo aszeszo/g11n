@@ -409,6 +409,7 @@ __icv_non_identical(
 	char		*op = *pop;
 	size_t		oleft = *poleft;
 	size_t		rv = (size_t)0;
+	int		caller = __ICV_NON_IDENTICAL;
 
 	int i;
 
@@ -416,8 +417,17 @@ __icv_non_identical(
 		return (rv);
 	} else if (cd->_icv_flag & ICONV_CONV_NON_IDENTICAL_REPLACE_HEX) {
 		for (i = num_of_bytes; i > 0; i--) {
+			if (i != num_of_bytes) {
+				/*
+				 * Checking escape-sequence should be
+				 * skipped when 2nd byte. To disable
+				 * checking, set caller as:
+				 * __NEXT_OF_ESC_SEQ
+				 */
+				caller |= __NEXT_OF_ESC_SEQ;
+			}
 			rv = __replace_hex(*(ip - i), &ip, &op, &oleft, 
-				cd, __ICV_NON_IDENTICAL);
+				cd, caller);
 		}
 	} 
 
