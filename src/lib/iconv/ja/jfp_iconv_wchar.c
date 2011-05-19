@@ -26,6 +26,7 @@
 #include <errno.h>
 #include <wchar.h>
 #include <widec.h>
+#include <string.h>
 #include "japanese.h"
 #include "jfp_iconv_common.h"
 #include "jfp_iconv_wchar.h"
@@ -142,10 +143,10 @@ __restore_hex_wchar(
 	size_t		oleft = *poleft;
 
 	int		rv = 0; /* return value */
-	int		i, is_equal;
-	wchar_t 	wcharval;
+	int		i;
 	unsigned char	*ptr;
 
+	wchar_t 	wcharval[PREFIX_LENGTH];
 	wchar_t 	illegal_prefix[PREFIX_LENGTH] 
 				= {L'I', L'L', L'-', L'-'};
 	wchar_t		non_identical_prefix[PREFIX_LENGTH] 
@@ -158,35 +159,28 @@ __restore_hex_wchar(
          * an adreess of previous wchar_t character.
          */
 	ptr = ip - sizeof(wchar_t);
-	for (i = 0, is_equal = 0; i < PREFIX_LENGTH; i++) {
+	for (i = 0; i < PREFIX_LENGTH; i++) {
 #ifdef __sparc
-		wcharval = 0U;
-		wcharval |= (unsigned int)*(ptr++) << 24;
-		wcharval |= (unsigned int)*(ptr++) << 16;
-		wcharval |= (unsigned int)*(ptr++) << 8;
-		wcharval |= (unsigned int)*(ptr++) << 0;
+		wcharval[i] = 0U;
+		wcharval[i] |= (unsigned int)*(ptr++) << 24;
+		wcharval[i] |= (unsigned int)*(ptr++) << 16;
+		wcharval[i] |= (unsigned int)*(ptr++) << 8;
+		wcharval[i] |= (unsigned int)*(ptr++) << 0;
 #else
-		wcharval = 0U;
-		wcharval |= (unsigned int)*(ptr++) << 0;
-		wcharval |= (unsigned int)*(ptr++) << 8;
-		wcharval |= (unsigned int)*(ptr++) << 16;
-		wcharval |= (unsigned int)*(ptr++) << 24;
+		wcharval[i] = 0U;
+		wcharval[i] |= (unsigned int)*(ptr++) << 0;
+		wcharval[i] |= (unsigned int)*(ptr++) << 8;
+		wcharval[i] |= (unsigned int)*(ptr++) << 16;
+		wcharval[i] |= (unsigned int)*(ptr++) << 24;
 #endif
-		/* break immediately when difference is detected */
-		if (((st->_icv_flag & ICONV_CONV_ILLEGAL_RESTORE_HEX) &&
-			(wcharval == illegal_prefix[i])) || 
-		    ((st->_icv_flag & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX) &&
-			(wcharval == non_identical_prefix[i]))){
-			is_equal++;
-		} else {
-			break;
-		}
 	}
 
 
 	/* prefix has been detected, process to get hex value */
-
-	if (is_equal == PREFIX_LENGTH) {
+	if (!memcmp(wcharval, illegal_prefix,
+			sizeof(wcharval)) ||
+		!memcmp(wcharval, non_identical_prefix,
+			sizeof(wcharval))) {
 #ifdef __sparc
 		first_half = 0U;
 		first_half |= (unsigned int)*(ptr++) << 24;

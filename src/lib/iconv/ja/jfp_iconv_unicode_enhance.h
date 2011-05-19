@@ -31,6 +31,7 @@
  */
 
 #include	<sys/types.h>
+#include	<string.h>
 #include 	"jfp_iconv_predefine.h"
 
 #define	BOM	0xfeff
@@ -864,121 +865,97 @@ __restore_hex_ucs(
 	unsigned char	hexval;
 
 	int		rv = 0; /* return value */
-	int		i, ucs, is_equal;
+	int		i;
+	unsigned char	*ptr;
 
-	unsigned char	restore_buf[(PREFIX_LENGTH + 2) * __SIZE_OF_UCS];
+	unsigned int	ucs[PREFIX_LENGTH];
 	unsigned int	illegal_prefix[PREFIX_LENGTH] = {'I', 'L', '-', '-'};
 	unsigned int	non_identical_prefix[PREFIX_LENGTH] = {'N', 'I', '-', '-'};
 	unsigned int	first_half, second_half;
 
-	for(i = 0; i < (PREFIX_LENGTH + 2) * __SIZE_OF_UCS; i++) {
-		restore_buf[i] = *(ip - __SIZE_OF_UCS + i);
-	}
-
-	/* check if the string equal with prefix */
-
-	for (i = 0, is_equal = 0; i < (PREFIX_LENGTH * __SIZE_OF_UCS); ) {
-
+	/*
+	 * check if the string equal with prefix. The start address is
+	 * an addres of previous character.
+	 */
+	ptr = ip - __SIZE_OF_UCS;
+	for (i = 0; i < PREFIX_LENGTH; i++) {
 #if     defined(JFP_ICONV_FROMCODE_UTF32)
 
 		if (st->little_endian == B_TRUE) {
-			ucs = 0U;
-			ucs |= (unsigned int)(restore_buf[i++] << 0);
-			ucs |= (unsigned int)(restore_buf[i++] << 8);
-			ucs |= (unsigned int)(restore_buf[i++] << 16);
-			ucs |= (unsigned int)(restore_buf[i++] << 24);
+			ucs[i] = 0U;
+			ucs[i] |= (unsigned int)*(ptr++) << 0;
+			ucs[i] |= (unsigned int)*(ptr++) << 8;
+			ucs[i] |= (unsigned int)*(ptr++) << 16;
+			ucs[i] |= (unsigned int)*(ptr++) << 24;
 		} else {
-			ucs = 0U;
-			ucs |= (unsigned int)(restore_buf[i++] << 24);
-			ucs |= (unsigned int)(restore_buf[i++] << 16);
-			ucs |= (unsigned int)(restore_buf[i++] << 8);
-			ucs |= (unsigned int)(restore_buf[i++] << 0);
+			ucs[i] = 0U;
+			ucs[i] |= (unsigned int)*(ptr++) << 24;
+			ucs[i] |= (unsigned int)*(ptr++) << 16;
+			ucs[i] |= (unsigned int)*(ptr++) << 8;
+			ucs[i] |= (unsigned int)*(ptr++) << 0;
 		}
 
 #else   /* JFP_ICONV_FROMCODE_UTF16 or JFP_ICONV_FROMCODE_UCS2 */
 
 		if (st->little_endian == B_TRUE) {
-			ucs = restore_buf[i++] |
-				(((unsigned int)restore_buf[i++]) << 8);
+			ucs[i] = 0U;
+			ucs[i] |= (unsigned int)*(ptr++) << 0;
+			ucs[i] |= (unsigned int)*(ptr++) << 8;
 		} else {
-			ucs = (((unsigned int)restore_buf[i++]) << 8) |
-					restore_buf[i++];
+			ucs[i] = 0U;
+			ucs[i] |= (unsigned int)*(ptr++) << 8;
+			ucs[i] |= (unsigned int)*(ptr++) << 0;
 		}
 
 #endif
-		/* break immediately when difference is detected */
-		if (((st->_icv_flag & ICONV_CONV_ILLEGAL_RESTORE_HEX) &&
-			(ucs == illegal_prefix[(i - 1)/__SIZE_OF_UCS])) || 
-		    ((st->_icv_flag & ICONV_CONV_NON_IDENTICAL_RESTORE_HEX) &&
-			(ucs == non_identical_prefix[(i - 1)/__SIZE_OF_UCS]))){
-			is_equal++;
-		} else {
-			break;
-		}
 	}
 
 	/* prefix has been detected, process to get hex value */
-
-	if (is_equal == PREFIX_LENGTH) {
+	if (!memcmp(ucs, illegal_prefix, sizeof(ucs)) ||
+		!memcmp(ucs, non_identical_prefix, sizeof(ucs))) {
 
 #if     defined(JFP_ICONV_FROMCODE_UTF32)
 
 		if (st->little_endian == B_TRUE) {
 			first_half = 0U;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 0;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 8;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 16;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 24;
+			first_half |= (unsigned int)*(ptr++) << 0;
+			first_half |= (unsigned int)*(ptr++) << 8;
+			first_half |= (unsigned int)*(ptr++) << 16;
+			first_half |= (unsigned int)*(ptr++) << 24;
 			second_half = 0U;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 0;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 8;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 16;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 24;
+			second_half |= (unsigned int)*(ptr++) << 0;
+			second_half |= (unsigned int)*(ptr++) << 8;
+			second_half |= (unsigned int)*(ptr++) << 16;
+			second_half |= (unsigned int)*(ptr++) << 24;
 		} else {
 			first_half = 0U;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 24;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 16;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 8;
-			first_half |= 
-				(unsigned int)restore_buf[i++] << 0;
+			first_half |= (unsigned int)*(ptr++) << 24;
+			first_half |= (unsigned int)*(ptr++) << 16;
+			first_half |= (unsigned int)*(ptr++) << 8;
+			first_half |= (unsigned int)*(ptr++) << 0;
 			second_half = 0U;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 24;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 16;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 8;
-			second_half |= 
-				(unsigned int)restore_buf[i++] << 0;
+			second_half |= (unsigned int)*(ptr++) << 24;
+			second_half |= (unsigned int)*(ptr++) << 16;
+			second_half |= (unsigned int)*(ptr++) << 8;
+			second_half |= (unsigned int)*(ptr++) << 0;
 		}
 
 #else   /* JFP_ICONV_FROMCODE_UTF16 or JFP_ICONV_FROMCODE_UCS2 */
 
 		if (st->little_endian == B_TRUE) {
-			first_half = 
-				(((unsigned int)restore_buf[i+1]) << 8) |
-				restore_buf[i];
-			second_half = 
-				(((unsigned int)restore_buf[i+3]) << 8) |
-				restore_buf[i+2];
+			first_half = 0U;
+			first_half |= (unsigned int)*(ptr++) << 0;
+			first_half |= (unsigned int)*(ptr++) << 8;
+			second_half = 0U;
+			second_half |= (unsigned int)*(ptr++) << 0;
+			second_half |= (unsigned int)*(ptr++) << 8;
 		} else {
-			first_half =
-				(((unsigned int)restore_buf[i]) << 8) |
-					 restore_buf[i+1];
-			first_half =
-				(((unsigned int)restore_buf[i+2]) << 8) |
-						 restore_buf[i+3];
+			first_half = 0U;
+			first_half |= (unsigned int)*(ptr++) << 8;
+			first_half |= (unsigned int)*(ptr++) << 0;
+			second_half = 0U;
+			second_half |= (unsigned int)*(ptr++) << 8;
+			second_half |= (unsigned int)*(ptr++) << 0;
 		}
 #endif
 		/* if hex value is detected, put it to output */
