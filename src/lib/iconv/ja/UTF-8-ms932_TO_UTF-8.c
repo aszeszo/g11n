@@ -85,24 +85,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		errno = 0;
-		if (utf8_ucs(&ucs4, &ip, &ileft, &op, &oleft, st)
-				== (size_t)-1) {
-			/* errno has been set in utf8_ucs() */
-			rv = (size_t)-1;
-			goto ret;
-		}
-		/*
-		 * When illegal byte is detected and __ICONV_CONV_ILLEGAL,
-		 * utf8_ucs return with sucess, but EILSEQ is set in
-		 * errno. Detected illegal bytes have been processed
-		 * already. It should go to the next loop.
-		 * The above "errno = 0;" is required for here.
-		 */
-		if ((errno == EILSEQ) && 
-			(st->_icv_flag & __ICONV_CONV_ILLEGAL)) {
-			goto next;
-		}
+		GETU(&ucs4)
 
 		if (ucs4 == 0xff5e)		/* FULLWIDTH TILDE */
 			ucs4 = 0x301c;		/* WAVE DASH */

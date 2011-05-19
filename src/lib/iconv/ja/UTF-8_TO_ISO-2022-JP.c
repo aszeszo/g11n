@@ -103,30 +103,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	while (ileft != 0) {
 		pre_ileft = ileft; /* value before reading input bytes */
 		errno = 0;
-		if (utf8_ucs(&ucs4, &ip, &ileft,
-				&op, &oleft, st) == (size_t)-1) {
-			/* errno has been set in utf8_ucs() */
-			rv = (size_t)-1;
-			goto ret;
-		}
-		/*
-		 * When illegal byte is detected and __ICONV_CONV_ILLEGAL,
-		 * utf8_ucs return with sucess and EILSEQ is set in
-		 * errno. Detected illegal bytes have been processed
-		 * already. It should go to the next loop.
-		 * The above "errno = 0;" is required for here.
-		 */
-		if ((errno == EILSEQ) && 
-			(st->_icv_flag & __ICONV_CONV_ILLEGAL)) {
-
-			/* mode is ascii when illegal byte was replaced */
-			if (st->_icv_flag &
-			(__ICONV_CONV_REPLACE_HEX|ICONV_REPLACE_INVALID)) {
-				cset = CS_0;
-			}
-
-			goto next;
-		}
+		GETU(&ucs4)
 
 		if (ucs4 > 0xffff) {
 			if (st->_icv_flag & __ICONV_CONV_NON_IDENTICAL) {
@@ -225,6 +202,18 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			}
 		}
 next:
+		/*
+		 * Program jump to here when illegal byte is detected in
+		 * GETU() The above "errno = 0;" is required for here.
+		 * The mode needs to be change to CS_0, when illegal byte
+		 * has been replaced in GETU() as spceified by _icv_flag.
+		 */ 
+		if ((errno == EILSEQ) && 
+		(st->_icv_flag & 
+			(__ICONV_CONV_REPLACE_HEX|ICONV_REPLACE_INVALID))) { 
+			cset = CS_0;
+		}
+
 		/*
 		 * One character successfully converted so update
 		 * values outside of this function's stack.
