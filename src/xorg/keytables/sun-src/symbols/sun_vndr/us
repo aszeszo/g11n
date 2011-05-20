@@ -70,6 +70,8 @@
 // Symbols shared by all Sun Keyboard layouts
 xkb_symbols "sunbasic" {
 
+    include "inet(evdev)"
+
     include "us(basic)"
 
     key <COMP> { [ Multi_key            ]                       };
@@ -103,7 +105,6 @@ xkb_symbols "volumekeys" {
 
 xkb_symbols "type6" {
     include "sun_vndr/us(sunbasic)"
-    include "sun_vndr/us(volumekeys)"
     include "eurosign(4)"
     include "level3(ralt_switch)"
 

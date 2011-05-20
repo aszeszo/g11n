@@ -53,15 +53,29 @@
 partial
 xkb_symbols "defaults_common" {
 
-	include "inet(evdev)"	
-	key <COMP> { [ Multi_key            ] };
+    key <MUTE> { [ XF86AudioMute         ] };
+    key <VOL-> { [ XF86AudioLowerVolume  ] };
+    key <VOL+> { [ XF86AudioRaiseVolume  ] };
+    key <POWR> { [ XF86PowerOff          ] };
+    key <STOP> { [ Cancel                ] };
+    key <AGAI> { [ Redo                  ] };
+    key <PROP> { [ SunProps              ] };
+    key <UNDO> { [ Undo                  ] };
+    key <FRNT> { [ SunFront              ] };
+    key <COPY> { [ XF86Copy              ] };
+    key <OPEN> { [ SunOpen               ] };
+    key <PAST> { [ XF86Paste             ] };
+    key <FIND> { [ Find                  ] };
+    key <CUT>  { [ XF86Cut               ] };
+    key <HELP> { [ Help                  ] };
+    key <LNFD> { [ Linefeed              ] };
+    key <COMP> { [ Multi_key             ] };
 
 };
 
 partial default
 xkb_symbols "defaults" {
     include "sun_vndr/solaris(defaults_common)"
-    include "level3(ralt_switch)"
 
 };
 
