@@ -86,9 +86,6 @@
 #define eqn(s1,s2,n)    (strncmp((s1),(s2),n) == 0)
 
 typedef unsigned int ucs4_t;
-#ifndef _XLIB_H_
-typedef int Bool;
-#endif
 extern nl_catd  cat_fd ;
 extern char *progname;
 extern int current_pt_sz;

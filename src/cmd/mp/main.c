@@ -47,7 +47,7 @@
 #include <sys/stat.h>
 
 extern void pcf_tt_put_postscript_prologue(void);
-Bool set_current_locale(void);
+int set_current_locale(void);
 static void put_environment_var ( char *, char *);
 static void PS_out();
 
@@ -487,12 +487,12 @@ put_environment_var ( char *env_var_name , char *env_var_value )
 	 
 }
 
-Bool
+int
 set_current_locale(void) {
 	
   char *tmp = NULL;
   char *locale = NULL;
-  Bool ret=FALSE;
+  int ret=FALSE;
 
   if ( prolog_locale != NULL && strcmp(prolog_locale,"") ) {     /* command line arg */
 	if ( (locale = setlocale(LC_ALL,prolog_locale)) != NULL) 

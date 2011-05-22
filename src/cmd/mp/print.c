@@ -67,7 +67,7 @@ extern double SPACINGwidth;
 extern print_info	*print_info_st;
 extern int process_ctl_line( uchar_t *, int, int, int);
 extern void pcf_tt_put_postscript_prologue(void);
-extern Bool set_current_locale(void) ;
+extern int set_current_locale(void) ;
 extern void process_wcs_line( wchar_t *, int, int);
 extern bool ctl_check(void);
 extern transform_arr *ctl_processing(unsigned char * );

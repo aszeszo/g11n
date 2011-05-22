@@ -79,12 +79,12 @@ static FontFilePtr FontFileOpen(char *);
 static void FontFileClose (FontFilePtr);
 static int pcfGetLSB32(FontFilePtr);
 static PCFTablePtr pcfReadTOC(FontFilePtr,int*);
-static Bool pcfGetProperties(FontInfoPtr,FontFilePtr, PCFTablePtr, int);
+static int pcfGetProperties(FontInfoPtr,FontFilePtr, PCFTablePtr, int);
 static void pcfGetCompressedMetric(FontFilePtr,CARD32, xCharInfo*);
-static Bool pcfSeekToType(FontFilePtr, PCFTablePtr, int, CARD32, CARD32*, CARD32*);
+static int pcfSeekToType(FontFilePtr, PCFTablePtr, int, CARD32, CARD32*, CARD32*);
 static int pcfGetINT16(FontFilePtr, CARD32);
 static int pcfGetINT32(FontFilePtr, CARD32);
-static Bool pcfGetAccel(FontInfoPtr, FontFilePtr, PCFTablePtr, int, CARD32);
+static int pcfGetAccel(FontInfoPtr, FontFilePtr, PCFTablePtr, int, CARD32);
 static void pcfGetMetric(FontFilePtr, CARD32, xCharInfo *);
 static int pcfReadFont(FontPtr, FontFilePtr, int, int, int, int);
 static char *NameForAtom(Atom);
@@ -102,12 +102,12 @@ static int handle_nobitmap(ucs4_t *, pcffont_t *, pcf_charmet_t *, pcf_bm_t **) 
 static int handle_nongraphchar(ucs4_t *, int *);
 static pcf_bm_t * xpcf_getcbm(int , pcffont_t *, pcf_charmet_t *);
 static void BitOrderInvert(unsigned char *, int);
-static Bool pcfHasType ( PCFTablePtr, int, CARD32);
+static int pcfHasType ( PCFTablePtr, int, CARD32);
 static void TwoByteSwap(unsigned char *, int);
 static void FourByteSwap(unsigned char *, int);
 static int RepadBitmap(char *, char *, unsigned int, unsigned int, int, int);
 static Atom MakeAtom(char *, unsigned, int );
-static Bool ResizeReverseMap ();
+static int ResizeReverseMap ();
 static NameEqual (char *, char *,int );
 static Hash(char *, int);
 static ResizeHashTable();
@@ -497,7 +497,7 @@ handle_nongraphchar(ucs4_t *val, int *ndx)
 	return XU_IGNORE;
 }
 
-static Bool
+static int
 pcfHasType (tables, ntables, type)
     PCFTablePtr tables;
     int         ntables;
@@ -779,7 +779,7 @@ static AtomListPtr  *reverseMap;
 static int          reverseMapSize;
 static Atom         lastAtom;
 
-static Bool ResizeReverseMap ()
+static int ResizeReverseMap ()
 {
     if (reverseMapSize == 0)
 	reverseMapSize = 1000;
@@ -1369,7 +1369,7 @@ BufFileRead (f, b, n)
     }
     return n - cnt - 1;
 }
-static Bool
+static int
 pcfGetProperties(pFontInfo, file, tables, ntables)
     FontInfoPtr pFontInfo;
     FontFilePtr file;
@@ -1456,7 +1456,7 @@ pcfGetCompressedMetric(file, format, metric)
     metric->attributes = 0;
 }
 
-static Bool
+static int
 pcfSeekToType(file, tables, ntables, type, formatp, sizep)
     FontFilePtr file;
     PCFTablePtr tables;
@@ -1527,7 +1527,7 @@ pcfGetINT16(file, format)
  * to read both BDF_ACCELERATORS and old style ACCELERATORS
  */
 
-static Bool
+static int
 pcfGetAccel(pFontInfo, file, tables, ntables, type)
     FontInfoPtr pFontInfo;
     FontFilePtr file;
@@ -1756,7 +1756,7 @@ pcfReadFont(pFont, file, bit, byte, glyph, scan)
     int         encodingOffset;
     CARD32      bitmapSizes[GLYPHPADOPTIONS];
     CARD32     *offsets = 0;
-    Bool	hasBDFAccelerators;
+    int		hasBDFAccelerators;
 
     pFont->info.props = 0;
     if (!(tables = pcfReadTOC(file, &ntables)))
