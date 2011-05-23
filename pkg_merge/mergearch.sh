@@ -6,9 +6,6 @@ export LC_ALL=C
 
 date
 
-MERGEPY=./merge.py
-
-
 if [ -z "$PKGDEST" ]
 then
 	REPOTOP="`cd ../pkgdest; pwd`"
@@ -19,7 +16,6 @@ fi
 [ ! -z "$REPOTOP_I386" ]	|| REPOTOP_I386=$REPOTOP/i386
 [ ! -z "$REPOTOP_SPARC" ]	|| REPOTOP_SPARC=$REPOTOP/sparc
 [ ! -z "$REPOTOP_MERGED" ]	|| REPOTOP_MERGED=$REPOTOP/merged
-[ ! -z "$REPOTOP_TMP" ]		|| REPOTOP_TMP=$REPOTOP
 
 merge_one_pair()
 {
@@ -27,31 +23,15 @@ merge_one_pair()
 	publisher=$2
 	pkgs="$3"
 
-	srs="-v sparc,file://$REPOTOP_SPARC/$reponame"
-	srx="-v i386,file://$REPOTOP_I386/$reponame"
+	srs="$REPOTOP_SPARC/$reponame"
+	srx="$REPOTOP_I386/$reponame"
 	drd="$REPOTOP_MERGED/$reponame"
-	dr="file://$drd"
-	tmpd="$REPOTOP_TMP/mergearch.$$.$reponame"
-
-	rm -rf $tmpd
-	$MERGEPY -r -d $tmpd $srs $srx arch $pkgs
 
 	rm -rf $drd
 	pkgrepo create --version 3 $drd
 	pkgrepo set -s $drd publisher/prefix=$publisher
 
-	/bin/ls $tmpd/*/manifest | while read m
-	do
-		d=`dirname $m`
-		echo "publishing `basename $d`..."
-		pkgsend -s $dr publish --fmri-in-manifest --no-catalog \
-			--no-index -d $d $m
-	done
-
-	rm -rf $tmpd
-
-	echo "updating catalog and index..."
-	/usr/lib/pkg.depotd -d $drd --add-content --exit-ready
+	pkgmerge -d $drd -s arch=sparc,$srs -s arch=i386,$srx
 }
 
 REPONAME="repo.l10n"
