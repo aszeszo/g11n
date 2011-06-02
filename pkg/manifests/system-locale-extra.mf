@@ -1488,7 +1488,6 @@ link path=usr/lib/locale/ca_ES.ISO8859-15/LC_CTYPE/LCL_DEF target=../../iso_8859
 link path=usr/lib/locale/ca_ES.ISO8859-15/LC_MESSAGES target=../ca_ES.ISO8859-1/LC_MESSAGES
 link path=usr/lib/locale/ca_ES.ISO8859-15/LC_TIME target=../ca_ES.ISO8859-1/LC_TIME
 link path=usr/lib/locale/cs_CZ.ISO8859-2/LC_CTYPE/LCL_DEF target=../../iso_8859_2/LC_CTYPE/LCL_DEF
-link path=usr/lib/locale/cs_CZ.UTF-8@euro/$(ARCH64)/methods_unicode.so.3 target=../../common/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LC_CTYPE/$(ARCH64)/wdresolve.so target=../../../common/LC_CTYPE/$(ARCH64)/wdresolve_unicode.so
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LC_CTYPE/LCL_DEF target=../../common/LC_CTYPE/LCL_DEF_unicode
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LC_CTYPE/ldterm.dat target=../../common/LC_CTYPE/ldterm_unicode.dat
@@ -1497,7 +1496,6 @@ link path=usr/lib/locale/cs_CZ.UTF-8@euro/LC_MESSAGES target=../cs_CZ.UTF-8/LC_M
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LC_TIME target=../cs_CZ.UTF-8/LC_TIME
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LO_LTYPE/$(ARCH64)/cs_CZ.UTF-8@euro.layout.so.1 target=../../../common/LO_LTYPE/$(ARCH64)/umle.layout.so.1
 link path=usr/lib/locale/cs_CZ.UTF-8@euro/LO_LTYPE/cs_CZ.UTF-8@euro.layout.so.1 target=../../common/LO_LTYPE/umle.layout.so.1
-link path=usr/lib/locale/cs_CZ.UTF-8@euro/methods_unicode.so.3 target=../common/methods_unicode.so.3
 link path=usr/lib/locale/da_DK.ISO8859-1/LC_CTYPE/LCL_DEF target=../../iso_8859_1/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/da_DK.ISO8859-15/LC_CTYPE/LCL_DEF target=../../iso_8859_15/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/da_DK.ISO8859-15/LC_MESSAGES target=../da_DK.ISO8859-1/LC_MESSAGES
@@ -1617,13 +1615,11 @@ link path=usr/lib/locale/ko_KR.EUC@dict/LC_MONETARY target=../ko_KR.EUC/LC_MONET
 link path=usr/lib/locale/ko_KR.EUC@dict/LC_NUMERIC target=../ko_KR.EUC/LC_NUMERIC
 link path=usr/lib/locale/ko_KR.EUC@dict/LC_TIME target=../ko_KR.EUC/LC_TIME
 link path=usr/lib/locale/ko_KR.EUC@dict/methods_ko_KR.EUC.so.3 target=../ko_KR.EUC/methods_ko_KR.EUC.so.3
-link path=usr/lib/locale/ko_KR.UTF-8@dict/$(ARCH64)/methods_unicode.so.3 target=../../ko_KR.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/ko_KR.UTF-8@dict/64 target=./$(ARCH64)
 link path=usr/lib/locale/ko_KR.UTF-8@dict/LC_CTYPE target=../ko_KR.UTF-8/LC_CTYPE
 link path=usr/lib/locale/ko_KR.UTF-8@dict/LC_MESSAGES target=../ko_KR.UTF-8/LC_MESSAGES
 link path=usr/lib/locale/ko_KR.UTF-8@dict/LC_TIME target=../ko_KR.UTF-8/LC_TIME
 link path=usr/lib/locale/ko_KR.UTF-8@dict/LO_LTYPE target=../ko_KR.UTF-8/LO_LTYPE
-link path=usr/lib/locale/ko_KR.UTF-8@dict/methods_unicode.so.3 target=../ko_KR.UTF-8/methods_unicode.so.3
 link path=usr/lib/locale/lt_LT.ISO8859-13/LC_CTYPE/LCL_DEF target=../../iso_8859_13/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/lv_LV.ISO8859-13/LC_CTYPE/LCL_DEF target=../../iso_8859_13/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/mk_MK.ISO8859-5/LC_CTYPE/LCL_DEF target=../../iso_8859_5/LC_CTYPE/LCL_DEF
@@ -1650,14 +1646,12 @@ link path=usr/lib/locale/sv_SE.ISO8859-15/LC_TIME target=../sv_SE.ISO8859-1/LC_T
 link path=usr/lib/locale/sv_SE.ISO8859-15@euro/LC_CTYPE/LCL_DEF target=../../iso_8859_15/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/sv_SE.ISO8859-15@euro/LC_MESSAGES target=../sv_SE.ISO8859-1/LC_MESSAGES
 link path=usr/lib/locale/sv_SE.ISO8859-15@euro/LC_TIME target=../sv_SE.ISO8859-1/LC_TIME
-link path=usr/lib/locale/sv_SE.UTF-8@euro/$(ARCH64)/methods_unicode.so.3 target=../../common/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LC_CTYPE/$(ARCH64)/wdresolve.so target=../../../common/LC_CTYPE/$(ARCH64)/wdresolve_unicode.so
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LC_CTYPE/LCL_DEF target=../../common/LC_CTYPE/LCL_DEF_unicode
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LC_CTYPE/ldterm.dat target=../../common/LC_CTYPE/ldterm_unicode.dat
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LC_CTYPE/wdresolve.so target=../../common/LC_CTYPE/wdresolve_unicode.so
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LO_LTYPE/$(ARCH64)/sv_SE.UTF-8@euro.layout.so.1 target=../../../common/LO_LTYPE/$(ARCH64)/umle.layout.so.1
 link path=usr/lib/locale/sv_SE.UTF-8@euro/LO_LTYPE/sv_SE.UTF-8@euro.layout.so.1 target=../../common/LO_LTYPE/umle.layout.so.1
-link path=usr/lib/locale/sv_SE.UTF-8@euro/methods_unicode.so.3 target=../common/methods_unicode.so.3
 link path=usr/lib/locale/th_TH.TIS620/64 target=./$(ARCH64)
 link path=usr/lib/locale/th_TH.TIS620/LC_CTYPE/64 target=./$(ARCH64)
 link path=usr/lib/locale/th_TH.TIS620/LO_LTYPE/64 target=./$(ARCH64)
@@ -1755,7 +1749,6 @@ link path=usr/lib/locale/zh_CN.GBK@stroke/LC_MONETARY target=../zh_CN.GBK/LC_MON
 link path=usr/lib/locale/zh_CN.GBK@stroke/LC_NUMERIC target=../zh_CN.GBK/LC_NUMERIC
 link path=usr/lib/locale/zh_CN.GBK@stroke/LC_TIME target=../zh_CN.GBK/LC_TIME
 link path=usr/lib/locale/zh_CN.GBK@stroke/methods_zh_CN.GBK.so.3 target=../zh_CN.GBK/methods_zh_CN.GBK.so.3
-link path=usr/lib/locale/zh_CN.UTF-8@pinyin/$(ARCH64)/methods_unicode.so.3 target=../../zh_CN.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LC_COLLATE target=../zh_CN.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LC_CTYPE target=../zh_CN.UTF-8/LC_CTYPE
@@ -1764,8 +1757,6 @@ link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LC_MONETARY target=../zh_CN.UTF-8/LC
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LC_NUMERIC target=../zh_CN.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LC_TIME target=../zh_CN.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_CN.UTF-8@pinyin/LO_LTYPE target=../zh_CN.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_CN.UTF-8@pinyin/methods_unicode.so.3 target=../zh_CN.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_CN.UTF-8@radical/$(ARCH64)/methods_unicode.so.3 target=../../zh_CN.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_CN.UTF-8@radical/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_CN.UTF-8@radical/LC_COLLATE target=../zh_CN.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_CN.UTF-8@radical/LC_CTYPE target=../zh_CN.UTF-8/LC_CTYPE
@@ -1774,8 +1765,6 @@ link path=usr/lib/locale/zh_CN.UTF-8@radical/LC_MONETARY target=../zh_CN.UTF-8/L
 link path=usr/lib/locale/zh_CN.UTF-8@radical/LC_NUMERIC target=../zh_CN.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_CN.UTF-8@radical/LC_TIME target=../zh_CN.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_CN.UTF-8@radical/LO_LTYPE target=../zh_CN.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_CN.UTF-8@radical/methods_unicode.so.3 target=../zh_CN.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_CN.UTF-8@stroke/$(ARCH64)/methods_unicode.so.3 target=../../zh_CN.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/LC_COLLATE target=../zh_CN.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/LC_CTYPE target=../zh_CN.UTF-8/LC_CTYPE
@@ -1784,7 +1773,6 @@ link path=usr/lib/locale/zh_CN.UTF-8@stroke/LC_MONETARY target=../zh_CN.UTF-8/LC
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/LC_NUMERIC target=../zh_CN.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/LC_TIME target=../zh_CN.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_CN.UTF-8@stroke/LO_LTYPE target=../zh_CN.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_CN.UTF-8@stroke/methods_unicode.so.3 target=../zh_CN.UTF-8/methods_unicode.so.3
 link path=usr/lib/locale/zh_HK.BIG5HK/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_HK.BIG5HK@radical/$(ARCH64)/methods_zh_HK.BIG5HK.so.3 target=../../zh_HK.BIG5HK/$(ARCH64)/methods_zh_HK.BIG5HK.so.3
 link path=usr/lib/locale/zh_HK.BIG5HK@radical/64 target=./$(ARCH64)
@@ -1802,7 +1790,6 @@ link path=usr/lib/locale/zh_HK.BIG5HK@stroke/LC_MONETARY target=../zh_HK.BIG5HK/
 link path=usr/lib/locale/zh_HK.BIG5HK@stroke/LC_NUMERIC target=../zh_HK.BIG5HK/LC_NUMERIC
 link path=usr/lib/locale/zh_HK.BIG5HK@stroke/LC_TIME target=../zh_HK.BIG5HK/LC_TIME
 link path=usr/lib/locale/zh_HK.BIG5HK@stroke/methods_zh_HK.BIG5HK.so.3 target=../zh_HK.BIG5HK/methods_zh_HK.BIG5HK.so.3
-link path=usr/lib/locale/zh_HK.UTF-8@radical/$(ARCH64)/methods_unicode.so.3 target=../../zh_HK.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_HK.UTF-8@radical/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_HK.UTF-8@radical/LC_COLLATE target=../zh_HK.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_HK.UTF-8@radical/LC_CTYPE target=../zh_HK.UTF-8/LC_CTYPE
@@ -1810,8 +1797,6 @@ link path=usr/lib/locale/zh_HK.UTF-8@radical/LC_MONETARY target=../zh_HK.UTF-8/L
 link path=usr/lib/locale/zh_HK.UTF-8@radical/LC_NUMERIC target=../zh_HK.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_HK.UTF-8@radical/LC_TIME target=../zh_HK.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_HK.UTF-8@radical/LO_LTYPE target=../zh_HK.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_HK.UTF-8@radical/methods_unicode.so.3 target=../zh_HK.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_HK.UTF-8@stroke/$(ARCH64)/methods_unicode.so.3 target=../../zh_HK.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/LC_COLLATE target=../zh_HK.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/LC_CTYPE target=../zh_HK.UTF-8/LC_CTYPE
@@ -1819,7 +1804,6 @@ link path=usr/lib/locale/zh_HK.UTF-8@stroke/LC_MONETARY target=../zh_HK.UTF-8/LC
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/LC_NUMERIC target=../zh_HK.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/LC_TIME target=../zh_HK.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_HK.UTF-8@stroke/LO_LTYPE target=../zh_HK.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_HK.UTF-8@stroke/methods_unicode.so.3 target=../zh_HK.UTF-8/methods_unicode.so.3
 link path=usr/lib/locale/zh_TW.BIG5/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.BIG5@pinyin/$(ARCH64)/methods_zh_TW.BIG5.so.3 target=../../zh_TW.BIG5/$(ARCH64)/methods_zh_TW.BIG5.so.3
@@ -1888,7 +1872,6 @@ link path=usr/lib/locale/zh_TW.EUC@zhuyin/LC_MONETARY target=../zh_TW.EUC/LC_MON
 link path=usr/lib/locale/zh_TW.EUC@zhuyin/LC_NUMERIC target=../zh_TW.EUC/LC_NUMERIC
 link path=usr/lib/locale/zh_TW.EUC@zhuyin/LC_TIME target=../zh_TW.EUC/LC_TIME
 link path=usr/lib/locale/zh_TW.EUC@zhuyin/methods_zh_TW.EUC.so.3 target=../zh_TW.EUC/methods_zh_TW.EUC.so.3
-link path=usr/lib/locale/zh_TW.UTF-8@pinyin/$(ARCH64)/methods_unicode.so.3 target=../../zh_TW.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LC_COLLATE target=../zh_TW.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LC_CTYPE target=../zh_TW.UTF-8/LC_CTYPE
@@ -1896,8 +1879,6 @@ link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LC_MONETARY target=../zh_TW.UTF-8/LC
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LC_NUMERIC target=../zh_TW.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LC_TIME target=../zh_TW.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_TW.UTF-8@pinyin/LO_LTYPE target=../zh_TW.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_TW.UTF-8@pinyin/methods_unicode.so.3 target=../zh_TW.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_TW.UTF-8@radical/$(ARCH64)/methods_unicode.so.3 target=../../zh_TW.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_TW.UTF-8@radical/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.UTF-8@radical/LC_COLLATE target=../zh_TW.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_TW.UTF-8@radical/LC_CTYPE target=../zh_TW.UTF-8/LC_CTYPE
@@ -1905,8 +1886,6 @@ link path=usr/lib/locale/zh_TW.UTF-8@radical/LC_MONETARY target=../zh_TW.UTF-8/L
 link path=usr/lib/locale/zh_TW.UTF-8@radical/LC_NUMERIC target=../zh_TW.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_TW.UTF-8@radical/LC_TIME target=../zh_TW.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_TW.UTF-8@radical/LO_LTYPE target=../zh_TW.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_TW.UTF-8@radical/methods_unicode.so.3 target=../zh_TW.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_TW.UTF-8@stroke/$(ARCH64)/methods_unicode.so.3 target=../../zh_TW.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/LC_COLLATE target=../zh_TW.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/LC_CTYPE target=../zh_TW.UTF-8/LC_CTYPE
@@ -1914,8 +1893,6 @@ link path=usr/lib/locale/zh_TW.UTF-8@stroke/LC_MONETARY target=../zh_TW.UTF-8/LC
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/LC_NUMERIC target=../zh_TW.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/LC_TIME target=../zh_TW.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_TW.UTF-8@stroke/LO_LTYPE target=../zh_TW.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_TW.UTF-8@stroke/methods_unicode.so.3 target=../zh_TW.UTF-8/methods_unicode.so.3
-link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/$(ARCH64)/methods_unicode.so.3 target=../../zh_TW.UTF-8/$(ARCH64)/methods_unicode.so.3
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/64 target=./$(ARCH64)
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_COLLATE target=../zh_TW.UTF-8/LC_COLLATE
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_CTYPE target=../zh_TW.UTF-8/LC_CTYPE
@@ -1923,6 +1900,5 @@ link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_MONETARY target=../zh_TW.UTF-8/LC
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_NUMERIC target=../zh_TW.UTF-8/LC_NUMERIC
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LC_TIME target=../zh_TW.UTF-8/LC_TIME
 link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/LO_LTYPE target=../zh_TW.UTF-8/LO_LTYPE
-link path=usr/lib/locale/zh_TW.UTF-8@zhuyin/methods_unicode.so.3 target=../zh_TW.UTF-8/methods_unicode.so.3
 link path=usr/lib/lp/locale/ja target=./ja_JP.eucJP facet.locale.ja=true
 link path=usr/share/lib/setterm/ja_JP.eucJP target=./ja facet.locale.ja_JP=true
