@@ -101,7 +101,9 @@ LOCALES = \
 	kk_KZ.UTF-8 \
 	kn_IN.UTF-8 \
 	ko_KR.EUC \
+        ko_KR.EUC@dict \
 	ko_KR.UTF-8 \
+        ko_KR.UTF-8@dict \
 	ks_IN.UTF-8 \
 	ku_TR.UTF-8 \
 	ky_KG.UTF-8 \
@@ -153,14 +155,44 @@ LOCALES = \
 	uk_UA.UTF-8 \
 	vi_VN.UTF-8 \
 	zh_CN.EUC \
+        zh_CN.EUC@pinyin \
+        zh_CN.EUC@radical \
+        zh_CN.EUC@stroke \
 	zh_CN.GB18030 \
+        zh_CN.GB18030@pinyin \
+        zh_CN.GB18030@radical \
+        zh_CN.GB18030@stroke \
 	zh_CN.GBK \
+        zh_CN.GBK@pinyin \
+        zh_CN.GBK@radical \
+        zh_CN.GBK@stroke \
 	zh_CN.UTF-8 \
+        zh_CN.UTF-8@pinyin \
+        zh_CN.UTF-8@radical \
+        zh_CN.UTF-8@stroke \
 	zh_HK.BIG5HK \
+        zh_HK.BIG5HK@radical \
+        zh_HK.BIG5HK@stroke \
 	zh_HK.UTF-8 \
+        zh_HK.UTF-8@radical \
+        zh_HK.UTF-8@stroke \
 	zh_TW.BIG5 \
+        zh_TW.BIG5@pinyin \
+        zh_TW.BIG5@radical \
+        zh_TW.BIG5@stroke \
+        zh_TW.BIG5@zhuyin \
 	zh_TW.EUC \
-	zh_TW.UTF-8
+        zh_TW.EUC@pinyin \
+        zh_TW.EUC@radical \
+        zh_TW.EUC@stroke \
+        zh_TW.EUC@zhuyin \
+	zh_TW.UTF-8 \
+        zh_TW.UTF-8@pinyin \
+        zh_TW.UTF-8@radical \
+        zh_TW.UTF-8@stroke \
+        zh_TW.UTF-8@zhuyin
+
+
 
 
 all:=		TARGET= all
