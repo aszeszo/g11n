@@ -93,8 +93,8 @@ LOCALEDEF	= $(SRC)/tools/localedef.sh
 
 LDFLAGS_sparc	= -M /usr/lib/ld/map.pagealign
 LDFLAGS_i386	= -M /usr/lib/ld/map.pagealign -M /usr/lib/ld/map.noexdata
-LDFLAGS32	= -R\\\$$ORIGIN/../common -Bdirect $(LDFLAGS_$(MACH))
-LDFLAGS64	= -R\\\$$ORIGIN/../../common/$(MACH64) -Bdirect $(LDFLAGS_$(MACH))
+
+LDFLAGS		= -Bdirect $(LDFLAGS_$(MACH))
 
 _CHARMAPS	= $(SRC)/src/locale_src/charmap
 _METHODSRC	= $(SRC)/src/locale_src/base/include
@@ -192,10 +192,10 @@ all: $(METHODS_SOS) $(MACH64) $(LOCALE.so)
 	LOC=$(<:%.localedef.build=%) ; \
 	LCE=`echo $$LOC | cut -d@ -f1` ; \
 	ENC=`echo $$LCE | cut -d. -f2` ; \
-	if [ "$$ENC" = "UTF-8" ]; then ID=$$ENC; else ID=$$LCE; fi ; \
-	$(LOCALEDEF) $(LDF_OPT64) -c -v -W cc,"$(CFLAGS64)" -L "$(LDFLAGS64)" -x $(_METHODSRC)/$$ID.x -f $(_CHARMAPS)/$$ID.charmap -i $< $$LOC; \
+	if [ "$$ENC" = "UTF-8" ]; then ID=$$ENC; ORIGIN32='-R\$$ORIGIN/../common'; ORIGIN64='-R\$$ORIGIN/../../common/$(MACH64)'; else ID=$$LCE; ORIGIN32='-R\$$ORIGIN'; ORIGIN64='-R\$$ORIGIN'; fi ; \
+	$(LOCALEDEF) $(LDF_OPT64) -c -v -W cc,"$(CFLAGS64)" -L "$(LDFLAGS) $$ORIGIN64" -x $(_METHODSRC)/$$ID.x -f $(_CHARMAPS)/$$ID.charmap -i $< $$LOC; \
 	$(MV) $@ $(MACH64)/ ; \
-	$(LOCALEDEF) $(LDF_OPT)   -c -v -W cc,"$(CFLAGS)"   -L "$(LDFLAGS32)" -x $(_METHODSRC)/$$ID.x -f $(_CHARMAPS)/$$ID.charmap -i $< $$LOC
+	$(LOCALEDEF) $(LDF_OPT)   -c -v -W cc,"$(CFLAGS)"   -L "$(LDFLAGS) $$ORIGIN32" -x $(_METHODSRC)/$$ID.x -f $(_CHARMAPS)/$$ID.charmap -i $< $$LOC
 
 $(MACH64):
 	$(INSDIR) $(MACH64)
