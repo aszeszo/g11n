@@ -109,13 +109,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(jistosj2[ic2]);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if (ic == SS2) {	/* Kana starts */
 			if ((int)ileft > 0) {
@@ -131,13 +128,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic2);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kana */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if (ic == SS3) { /* CS_3 Kanji starts */
 			unsigned short dest;
@@ -162,7 +156,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 							 * Illegal code points
 							 * in G3 plane.
 							 */
-							UNGET_EILSEQ_STATELESS(3)
+							UNGET_ERRRET_STATELESS(3, EILSEQ)
 						} else {
 							if ((dest == PGETA) &&
 							(st->_icv_flag & __ICONV_CONV_NON_IDENTICAL))
@@ -197,16 +191,13 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						continue;
 					}
 				} else { /* 2nd and 3rd byte check failed */
-					UNGET_EILSEQ_STATELESS(3)
+					UNGET_ERRRET_STATELESS(3, EILSEQ)
 				}
 			} else {	/* input fragment of JISX0212 */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else { /* 1st byte check failed */
-			UNGET_EILSEQ_STATELESS(1)
+			UNGET_ERRRET_STATELESS(1, EILSEQ)
 		}
 	}
 	retval = ileft;

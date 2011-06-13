@@ -182,13 +182,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic2 & CMASK);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ(2)
+					UNGET_ERRRET(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET(1, EINVAL)
 			}
 		} else if (ic == SS2) {	/* Kana starts */
 			if ((int)ileft > 0) {
@@ -230,13 +227,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic2 & CMASK);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ(2)
+					UNGET_ERRRET(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kana */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET(1, EINVAL)
 			}
 		} else if (ic == SS3) {	/* JISX0212 starts */
 			if (ileft >= EUCW3) {
@@ -284,16 +278,13 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic3 & CMASK);
 					continue;
 				} else { /* 2nd and 3rd byte check failed */
-					UNGET_EILSEQ(3)
+					UNGET_ERRRET(3, EILSEQ)
 				}
 			} else {	/* input fragment of JISX0212 */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET(1, EINVAL)
 			}
 		} else { /* 1st byte check failed */
-			UNGET_EILSEQ(1)
+			UNGET_ERRRET(1, EILSEQ)
 		}
 	}
 	retval = ileft;

@@ -70,10 +70,10 @@ read_unicode(
 	unsigned char	ic1, ic2, ic3, ic4;	/* bytes read */
 	unsigned int	u32;		/* resulted UTF-32 */
 
-	NGET(ic1, "UTF32-1");
-	NGET(ic2, "UTF32-2");
-	NGET(ic3, "UTF32-3");
-	NGET(ic4, "UTF32-4");
+	NGETR(ic1, "UTF32-1");
+	NGETR(ic2, "UTF32-2");
+	NGETR(ic3, "UTF32-3");
+	NGETR(ic4, "UTF32-4");
 
 	if (st->bom_written == B_FALSE) {
 		u32 = 0U;
@@ -159,8 +159,8 @@ read_unicode(
 	unsigned int	u32;		/* resulted UTF-32 */
 	unsigned int	losur;		/* low surrogate */
 
-	NGET(ic1, "UTF16-1");	/* read 1st byte */
-	NGET(ic2, "UTF16-2");	/* read 2nd byte */
+	NGETR(ic1, "UTF16-1");	/* read 1st byte */
+	NGETR(ic2, "UTF16-2");	/* read 2nd byte */
 
 	if (st->bom_written == B_FALSE) {
 		u32 = 0U;
@@ -204,8 +204,8 @@ read_unicode(
 #if	defined(JFP_ICONV_FROMCODE_UCS2)
 		RET_EILSEQ("surrogate is illegal in UCS2", 2)
 #else	/* !defined(JFP_ICONV_FROMCODE_UCS2) */
-		NGET(ic1, "LOSUR-1");
-		NGET(ic2, "LOSUR-2");
+		NGETR(ic1, "LOSUR-1");
+		NGETR(ic2, "LOSUR-2");
 
 		if (st->little_endian == B_TRUE) {
 			losur = (((unsigned int)ic2) << 8) | ic1;
@@ -390,7 +390,7 @@ utf8_ucs(
 	char		*op = *pop;
 	size_t		oleft = *poleft;
 
-	NGET(ic, "no bytes available");	/* read 1st byte */
+	NGETR(ic, "no bytes available");	/* read 1st byte */
 	ic1 = ic;
 	l = ic1; /* get bits from 1st byte to UCS value */
 
@@ -414,14 +414,14 @@ utf8_ucs(
 		 */
 		for (i = 2; remaining_bytes > 0; remaining_bytes--, i++) {
 			if (ic1 != 0U) {
-				NGET(ic, "2nd byte of UTF-8");
+				NGETR(ic, "2nd byte of UTF-8");
 				if ((ic < valid_min_2nd_byte[ic1]) ||
 					(ic > valid_max_2nd_byte[ic1])) {
 					RET_EILSEQ("2nd byte is invalid", 2)
 				}
 				ic1 = 0U; /* 2nd byte check done */
 			} else {
-				NGET(ic, "3rd or later byte of UTF-8");
+				NGETR(ic, "3rd or later byte of UTF-8");
 				if ((ic < 0x80) || (ic > 0xbf)) {
 				RET_EILSEQ("3rd or later byte is invalid", i)
 				}

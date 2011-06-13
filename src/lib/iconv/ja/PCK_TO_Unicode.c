@@ -91,7 +91,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETR(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
 			RESTORE_HEX_ASCII_JUMP(ic1)
@@ -101,7 +101,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			uni = _jfp_tbl_jisx0201kana_to_ucs2[(ic1 - 0xa1)];
 			PUTU(uni, "KANA", 1);
 		} else if (ISSJKANJI1(ic1)) { /* JIS X 0208 or UDC; 2 bytes */
-			NGET(ic2, "CS1-2 not available");
+			NGETR(ic2, "CS1-2 not available");
 			if (ISSJKANJI2(ic2)) {
 				ic1 = sjtojis1[(ic1 - 0x80)];
 				if (ic2 >= 0x9f) {
@@ -116,7 +116,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				/* NOTREACHED */
 			}
 		} else if (ISSJSUPKANJI1(ic1)) { /* VDC, 2 bytes */
-			NGET(ic2, "SUP-2 not available");
+			NGETR(ic2, "SUP-2 not available");
 			if (ISSJKANJI2(ic2)) {
 				ic1 = sjtojis1[(ic1 - 0x80)];
 				if (ic2 >= 0x9f) {
@@ -137,7 +137,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			 * can process them as the same way of that of
 			 * extended IBM chars.
 			 */
-			NGET(ic2, "IBM-2 not available");
+			NGETR(ic2, "IBM-2 not available");
 			if (ISSJKANJI2(ic2)) {
 				unsigned short dest, upper, lower;
 				dest = (ic1 << 8) + ic2;
@@ -186,7 +186,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 		 * "CHIKAN-MOJI." (convertible character)
 		 * We use U+FFFD in this case.
 		 */
-			NGET(ic2, "GAP-2 not available");
+			NGETR(ic2, "GAP-2 not available");
 			if (ISSJKANJI2(ic2)) {
 				uni = 0xfffd;
 				PUTU(uni, "GAP", 2);

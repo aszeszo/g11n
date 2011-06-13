@@ -74,7 +74,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 
 	while (ileft != 0) {
 		pre_ileft = ileft; /* value before reading input bytes */
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETR(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
 			RESTORE_HEX_ASCII_JUMP(ic1)
@@ -84,7 +84,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			pckwchar = __get_pckwchar(__PCK_KANA, ic1, NULL);
 			NPUT_WCHAR(pckwchar, "KANA");
 		} else if (ISSJMB_1(ic1)) { /* valid SJIS 1st byte */
-			NGET(ic2, "CS1-2");
+			NGETR(ic2, "CS1-2");
 			/*
 			 * mbtowc(3C) return -1 and set EILSEQ when
 			 * the first byte is 0xeb or 0xec. But in

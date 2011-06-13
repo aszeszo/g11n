@@ -187,7 +187,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETR(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) {	/* ASCII; 1 byte */
 			RESTORE_HEX_ASCII_JUMP(ic1)
@@ -199,7 +199,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 		} else if (((ic1 >= 0x81) && (ic1 <= 0x9f)) ||
 				((ic1 >= 0xe0) && (ic1 <= 0xef))) {
 			/* JIS X 0213 plane 1 */
-			NGET(ic2, "PLANE1-2");
+			NGETR(ic2, "PLANE1-2");
 			if (ISSJKANJI2(ic2)) {
 				e16 = sjtoe16_x0213(ic1, ic2);
 				u32 = (unsigned int)_jfp_tbl_jisx0208_to_ucs2[
@@ -225,7 +225,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			}
 		} else if ((ic1 >= 0xf0) && (ic1 <= 0xfc)) {
 			/* JIS X 0213 plane 2 */
-			NGET(ic2, "PLANE2-2");
+			NGETR(ic2, "PLANE2-2");
 			if (ISSJKANJI2(ic2)) {
 				e16 = sjtoe16_x0213(ic1, ic2);
 				u32 = (unsigned int)_jfp_tbl_jisx0213p2_to_ucs2[

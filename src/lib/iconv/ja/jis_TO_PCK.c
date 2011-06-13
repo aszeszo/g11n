@@ -90,36 +90,24 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_MBTOG0_1;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(2, EINVAL)
 				}
 			} else if (ic == SBTOG0_1) {
 				if ((int)ileft > 0) {
 					stat = ST_SBTOG0;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(2, EINVAL)
 				}
 			} else if (ic == X208REV_1) {
 				if ((int)ileft > 0) {
 					stat = ST_208REV_1;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(2, EINVAL)
 				}
 			} else {
-				UNGET_EILSEQ_STATELESS(2)
+				UNGET_ERRRET_STATELESS(2, EILSEQ)
 			}
 		} else if (stat == ST_MBTOG0_1) {
 			if ((ic == F_X0208_83_90) || (ic == F_X0208_78)) {
@@ -131,19 +119,14 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_MBTOG0_2;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(3, EINVAL)
 				}
 			} else if (ic == F_X0212_90) {
 				stat = ST_INIT;
 				st->_st_cset_sav = cset = CS_3;
 				continue;
 			} else {
-				UNGET_EILSEQ_STATELESS(3)
+				UNGET_ERRRET_STATELESS(3, EILSEQ)
 			}
 		} else if (stat == ST_MBTOG0_2) {
 			if ((ic == F_X0208_83_90) || (ic == F_X0208_78)) {
@@ -155,7 +138,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_3;
 				continue;
 			} else {
-				UNGET_EILSEQ_STATELESS(4)
+				UNGET_ERRRET_STATELESS(4, EILSEQ)
 			}
 		} else if (stat == ST_SBTOG0) {
 			if ((ic == F_ASCII) ||
@@ -169,7 +152,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				stat = ST_INIT;
 				continue;
 			} else {
-				UNGET_EILSEQ_STATELESS(3)
+				UNGET_ERRRET_STATELESS(3, EILSEQ)
 			}
 		} else if (stat == ST_208REV_1) {
 			if (ic == X208REV_2) {
@@ -177,15 +160,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_208REV_2;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(3, EINVAL)
 				}
 			} else {
-				UNGET_EILSEQ_STATELESS(3)
+				UNGET_ERRRET_STATELESS(3, EILSEQ)
 			}
 		} else if (stat == ST_208REV_2) {
 			if (ic == ESC) {
@@ -193,16 +171,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_REV_AFT_ESC;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(4, EINVAL)
 				}
 			} else {
-				UNGET_EILSEQ_STATELESS(4)
+				UNGET_ERRRET_STATELESS(4, EILSEQ)
 			}
 		} else if (stat == ST_REV_AFT_ESC) {
 			if (ic == MBTOG0_1) {
@@ -210,17 +182,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_REV_AFT_MBTOG0_1;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(5, EINVAL)
 				}
 			} else {
-				UNGET_EILSEQ_STATELESS(5)
+				UNGET_ERRRET_STATELESS(5, EILSEQ)
 			}
 		} else if (stat == ST_REV_AFT_MBTOG0_1) {
 			if (ic == F_X0208_83_90) {
@@ -232,18 +197,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					stat = ST_REV_AFT_MBTOG0_2;
 					continue;
 				} else {
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(6, EINVAL)
 				}
 			} else {
-				UNGET_EILSEQ_STATELESS(6)
+				UNGET_ERRRET_STATELESS(6, EILSEQ)
 			}
 		} else if (stat == ST_REV_AFT_MBTOG0_2) {
 			if (ic == F_X0208_83_90) {
@@ -251,7 +208,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				st->_st_cset_sav = cset = CS_1;
 				continue;
 			} else {
-				UNGET_EILSEQ_STATELESS(7)
+				UNGET_ERRRET_STATELESS(7, EILSEQ)
 			}
 		}
 text:
@@ -263,10 +220,7 @@ text:
 				stat = ST_ESC;
 				continue;
 			} else {
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if (ic == SO) {
 			cset = CS_2;
@@ -299,12 +253,12 @@ text:
 					}
 					if ((ic < 0x21) || (ic == 0x7f)) {
 						/* 1st byte check failed */
-						UNGET_EILSEQ_STATELESS(1)
+						UNGET_ERRRET_STATELESS(1, EILSEQ)
 					}
 					GET(ic2);
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						/* 2nd byte check failed */
-						UNGET_EILSEQ_STATELESS(2)
+						UNGET_ERRRET_STATELESS(2, EILSEQ)
 					}
 					PUT(jis208tosj1[ic]);
 					if ((ic % 2) == 0)
@@ -312,10 +266,7 @@ text:
 					PUT(jistosj2[ic2]);
 					continue;
 				} else {	/* input fragment of Kanji */
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(1, EINVAL)
 				}
 			} else if (cset == CS_2) { /* Hankaku Katakana */
 				if (oleft < SJISW2) {
@@ -337,12 +288,12 @@ text:
 					}
 					if ((ic < 0x21) || (ic == 0x7f)) {
 						/* 1st byte check failed */
-						UNGET_EILSEQ_STATELESS(1)
+						UNGET_ERRRET_STATELESS(1, EILSEQ)
 					}
 					GET(ic2);
 					if ((ic2 < 0x21) || (ic2 == 0x7f)) {
 						/* 2nd byte check failed */
-						UNGET_EILSEQ_STATELESS(2)
+						UNGET_ERRRET_STATELESS(2, EILSEQ)
 					}
 					if (ic < 0x75) { /* check IBM area */
 						dest = (ic << 8);
@@ -353,7 +304,7 @@ text:
 							 * Illegal code points
 							 * in G3 plane.
 							 */
-							UNGET_EILSEQ_STATELESS(2)
+							UNGET_ERRRET_STATELESS(2, EILSEQ)
 						} else {
 							if ((dest == PGETA) &&
 							(st->_icv_flag & __ICONV_CONV_NON_IDENTICAL))
@@ -373,10 +324,7 @@ text:
 						continue;
 					}
 				} else {	/* input fragment of Kanji */
-					UNGET();
-					errno = EINVAL;
-					retval = (size_t)ERR_RETURN;
-					goto ret;
+					UNGET_ERRRET_STATELESS(1, EINVAL)
 				}
 			}
 		} else {

@@ -77,14 +77,14 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while (ileft != 0) {
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETR(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC(ic1)) { /* CS0; 1 byte */
 			RESTORE_HEX_ASCII_JUMP(ic1)
 			u32 = (unsigned int)_jfp_tbl_jisx0201roman_to_ucs2[ic1];
 			PUTU(u32, "CS0", 1);
 		} else if (ISCS1(ic1)) { /* JIS X 0213 plane 1; 2 bytes */
-			NGET(ic2, "CS1-2");
+			NGETR(ic2, "CS1-2");
 			if (ISCS1(ic2)) { /* 2nd byte check passed */
 				e16 = (ic1 << 8) | ic2;
 				u32 = (unsigned int)_jfp_tbl_jisx0208_to_ucs2[
@@ -107,7 +107,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				RET_EILSEQ("CS1-2", 2)
 			}
 		} else if (ic1 == SS2) { /* JIS X 0201 Kana; 2 bytes */
-			NGET(ic2, "CS2-2");
+			NGETR(ic2, "CS2-2");
 			if (ISCS2(ic2)) { /* 2nd byte check passed */
 				u32 = (unsigned int)
 				_jfp_tbl_jisx0201kana_to_ucs2[ic2 - 0xa1];
@@ -116,9 +116,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				RET_EILSEQ("CS2-2", 2)
 			}
 		} else if (ic1 == SS3) { /* JIS X 0213 plane 2; 3 bytes */
-			NGET(ic2, "CS3-2");
+			NGETR(ic2, "CS3-2");
 			if (ISCS3(ic2)) { /* 2nd byte check passed */
-				NGET(ic3, "CS3-3");
+				NGETR(ic3, "CS3-3");
 				if (ISCS3(ic3)) { /* 3rd byte check passed */
 					e16 = (ic2 << 8) | (ic3 & 0x7f);
 					u32 = (unsigned int)

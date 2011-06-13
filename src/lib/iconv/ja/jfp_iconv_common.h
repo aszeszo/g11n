@@ -307,20 +307,34 @@ void	_icv_close(iconv_t cd);
  *   - Move back to <ESC> when it's detected in escape sequence
  *   - Move back to 1st byte when it's detected in multi-byte char
  *
- * When ICONV_CONV_ILLEGAL_* is specified:
+ * When ICONV_CONV_ILLEGAL_* or ICONV_REPLACE_INVALID is specified
+ * and reporting errno is EILSEQ:
  * Call __icv_illegal to process illegal byte, and go to next loop.
  * When illegal byte is detected in escape sequence, the pointer of 
  * input buffer move back to <ESC>, and clear status to ST_INIT. 
  * When illegal byte is detected in 2nd byte of multi-byte character, 
  * the pointer of input buffer move back to 1st byte.
  *
+ * When ICONV_REPLACE_INVALID is specified and reporting errno is
+ * EINVAL:
+ * Call __replace_invalid() to put one replacement character, and
+ * go to next loop. When from code is statefull, go to next character
+ * to conver because the existing implementaion reports EINVAL when
+ * incorrect escape sequence is detected. When from code is not
+ * statefull, it will exit the loop because EINVAL means that
+ * ileft equal with 0 unexpectedly.
+ * The specified byte number is discarded in this case. it always 
+ * put one replacement character regardless which byte (1st, 2nd, ...)
+ * is invalid.
+ *
  * Status (stat), is not used when this code is extracted in
  * *_TO_ISO-2022-JP.c
  *
  */
-#define UNGET_EILSEQ(byte) {\
+#define UNGET_ERRRET(byte, error_num) {\
 		int __ix; \
-		if (st->_icv_flag & __ICONV_CONV_ILLEGAL) { \
+		if ((st->_icv_flag & __ICONV_CONV_ILLEGAL) \
+			&& ((error_num) == EILSEQ)) { \
 			if(__icv_illegal((unsigned char **)(&ip), \
 				&ileft, (char **)(&op), &oleft, \
 				st, (byte)) == (size_t)-1) { \
@@ -339,22 +353,48 @@ void	_icv_close(iconv_t cd);
 				} \
 			} \
 			continue; \
+		} else if ((st->_icv_flag & ICONV_REPLACE_INVALID) \
+			&& ((error_num) == EINVAL)) { \
+			if (__replace_invalid((unsigned char **)(&ip), \
+				(char **)(&op), &oleft, st) \
+				 == (size_t)-1) { \
+				retval = (size_t)ERR_RETURN; \
+				goto ret; \
+			} \
+			stat = ST_INIT; \
+			if (st->replacement < 0x7f) {\
+				cset = CS_0; \
+			} else { \
+				cset = CS_1; \
+			} \
+			continue; \
 		} else { \
 			for(__ix = (byte); __ix > 0; __ix--) { \
 				UNGET(); \
 			} \
-			errno = EILSEQ; \
+			errno = (error_num); \
 			retval = (size_t)ERR_RETURN; \
 			goto ret; \
 		} \
 	}
 
-#define UNGET_EILSEQ_STATELESS(byte) { \
+#define UNGET_ERRRET_STATELESS(byte, error_num) { \
 		int __ix; \
-		if (st->_icv_flag & __ICONV_CONV_ILLEGAL) { \
+		if ((st->_icv_flag & __ICONV_CONV_ILLEGAL) \
+			&& ((error_num) == EILSEQ)) { \
 			if(__icv_illegal((unsigned char **)(&ip), \
 				&ileft, (char **)(&op), &oleft, \
 				st, (byte)) == (size_t)-1) { \
+				retval = (size_t)ERR_RETURN; \
+				goto ret; \
+			} \
+			stat = ST_INIT; \
+			continue; \
+		} else if ((st->_icv_flag & ICONV_REPLACE_INVALID) \
+			&& ((error_num) == EINVAL)) { \
+			if (__replace_invalid((unsigned char **)(&ip), \
+				(char **)(&op), &oleft, st) \
+				== (size_t)-1) { \
 				retval = (size_t)ERR_RETURN; \
 				goto ret; \
 			} \
@@ -364,7 +404,7 @@ void	_icv_close(iconv_t cd);
 			for(__ix = (byte); __ix > 0; __ix--) { \
 				UNGET(); \
 			} \
-			errno = EILSEQ; \
+			errno = (error_num); \
 			retval = (size_t)ERR_RETURN; \
 			goto ret; \
 		} \
@@ -598,13 +638,56 @@ size_t __next_of_esc_seq(
 	__icv_state_t	*cd,	 /* state */
 	int		caller); /* caller */
 
-/* A variant of NGET to do buffering */
-#define NGETB(c, msg) \
-	if (ileft-- == 0) {\
-		RETERROR(EINVAL, msg)\
-	} else {\
-		(c) = *ip++;\
-		__putbuf(&tmpbuf, (c));\
+/*
+ * A valiant of NGET to do
+ *   - When ileft-- equal with 0 and ICONV_REPLACE_INVALID
+ *        call __replace_invalid() and successfull return from 
+ *        the conversion
+ *   - When ileft-- equal with 0 and NOT ICONV_REPLACE_INVALID
+ *        error return from conversion with EINVAL
+ */
+#define NGETR(c, msg) { \
+		if (ileft-- == 0) { \
+			if (st->_icv_flag & ICONV_REPLACE_INVALID) { \
+				if (__replace_invalid( \
+					(unsigned char **)(&ip), \
+					(char **)(&op), \
+					&oleft, st) == (size_t)-1) { \
+					/* errno was set in above */ \
+					rv = ((size_t)-1); \
+					goto ret; \
+				} \
+				ileft = 0; /* back to previous 0 */ \
+				goto next; \
+			} else { \
+				RETERROR(EINVAL, (msg)) \
+			} \
+		} else { \
+			(c) = *ip++; \
+		} \
+	}
+
+/* A variant of above NGETR to do buffering */
+#define NGETRB(c, msg) { \
+		if (ileft-- == 0) { \
+			if (st->_icv_flag & ICONV_REPLACE_INVALID) { \
+				if (__replace_invalid( \
+					(unsigned char **)(&ip), \
+					(char **)(&op), \
+					&oleft, st) == (size_t)-1) { \
+					/* errno was set in above */ \
+					rv = ((size_t)-1); \
+					goto ret; \
+				} \
+				ileft = 0; /* back to previous 0 */ \
+				goto next; \
+			} else { \
+				RETERROR(EINVAL, (msg)) \
+			} \
+		} else { \
+			(c) = *ip++; \
+			__putbuf(&tmpbuf, (c)); \
+		} \
 	}
 
 /* A variant of GET to do buffering */

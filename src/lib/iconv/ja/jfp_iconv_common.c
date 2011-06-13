@@ -213,7 +213,7 @@ _icv_iconvstr(
 			== (size_t)-1) {
 			ret = (size_t)-1;
 		}
-	} else if ((ret == (size_t)-1) && (errno = EILSEQ)) {
+	} else if ((ret == (size_t)-1) && (errno == EILSEQ)) {
 		_icv_iconv(cd, NULL, &len, &outarray, outlen);
 		errno = EILSEQ;
 	}

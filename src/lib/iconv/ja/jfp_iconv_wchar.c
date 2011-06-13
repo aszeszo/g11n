@@ -286,10 +286,10 @@ __read_eucwchar(
 	unsigned short	wchar1, wchar2, wchar3;	/* 1st, 2nd and 3rd byte in wchar format*/
 	unsigned short	euc16;			/* 16bit euc */
 
-	NGET(ic1, "WCHAR-1");
-	NGET(ic2, "WCHAR-2");
-	NGET(ic3, "WCHAR-3");
-	NGET(ic4, "WCHAR-4");
+	NGETR(ic1, "WCHAR-1");
+	NGETR(ic2, "WCHAR-2");
+	NGETR(ic3, "WCHAR-3");
+	NGETR(ic4, "WCHAR-4");
 
 #ifdef __sparc	
 	eucwchar = 0U;
@@ -415,10 +415,10 @@ __read_pckwchar(
 	unsigned char	second_byte;	/* 2byte PCK 2nd byte */
 	int		range = -1;	/* __PCK_KANJI when it's 2byte char */
 
-	NGET(ic1, "WCHAR-1");
-	NGET(ic2, "WCHAR-2");
-	NGET(ic3, "WCHAR-3");
-	NGET(ic4, "WCHAR-4");
+	NGETR(ic1, "WCHAR-1");
+	NGETR(ic2, "WCHAR-2");
+	NGETR(ic3, "WCHAR-3");
+	NGETR(ic4, "WCHAR-4");
 
 #ifdef __sparc	
 	pckwchar = 0U;

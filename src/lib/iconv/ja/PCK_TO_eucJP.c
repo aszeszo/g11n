@@ -100,13 +100,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic2 | CMSB);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if (ISSJSUPKANJI1(ic)) {	/* CS_3 kanji starts */
 			if ((int)ileft > 0) {
@@ -123,13 +120,10 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUT(ic2 | CMSB);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if (ISSJIBM(ic) || /* Extended IBM char. area */
 			ISSJNECIBM(ic)) { /* NEC/IBM char. area */
@@ -174,20 +168,17 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						 * in IBM-EXT area.
 						 */
 ill_ibm:
-						UNGET_EILSEQ_STATELESS(2)
+						UNGET_ERRRET_STATELESS(2, EILSEQ)
 					}
 					PUT(SS3);
 					PUT((dest>>8) & 0xff);
 					PUT(dest & 0xff);
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else if ((0xeb <= ic) && (ic <= 0xec)) {
 		/*
@@ -208,16 +199,13 @@ ill_ibm:
 					}
 					continue;
 				} else {	/* 2nd byte is illegal */
-					UNGET_EILSEQ_STATELESS(2)
+					UNGET_ERRRET_STATELESS(2, EILSEQ)
 				}
 			} else {		/* input fragment of Kanji */
-				UNGET();
-				errno = EINVAL;
-				retval = (size_t)ERR_RETURN;
-				goto ret;
+				UNGET_ERRRET_STATELESS(1, EINVAL)
 			}
 		} else {			/* 1st byte is illegal */
-			UNGET_EILSEQ_STATELESS(1)
+			UNGET_ERRRET_STATELESS(1, EILSEQ)
 		}
 	}
 	retval = ileft;

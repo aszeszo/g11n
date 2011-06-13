@@ -89,16 +89,16 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	st->tmpbuf = &tmpbuf;
 
 	while (ileft != 0) {
-		NGETB(ic1, "never fail here"); /* get 1st byte */
+		NGETRB(ic1, "never fail here"); /* get 1st byte */
 
 		if (ic1 == ESC) { /* Escape */
-			NGETB(ic2, "ESC-2");
+			NGETRB(ic2, "ESC-2");
 			switch (ic2) {
 			case 0x24: /* $ */
-				NGETB(ic3, "ESC$-3");
+				NGETRB(ic3, "ESC$-3");
 				switch (ic3) {
 				case 0x28: /* $( */
-					NGETB(ic4, "ESC$(-4");
+					NGETRB(ic4, "ESC$(-4");
 					switch (ic4) {
 					case 0x4f: /* 24-28-4F ESC$(O */
 						st->_st_cset = CS_1;
@@ -121,7 +121,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				}
 				break;
 			case 0x28: /* ( */
-				NGETB(ic3, "ESC(-3");
+				NGETRB(ic3, "ESC(-3");
 				switch (ic3) {
 				case 0x42: /* 28-42 ESC(B */
 					st->_st_cset = CS_0;
@@ -144,7 +144,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
 				RET_EILSEQ("PLANE1-1", 1)
 			}
-			NGETB(ic2, "PLANE1-2");
+			NGETR(ic2, "PLANE1-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
 				RET_EILSEQ("PLANE1-2", 2)
 			}
@@ -167,7 +167,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			if ((ic1 < 0x21) || (ic1 > 0x7e)) {
 				RET_EILSEQ("PLANE2-1", 1)
 			}
-			NGETB(ic2, "PLANE2-2");
+			NGETR(ic2, "PLANE2-2");
 			if ((ic2 < 0x21) || (ic2 > 0x7e)) {
 				RET_EILSEQ("PLANE2-2", 2)
 			}

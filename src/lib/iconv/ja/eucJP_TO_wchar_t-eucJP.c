@@ -76,14 +76,14 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 	oleft = *outbytesleft;
 
 	while ((int)ileft > 0) {
-		NGET(ic1, "never fail here"); /* get 1st byte */
+		NGETR(ic1, "never fail here"); /* get 1st byte */
 
 		if (ISASC((int)ic1)) { /* ASCII */
 			RESTORE_HEX_ASCII_JUMP(ic1)
 			eucwchar = __get_eucwchar(CS_0, ic1, NULL);
 			NPUT_WCHAR(eucwchar, "CS0");
 		} else if (ISCS1(ic1)) { /* JIS X 0208; 2 bytes */
-			NGET(ic2, "CS1-1");
+			NGETR(ic2, "CS1-1");
 			if (ISCS1(ic2)) { /* 2nd byte check passed */
 				eucwchar = __get_eucwchar(CS_1, ic1, ic2);
 				NPUT_WCHAR(eucwchar, "CS1");
@@ -91,7 +91,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				RET_EILSEQ("CS1-2", 2)
 			}
 		} else if (ic1 == SS2) {	/* JIS X 0201 Kana; 2 bytes */
-			NGET(ic2, "CS2-2");
+			NGETR(ic2, "CS2-2");
 			if (ISCS2(ic2)) { /* 2nd byte check passed */
 				eucwchar = __get_eucwchar(CS_2, ic2, NULL);
 				NPUT_WCHAR(eucwchar, "CS2");
@@ -99,9 +99,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				RET_EILSEQ("CS2-2", 2)
 			}
 		} else if (ic1 == SS3) { /* JIS X 0212; 3 bytes */
-			NGET(ic2, "CS3-2");
+			NGETR(ic2, "CS3-2");
 			if (ISCS3(ic2)) { /* 2nd byte check passed */
-				NGET(ic3, "CS3-3");
+				NGETR(ic3, "CS3-3");
 				if (ISCS3(ic3)) { /* 3rd byte check passed */
 					eucwchar = __get_eucwchar(CS_3, ic2, ic3);
 					NPUT_WCHAR(eucwchar, "CS3");
