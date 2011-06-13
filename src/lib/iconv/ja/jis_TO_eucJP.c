@@ -299,7 +299,11 @@ text:
 			continue;
 		}
 	}
-	retval = ileft;
+	/*
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
+	 */
+	retval = st->num_of_ni;
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;

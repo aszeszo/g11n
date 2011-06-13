@@ -126,6 +126,7 @@ typedef struct {
 	boolean_t	bom_written;	/* true if BOM exists */
 	boolean_t	little_endian;	/* true if Little Endian */
 
+	size_t		num_of_ni;	/* num. of non-identical conv. */
 	int		_icv_flag;	/* flag ICONV_* in iconv.h */
 	unsigned int	replacement;	/* only for _icv_iconvstr() */
 	int		trivialp;	/* 1: trivial, 0: otherwise */

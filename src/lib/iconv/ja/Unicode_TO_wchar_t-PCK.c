@@ -108,6 +108,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				ic1 = (unsigned char)DEF_SINGLE;
 				pckwchar = __get_pckwchar(__ASCII, ic1, NULL);
 				NPUT_WCHAR(pckwchar, "DEF for non-BMP");
+				st->num_of_ni++;
 			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
@@ -118,6 +119,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					goto next;
 				} else {
 					euc16 = DEF_SINGLE; /* replacement char */
+					st->num_of_ni++;
 				}
 			}
 
@@ -132,6 +134,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 									ic1, NULL);
 						NPUT_WCHAR(pckwchar,
 							"CS0-C1CTRL(replaced)")
+						st->num_of_ni++;
 					}
 				} else {
 					ic1 = (unsigned char)euc16;
@@ -176,6 +179,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 									ic1, NULL);
 							NPUT_WCHAR(pckwchar,
 								"CS3-NoSJIS(replaced)")
+							st->num_of_ni++;
 						}
 					} else {
 						/* avoid putting NUL ('\0') */
@@ -195,6 +199,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 								pckwchar = __get_pckwchar(__PCK_KANA,
 										ic1, NULL);
 								NPUT_WCHAR(pckwchar, "CS3-IBM-1");
+								if (dest == 0x3f) {
+									st->num_of_ni++;
+								}
 							}
 						}
 					}
@@ -237,10 +244,10 @@ ret:
 #endif	/* DEBUG */
 
 	/*
-	 * Return value for successful return is not defined by XPG
-	 * so return same as *inbytesleft as existing codes do.
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
 	 */
-	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+	return ((rv == (size_t)-1) ? rv : st->num_of_ni);
 }
 
 /*

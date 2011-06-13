@@ -525,6 +525,8 @@ ret:
 		*poleft = oleft;
 		if (state->bom_written == B_FALSE)
 			state->bom_written = B_TRUE;
+		if (u32 == 0xfffd)
+			state->num_of_ni++;
 	}
 
 	return (rv);
@@ -604,6 +606,8 @@ ret:
 		*poleft = oleft;
 		if (state->bom_written == B_FALSE)
 			state->bom_written = B_TRUE;
+		if (u32 == 0xfffd)
+			state->num_of_ni++;
 	}
 
 	return (rv);
@@ -652,6 +656,8 @@ ret:
 		/* update *pop and *poleft only on successful return */
 		*pop = op;
 		*poleft = oleft;
+		if (u32 == 0xfffd)
+			state->num_of_ni++;
 	}
 
 	return (rv);

@@ -196,6 +196,7 @@ ill_ibm:
 						CHECK2BIG(EUCW1,2);
 						PUT((EGETA>>8) & 0xff);
 						PUT(EGETA & 0xff);
+						st->num_of_ni++;
 					}
 					continue;
 				} else {	/* 2nd byte is illegal */
@@ -208,7 +209,11 @@ ill_ibm:
 			UNGET_ERRRET_STATELESS(1, EILSEQ)
 		}
 	}
-	retval = ileft;
+	/*
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
+	 */
+	retval = st->num_of_ni;
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;

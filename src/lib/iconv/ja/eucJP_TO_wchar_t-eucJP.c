@@ -130,7 +130,11 @@ next:
 ret:
 	DEBUGPRINTERROR
 
-	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+	/*
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
+	 */
+	return ((rv == (size_t)-1) ? rv : st->num_of_ni);
 }
 
 /* see jfp_iconv_enhance.h */

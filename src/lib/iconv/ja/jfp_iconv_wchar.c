@@ -106,6 +106,9 @@ __replace_invalid_wchar(
 	wchar_t		wcharbuf;
 	unsigned char	oc;
 
+	/* increment number of non-identical conversion */
+	cd->num_of_ni++;
+
 	wcharbuf = (wchar_t)(cd->replacement);
 
 	NPUT_WCHAR(wcharbuf, "REPLACE_INVALID");

@@ -110,6 +110,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			} else {
 				/* non-BMP */
 				NPUT((unsigned char)DEF_SINGLE, "non-BMP(replaced)");
+				st->num_of_ni++;
 			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
@@ -120,6 +121,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					goto next;
 				} else {
 					euc16 = DEF_SINGLE; /* replacement char */
+					st->num_of_ni++;
 				}
 			}
 
@@ -131,6 +133,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					} else {
 						NPUT((unsigned char)'?',
 							"CS0-C1CTRL(replaced)")
+						st->num_of_ni++;
 					}
 				} else {
 					ic = (unsigned char)euc16;
@@ -166,6 +169,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						} else {
 							NPUT((unsigned char)'?',
 								"CS3-NoSJIS(replaced)")
+							st->num_of_ni++;
 						}
 					} else {
 #ifdef	JAVA_CONV_COMPAT
@@ -174,6 +178,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						} else {
 							NPUT((unsigned char)'?',
 								"CS3-IBM(replaced)")
+							st->num_of_ni++;
 						}
 #else	/* !JAVA_CONV_COMPAT */
 						/* avoid putting NUL ('\0') */
@@ -190,6 +195,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 							} else {
 								NPUT(dest & 0xff,
 									"CS3-IBM-1");
+								if (dest == 0x3f) {
+									st->num_of_ni++;
+								}
 							}
 						}
 #endif	/* JAVA_CONV_COMPAT */
@@ -229,10 +237,10 @@ ret:
 #endif	/* DEBUG */
 
 	/*
-	 * Return value for successful return is not defined by XPG
-	 * so return same as *inbytesleft as existing codes do.
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
 	 */
-	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+	return ((rv == (size_t)-1) ? rv : st->num_of_ni);
 }
 
 /*

@@ -165,6 +165,9 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 							} else {
 								PUT((dest >> 8) & 0xff);
 								PUT(dest & 0xff);
+								if (dest == PGETA) {
+									st->num_of_ni++;
+								}
 							}
 						}
 						continue;
@@ -187,6 +190,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 						} else {
 							PUT((PGETA >> 8) & 0xff);
 							PUT(PGETA & 0xff);
+							st->num_of_ni++;
 						}
 						continue;
 					}
@@ -200,7 +204,11 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 			UNGET_ERRRET_STATELESS(1, EILSEQ)
 		}
 	}
-	retval = ileft;
+	/*
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
+	 */
+	retval = st->num_of_ni;
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;

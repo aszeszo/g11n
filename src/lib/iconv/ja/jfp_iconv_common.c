@@ -262,6 +262,7 @@ __icv_open_attr(int flag)
 	st->little_endian = B_FALSE;
 	st->replacement = NULL;
 	st->tmpbuf = NULL;
+	st->num_of_ni = 0;
 
 	return (st);
 }
@@ -418,6 +419,9 @@ __icv_non_identical(
 	int		caller = __ICV_NON_IDENTICAL;
 
 	int i;
+
+	/* increment number of non-identical conversion */
+	cd->num_of_ni++;
 
 	if (cd->_icv_flag & ICONV_CONV_NON_IDENTICAL_DISCARD) {
 		return (rv);
@@ -578,6 +582,9 @@ __replace_invalid_ascii(
 
 	unsigned char	byte_buf;
 
+	/* increment number of non-identical conversion */
+	cd->num_of_ni++;
+
 	/*
 	 * put each byte to op. cd->replacement is expected to be up
 	 * to 0xffffff (3 byte char)
@@ -621,6 +628,9 @@ __replace_invalid_iso2022jp(
 	size_t		rv = (size_t)0;		/* retrun value */
 
 	unsigned char	byte_buf;
+
+	/* increment number of non-identical conversion */
+	cd->num_of_ni++;
 
 	if (cd->replacement < 0x7f) {
 		if (cd->_st_cset != CS_0) { /* not in ascii mode */

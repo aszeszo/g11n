@@ -98,6 +98,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 				ic1 = (unsigned char)DEF_SINGLE;
 				eucwchar = __get_eucwchar(CS_0, ic1, NULL);
 				NPUT_WCHAR(eucwchar, "DEF for non-BMP");
+				st->num_of_ni++;
 			}
 		} else {
 			euc16 = _jfp_ucs2_to_euc16((unsigned short)ucs4);
@@ -108,6 +109,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					goto next;
 				} else {
 					euc16 = DEF_SINGLE; /* replacement char */
+					st->num_of_ni++;
 				}
 			}
 
@@ -152,10 +154,10 @@ ret:
 	DEBUGPRINTERROR
 
 	/*
-	 * Return value for successful return is not defined by XPG
-	 * so return same as *inbytesleft as existing codes do.
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
 	 */
-	return ((rv == (size_t)-1) ? rv : *inbytesleft);
+	return ((rv == (size_t)-1) ? rv : st->num_of_ni);
 }
 
 /* see jfp_iconv_common.h */

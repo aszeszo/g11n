@@ -274,6 +274,7 @@ text:
 					if ((ic == 0x2d) || (0x75 <= ic)) {
 						PUT(PGETA >> 8);
 						PUT(PGETA & 0xff);
+						st->num_of_ni++;
 						continue;
 					}
 #endif  /* RFC1468_MODE */
@@ -319,6 +320,7 @@ text:
 #ifdef  RFC1468_MODE /* Convert JIS X 0212 to GETA */
 					PUT(PGETA >> 8);
 					PUT(PGETA & 0xff);
+					st->num_of_ni++;
 #else   /* ISO-2022-JP.UIOSF */
 					if (ic < 0x75) { /* check IBM area */
 						dest = (ic << 8);
@@ -338,6 +340,9 @@ text:
 							} else {
 								PUT((dest >> 8) & 0xff);
 								PUT(dest & 0xff);
+								if (dest == PGETA) {
+									st->num_of_ni++;
+								}
 							}
 						}
 					} else {
@@ -357,7 +362,11 @@ text:
 			UNGET_ERRRET_STATELESS(1, EILSEQ)
 		}
 	}
-	retval = ileft;
+	/*
+	 * When successfully converted, return number of non-identical
+	 * conversion as described in iconv(3C) and iconvstr(3C)
+	 */
+	retval = st->num_of_ni;
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;
