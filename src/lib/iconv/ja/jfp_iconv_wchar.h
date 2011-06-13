@@ -152,15 +152,19 @@ __restore_hex_wchar(
 	switch ((__read_codeset)((pw), &ip, &ileft, \
 		&op, &oleft, st)) { \
 	case (size_t)-1: \
-		/* errno has been set in __read_eucwchar() */ \
+		/* errno has been set in __read_codeset() */ \
 		rv = (size_t)-1; \
 		goto ret; \
 	case (size_t)0: \
-		/* character read was handled in the __read_eucwchar() */ \
+		/* character read was handled in the __read_codeset() */ \
 		/* no further evaluation needed in caller side */ \
 		rv = (size_t)0; \
 		goto next; \
 	default: \
+		/* return if null-character is detected, and */ \
+		/* ICONV_IGNORE_NULL is specified */ \
+		if ((*pw == 0U) && !(st->_icv_flag & ICONV_IGNORE_NULL)) \
+			goto ret; \
 		break; \
 	}
 

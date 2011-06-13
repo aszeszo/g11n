@@ -155,28 +155,34 @@ _icv_iconvstr(
 	size_t ret;
         iconv_t cd;
 
-	if (!(flag & ICONV_IGNORE_NULL) &&
-
+	/*
+	 * iconvstr(3C) stop conversion when null character is detected.
+	 * For ASCII compatibli codeset like UTF-8, memchr(3C) is called 
+	 * to detect null byte. For other the wide character codeset,
+	 * the position of null-charcter is not checked at here. It's 
+	 * detected while conversion (in  _icv_iconv()).
+	 * Actually, it's been implemented in GETU and GET_WCHAR common 
+	 * macro.
+	 */
 #if	defined(JFP_ICONV_FROMCODE_UTF32) || \
 	defined(JFP_ICONV_FROMCODE_UTF16) || \
 	defined(JFP_ICONV_FROMCODE_UCS2) || \
 	defined(JFP_ICONV_FROMCODE_WCHAR)
 
-	    (np = (char *)__index_of_nullchar((const void *)inarray,
-			*inlen)) != NULL)
+	len = *inlen;
 
 #else /* ASCII compatible incl. UTF-8 */
 
+	if (!(flag & ICONV_IGNORE_NULL) &&
 	    (np = (char *)memchr((const void *)inarray, '\0', *inlen))
 			!= NULL)
-
-#endif
 	{
 		len = np - inarray;
 	} else {
 		len = *inlen;
 	}
 
+#endif
 	t = len;
 	flag &= (ICONV_IGNORE_NULL | ICONV_REPLACE_INVALID);
 
@@ -819,32 +825,4 @@ __next_of_esc_seq(
 
 ret:
 	return(rv);
-}
-
-void*
-__index_of_nullchar(const void *asp, size_t n)
-{
-
-#if	defined(JFP_ICONV_FROMCODE_UTF32) || \
-	defined(JFP_ICONV_FROMCODE_WCHAR)
-
-	register const uint32_t*	sp = (uint32_t *)asp;
-	register const uint32_t*	ep = sp + n;
-
-	while (sp < ep)
-		if (*sp++ == '\0')
-			return((void *)--sp);
-	return(0);
-
-#else /* JFP_ICONV_FROMCODE_UTF16 || JFP_ICONV_FROMCODE_UCS2 */
-
-	register const uint16_t*	sp = (uint16_t *)asp;
-	register const uint16_t*	ep = sp + n;
-
-	while (sp < ep)
-		if (*sp++ == '\0')
-			return((void *)--sp);
-	return(0);
-
-#endif
 }
