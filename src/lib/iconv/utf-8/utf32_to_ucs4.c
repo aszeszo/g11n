@@ -309,10 +309,17 @@ ILLEGAL_CHAR:
 	return -2;
 }
 
-
 int _icv_iconvctl(STATE_T *cd, int req, void *arg)
 {
 	return _icv_flag_action(&cd->flags, req, (int *)arg,
 	    ICONVCTL_NO_TRANSLIT);
+}
+
+size_t
+_icv_iconvstr(char *inarray, size_t *inlen, char *outarray,
+	size_t *outlen, int flags)
+{
+	return _icv_ciconvstr(inarray, inlen, outarray, outlen, flags,
+		ICV_FETCH_UCS4_SIZE);
 }
 

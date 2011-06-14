@@ -277,3 +277,9 @@ int _icv_iconvctl(STATE_T *cd, int req, void *arg)
 	    ICONVCTL_NO_TRANSLIT);
 }
 
+size_t
+_icv_iconvstr(char *inarray, size_t *inlen, char *outarray,
+	size_t *outlen, int flags)
+{
+	return _icv_ciconvstr(inarray, inlen, outarray, outlen, flags, 1);
+}
