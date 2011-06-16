@@ -162,7 +162,7 @@ __restore_hex_wchar(
 		goto next; \
 	default: \
 		/* return if null-character is detected, and */ \
-		/* ICONV_IGNORE_NULL is specified */ \
+		/* ICONV_IGNORE_NULL is not specified */ \
 		if ((*pw == 0U) && !(st->_icv_flag & ICONV_IGNORE_NULL)) \
 			goto ret; \
 		break; \

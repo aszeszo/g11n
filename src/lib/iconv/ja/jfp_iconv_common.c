@@ -451,6 +451,22 @@ ret:
 	return (rv);
 }
 
+/*
+ * It's called to process incomplete characters. Currently, it's called
+ * only when iconvstr(3C) is called with ICONV_REPLACE_INVALID, and EINVAL
+ * is being reported. So, __replace_invalid() internal routine is called
+ * in any cases.
+ */
+size_t
+__icv_invalid(
+	unsigned char	**pip,	 /* point pointer to input buf */
+	char		**pop,	 /* point pointer to output buf */
+	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd)	 /* state */
+{
+	return(__replace_invalid(pip, pop, poleft, cd));
+}
+
 size_t
 __replace_hex_ascii(
 	unsigned char	hex,	 /* hex to write */

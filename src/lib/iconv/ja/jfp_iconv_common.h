@@ -318,15 +318,10 @@ void	_icv_close(iconv_t cd);
  *
  * When ICONV_REPLACE_INVALID is specified and reporting errno is
  * EINVAL:
- * Call __replace_invalid() to put one replacement character, and
- * go to next loop. When from code is statefull, go to next character
- * to conver because the existing implementaion reports EINVAL when
- * incorrect escape sequence is detected. When from code is not
- * statefull, it will exit the loop because EINVAL means that
- * ileft equal with 0 unexpectedly.
- * The specified byte number is discarded in this case. it always 
- * put one replacement character regardless which byte (1st, 2nd, ...)
- * is invalid.
+ * Call __icv_invalid() to process incomplete characters, and
+ * go to next loop. The specified byte number is disregarded in this 
+ * case. it always put one replacement character regardless which byte
+ * (1st, 2nd, ...) is invalid.
  *
  * Status (stat), is not used when this code is extracted in
  * *_TO_ISO-2022-JP.c
@@ -356,7 +351,7 @@ void	_icv_close(iconv_t cd);
 			continue; \
 		} else if ((st->_icv_flag & ICONV_REPLACE_INVALID) \
 			&& ((error_num) == EINVAL)) { \
-			if (__replace_invalid((unsigned char **)(&ip), \
+			if (__icv_invalid((unsigned char **)(&ip), \
 				(char **)(&op), &oleft, st) \
 				 == (size_t)-1) { \
 				retval = (size_t)ERR_RETURN; \
@@ -393,7 +388,7 @@ void	_icv_close(iconv_t cd);
 			continue; \
 		} else if ((st->_icv_flag & ICONV_REPLACE_INVALID) \
 			&& ((error_num) == EINVAL)) { \
-			if (__replace_invalid((unsigned char **)(&ip), \
+			if (__icv_invalid((unsigned char **)(&ip), \
 				(char **)(&op), &oleft, st) \
 				== (size_t)-1) { \
 				retval = (size_t)ERR_RETURN; \
@@ -470,8 +465,13 @@ __icv_non_identical(
         __icv_state_t   *cd,	 /* state */
         int             num_of_bytes); /* num of non-identical bytes */
 
-void *
-__index_of_nullchar(const void *asp, size_t n);
+size_t
+__icv_invalid(
+	unsigned char	**pip,	 /* point pointer to input buf */
+	char		**pop,	 /* point pointer to output buf */
+	size_t		*poleft, /* point #bytes left in output buf */
+	__icv_state_t	*cd);	 /* state */
+
 
 /*
  * prototype related with  __replace_hex()
@@ -527,12 +527,14 @@ size_t __replace_hex_iso2022jp(
  *
  * __replace_invalid
  *
- * It's called from __icv_illegal when ICONV_REPLACE_INVALID is 
- * specified. It's put pre-defined replacement character for 
- * appropriate tocode. It's implemented in each modules. In each 
- * module, __replace_invalid should call one of 
- * __replace_invalid_utf32(), __replace_invalid_ascii, or
- * __replace_invalid_iso2022jp().
+ * It's called from __icv_illegal() and __icv_invalid when
+ * ICONV_REPLACE_INVALID is specified. It's put pre-defined 
+ * replacement character for appropriate tocode. It's implemented 
+ * in each modules. In each module, __replace_invalid should call 
+ * one of:
+ * __replace_invalid_utf32()
+ * __replace_invalid_ascii()
+ * __replace_invalid_iso2022jp()
  *
  * The pre-defined replacement character is set by __icv_open_attr(). 
  * It's in __icv_state_t.
@@ -642,15 +644,15 @@ size_t __next_of_esc_seq(
 /*
  * A valiant of NGET to do
  *   - When ileft-- equal with 0 and ICONV_REPLACE_INVALID
- *        call __replace_invalid() and successfull return from 
- *        the conversion
+ *        call __icv_invalid() and successfull return from the
+ *        conversion
  *   - When ileft-- equal with 0 and NOT ICONV_REPLACE_INVALID
  *        error return from conversion with EINVAL
  */
 #define NGETR(c, msg) { \
 		if (ileft-- == 0) { \
 			if (st->_icv_flag & ICONV_REPLACE_INVALID) { \
-				if (__replace_invalid( \
+				if (__icv_invalid( \
 					(unsigned char **)(&ip), \
 					(char **)(&op), \
 					&oleft, st) == (size_t)-1) { \
@@ -670,25 +672,8 @@ size_t __next_of_esc_seq(
 
 /* A variant of above NGETR to do buffering */
 #define NGETRB(c, msg) { \
-		if (ileft-- == 0) { \
-			if (st->_icv_flag & ICONV_REPLACE_INVALID) { \
-				if (__replace_invalid( \
-					(unsigned char **)(&ip), \
-					(char **)(&op), \
-					&oleft, st) == (size_t)-1) { \
-					/* errno was set in above */ \
-					rv = ((size_t)-1); \
-					goto ret; \
-				} \
-				ileft = 0; /* back to previous 0 */ \
-				goto next; \
-			} else { \
-				RETERROR(EINVAL, (msg)) \
-			} \
-		} else { \
-			(c) = *ip++; \
-			__putbuf(&tmpbuf, (c)); \
-		} \
+		NGETR((c),(msg)) \
+		__putbuf(&tmpbuf, (c)); \
 	}
 
 /* A variant of GET to do buffering */

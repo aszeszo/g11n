@@ -679,7 +679,7 @@ ret:
 		goto next; \
 	default: \
 		/* return if null-character is detected, and */ \
-		/* ICONV_IGNORE_NULL is specified */ \
+		/* ICONV_IGNORE_NULL is not specified */ \
 		if ((*pu32 == 0U) && !(st->_icv_flag & ICONV_IGNORE_NULL)) \
 			goto ret; \
 		break; \
