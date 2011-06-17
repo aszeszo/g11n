@@ -37,8 +37,8 @@ void _icv_close(iconv_t *cd);
 /*
  * Common implementation of _icv_iconvstr.
  */
-size_t _icv_iconvstr(char *inarray, size_t *inlen, char *outarray,
-	size_t *outlen, int flags);
+size_t _icv_ciconvstr(char *inarray, size_t *inlen, char *outarray,
+	size_t *outlen, int flags, int chsz);
 
 /*
  * Perform the RESTORE_HEX action for ICONV_CONV_ILLEGAL_RESTORE_HEX
