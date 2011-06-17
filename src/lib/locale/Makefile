@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2009, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -79,7 +79,6 @@ LOCALES = \
 	hr_HR.UTF-8 \
 	hu_HU.ISO8859-2 \
 	hu_HU.UTF-8 \
-	hy_AM.UTF-8 \
 	id_ID.UTF-8 \
 	is_IS.ISO8859-1 \
 	is_IS.UTF-8 \
@@ -97,15 +96,12 @@ LOCALES = \
 	ja_JP.PCK \
 	ja_JP.UTF-8 \
 	ja_JP.eucJP \
-	ka_GE.UTF-8 \
 	kk_KZ.UTF-8 \
 	kn_IN.UTF-8 \
 	ko_KR.EUC \
         ko_KR.EUC@dict \
 	ko_KR.UTF-8 \
         ko_KR.UTF-8@dict \
-	ks_IN.UTF-8 \
-	ku_TR.UTF-8 \
 	ky_KG.UTF-8 \
 	lt_LT.ISO8859-13 \
 	lt_LT.UTF-8 \
@@ -137,15 +133,12 @@ LOCALES = \
 	ru_RU.ANSI1251 \
 	ru_RU.ISO8859-5 \
 	ru_RU.KOI8-R \
-	sa_IN.UTF-8 \
 	sk_SK.ISO8859-2 \
 	sk_SK.UTF-8 \
 	sl_SI.ISO8859-2 \
 	sl_SI.UTF-8 \
 	sq_AL.ISO8859-2 \
 	sq_AL.UTF-8 \
-	sr_ME.UTF-8 \
-	sr_RS.UTF-8 \
 	sv_SE.ISO8859-15 \
 	ta_IN.UTF-8 \
 	te_IN.UTF-8 \

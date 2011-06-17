@@ -18,12 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 LOCALE:sh = basename `pwd`
@@ -31,7 +26,7 @@ LOCALE:sh = basename `pwd`
 dummy: all
 
 include ../common/Makefile.asian
-
+FILES = 
 INSTALL_FLAG    = -u bin -g bin
 
 install: all $(TARGETDIRS) $(FILES.obj)

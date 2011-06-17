@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -33,7 +33,7 @@ LOCALE:sh = basename `pwd`
 
 TARGETDIR =	$(FILEROOT)/usr/lib/locale/$(LOCALE)
 
-FILES = locale_description locale_map
+FILES = 
 
 SUBDIRS = LC_CTYPE
 
