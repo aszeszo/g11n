@@ -372,6 +372,9 @@ $(UTF_8_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf8.c
 	$(CC) $(CFLAGS64) $(CMN)/utf8.c -c -o $(MACH64)/$@.o
 	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
 
+$(PER_PLATFORM): $(PER_PLATFORM:%=%.$(MACH))
+	$(RM) $@
+	$(CP) $(@:%=%.$(MACH)) $@
 
 #
 # Rules for binary tables:
@@ -381,12 +384,3 @@ $(UTF_8_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf8.c
 %.bt: $(GENI_SRCS)/%.src
 	$(GENICONVTBL) -o $@ -f $< 
 
-#
-# Rules for all other files:
-#$(ALLOTHERFILES):
-#	$(RM) $@
-#	if [ -d $(CMN)/SCCS ] ; then \
-#		/usr/ccs/bin/sccs -d$(CMN) get $@; \
-#	else \
-#		$(CP) $(CMN)/$@ .; \
-#	fi

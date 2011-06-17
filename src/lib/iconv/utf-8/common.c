@@ -54,19 +54,38 @@ _icv_close(iconv_t *cd)
 }
 
 size_t
-_icv_iconvstr(char *inarray, size_t *inlen, char *outarray,
-	size_t *outlen, int flags)
+_icv_ciconvstr(char *inarray, size_t *inlen, char *outarray,
+	size_t *outlen, int flags, int chsz)
 {
 	char *np;
 	size_t len, t;
 	size_t ret;
         iconv_t *cd;
 
-	if ((flags & ICONV_IGNORE_NULL) == 0 &&
-	    (np = (char *)memchr((const void *)inarray, 0, *inlen)) != NULL)
-		len = np - inarray;
-	else
-		len = *inlen;
+	/*
+	 * This block detects the string terminating null character,
+	 * as per iconvstr(3C). It was placed here to simplify _icv_iconv
+	 * in the individual modules.
+	 */
+	len = *inlen;
+	if ((flags & ICONV_IGNORE_NULL) == 0) {
+		if (chsz == 1) {
+			np = (char *)memchr((const void *)inarray, 0, *inlen);
+			if (np)
+				len = np - inarray;
+		} else if (*inlen >= chsz) { 
+			static const char null_ch[4] =
+			    { '\0', '\0', '\0', '\0' };
+			int i;
+	
+			for (i=0; i <= len - chsz; i += chsz) {
+				if (memcmp(inarray + i, null_ch, chsz) == 0) {
+					len = i;
+					break;
+				}
+			}
+		}
+	}
 
 	t = len;
 	flags &= (ICONV_IGNORE_NULL | ICONV_REPLACE_INVALID);

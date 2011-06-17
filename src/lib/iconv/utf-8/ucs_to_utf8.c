@@ -388,3 +388,11 @@ _icv_iconvctl(STATE_T *cd, int req, void *arg)
 	return _icv_flag_action(&cd->flags, req, (int *)arg, 0);
 }
 
+size_t
+_icv_iconvstr(char *inarray, size_t *inlen, char *outarray,
+	size_t *outlen, int flags)
+{
+	return _icv_ciconvstr(inarray, inlen, outarray, outlen, flags,
+		ICV_FETCH_UCS_SIZE);
+}
+
