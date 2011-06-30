@@ -19,10 +19,7 @@
 # CDDL HEADER END
 #
 #
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -33,20 +30,23 @@ SOURCES =	u8sb.c common.h iso-8859-1_to_utf8.h iso-8859-2_to_utf8.h koi8-r_to_ut
 
 MODULES	= 	u8koi8 u8lat1 u8lat2
 
-FILES =		$(MODULES) $(MODULES:%=$(MACH64)/%)
+FILES =		$(MODULES:%=$(MACH64)/%)
 
 SUBDIRS = 
 
 TARGETDIRS =	$(TARGETDIR) $(TARGETDIR)/$(MACH64)
 
-CFLAGS		= -O -xildoff -xc99=%none -D_KERNEL -D_SYSCALL32
-CFLAGS_sparcv9	= -xO3 -m64 -dalign -xregs=no%appl -xspace -W0,-Lt -Wd,-xsafe=unboundsym -D_SYSCALL32_IMPL -D_ELF64 $(CFLAGS)
-CFLAGS_amd64	= -m64 -Ui386 -U__i386 -W0,-y-a -D_SYSCALL32_IMPL -D_ELF64 $(CFLAGS)
-LDFLAGS		= -r -dn
 
-u8lat1.o := CFLAGS += -DISO_8859_1                                                                                                                                                                                     
-u8lat2.o := CFLAGS += -DISO_8859_2                                                                                                                                                                                     
-u8koi8.o := CFLAGS += -DKOI8_R  
+# 64bit kernel modules compilation flags
+# (32bit kernel is EOF)
+CFLAGS		= -xO3 -xc99=%all -D_KERNEL -D_SYSCALL32 -D_ASM_INLINES -Xa -xspace -xdebugformat=stabs  -D_SYSCALL32_IMPL -D_ELF64 -D_DDI_STRICT -Dsun -D__sun -D__SVR4 -v -g -m64 -errtags=yes -errwarn=%all -W0,-noglobal -W0,-xglobalstatic -xstrconst 
+CFLAGS_sparcv9	= $(CFLAGS) -xchip=ultra -Wc,-xcode=abs32 -Wc,-Qiselect-regsym=0 -W0,-Lt -Wc,-Qiselect-T1 -Wd,-xsafe=unboundsym -Wc,-Qassembler-ounrefsym=0 -W2,-xwrap_int -xregs=no%float 
+CFLAGS_amd64	= $(CFLAGS) -Ui386 -U__i386 -xmodel=kernel -Wu,-O~Z -xvector=none -Wu,-save_args -xildoff 
+LDFLAGS		= -r -zstrip-class=annotate -zstrip-class=comment -zstrip-class=debug -zstrip-class=exclude
+
+$(MACH64)/u8lat1.o := CFLAGS += -DISO_8859_1                                                                                                                                                                                     
+$(MACH64)/u8lat2.o := CFLAGS += -DISO_8859_2                                                                                                                                                                                     
+$(MACH64)/u8koi8.o := CFLAGS += -DKOI8_R  
 
 
 all: $(MODULES) $(SUBDIRS)
@@ -56,15 +56,13 @@ include $(SRC)/src/Makefile.targ
 install: $(FILES.obj) $(SUBDIRS)
 
 clean: $(SUBDIRS)
-	$(RM) -r *.so* *.o $(MACH64) $(MODULES)
+	$(RM) -r $(MACH64) 
 
-$(MODULES:%=%.o): $(MACH64) $(SOURCES)
-	$(CC) -c -o $@ $(CFLAGS) u8sb.c
-	$(CC) $(CFLAGS_$(MACH64)) -c -o $(MACH64)/$@ u8sb.c
+$(MODULES:%=$(MACH64)/%.o): $(MACH64) $(SOURCES)
+	$(CC) $(CFLAGS_$(MACH64)) -c -o $@ u8sb.c
 
-$(MODULES): $$(@:%=%.o)
+$(MODULES:%=$(MACH64)/%): $$(@:%=%.o)
 	$(LD) $(LDFLAGS) -o $@ $^
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(^:%=$(MACH64)/%)
 
 $(MACH64):
 	$(INSDIR) $(MACH64)
