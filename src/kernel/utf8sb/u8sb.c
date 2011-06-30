@@ -242,9 +242,9 @@ u8sbrput(queue_t* q, mblk_t* mp)
 			c = *bp->b_rptr;
 			sz = sb_u8_tbl[c].size;
 			u8 = sb_u8_tbl[c].u8;
-			for (i = 1; i < sz; i++)
+			for (i = 0; i < sz; i++)
 				k_bappend(&nmp, &nbp,
-					(uchar_t)((u8 >> ((sz - i) * 8))&0xff));
+					(uchar_t)((u8 >> ((sz - i - 1) * 8))&0xff));
 			bp->b_rptr++;
 		}
 	}
