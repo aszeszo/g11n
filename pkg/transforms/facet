@@ -182,7 +182,13 @@
 <transform dir file link hardlink \
     path=usr/share/lib/setterm/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
     default facet.locale.detected %<1>>
-
+# vpanels
+<transform dir file link hardlink \
+    path=usr/share/vpanels/locale/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
+<transform dir file link hardlink \
+    path=usr/share/vpanels/app/locale/([a-z]{2}(_[A-Z]{2})?)([.@][^/]+)?(/.+)?$ -> \
+    default facet.locale.detected %<1>>
 #
 # actions faceted zh_CN or zh_TW
 #   -> Add zh_SG or zh_HK respectively since the actions can be shared with
@@ -216,6 +222,12 @@
 <transform dir file link hardlink \
     path=usr/lib/locale/(zh_TW([.@][^/]+)?)/(.*%<1>.so.3|amd64|sparcv9|locale|LC_(COLLATE|CTYPE|MONETARY|NUMERIC)|LO_LTYPE) -> \
     delete facet.locale.zh_HK ^.*$>
+<transform dir file link hardlink \
+   path=.*/vpanels/.*zh_CN -> \
+   delete facet.locale.zh_SG ^.*$>
+<transform dir file link hardlink \
+   path=.*/vpanels/.*zh_TW -> \
+   delete facet.locale.zh_HK ^.*$> 
 
 #
 # finalize: convert facet.locale.detected to real facet value
