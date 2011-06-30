@@ -20,11 +20,11 @@
 #
 
 #
-# Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/consolidation/l10n/l10n-incorporation@$(PKGVERS)
+set name=info.classification value="org.opensolaris.category.2008:Meta Packages/Incorporations"
 set name=variant.arch value=$(ARCH)
 set name=pkg.description value="This incorporation constrains packages from the l10n consolidation."
 set name=pkg.summary value="l10n consolidation incorporation"
