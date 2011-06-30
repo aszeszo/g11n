@@ -1,9 +1,6 @@
 /*
- * Copyright (c) 1996,1999 by Sun Microsystems, Inc.
- * All rights reserved.
+ * Copyright (c) 1996, 2011, Oracle and/or its affiliates. All rights reserved.
  */
-
-#pragma	ident	"@(#)u8sb.c	1.1 99/03/05 SMI"
 
 #include <sys/types.h>
 #include <sys/param.h>
@@ -14,6 +11,7 @@
 #include <sys/modctl.h>
 #include <sys/stropts.h>
 #include <sys/ddi.h>
+#include <sys/cmn_err.h>
 #include "common.h"
 
 
@@ -78,18 +76,21 @@ static struct modlinkage modlinkage = {
 };
 
 
+int
 _init()
 {
 	return(mod_install(&modlinkage));
 }
 
 
+int
 _fini()
 {
 	return(mod_remove(&modlinkage));
 }
 
 
+int
 _info(struct modinfo* modinfop)
 {
 	return(mod_info(&modlinkage, modinfop));
@@ -201,6 +202,8 @@ u8sbclose(queue_t* q, int flag, cred_t* cr)
 	qprocsoff(q);
 	freeb(k_state->k_savbp);
 	q->q_ptr = NULL;
+
+	return 0;
 }
 
 
@@ -225,12 +228,12 @@ u8sbrput(queue_t* q, mblk_t* mp)
 		if (*mp->b_rptr & FLUSHR)
 			flushq(RD(q), FLUSHDATA);
 		putnext(q, mp);
-		return;
+		return 0;
 	}
 
 	if (mp->b_datap->db_type != M_DATA) {
 		putnext(q, mp);
-		return;
+		return 0;
 	}
 
 	nbp = nmp = NULL;
@@ -255,6 +258,8 @@ u8sbrput(queue_t* q, mblk_t* mp)
 
 	if (nmp)
 		putnext(q, nmp);
+
+	return 0;
 }
 
 
@@ -276,12 +281,12 @@ u8sbwput(queue_t* q, mblk_t* mp)
 		if (*mp->b_rptr & FLUSHW)
 			flushq(WR(q), FLUSHDATA);
 		putnext(q, mp);
-		return;
+		return 0;
 	}
 
 	if (mp->b_datap->db_type != M_DATA) {
 		putnext(q, mp);
-		return;
+		return 0;
 	}
 
 	nbp = nmp = (mblk_t*)NULL;
@@ -304,6 +309,8 @@ u8sbwput(queue_t* q, mblk_t* mp)
 
 	if (nmp)
 		putnext(q, nmp);
+
+	return 0;
 }
 
 
