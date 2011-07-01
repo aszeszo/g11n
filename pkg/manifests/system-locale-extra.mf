@@ -1480,6 +1480,8 @@ legacy pkg=SUNWlang-zhHK-extra category=ALE,system desc="Traditional Chinese (Ho
 legacy pkg=SUNWlang-zhTW-extra category=ALE,system desc="Traditional Chinese language support extra files" name="Traditional Chinese language support extra files" version=110.0,REV= facet.locale.zh_TW=true
 license copyright.oracle license=copyright.oracle
 license copyright.unicode license=copyright.unicode
+license copyright.hkscs license=copyright.hkscs
+license copyright.ieee license=copyright.ieee
 link path=usr/lib/locale/ar_EG.ISO8859-6/LC_CTYPE/LCL_DEF target=../../iso_8859_6/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bg_BG.ISO8859-5/LC_CTYPE/LCL_DEF target=../../iso_8859_5/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bs_BA.ISO8859-2/LC_CTYPE/LCL_DEF target=../../iso_8859_2/LC_CTYPE/LCL_DEF

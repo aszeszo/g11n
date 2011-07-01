@@ -566,7 +566,8 @@ file path=usr/lib/iconv/ibmj%PCK.so
 file path=usr/lib/iconv/ibmj%eucJP.so
 file path=usr/lib/iconv/ibmj-EBCDIK%PCK.so
 file path=usr/lib/iconv/ibmj-EBCDIK%eucJP.so
-license copyright.unicode+hkscs license=copyright.unicode+hkscs
+license copyright.unicode license=copyright.unicode
+license copyright.hkscs license=copyright.hkscs
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%GBK.so target=./646%CODESET.so

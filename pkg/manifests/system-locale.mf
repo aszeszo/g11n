@@ -2041,6 +2041,7 @@ legacy pkg=SUNWlang-zhSG category=ALE,system desc="Singapore Chinese language su
 legacy pkg=SUNWlang-zhTW category=ALE,system desc="Traditional Chinese language support" name="Traditional Chinese language support" version=110.0,REV= facet.locale.zh_TW=true
 license copyright.oracle license=copyright.oracle
 license copyright.unicode license=copyright.unicode
+license copyright.ieee license=copyright.ieee
 link path=usr/lib/locale/af_ZA.UTF-8/LC_CTYPE/$(ARCH64)/wdresolve.so target=../../../common/LC_CTYPE/$(ARCH64)/wdresolve_unicode.so
 link path=usr/lib/locale/af_ZA.UTF-8/LC_CTYPE/LCL_DEF target=../../common/LC_CTYPE/LCL_DEF_unicode
 link path=usr/lib/locale/af_ZA.UTF-8/LC_CTYPE/ldterm.dat target=../../common/LC_CTYPE/ldterm_unicode.dat
