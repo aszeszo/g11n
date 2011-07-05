@@ -49,7 +49,7 @@ $(MACH64)/u8lat2.o := CFLAGS += -DISO_8859_2
 $(MACH64)/u8koi8.o := CFLAGS += -DKOI8_R  
 
 
-all: $(MODULES) $(SUBDIRS)
+all: $(FILES) $(SUBDIRS)
 
 include $(SRC)/src/Makefile.targ
 
