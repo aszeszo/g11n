@@ -23,7 +23,7 @@
 # Copyright (c) 2011 Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/system/management/visual-panels/panel-coreadm/l10n@$(PKGVERS)
+set name=pkg.fmri value=pkg:/system/management/visual-panels/panel-coreadm/locale@$(PKGVERS)
 set name=pkg.description value="Localization for Core Files Administration GUI"
 set name=pkg.summary value="Localization for Core Files Administration GUI"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations

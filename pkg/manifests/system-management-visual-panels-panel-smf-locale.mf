@@ -23,9 +23,9 @@
 # Copyright (c) 2011 Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/system/management/visual-panels/panel-sysid/l10n@$(PKGVERS)
-set name=pkg.description value="Localization for System Identification GUI"
-set name=pkg.summary value="Localization for System Identification GUI"
+set name=pkg.fmri value=pkg:/system/management/visual-panels/panel-smf/locale@$(PKGVERS)
+set name=pkg.description value="Localization for SMF Service Administration GUI"
+set name=pkg.summary value="Localization for SMF Service Administration GUI"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 license copyright.vpanels-l10n license=copyright.vpanels-l10n
 
@@ -43,14 +43,14 @@ dir path=usr/share/vpanels/app/locale/zh_CN
 dir path=usr/share/vpanels/app/locale/zh_HK
 dir path=usr/share/vpanels/app/locale/zh_SG
 dir path=usr/share/vpanels/app/locale/zh_TW
-file path=/usr/share/vpanels/app/locale/de/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/es/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/fr/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/it/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/ja/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/ko/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/pt_BR/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/zh_CN/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/zh_HK/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/zh_SG/vpanels-panels-sysid_l10n.jar
-file path=/usr/share/vpanels/app/locale/zh_TW/vpanels-panels-sysid_l10n.jar
+file path=/usr/share/vpanels/app/locale/de/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/es/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/fr/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/it/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/ja/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/ko/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/pt_BR/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/zh_CN/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/zh_HK/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/zh_SG/vpanels-panels-svcs_l10n.jar
+file path=/usr/share/vpanels/app/locale/zh_TW/vpanels-panels-svcs_l10n.jar
