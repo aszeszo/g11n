@@ -26,7 +26,7 @@
 set name=pkg.fmri value=pkg:/system/library/iconv/extra@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Internationalization
 set name=pkg.summary value="iconv modules extra files"
-set name=pkg.description value="iconv modules extra files"
+set name=pkg.description value="Additional set of iconv code conversion modules providing conversions among various codesets used for Asian languages."
 legacy pkg=SUNWiconv-extra category=system,l10n \
     version=11.0,REV= \
     name="iconv modules extra files" \

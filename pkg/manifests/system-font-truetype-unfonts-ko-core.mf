@@ -26,7 +26,7 @@
 set name=pkg.fmri value=pkg:/system/font/truetype/unfonts-ko-core@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 set name=pkg.summary value="Korean Un fonts TrueType fonts core"
-set name=pkg.description value="Korean Un fonts TrueType fonts core"
+set name=pkg.description value="Set of open source fonts for Korean alphabet."
 legacy pkg=SUNWttf-unfonts-ko-core category=system,l10nko \
     version=0.1.20081229,REV= \
     name="Korean Un fonts TrueType fonts core" \

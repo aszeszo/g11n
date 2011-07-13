@@ -26,7 +26,7 @@
 set name=pkg.fmri value=pkg:/system/font/truetype/indic-fonts-core@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 set name=pkg.summary value="Indic languages core TrueType fonts"
-set name=pkg.description value="Indic languages core TrueType fonts"
+set name=pkg.description value="Selected set of open source fonts for various Indic alphabets."
 legacy pkg=SUNWttf-indic-fonts-core category=system,l10nhi \
     version=0.1.20060928,REV= \
     name="Indic languages core TrueType fonts" \

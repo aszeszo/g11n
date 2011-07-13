@@ -20,13 +20,13 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/bpg-georgian@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 set name=pkg.summary value="BPG Georgian fonts"
-set name=pkg.description value="BPG Georgian fonts"
+set name=pkg.description value="Set of open source fonts for Georgian alphabet."
 legacy pkg=SUNWttf-bpg-georgian category=system \
     version=1.0,REV= \
     name="BPG Georgian fonts" \

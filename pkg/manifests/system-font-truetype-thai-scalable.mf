@@ -20,13 +20,13 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/font/truetype/thai-scalable@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 set name=pkg.summary value="Scalable Thai TrueType fonts"
-set name=pkg.description value="Scalable Thai TrueType fonts"
+set name=pkg.description value="Set of open source fonts for Thai alphabet."
 legacy pkg=SUNWttf-thai-scalable category=system,l10nzh \
     version=0.1.20060928,REV= \
     name="Scalable Thai TrueType fonts" \

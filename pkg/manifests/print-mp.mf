@@ -26,7 +26,7 @@
 set name=pkg.fmri value=pkg:/print/mp@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Printing
 set name=pkg.summary value="MP Print Filter"
-set name=pkg.description value="MP Print Filter"
+set name=pkg.description value="MP print filter is a program which reads each filename given in the command line in sequence and generates a prettified version of the contents in any Print Description Language (PDL) supported by the system, e.g. PostScript."
 legacy pkg=SUNWmp category=system \
     version=11.0,REV= \
     name="MP Print Filter" \

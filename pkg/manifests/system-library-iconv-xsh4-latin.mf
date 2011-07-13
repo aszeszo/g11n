@@ -20,13 +20,13 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/library/iconv/xsh4/latin@$(PKGVERS)
 set name=info.classification value="org.opensolaris.category.2008:System/Text Tools"
 set name=pkg.summary value="XSH4 conversion for ISO Latin character sets"
-set name=pkg.description value="XSH4 conversion for ISO Latin character sets"
+set name=pkg.description value="Set of iconv code conversion modules providing conversions among various legacy single-byte codesets."
 legacy pkg=SUNWisolc category=system \
     version=1.0,REV= \
     name="XSH4 conversion for ISO Latin character sets" \
