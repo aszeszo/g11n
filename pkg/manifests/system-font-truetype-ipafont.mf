@@ -26,7 +26,6 @@
 set name=pkg.fmri value=pkg:/system/font/truetype/ipafont@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 set name=pkg.summary value="IPAfont - Japanese TrueType Gothic font"
-set name=pkg.description value="IPAfont - Japanese TrueType Gothic font"
 legacy pkg=SUNWttf-ipafont category=system,l10nja \
     version=2.03,REV= \
     name="IPAfont - Japanese TrueType Gothic font" \

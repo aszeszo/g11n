@@ -27,7 +27,6 @@ set name=pkg.fmri value=pkg:/system/font/truetype/ipafont-mincho@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Fonts
 depend fmri=system/font/truetype/ipafont type=require
 set name=pkg.summary value="IPAfont - Japanese TrueType mincho font"
-set name=pkg.description value="IPAfont - Japanese TrueType mincho font"
 legacy pkg=SUNWttf-ipafont-mincho category=system,l10nja \
     version=2.03,REV= \
     name="IPAfont - Japanese TrueType mincho font" \

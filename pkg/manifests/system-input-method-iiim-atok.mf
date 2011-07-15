@@ -29,7 +29,6 @@ depend fmri=system/library/iconv/extra type=require
 depend fmri=system/library/iconv/unicode type=require
 depend fmri=pkg:/system/iiim/ja/atok@17-1 type=optional
 set name=pkg.summary value="IIIMF - Japanese Language Engine (ATOK)"
-set name=pkg.description value="IIIMF - Japanese Language Engine (ATOK)"
 set name=org.opensolaris.redist value=nonredist
 legacy pkg=JSatsvr category=system,l10nja \
     version=1.0,REV= \

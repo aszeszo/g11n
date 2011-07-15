@@ -26,7 +26,6 @@
 set name=pkg.fmri value=pkg:/system/input-method/iiim/twle-chewing@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Internationalization
 set name=pkg.summary value="IIIMF - Traditional Chinese Language Engine (Chewing)"
-set name=pkg.description value="IIIMF - Traditional Chinese Language Engine (Chewing)"
 legacy pkg=SUNWiiimf-zhTW-twle-chewing category=system \
     version=12,REV=3596 \
     name="IIIMF - Traditional Chinese Language Engine (Chewing)" \

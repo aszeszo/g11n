@@ -26,7 +26,6 @@
 set name=pkg.fmri value=pkg:/system/input-method/iiim/cle-sunpinyin@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Internationalization
 set name=pkg.summary value="IIIMF - Simplified Chinese Language Engine (SunPinyin)"
-set name=pkg.description value="IIIMF - Simplified Chinese Language Engine (SunPinyin)"
 legacy pkg=SUNWiiimf-zhCN-cle-sunpinyin category=system \
     version=12,REV=3596 \
     name="IIIMF - Simplified Chinese Language Engine (SunPinyin)" \

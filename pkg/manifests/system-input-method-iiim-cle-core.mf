@@ -26,7 +26,6 @@
 set name=pkg.fmri value=pkg:/system/input-method/iiim/cle-core@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Internationalization
 set name=pkg.summary value="IIIMF - Simplified Chinese Language Engine (core)"
-set name=pkg.description value="IIIMF - Simplified Chinese Language Engine (core)"
 legacy pkg=SUNWiiimf-zhCN-cle-core category=system \
     version=12,REV=3596 \
     name="IIIMF - Simplified Chinese Language Engine (core)" \

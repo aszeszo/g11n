@@ -28,7 +28,6 @@ set name=info.classification value=org.opensolaris.category.2008:System/Internat
 depend fmri=system/locale/ja-extra type=require
 depend fmri=pkg:/system/iiim/ja/wnn8@8-1 type=optional
 set name=pkg.summary value="IIIMF - Japanese Language Engine (Wnn)"
-set name=pkg.description value="IIIMF - Japanese Language Engine (Wnn)"
 set name=org.opensolaris.redist value=nonredist
 legacy pkg=SUNWjwncr category=system,l10nja \
     version=8.0,REV= \
