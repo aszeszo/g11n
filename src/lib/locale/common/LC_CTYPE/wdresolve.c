@@ -29,6 +29,15 @@
 #include <locale.h>
 #include <wctype.h>
 
+static int wd_bind_strength[][5] = {
+        5, 3, 2, 2, 6,
+        3, 2, 2, 5, 6,
+        2, 2, 6, 2, 6,
+        2, 5, 2, 2, 6,
+        6, 6, 6, 6, 6,
+        0
+};
+
 static int	initialized = 0;
 static int	conservative_edit = 0;
 static char	*multicolumn_filler;
@@ -58,10 +67,7 @@ _wdchkind_(wchar_t wc)
 {
     if (!initialized)
 	_init();
-    
-    if (iswalpha(wc) || iswdigit(wc) || wc == L'_')
-	return(0);
-    
+
     if (iswpunct(wc))
 	return(1);
     
@@ -85,7 +91,10 @@ _wdchkind_(wchar_t wc)
     	(wc >= 0x00020000 && wc <= 0x0002a6d6) ||  /* CJK Ideograph Ext B */
     	(wc >= 0x0002f800 && wc <= 0x0002fa1d))    /* CJK Compat. Ideograph */
 	return(3);
-    
+
+     if (iswalpha(wc) || iswdigit(wc) || wc == L'_')
+	return(0);
+
     /* All other characters */
     return (4);
 }
@@ -93,18 +102,18 @@ _wdchkind_(wchar_t wc)
 int
 _wdbindf_(wchar_t wc1, wchar_t wc2, int type)
 {
-    wchar_t *special;
-    int hit;
+    int i, j;
     
     if (!initialized)
 	_init();
+
     if (conservative_edit && type == 2)
 	return (6);
     
-    /* Since Hangul is blank-delimited text language
-       return type 6 always */
-    
-    return (6);
+    i = _wdchkind_(wc1);
+    j = _wdchkind_(wc2);
+
+    return( wd_bind_strength[i][j] );
 }
 
 wchar_t *
