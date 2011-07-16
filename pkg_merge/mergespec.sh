@@ -147,7 +147,7 @@ do
 			fi
 # end of workaround
 			echo "depend fmri=$fmri type=incorporate" >> $MF_INC_B
-			echo "depend fmri=$fmri type=require" >> $MF_ALL_B
+			echo "depend fmri=$fmri type=group" >> $MF_ALL_B
 			$PUBLISH -d $TMPD/$pd $mf
 		fi
 	done
