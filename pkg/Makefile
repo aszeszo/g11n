@@ -125,8 +125,7 @@ PKGMOGRIFY= pkgmogrify
 # build.  Access to those objects is provided via the closed-bins
 # tarball.  See usr/src/tools/scripts/bindrop.sh for details.
 #
-REPOS= redist
-$(CLOSED_BUILD)REPOS += extra
+REPOS= all
 
 #
 # The packages directory will contain the processed manifests as
@@ -136,9 +135,6 @@ $(CLOSED_BUILD)REPOS += extra
 # Nothing underneath $(PDIR) should ever be managed by SCM.
 #
 PDIR= packages.$(PKGMACH)
-
-PKGPUBLISHER= $(PKGPUBLISHER_REDIST)
-$(PKGDEST)/repo.extra:= PKGPUBLISHER= $(PKGPUBLISHER_NONREDIST)
 
 #
 # To get these defaults, manifests should simply refer to $(PKGVERS).
@@ -228,7 +224,7 @@ PKGDEP_REFIMG= -R $(PKGDEP_REFIMG_DIR)
 # dependency types, so that they can be included by either an
 # incorporation or a group package.
 #
-$(PDIR)/l10n-redist.mog $(PDIR)/l10n-extra.mog:= PKGDEP_TYPE= require
+$(PDIR)/l10n-all.mog := PKGDEP_TYPE= group
 $(PDIR)/l10n-incorporation.mog:= PKGDEP_TYPE= incorporate
 
 PKGDEP_INCORP= \
@@ -265,8 +261,7 @@ PROC_PKGS= $(PKGS:%=$(PDIR)/%.mog)
 # build rules and dependencies.  The synthetic and real packages use
 # different sets of transforms and macros for pkgmogrify.
 #
-SYNTH_PKGS= l10n-incorporation l10n-redist
-$(CLOSED_BUILD)SYNTH_PKGS += l10n-extra
+SYNTH_PKGS= l10n-incorporation l10n-all
 DEP_SYNTH_PKGS= $(SYNTH_PKGS:%=$(PDIR)/%.dep)
 PROC_SYNTH_PKGS= $(SYNTH_PKGS:%=$(PDIR)/%.mog)
 
@@ -560,7 +555,7 @@ $(PDIR)/%.mog: $(PDIR)/%.mf
 	$(PKGDEBUG)$(PKGMOGRIFY) $(PKGMOG_VERBOSE) $(PM_INC:%= -I %) \
 		$(PKGMOG_DEFINES:%=-D %) -P $(@).vars -O $(@) \
 		$(<) $(PM_TRANSFORMS)
-	$(PKGDEBUG)eval REPO=redist PKGSTAT=current NODEPEND=$(SUPPRESSPKGDEP) \
+	$(PKGDEBUG)eval REPO=all PKGSTAT=current NODEPEND=$(SUPPRESSPKGDEP) \
 		`$(CAT) -s $(@).vars`; \
 	if [ -f $(@) ]; then \
 		if [ "$$NODEPEND" != "false" ]; then \
@@ -624,7 +619,7 @@ $(PROC_SYNTH_PKGS): $(PKGLISTS) $$(@F:%.mog=%.mf)
 		$(PKGMOG_DEFINES:%=-D %) -D PKGDEP_TYPE=$(PKGDEP_TYPE) \
 		-P $(@).vars -O $(@) $(@F:%.mog=%.mf) \
 		$(PM_TRANSFORMS) synthetic
-	$(PKGDEBUG)eval REPO=redist PKGSTAT=current `$(CAT) -s $(@).vars`; \
+	$(PKGDEBUG)eval REPO=all PKGSTAT=current `$(CAT) -s $(@).vars`; \
 	if [ -f $(@) ]; then \
 		$(LN) -s $(@F) \
 			$(PDIR)/$(@F:%.mog=%).metadata.$$PKGSTAT.$$REPO; \

@@ -23,12 +23,9 @@
 # Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/consolidation/l10n/l10n-incorporation@$(PKGVERS)
-set name=info.classification value="org.opensolaris.category.2008:Meta Packages/Incorporations"
+set name=pkg.fmri value=pkg:/consolidation/l10n/l10n-all@$(PKGVERS)
 set name=variant.arch value=$(ARCH)
-set name=pkg.description value="This incorporation constrains packages from the l10n consolidation."
-set name=pkg.summary value="l10n consolidation incorporation"
-set name=pkg.depend.install-hold value=core-os.l10n
+set name=pkg.description value="This group package installs all packages from the l10n consolidation."
+set name=pkg.summary value="l10n consolidation group package"
+set name=info.classification value="org.opensolaris.category.2008:Meta Packages/Group Packages"
 <include packages.all.current>
-<include packages.all.renamed>
-<include packages.all.obsolete>

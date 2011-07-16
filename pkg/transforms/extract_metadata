@@ -20,15 +20,8 @@
 #
 
 #
-# Copyright 2010 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
-
-#
-# All nonredistributable packages go to extra, for the purposes of the
-# osnet build.
-#
-<transform set name=org.opensolaris.redist value=nonredist|internal -> print REPO=extra>
 
 #
 # Ordering is important here, and the last line wins.
