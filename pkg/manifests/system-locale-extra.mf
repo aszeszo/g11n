@@ -24,8 +24,8 @@
 #
 
 set name=pkg.fmri value=pkg:/system/locale/extra@$(PKGVERS)
-set name=pkg.description value="language support components extra files"
 set name=pkg.summary value="language support components extra files"
+set name=pkg.description value="Internationalization support for Solaris - extra and legacy locales."
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
 dir path=usr/bin
