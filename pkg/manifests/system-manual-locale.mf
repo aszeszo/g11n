@@ -1,0 +1,104 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+
+#
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+set name=pkg.fmri value=pkg:/system/manual/locale@$(PKGVERS)
+set name=pkg.description value="Localization for System Reference Manual Pages"
+set name=pkg.summary value="Localized On-Line Manual Pages"
+set name=info.classification value="org.opensolaris.category.2008:System/Text Tools"
+dir path=usr group=sys
+dir path=usr/share group=sys
+dir path=usr/share/man
+dir path=usr/share/man/ca_ES.UTF-8
+dir path=usr/share/man/ca_ES.UTF-8/man1
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man1
+dir path=usr/share/man/ja_JP.UTF-8/man1m
+dir path=usr/share/man/ja_JP.UTF-8/man5
+dir path=usr/share/man/zh_CN.UTF-8
+dir path=usr/share/man/zh_CN.UTF-8/man1
+dir path=usr/share/man/zh_CN.UTF-8/man1m
+dir path=usr/share/man/zh_CN.UTF-8/man5
+file path=usr/share/man/ca_ES.UTF-8/man1/elfwrap.1
+file path=usr/share/man/ca_ES.UTF-8/man1/hostid.1
+file path=usr/share/man/ca_ES.UTF-8/man1/hostname.1
+file path=usr/share/man/ca_ES.UTF-8/man1/ipcs.1
+file path=usr/share/man/ca_ES.UTF-8/man1/newtask.1
+file path=usr/share/man/ja_JP.UTF-8/man1/as.1
+file path=usr/share/man/ja_JP.UTF-8/man1/auto_ef.1
+file path=usr/share/man/ja_JP.UTF-8/man1/cpp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/digestp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/filep.1
+file path=usr/share/man/ja_JP.UTF-8/man1/filofaxp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/franklinp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/idnconv.1
+file path=usr/share/man/ja_JP.UTF-8/man1/mailp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/mp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/newsp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/pkcs11_inspect.1
+file path=usr/share/man/ja_JP.UTF-8/man1/pklogin_finder.1
+file path=usr/share/man/ja_JP.UTF-8/man1/rpm2cpio.1
+file path=usr/share/man/ja_JP.UTF-8/man1/timemanp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/timesysp.1
+file path=usr/share/man/ja_JP.UTF-8/man1/what.1
+file path=usr/share/man/ja_JP.UTF-8/man1m/dig.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-dsfromkey.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-keyfromlabel.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-keygen.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-makekeyset.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-signkey.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dnssec-signzone.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/nsupdate.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/prodreg.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/smtnrhdb.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/smtnrhtp.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/smtnzonecfg.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/snmpXwbemd.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/snmpdx.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/vdiskadm.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/virt-convert.1m
+file path=usr/share/man/zh_CN.UTF-8/man1/auto_ef.1
+file path=usr/share/man/zh_CN.UTF-8/man1/idnconv.1
+file path=usr/share/man/zh_CN.UTF-8/man1/mp.1
+file path=usr/share/man/zh_CN.UTF-8/man1/pkcs11_inspect.1
+file path=usr/share/man/zh_CN.UTF-8/man1/pklogin_finder.1
+file path=usr/share/man/zh_CN.UTF-8/man1/rpm2cpio.1
+file path=usr/share/man/zh_CN.UTF-8/man1m/dig.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-dsfromkey.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-keyfromlabel.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-keygen.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-makekeyset.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-signkey.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/dnssec-signzone.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/nsupdate.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/snmpXwbemd.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/snmpdx.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/vdiskadm.1m
+file path=usr/share/man/zh_CN.UTF-8/man1m/virt-convert.1m
+legacy pkg=SUNWman-l10n-ca category=system,l10nca desc="Catalan localization for System Reference Manual Pages" name="On-Line Manual Pages for Catalan" version=1.0,REV= facet.locale.ca=true
+legacy pkg=SUNWman-l10n-ja category=system,l10nja desc="Japanese localization for System Reference Manual Pages" name="On-Line Manual Pages for Japanese" version=44.0,REV= facet.locale.ja=true
+license copyright.man-l10n license=copyright.man-l10n
+link path=usr/share/man/ja_JP.UTF-8/tmac.an target=../../lib/tmac/an.ja_JP.UTF-8
+link path=usr/share/man/ja_JP.UTF-8/tmac.ansun target=../../lib/tmac/ansun.ja_JP.UTF-8
+depend fmri=text/doctools/ja type=require facet.locale.ja=true
