@@ -76,7 +76,9 @@ xkb_symbols "defaults_common" {
 partial default
 xkb_symbols "defaults" {
     include "sun_vndr/solaris(defaults_common)"
-
+    key <LWIN> { [  Meta_L  ] };
+    key <RWIN> { [  Meta_R  ] };
+    modifier_map Mod4 { <META>, Meta_L, Meta_R };
 };
 
 partial
