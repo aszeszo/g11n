@@ -82,12 +82,16 @@ LDFLAGS		=  -lw -ldl -llayout -zlazyload -lXt -lX -lXp -znolazyload
 
 install: install_local $(SUBDIRS)
 
-install_local: all_local $(FILES.obj)
+install_local: all_local 
 	$(INSDIR) $(TARGETDIR)/
 	$(INS) $(MP_TARG) $(MP)
 	$(INS) $(MP_TARG) $(MAILP)
+	$(CDDL_FILTER) $(MAILP) > $(MP_TARG)/$(MAILP)
 	for man in $(MANPAGES) ; do \
 		$(INS) $(MAN_TARG) $$man ; \
+	done
+	for fn in $(FILES); do \
+		$(CDDL_FILTER) $$fn > $(TARGETDIR)/$$fn; \
 	done
 
 clean: objclean $(SUBDIRS)

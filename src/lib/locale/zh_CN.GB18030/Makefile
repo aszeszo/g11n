@@ -29,7 +29,7 @@ include ../common/Makefile.asian
 
 install: all $(FILES.obj)
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(RESOLVE_SO)
-	$(INS) $(LC_CTYPE_DIR) -m 755 LCL_DEF
+	$(CDDL_FILTER) LCL_DEF > $(LC_CTYPE_DIR)/LCL_DEF
 	$(INS) $(LC_CTYPE_DIR_64) -m 755 $(MACH64)/$(RESOLVE_SO)
 
 all: $(TARGETDIRS) LCL_DEF $(MACH64) $(RESOLVE_SO)

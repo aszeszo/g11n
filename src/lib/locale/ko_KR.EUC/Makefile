@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 # Makefile for ko_KR.EUC locale(in CSI environment).
 #
@@ -33,7 +33,7 @@ INSTALL_FLAG	= -u bin -g bin
 
 install: all $(TARGETDIRS) $(FILES.obj)
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) $(RESOLVE_SO)
-	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) LCL_DEF
+	$(CDDL_FILTER) LCL_DEF > $(LC_CTYPE_DIR)/LCL_DEF
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) mailcodelist
 	$(INS) $(LC_CTYPE_DIR_64) -m 755 $(INSTALL_FLAG) $(MACH64)/$(RESOLVE_SO)
 	$(INS) $(LC_CTYPE_DIR_64) -m 755 $(INSTALL_FLAG) mailcodelist

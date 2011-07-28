@@ -210,17 +210,17 @@ install: all install_src
 install_src: all
 	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/locales
 	for i in $(LOCALE); do \
-		$(CP) $(SRC)/src/locale_src/base/$$i.localedef.build $(FILEROOT)/usr/lib/localedef/src/locales/$$i.src; \
+		$(CDDL_FILTER) $(SRC)/src/locale_src/base/$$i.localedef.build > $(FILEROOT)/usr/lib/localedef/src/locales/$$i.src; \
 	done
 	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/charmaps
 	for i in $(_CHARMAPS)/ja* $(_CHARMAPS)/ko* $(_CHARMAPS)/zh* $(_CHARMAPS)/th*; do \
-		$(INS) $(FILEROOT)/usr/lib/localedef/src/charmaps $$i; \
+		$(CDDL_FILTER) $$i > $(FILEROOT)/usr/lib/localedef/src/charmaps/`basename $$i`; \
 	done
 	#the charmap is identical with the charmap from g11n-locale, no need to include it
 	#$(CP) $(_CHARMAPS)/UTF-8.charmap $(FILEROOT)/usr/lib/localedef/src/charmaps/UTF-8.APAC.charmap
 	$(INSDIR) $(FILEROOT)/usr/lib/localedef/src/extensions
 	for i in $(_METHODSRC)/*; do \
-		$(INS) $(FILEROOT)/usr/lib/localedef/src/extensions $$i; \
+		$(CDDL_FILTER) $$i > $(FILEROOT)/usr/lib/localedef/src/extensions/`basename $$i`; \
 	done
 
 clean clobber: 

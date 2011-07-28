@@ -18,7 +18,7 @@
 #
 # CDDL HEADER END
 #
-# Copyright (c) 2006, 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 # Makefile for th_TH.TIS620 locale (in CSI environment).
 #
@@ -31,7 +31,7 @@ include ../common/Makefile.asian
 
 install: all $(TARGETDIRS) $(FILES.obj) 
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(RESOLVE_SO)
-	$(INS) $(LC_CTYPE_DIR) -m 755 LCL_DEF
+	$(CDDL_FILTER) LCL_DEF > $(LC_CTYPE_DIR)/LCL_DEF
 	$(INS) $(LC_CTYPE_DIR_64) -m 755 $(MACH64)/$(RESOLVE_SO)
 
 all: LCL_DEF $(MACH64) $(RESOLVE_SO)

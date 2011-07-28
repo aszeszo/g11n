@@ -76,7 +76,7 @@ $(VER)/.copied:		$(VER)/.built
 			for i in `cd sun-src ; find . -type f -print` ; \
 			do \
 			mkdir -p $(VER)/`dirname $$i` ; \
-			cp -p sun-src/$$i $(VER)/$$i ; \
+			$(CDDL_FILTER) sun-src/$$i > $(VER)/$$i ; \
 			done
 			touch $@
 

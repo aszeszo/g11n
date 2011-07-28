@@ -18,12 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -61,10 +56,12 @@ CFLAGS		=  -O -xildoff -xc99=%none  -K PIC -G -I. -D_REENTRANT
 CFLAGS_amd64	= -m64 -Ui386 -U__i386 -W0,-y-a $(CFLAGS)
 CFLAGS_sparcv9	= -xO3 -m64 -dalign   -xspace -W0,-Lt  $(CFLAGS)
 
-install: all $(FILES.obj) 
+install: all $(FILES) 
 	$(INSDIR) $(TARGETDIR)/$(MACH64)
 	$(INS) $(TARGETDIR) $(RESOLVE_SO)
 	$(INS) $(TARGETDIR)/$(MACH64) $(MACH64)/$(RESOLVE_SO)
+	$(CDDL_FILTER) ldterm_unicode.dat > $(TARGETDIR)/ldterm_unicode.dat
+	$(CDDL_FILTER) LCL_DEF_unicode > $(TARGETDIR)/LCL_DEF_unicode
 
 clean: objclean
 	$(RM) -r $(TARGETDIR)

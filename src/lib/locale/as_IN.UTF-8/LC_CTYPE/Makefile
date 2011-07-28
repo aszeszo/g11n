@@ -18,13 +18,9 @@
 #
 # CDDL HEADER END
 #
+# Copyright (c) 2009, 2011, Oracle and/or its affiliates. All rights reserved.
+#
 
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
-#
 
 include $(SRC)/Makefile.master
 #include ../../Makefile.master.ow
@@ -51,7 +47,10 @@ all: $(TARGETDIRS)
 
 include $(SRC)/src/Makefile.targ
 
-install: all $(FILES.obj) $(SUBDIRS)
+install: all $(FILES) $(SUBDIRS)
+	for fn in $(FILES); do \
+		$(CDDL_FILTER) $$fn > $(TARGETDIR)/$$fn; \
+	done
 
 clean: objclean
 	$(RM) -r $(TARGETDIR)

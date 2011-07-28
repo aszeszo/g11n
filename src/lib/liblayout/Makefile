@@ -18,11 +18,7 @@
 #
 # CDDL HEADER END
 #
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -70,7 +66,7 @@ install: $(FILES.obj) $(SUBDIRS) all
 	$(INS) $(TARGETDIR) $(LIBLAYOUT_SO)
 	$(INS) $(TARGETDIR)/$(MACH64) $(MACH64)/$(LIBLAYOUT_SO)
 	$(INSDIR) $(FILEROOT)/usr/include/sys
-	$(INS) $(FILEROOT)/usr/include/sys layout.h
+	$(CDDL_FILTER) layout.h > $(FILEROOT)/usr/include/sys/layout.h
 
 clean: objclean $(SUBDIRS)
 	$(RM) *.o *.so*

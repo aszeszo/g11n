@@ -374,7 +374,7 @@ $(UTF_8_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf8.c
 
 $(PER_PLATFORM): $(PER_PLATFORM:%=%.$(MACH))
 	$(RM) $@
-	$(CP) $(@:%=%.$(MACH)) $@
+	$(CDDL_FILTER) $(@:%=%.$(MACH)) > $@
 
 #
 # Rules for binary tables:

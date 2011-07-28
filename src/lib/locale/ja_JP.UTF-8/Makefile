@@ -54,7 +54,7 @@ install: all $(FILES.obj) $(SUBDIRS)
 	$(INSDIR) $(LC_CTYPE_DIR_64)
 	$(INS) $(LC_CTYPE_DIR) $(RESOLVE_SO)
 	$(INS) $(LC_CTYPE_DIR_64) $(MACH64)/$(RESOLVE_SO)
-	$(INS) $(LC_CTYPE_DIR) LCL_DEF
+	$(CDDL_FILTER) LCL_DEF > $(LC_CTYPE_DIR)/LCL_DEF
 
 wdresolve.c: ../ja_JP.eucJP/$@
 	rm -f $@

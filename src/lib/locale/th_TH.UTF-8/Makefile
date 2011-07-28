@@ -18,12 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
-# Use is subject to license terms.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 LOCALE:sh = basename `pwd`
@@ -36,7 +31,7 @@ INSTALL_FLAG    = -u bin -g bin
 
 install: all $(TARGETDIRS) $(FILES.obj)
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) $(RESOLVE_SO)
-	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) LCL_DEF
+	$(CDDL_FILTER) LCL_DEF > $(LC_CTYPE_DIR)/LCL_DEF
 	$(INS) $(LC_CTYPE_DIR) -m 755 $(INSTALL_FLAG) ldterm.dat
 	$(INS) $(LC_CTYPE_DIR_64) -m 755 $(INSTALL_FLAG) $(MACH64)/$(RESOLVE_SO)
 

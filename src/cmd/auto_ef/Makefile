@@ -18,12 +18,7 @@
 #
 # CDDL HEADER END
 #
-
-#
-#ident	"@(#)Makefile	1.0	06/03/07	SMI"
-#
-# Copyright (c) 2006, by Sun Microsystems, Inc.
-# All rights reserved.
+# Copyright (c) 2006, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -82,7 +77,7 @@ install: $(SUBDIRS) $(FILES.obj) all $(TARGETDIR) $(BINDIR) $(INCDIR)
 	$(INSDIR) $(TARGETDIR)/$(MACH64)
 	$(INS) $(TARGETDIR)/$(MACH64) $(MACH64)/$(AUTOEF_SO)
 	$(INS) $(BINDIR) $(AUTOEF_BIN)
-	$(INS) $(INCDIR) auto_ef.h
+	$(CDDL_FILTER) auto_ef.h > $(INCDIR)/auto_ef.h
 
 clean: objclean $(SUBDIRS)
 	$(RM)  *.o *.so $(AUTOEF_SO) $(AUTOEF_BIN) $(LINT_LIB) lint.out
