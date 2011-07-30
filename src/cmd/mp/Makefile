@@ -82,7 +82,7 @@ LDFLAGS		=  -lw -ldl -llayout -zlazyload -lXt -lX -lXp -znolazyload
 
 install: install_local $(SUBDIRS)
 
-install_local: all_local 
+install_local: all_local $(FILES.obj)
 	$(INSDIR) $(TARGETDIR)/
 	$(INS) $(MP_TARG) $(MP)
 	$(INS) $(MP_TARG) $(MAILP)
