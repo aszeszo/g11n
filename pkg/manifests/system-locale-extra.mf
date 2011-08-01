@@ -24,8 +24,8 @@
 #
 
 set name=pkg.fmri value=pkg:/system/locale/extra@$(PKGVERS)
-set name=pkg.summary value="language support components extra files"
 set name=pkg.description value="Internationalization support for Solaris - extra and legacy locales."
+set name=pkg.summary value="language support components extra files"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
 dir path=usr/bin
@@ -1258,17 +1258,17 @@ file path=usr/lib/locale/zh_CN.EUC/locale_map
 file path=usr/lib/locale/zh_CN.EUC/methods_zh_CN.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC/zh_CN.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@pinyin/$(ARCH64)/zh_CN.EUC@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.EUC@pinyin/zh_CN.EUC@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@pinyin/locale_description
 file path=usr/lib/locale/zh_CN.EUC@pinyin/locale_map
+file path=usr/lib/locale/zh_CN.EUC@pinyin/zh_CN.EUC@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@radical/$(ARCH64)/zh_CN.EUC@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.EUC@radical/zh_CN.EUC@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@radical/locale_description
 file path=usr/lib/locale/zh_CN.EUC@radical/locale_map
+file path=usr/lib/locale/zh_CN.EUC@radical/zh_CN.EUC@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@stroke/$(ARCH64)/zh_CN.EUC@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.EUC@stroke/zh_CN.EUC@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.EUC@stroke/locale_description
 file path=usr/lib/locale/zh_CN.EUC@stroke/locale_map
+file path=usr/lib/locale/zh_CN.EUC@stroke/zh_CN.EUC@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030/$(ARCH64)/methods_zh_CN.GB18030.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030/$(ARCH64)/zh_CN.GB18030.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
@@ -1279,17 +1279,17 @@ file path=usr/lib/locale/zh_CN.GB18030/locale_map
 file path=usr/lib/locale/zh_CN.GB18030/methods_zh_CN.GB18030.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030/zh_CN.GB18030.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@pinyin/$(ARCH64)/zh_CN.GB18030@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GB18030@pinyin/zh_CN.GB18030@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@pinyin/locale_description
 file path=usr/lib/locale/zh_CN.GB18030@pinyin/locale_map
+file path=usr/lib/locale/zh_CN.GB18030@pinyin/zh_CN.GB18030@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@radical/$(ARCH64)/zh_CN.GB18030@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GB18030@radical/zh_CN.GB18030@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@radical/locale_description
 file path=usr/lib/locale/zh_CN.GB18030@radical/locale_map
+file path=usr/lib/locale/zh_CN.GB18030@radical/zh_CN.GB18030@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@stroke/$(ARCH64)/zh_CN.GB18030@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GB18030@stroke/zh_CN.GB18030@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GB18030@stroke/locale_description
 file path=usr/lib/locale/zh_CN.GB18030@stroke/locale_map
+file path=usr/lib/locale/zh_CN.GB18030@stroke/zh_CN.GB18030@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK/$(ARCH64)/methods_zh_CN.GBK.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK/$(ARCH64)/zh_CN.GBK.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
@@ -1301,29 +1301,29 @@ file path=usr/lib/locale/zh_CN.GBK/locale_map
 file path=usr/lib/locale/zh_CN.GBK/methods_zh_CN.GBK.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK/zh_CN.GBK.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@pinyin/$(ARCH64)/zh_CN.GBK@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GBK@pinyin/zh_CN.GBK@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@pinyin/locale_description
 file path=usr/lib/locale/zh_CN.GBK@pinyin/locale_map
+file path=usr/lib/locale/zh_CN.GBK@pinyin/zh_CN.GBK@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@radical/$(ARCH64)/zh_CN.GBK@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GBK@radical/zh_CN.GBK@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@radical/locale_description
 file path=usr/lib/locale/zh_CN.GBK@radical/locale_map
+file path=usr/lib/locale/zh_CN.GBK@radical/zh_CN.GBK@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@stroke/$(ARCH64)/zh_CN.GBK@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.GBK@stroke/zh_CN.GBK@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.GBK@stroke/locale_description
 file path=usr/lib/locale/zh_CN.GBK@stroke/locale_map
+file path=usr/lib/locale/zh_CN.GBK@stroke/zh_CN.GBK@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@pinyin/$(ARCH64)/zh_CN.UTF-8@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.UTF-8@pinyin/zh_CN.UTF-8@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@pinyin/locale_description
 file path=usr/lib/locale/zh_CN.UTF-8@pinyin/locale_map
+file path=usr/lib/locale/zh_CN.UTF-8@pinyin/zh_CN.UTF-8@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@radical/$(ARCH64)/zh_CN.UTF-8@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.UTF-8@radical/zh_CN.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@radical/locale_description
 file path=usr/lib/locale/zh_CN.UTF-8@radical/locale_map
+file path=usr/lib/locale/zh_CN.UTF-8@radical/zh_CN.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@stroke/$(ARCH64)/zh_CN.UTF-8@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_CN.UTF-8@stroke/zh_CN.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8@stroke/locale_description
 file path=usr/lib/locale/zh_CN.UTF-8@stroke/locale_map
+file path=usr/lib/locale/zh_CN.UTF-8@stroke/zh_CN.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/$(ARCH64)/methods_zh_HK.BIG5HK.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/$(ARCH64)/zh_HK.BIG5HK.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/LC_CTYPE/LCL_DEF mode=0555
@@ -1334,21 +1334,21 @@ file path=usr/lib/locale/zh_HK.BIG5HK/locale_map
 file path=usr/lib/locale/zh_HK.BIG5HK/methods_zh_HK.BIG5HK.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/zh_HK.BIG5HK.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK@radical/$(ARCH64)/zh_HK.BIG5HK@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_HK.BIG5HK@radical/zh_HK.BIG5HK@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK@radical/locale_description
 file path=usr/lib/locale/zh_HK.BIG5HK@radical/locale_map
+file path=usr/lib/locale/zh_HK.BIG5HK@radical/zh_HK.BIG5HK@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK@stroke/$(ARCH64)/zh_HK.BIG5HK@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_HK.BIG5HK@stroke/zh_HK.BIG5HK@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK@stroke/locale_description
 file path=usr/lib/locale/zh_HK.BIG5HK@stroke/locale_map
+file path=usr/lib/locale/zh_HK.BIG5HK@stroke/zh_HK.BIG5HK@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8@radical/$(ARCH64)/zh_HK.UTF-8@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_HK.UTF-8@radical/zh_HK.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8@radical/locale_description
 file path=usr/lib/locale/zh_HK.UTF-8@radical/locale_map
+file path=usr/lib/locale/zh_HK.UTF-8@radical/zh_HK.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8@stroke/$(ARCH64)/zh_HK.UTF-8@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_HK.UTF-8@stroke/zh_HK.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8@stroke/locale_description
 file path=usr/lib/locale/zh_HK.UTF-8@stroke/locale_map
+file path=usr/lib/locale/zh_HK.UTF-8@stroke/zh_HK.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/$(ARCH64)/methods_zh_TW.BIG5.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/$(ARCH64)/zh_TW.BIG5.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
@@ -1360,21 +1360,21 @@ file path=usr/lib/locale/zh_TW.BIG5/locale_map
 file path=usr/lib/locale/zh_TW.BIG5/methods_zh_TW.BIG5.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/zh_TW.BIG5.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@pinyin/$(ARCH64)/zh_TW.BIG5@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.BIG5@pinyin/zh_TW.BIG5@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@pinyin/locale_description
 file path=usr/lib/locale/zh_TW.BIG5@pinyin/locale_map
+file path=usr/lib/locale/zh_TW.BIG5@pinyin/zh_TW.BIG5@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@radical/$(ARCH64)/zh_TW.BIG5@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.BIG5@radical/zh_TW.BIG5@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@radical/locale_description
 file path=usr/lib/locale/zh_TW.BIG5@radical/locale_map
+file path=usr/lib/locale/zh_TW.BIG5@radical/zh_TW.BIG5@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@stroke/$(ARCH64)/zh_TW.BIG5@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.BIG5@stroke/zh_TW.BIG5@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@stroke/locale_description
 file path=usr/lib/locale/zh_TW.BIG5@stroke/locale_map
+file path=usr/lib/locale/zh_TW.BIG5@stroke/zh_TW.BIG5@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@zhuyin/$(ARCH64)/zh_TW.BIG5@zhuyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.BIG5@zhuyin/zh_TW.BIG5@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.BIG5@zhuyin/locale_description
 file path=usr/lib/locale/zh_TW.BIG5@zhuyin/locale_map
+file path=usr/lib/locale/zh_TW.BIG5@zhuyin/zh_TW.BIG5@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC/$(ARCH64)/methods_zh_TW.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC/$(ARCH64)/zh_TW.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/$(ARCH64)/mailcodelist mode=0555
@@ -1387,37 +1387,37 @@ file path=usr/lib/locale/zh_TW.EUC/locale_map
 file path=usr/lib/locale/zh_TW.EUC/methods_zh_TW.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC/zh_TW.EUC.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@pinyin/$(ARCH64)/zh_TW.EUC@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.EUC@pinyin/zh_TW.EUC@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@pinyin/locale_description
 file path=usr/lib/locale/zh_TW.EUC@pinyin/locale_map
+file path=usr/lib/locale/zh_TW.EUC@pinyin/zh_TW.EUC@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@radical/$(ARCH64)/zh_TW.EUC@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.EUC@radical/zh_TW.EUC@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@radical/locale_description
 file path=usr/lib/locale/zh_TW.EUC@radical/locale_map
+file path=usr/lib/locale/zh_TW.EUC@radical/zh_TW.EUC@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@stroke/$(ARCH64)/zh_TW.EUC@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.EUC@stroke/zh_TW.EUC@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@stroke/locale_description
 file path=usr/lib/locale/zh_TW.EUC@stroke/locale_map
+file path=usr/lib/locale/zh_TW.EUC@stroke/zh_TW.EUC@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@zhuyin/$(ARCH64)/zh_TW.EUC@zhuyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.EUC@zhuyin/zh_TW.EUC@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.EUC@zhuyin/locale_description
 file path=usr/lib/locale/zh_TW.EUC@zhuyin/locale_map
+file path=usr/lib/locale/zh_TW.EUC@zhuyin/zh_TW.EUC@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@pinyin/$(ARCH64)/zh_TW.UTF-8@pinyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.UTF-8@pinyin/zh_TW.UTF-8@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@pinyin/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8@pinyin/locale_map
+file path=usr/lib/locale/zh_TW.UTF-8@pinyin/zh_TW.UTF-8@pinyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@radical/$(ARCH64)/zh_TW.UTF-8@radical.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.UTF-8@radical/zh_TW.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@radical/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8@radical/locale_map
+file path=usr/lib/locale/zh_TW.UTF-8@radical/zh_TW.UTF-8@radical.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@stroke/$(ARCH64)/zh_TW.UTF-8@stroke.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.UTF-8@stroke/zh_TW.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@stroke/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8@stroke/locale_map
+file path=usr/lib/locale/zh_TW.UTF-8@stroke/zh_TW.UTF-8@stroke.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/$(ARCH64)/zh_TW.UTF-8@zhuyin.so.3 mode=0555
-file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/zh_TW.UTF-8@zhuyin.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/locale_map
+file path=usr/lib/locale/zh_TW.UTF-8@zhuyin/zh_TW.UTF-8@zhuyin.so.3 mode=0555
 file path=usr/lib/lp/locale/ar/mp/mp.conf group=lp mode=0444 facet.locale.ar=true
 file path=usr/lib/lp/locale/he/mp/mp.conf group=lp mode=0444 facet.locale.he=true
 file path=usr/lib/lp/locale/ja_JP.PCK/mp/mp.conf group=lp mode=0444 facet.locale.ja_JP=true
@@ -1478,10 +1478,10 @@ legacy pkg=SUNWlang-tr-extra category=system,l10ntr desc="Turkish language suppo
 legacy pkg=SUNWlang-zhCN-extra category=ALE,system desc="Simplified Chinese language support extra files" name="Simplified Chinese language support extra files" version=110.0,REV= facet.locale.zh_CN=true
 legacy pkg=SUNWlang-zhHK-extra category=ALE,system desc="Traditional Chinese (Hong Kong) language support extra files" name="Traditional Chinese (Hong Kong) language support extra files" version=110.0,REV= facet.locale.zh_HK=true
 legacy pkg=SUNWlang-zhTW-extra category=ALE,system desc="Traditional Chinese language support extra files" name="Traditional Chinese language support extra files" version=110.0,REV= facet.locale.zh_TW=true
-license copyright.oracle license=copyright.oracle
-license copyright.unicode license=copyright.unicode
 license copyright.hkscs license=copyright.hkscs
 license copyright.ieee license=copyright.ieee
+license copyright.oracle license=copyright.oracle
+license copyright.unicode license=copyright.unicode
 link path=usr/lib/locale/ar_EG.ISO8859-6/LC_CTYPE/LCL_DEF target=../../iso_8859_6/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bg_BG.ISO8859-5/LC_CTYPE/LCL_DEF target=../../iso_8859_5/LC_CTYPE/LCL_DEF
 link path=usr/lib/locale/bs_BA.ISO8859-2/LC_CTYPE/LCL_DEF target=../../iso_8859_2/LC_CTYPE/LCL_DEF
