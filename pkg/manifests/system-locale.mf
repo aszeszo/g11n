@@ -919,6 +919,8 @@ dir path=usr/lib/locale/ja_JP.UTF-8
 dir path=usr/lib/locale/ja_JP.UTF-8/$(ARCH64)
 dir path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE
 dir path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/ja_JP.UTF-8/LC_MESSAGES
+dir path=usr/lib/locale/ja_JP.UTF-8/LC_TIME
 dir path=usr/lib/locale/ja_JP.UTF-8/LO_LTYPE
 dir path=usr/lib/locale/ja_JP.UTF-8/LO_LTYPE/$(ARCH64)
 dir path=usr/lib/locale/ka_GE.UTF-8
@@ -1417,8 +1419,10 @@ dir path=usr/lib/locale/zh_TW.UTF-8/$(ARCH64)
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_COLLATE
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_CTYPE
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/zh_TW.UTF-8/LC_MESSAGES
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_MONETARY
 dir path=usr/lib/locale/zh_TW.UTF-8/LC_NUMERIC
+dir path=usr/lib/locale/zh_TW.UTF-8/LC_TIME
 dir path=usr/lib/locale/zh_TW.UTF-8/LO_LTYPE
 dir path=usr/lib/locale/zh_TW.UTF-8/LO_LTYPE/$(ARCH64)
 dir path=usr/lib/localedef
@@ -1523,6 +1527,9 @@ file path=usr/lib/locale/common/LO_LTYPE/$(ARCH64)/umle.layout.so.1 mode=0555
 file path=usr/lib/locale/common/LO_LTYPE/umle.layout.so.1 mode=0555
 file path=usr/lib/locale/common/methods_unicode.so.3 mode=0555
 file path=usr/lib/locale/cs_CZ.UTF-8/$(ARCH64)/cs_CZ.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/cs_CZ.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/cs_CZ.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/cs_CZ.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/cs_CZ.UTF-8/cs_CZ.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/cs_CZ.UTF-8/locale_description
 file path=usr/lib/locale/cs_CZ.UTF-8/locale_map
@@ -1543,6 +1550,9 @@ file path=usr/lib/locale/de_CH.UTF-8/de_CH.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/de_CH.UTF-8/locale_description
 file path=usr/lib/locale/de_CH.UTF-8/locale_map
 file path=usr/lib/locale/de_DE.UTF-8/$(ARCH64)/de_DE.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/de_DE.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/de_DE.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/de_DE.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/de_DE.UTF-8/de_DE.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/de_DE.UTF-8/locale_description
 file path=usr/lib/locale/de_DE.UTF-8/locale_map
@@ -1643,6 +1653,9 @@ file path=usr/lib/locale/es_EC.UTF-8/es_EC.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/es_EC.UTF-8/locale_description
 file path=usr/lib/locale/es_EC.UTF-8/locale_map
 file path=usr/lib/locale/es_ES.UTF-8/$(ARCH64)/es_ES.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/es_ES.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/es_ES.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/es_ES.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/es_ES.UTF-8/es_ES.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/es_ES.UTF-8/locale_description
 file path=usr/lib/locale/es_ES.UTF-8/locale_map
@@ -1715,6 +1728,9 @@ file path=usr/lib/locale/fr_CH.UTF-8/fr_CH.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/fr_CH.UTF-8/locale_description
 file path=usr/lib/locale/fr_CH.UTF-8/locale_map
 file path=usr/lib/locale/fr_FR.UTF-8/$(ARCH64)/fr_FR.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/fr_FR.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/fr_FR.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/fr_FR.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/fr_FR.UTF-8/fr_FR.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/fr_FR.UTF-8/locale_description
 file path=usr/lib/locale/fr_FR.UTF-8/locale_map
@@ -1759,6 +1775,9 @@ file path=usr/lib/locale/it_CH.UTF-8/it_CH.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/it_CH.UTF-8/locale_description
 file path=usr/lib/locale/it_CH.UTF-8/locale_map
 file path=usr/lib/locale/it_IT.UTF-8/$(ARCH64)/it_IT.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/it_IT.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/it_IT.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/it_IT.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/it_IT.UTF-8/it_IT.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/it_IT.UTF-8/locale_description
 file path=usr/lib/locale/it_IT.UTF-8/locale_map
@@ -1767,6 +1786,9 @@ file path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE/LCL_DEF
 file path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE/ldterm.dat mode=0555
 file path=usr/lib/locale/ja_JP.UTF-8/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/ja_JP.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/ja_JP.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/ja_JP.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/ja_JP.UTF-8/ja_JP.UTF-8.so.3
 file path=usr/lib/locale/ja_JP.UTF-8/locale_description
 file path=usr/lib/locale/ja_JP.UTF-8/locale_map
@@ -1784,6 +1806,9 @@ file path=usr/lib/locale/kn_IN.UTF-8/locale_description
 file path=usr/lib/locale/kn_IN.UTF-8/locale_map
 file path=usr/lib/locale/ko_KR.UTF-8/$(ARCH64)/ko_KR.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/ko_KR.UTF-8/LC_CTYPE/LCL_DEF mode=0555
+file path=usr/lib/locale/ko_KR.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/ko_KR.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/ko_KR.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/ko_KR.UTF-8/ko_KR.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/ko_KR.UTF-8/locale_description
 file path=usr/lib/locale/ko_KR.UTF-8/locale_map
@@ -1912,6 +1937,9 @@ file path=usr/lib/locale/sr_RS.UTF-8@latin/locale_description
 file path=usr/lib/locale/sr_RS.UTF-8@latin/locale_map
 file path=usr/lib/locale/sr_RS.UTF-8@latin/sr_RS.UTF-8@latin.so.3 mode=0555
 file path=usr/lib/locale/sv_SE.UTF-8/$(ARCH64)/sv_SE.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/sv_SE.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/sv_SE.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/sv_SE.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/sv_SE.UTF-8/locale_description
 file path=usr/lib/locale/sv_SE.UTF-8/locale_map
 file path=usr/lib/locale/sv_SE.UTF-8/sv_SE.UTF-8.so.3 mode=0555
@@ -1942,11 +1970,15 @@ file path=usr/lib/locale/vi_VN.UTF-8/locale_map
 file path=usr/lib/locale/vi_VN.UTF-8/vi_VN.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8/$(ARCH64)/zh_CN.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_CN.UTF-8/LC_CTYPE/LCL_DEF mode=0555
+file path=usr/lib/locale/zh_CN.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_CN.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_CN.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_CN.UTF-8/locale_description
 file path=usr/lib/locale/zh_CN.UTF-8/locale_map
 file path=usr/lib/locale/zh_CN.UTF-8/zh_CN.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8/$(ARCH64)/zh_HK.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.UTF-8/LC_CTYPE/LCL_DEF mode=0555
+file usr/lib/locale/zh_TW.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo path=usr/lib/locale/zh_HK.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
 file path=usr/lib/locale/zh_HK.UTF-8/locale_description
 file path=usr/lib/locale/zh_HK.UTF-8/locale_map
 file path=usr/lib/locale/zh_HK.UTF-8/zh_HK.UTF-8.so.3 mode=0555
@@ -1956,6 +1988,9 @@ file path=usr/lib/locale/zh_SG.UTF-8/locale_map
 file path=usr/lib/locale/zh_SG.UTF-8/zh_SG.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8/$(ARCH64)/zh_TW.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/zh_TW.UTF-8/LC_CTYPE/LCL_DEF mode=0555
+file path=usr/lib/locale/zh_TW.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_TW.UTF-8/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_TW.UTF-8/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_TW.UTF-8/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8/locale_map
 file path=usr/lib/locale/zh_TW.UTF-8/zh_TW.UTF-8.so.3 mode=0555

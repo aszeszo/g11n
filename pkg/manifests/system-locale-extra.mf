@@ -472,11 +472,15 @@ dir path=usr/lib/locale/ja_JP.PCK
 dir path=usr/lib/locale/ja_JP.PCK/$(ARCH64)
 dir path=usr/lib/locale/ja_JP.PCK/LC_CTYPE
 dir path=usr/lib/locale/ja_JP.PCK/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/ja_JP.PCK/LC_MESSAGES
+dir path=usr/lib/locale/ja_JP.PCK/LC_TIME
 dir path=usr/lib/locale/ja_JP.PCK/LO_LTYPE
 dir path=usr/lib/locale/ja_JP.eucJP
 dir path=usr/lib/locale/ja_JP.eucJP/$(ARCH64)
 dir path=usr/lib/locale/ja_JP.eucJP/LC_CTYPE
 dir path=usr/lib/locale/ja_JP.eucJP/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/ja_JP.eucJP/LC_MESSAGES
+dir path=usr/lib/locale/ja_JP.eucJP/LC_TIME
 dir path=usr/lib/locale/ko_KR.EUC
 dir path=usr/lib/locale/ko_KR.EUC/$(ARCH64)
 dir path=usr/lib/locale/ko_KR.EUC/LC_COLLATE
@@ -774,8 +778,10 @@ dir path=usr/lib/locale/zh_TW.BIG5/$(ARCH64)
 dir path=usr/lib/locale/zh_TW.BIG5/LC_COLLATE
 dir path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE
 dir path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/zh_TW.BIG5/LC_MESSAGES
 dir path=usr/lib/locale/zh_TW.BIG5/LC_MONETARY
 dir path=usr/lib/locale/zh_TW.BIG5/LC_NUMERIC
+dir path=usr/lib/locale/zh_TW.BIG5/LC_TIME
 dir path=usr/lib/locale/zh_TW.BIG5@pinyin
 dir path=usr/lib/locale/zh_TW.BIG5@pinyin/$(ARCH64)
 dir path=usr/lib/locale/zh_TW.BIG5@radical
@@ -789,6 +795,7 @@ dir path=usr/lib/locale/zh_TW.EUC/$(ARCH64)
 dir path=usr/lib/locale/zh_TW.EUC/LC_COLLATE
 dir path=usr/lib/locale/zh_TW.EUC/LC_CTYPE
 dir path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/$(ARCH64)
+dir path=usr/lib/locale/zh_TW.EUC/LC_MESSAGES
 dir path=usr/lib/locale/zh_TW.EUC/LC_MONETARY
 dir path=usr/lib/locale/zh_TW.EUC/LC_NUMERIC
 dir path=usr/lib/locale/zh_TW.EUC/LC_TIME
@@ -868,6 +875,9 @@ file path=usr/lib/locale/ca_ES.ISO8859-15/ca_ES.ISO8859-15.so.3 mode=0555
 file path=usr/lib/locale/ca_ES.ISO8859-15/locale_description
 file path=usr/lib/locale/ca_ES.ISO8859-15/locale_map
 file path=usr/lib/locale/cs_CZ.ISO8859-2/$(ARCH64)/cs_CZ.ISO8859-2.so.3 mode=0555
+file path=usr/lib/locale/cs_CZ.ISO8859-2/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/cs_CZ.ISO8859-2/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/cs_CZ.ISO8859-2/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/cs_CZ.ISO8859-2/cs_CZ.ISO8859-2.so.3 mode=0555
 file path=usr/lib/locale/cs_CZ.ISO8859-2/locale_description
 file path=usr/lib/locale/cs_CZ.ISO8859-2/locale_map
@@ -900,6 +910,9 @@ file path=usr/lib/locale/de_CH.ISO8859-1/de_CH.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/de_CH.ISO8859-1/locale_description
 file path=usr/lib/locale/de_CH.ISO8859-1/locale_map
 file path=usr/lib/locale/de_DE.ISO8859-1/$(ARCH64)/de_DE.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/de_DE.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/de_DE.ISO8859-1/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/de_DE.ISO8859-1/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/de_DE.ISO8859-1/de_DE.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/de_DE.ISO8859-1/locale_description
 file path=usr/lib/locale/de_DE.ISO8859-1/locale_map
@@ -980,6 +993,9 @@ file path=usr/lib/locale/es_EC.ISO8859-1/es_EC.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/es_EC.ISO8859-1/locale_description
 file path=usr/lib/locale/es_EC.ISO8859-1/locale_map
 file path=usr/lib/locale/es_ES.ISO8859-1/$(ARCH64)/es_ES.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/es_ES.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/es_ES.ISO8859-1/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/es_ES.ISO8859-1/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/es_ES.ISO8859-1/es_ES.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/es_ES.ISO8859-1/locale_description
 file path=usr/lib/locale/es_ES.ISO8859-1/locale_map
@@ -1052,6 +1068,9 @@ file path=usr/lib/locale/fr_CH.ISO8859-1/fr_CH.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/fr_CH.ISO8859-1/locale_description
 file path=usr/lib/locale/fr_CH.ISO8859-1/locale_map
 file path=usr/lib/locale/fr_FR.ISO8859-1/$(ARCH64)/fr_FR.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/fr_FR.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/fr_FR.ISO8859-1/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/fr_FR.ISO8859-1/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/fr_FR.ISO8859-1/fr_FR.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/fr_FR.ISO8859-1/locale_description
 file path=usr/lib/locale/fr_FR.ISO8859-1/locale_map
@@ -1085,6 +1104,9 @@ file path=usr/lib/locale/iso_8859_7/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/iso_8859_8/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/iso_8859_9/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/it_IT.ISO8859-1/$(ARCH64)/it_IT.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/it_IT.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/it_IT.ISO8859-1/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/it_IT.ISO8859-1/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/it_IT.ISO8859-1/it_IT.ISO8859-1.so.3 mode=0555
 file path=usr/lib/locale/it_IT.ISO8859-1/locale_description
 file path=usr/lib/locale/it_IT.ISO8859-1/locale_map
@@ -1097,6 +1119,9 @@ file path=usr/lib/locale/ja_JP.PCK/$(ARCH64)/methods_ja_JP.PCK.so.3
 file path=usr/lib/locale/ja_JP.PCK/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/ja_JP.PCK/LC_CTYPE/ldterm.dat mode=0555
 file path=usr/lib/locale/ja_JP.PCK/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/ja_JP.PCK/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/ja_JP.PCK/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/ja_JP.PCK/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/ja_JP.PCK/ja_JP.PCK.so.3
 file path=usr/lib/locale/ja_JP.PCK/locale_description
 file path=usr/lib/locale/ja_JP.PCK/locale_map
@@ -1105,6 +1130,9 @@ file path=usr/lib/locale/ja_JP.eucJP/$(ARCH64)/ja_JP.eucJP.so.3
 file path=usr/lib/locale/ja_JP.eucJP/$(ARCH64)/methods_ja_JP.eucJP.so.3
 file path=usr/lib/locale/ja_JP.eucJP/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/ja_JP.eucJP/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/ja_JP.eucJP/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/ja_JP.eucJP/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/ja_JP.eucJP/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/ja_JP.eucJP/ja_JP.eucJP.so.3
 file path=usr/lib/locale/ja_JP.eucJP/locale_description
 file path=usr/lib/locale/ja_JP.eucJP/locale_map
@@ -1116,6 +1144,9 @@ file path=usr/lib/locale/ko_KR.EUC/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/ko_KR.EUC/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/ko_KR.EUC/LC_CTYPE/mailcodelist mode=0555
 file path=usr/lib/locale/ko_KR.EUC/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/ko_KR.EUC/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/ko_KR.EUC/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/ko_KR.EUC/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/ko_KR.EUC/ko_KR.EUC.so.3 mode=0555
 file path=usr/lib/locale/ko_KR.EUC/locale_description
 file path=usr/lib/locale/ko_KR.EUC/locale_map
@@ -1215,6 +1246,9 @@ file path=usr/lib/locale/sr_ME.ISO8859-5/locale_description
 file path=usr/lib/locale/sr_ME.ISO8859-5/locale_map
 file path=usr/lib/locale/sr_ME.ISO8859-5/sr_ME.ISO8859-5.so.3 mode=0555
 file path=usr/lib/locale/sv_SE.ISO8859-1/$(ARCH64)/sv_SE.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/sv_SE.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/sv_SE.ISO8859-1/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/sv_SE.ISO8859-1/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/sv_SE.ISO8859-1/locale_description
 file path=usr/lib/locale/sv_SE.ISO8859-1/locale_map
 file path=usr/lib/locale/sv_SE.ISO8859-1/sv_SE.ISO8859-1.so.3 mode=0555
@@ -1253,6 +1287,9 @@ file path=usr/lib/locale/zh_CN.EUC/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/zh_CN.EUC/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/zh_CN.EUC/LC_CTYPE/mailcodelist mode=0555
 file path=usr/lib/locale/zh_CN.EUC/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/zh_CN.EUC/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_CN.EUC/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_CN.EUC/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_CN.EUC/locale_description
 file path=usr/lib/locale/zh_CN.EUC/locale_map
 file path=usr/lib/locale/zh_CN.EUC/methods_zh_CN.EUC.so.3 mode=0555
@@ -1296,6 +1333,9 @@ file path=usr/lib/locale/zh_CN.GBK/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/zh_CN.GBK/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/zh_CN.GBK/LC_CTYPE/ldterm.dat mode=0555
 file path=usr/lib/locale/zh_CN.GBK/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/zh_CN.GBK/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_CN.GBK/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_CN.GBK/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_CN.GBK/locale_description
 file path=usr/lib/locale/zh_CN.GBK/locale_map
 file path=usr/lib/locale/zh_CN.GBK/methods_zh_CN.GBK.so.3 mode=0555
@@ -1329,6 +1369,7 @@ file path=usr/lib/locale/zh_HK.BIG5HK/$(ARCH64)/zh_HK.BIG5HK.so.3 mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/LC_CTYPE/ldterm.dat mode=0555
 file path=usr/lib/locale/zh_HK.BIG5HK/LC_CTYPE/wdresolve.so mode=0555
+file usr/lib/locale/zh_TW.BIG5/LC_TIME/SUNW_OST_OSCMD.mo path=usr/lib/locale/zh_HK.BIG5HK/LC_TIME/SUNW_OST_OSCMD.mo
 file path=usr/lib/locale/zh_HK.BIG5HK/locale_description
 file path=usr/lib/locale/zh_HK.BIG5HK/locale_map
 file path=usr/lib/locale/zh_HK.BIG5HK/methods_zh_HK.BIG5HK.so.3 mode=0555
@@ -1355,6 +1396,9 @@ file path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/ldterm.dat mode=0555
 file path=usr/lib/locale/zh_TW.BIG5/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/zh_TW.BIG5/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_TW.BIG5/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_TW.BIG5/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_TW.BIG5/locale_description
 file path=usr/lib/locale/zh_TW.BIG5/locale_map
 file path=usr/lib/locale/zh_TW.BIG5/methods_zh_TW.BIG5.so.3 mode=0555
@@ -1382,6 +1426,9 @@ file path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/$(ARCH64)/wdresolve.so mode=0555
 file path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/LCL_DEF mode=0555
 file path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/mailcodelist mode=0555
 file path=usr/lib/locale/zh_TW.EUC/LC_CTYPE/wdresolve.so mode=0555
+file path=usr/lib/locale/zh_TW.EUC/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
+file path=usr/lib/locale/zh_TW.EUC/LC_TIME/SUNW_OST_OSCMD.mo
+file path=usr/lib/locale/zh_TW.EUC/LC_TIME/SUNW_OST_OSLIB.mo
 file path=usr/lib/locale/zh_TW.EUC/locale_description
 file path=usr/lib/locale/zh_TW.EUC/locale_map
 file path=usr/lib/locale/zh_TW.EUC/methods_zh_TW.EUC.so.3 mode=0555
