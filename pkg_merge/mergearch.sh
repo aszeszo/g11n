@@ -27,7 +27,7 @@ merge_one_pair()
 	drd="$REPOTOP_MERGED/$reponame"
 
 	rm -rf $drd
-	pkgrepo create --version 3 $drd
+	pkgrepo create $drd
 	pkgrepo set -s $drd publisher/prefix=$publisher
 
 	pkgmerge -d $drd -s arch=sparc,$srs -s arch=i386,$srx

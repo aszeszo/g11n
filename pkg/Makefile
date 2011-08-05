@@ -467,7 +467,7 @@ $(REPOS:%=$(PKGDEST)/repo.%):
 	@echo "Initializing $(@F)"
 	$(RM) -r $(@)
 	$(PKGDEBUG)$(INSDIR) $(@)
-	$(PKGDEBUG)pkgrepo create --version 3 $(@)
+	$(PKGDEBUG)pkgrepo create $(@)
 	$(PKGDEBUG)pkgrepo set -s file://$(@)/ publisher/prefix=$(PKGPUBLISHER)
 
 #

@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 include $(SRC)/Makefile.master
@@ -97,7 +97,7 @@ $(SVR4DIR2):
 
 $(REPO):
 	rm -rf $(REPOD)
-	pkgrepo create --version 3 $(REPO)
+	pkgrepo create $(REPO)
 	pkgrepo set -s $(REPO) publisher/prefix=$(L10N_PUBLISHER)
 	/usr/lib/pkg.depotd -d $(REPOD) --add-content --exit-ready
 

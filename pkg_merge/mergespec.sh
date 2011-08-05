@@ -37,7 +37,7 @@ ALL=consolidation/l10n/l10n-all
 PUBLISHER=${L10N_PUBLISHER:-"l10n-nightly"}
 
 rm -rf $DRD
-pkgrepo create --version 3 $DRD
+pkgrepo create $DRD
 pkgrepo set -s $DR publisher/prefix=${PUBLISHER}
 
 TMPD=$PKGDEST/TMPD.$$
@@ -118,34 +118,6 @@ do
 				cp $mf $TMPMF
 				sed -e '/REV=[^ 	]*20[0-9][0-9]\...\...\...\.../s/20[0-9][0-9]\...\...\...\.../'"$LEGACY_REV_DATE"'/' $TMPMF > $mf
 			fi
-# workaround
-# 1
-			if ! egrep -s 'set name=org\.opensolaris\.consolidation ' $mf
-			then
-				echo "WORKAROUND: add org.opensolaris.consolidation"
-				echo "set name=org.opensolaris.consolidation value=l10n" >> $mf
-			fi
-# 2
-			if egrep -s "^dir group=bin.* path=usr$" $mf
-			then
-				echo "WORKAROUND: correct group of usr"
-				cp $mf $TMPMF
-				sed -e '/^dir group=bin.* path=usr$/s;group=bin;group=sys;' $TMPMF > $mf
-			fi
-# 3
-			echo "WORKAROUND: remove pkgbuild's default info.*_url"
-			cp $mf $TMPMF
-			cat $TMPMF | \
-			grep -v '^set name=info\.maintainer_url value=pkgbuild-sfe-devel@sourceforge\.net' | \
-			grep -v '^set name=info\.upstream_url value=http://pkgbuild\.sf\.net/' | \
-			cat > $mf
-# 4
-			if ! egrep -s 'set name=variant\.opensolaris\.zone ' $mf
-			then
-				echo "WORKAROUND: add variant.opensolaris.zone"
-				echo "set name=variant.opensolaris.zone value=global value=nonglobal" >> $mf
-			fi
-# end of workaround
 			echo "depend fmri=$fmri type=incorporate" >> $MF_INC_B
 			echo "depend fmri=$fmri type=group" >> $MF_ALL_B
 			$PUBLISH -d $TMPD/$pd $mf
