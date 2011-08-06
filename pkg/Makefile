@@ -443,8 +443,7 @@ repository-metadata: publish_pkgs
 	@echo "Creating repository metadata"
 	$(PKGDEBUG)for r in $(REPOS); do \
 		/usr/lib/pkg.depotd -d $(PKGDEST)/repo.$$r \
-			--add-content --exit-ready; \
-		chmod a+r $(PKGDEST)/repo.$$r/cfg_cache; \
+			--add-content --exit-ready
 	done
 
 #
