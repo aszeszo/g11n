@@ -31,6 +31,8 @@ merge_one_pair()
 	pkgrepo set -s $drd publisher/prefix=$publisher
 
 	pkgmerge -d $drd -s arch=sparc,$srs -s arch=i386,$srx
+
+	/usr/lib/pkg.depotd -d $drd --add-content --exit-ready
 }
 
 REPONAME="repo.l10n"
