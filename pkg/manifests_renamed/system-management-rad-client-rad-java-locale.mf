@@ -23,6 +23,6 @@
 # Copyright (c) 2011 Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/system/management/rad/client/rad-java/locale@$(PKGVERS)
+set name=pkg.fmri value=pkg:/system/management/rad/client/rad-java/locale@0.5.11,5.11-0.172.0.0.0.0.678
 set name=pkg.renamed value=true
-depend fmri=system/management/visual-panels-core/locale@$(PKGVERS_COMPONENT)-$(PKGVERS_BRANCH) type=require
+depend fmri=system/management/visual-panels-core/locale@0.5.11-0.172.0.0.0.0.678 type=require
