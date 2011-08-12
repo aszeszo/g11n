@@ -1889,6 +1889,7 @@ file path=usr/lib/locale/pl_PL.UTF-8/locale_description
 file path=usr/lib/locale/pl_PL.UTF-8/locale_map
 file path=usr/lib/locale/pl_PL.UTF-8/pl_PL.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/pt_BR.UTF-8/$(ARCH64)/pt_BR.UTF-8.so.3 mode=0555
+file path=usr/lib/locale/pt_BR.UTF-8/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
 file path=usr/lib/locale/pt_BR.UTF-8/locale_description
 file path=usr/lib/locale/pt_BR.UTF-8/locale_map
 file path=usr/lib/locale/pt_BR.UTF-8/pt_BR.UTF-8.so.3 mode=0555

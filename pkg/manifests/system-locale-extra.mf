@@ -1208,6 +1208,7 @@ file path=usr/lib/locale/pl_PL.ISO8859-2/locale_description
 file path=usr/lib/locale/pl_PL.ISO8859-2/locale_map
 file path=usr/lib/locale/pl_PL.ISO8859-2/pl_PL.ISO8859-2.so.3 mode=0555
 file path=usr/lib/locale/pt_BR.ISO8859-1/$(ARCH64)/pt_BR.ISO8859-1.so.3 mode=0555
+file path=usr/lib/locale/pt_BR.ISO8859-1/LC_MESSAGES/SUNW_OST_ZONEINFO.mo
 file path=usr/lib/locale/pt_BR.ISO8859-1/locale_description
 file path=usr/lib/locale/pt_BR.ISO8859-1/locale_map
 file path=usr/lib/locale/pt_BR.ISO8859-1/pt_BR.ISO8859-1.so.3 mode=0555
