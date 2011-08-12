@@ -1430,6 +1430,10 @@ dir path=usr/lib/localedef/extensions
 dir path=usr/share group=sys
 dir path=usr/share/lib group=sys
 dir path=usr/share/lib/pub
+dir path=usr/share/man
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man3c
+dir path=usr/share/man/man3c
 file path=usr/lib/locale/af_ZA.UTF-8/$(ARCH64)/af_ZA.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/af_ZA.UTF-8/af_ZA.UTF-8.so.3 mode=0555
 file path=usr/lib/locale/af_ZA.UTF-8/locale_description
@@ -1995,6 +1999,10 @@ file path=usr/lib/locale/zh_TW.UTF-8/locale_description
 file path=usr/lib/locale/zh_TW.UTF-8/locale_map
 file path=usr/lib/locale/zh_TW.UTF-8/zh_TW.UTF-8.so.3 mode=0555
 file path=usr/share/lib/pub/UTF-8
+file path=usr/share/man/ja_JP.UTF-8/man3c/wctrans_ja.3c
+file path=usr/share/man/ja_JP.UTF-8/man3c/wctype_ja.3c
+file path=usr/share/man/man3c/wctrans_ja.3c
+file path=usr/share/man/man3c/wctype_ja.3c
 legacy pkg=SUNWlang-af category=system,l10naf desc="Afrikaans language support" name="Afrikaans language support" version=1.0,REV= facet.locale.af=true
 legacy pkg=SUNWlang-ar category=system,l10nar desc="Arabic language support" name="Arabic language support" version=1.0,REV= facet.locale.ar_AE=true facet.locale.ar_BH=true facet.locale.ar_DZ=true facet.locale.ar_IQ=true facet.locale.ar_JO=true facet.locale.ar_KW=true facet.locale.ar_LY=true facet.locale.ar_MA=true facet.locale.ar_OM=true facet.locale.ar_QA=true facet.locale.ar_SA=true facet.locale.ar_TN=true facet.locale.ar_YE=true
 legacy pkg=SUNWlang-arEG category=system,l10narEG desc="Arabic (Egypt) language support" name="Arabic (Egypt) language support" version=1.0,REV= facet.locale.ar_EG=true

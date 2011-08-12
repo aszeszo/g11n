@@ -20,20 +20,9 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/library/iconv/utf-8/manual@$(PKGVERS)
-set name=info.classification value="org.opensolaris.category.2008:System/Text Tools"
-set name=pkg.summary value="Iconv Man Pages for UTF-8 Locale"
-set name=pkg.description value="ICONV Manual pages for UTF-8 Locale"
-legacy pkg=SUNWuium category=system \
-    version=11.0,REV= \
-    name="Iconv Man Pages for UTF-8 Locale" \
-    desc="ICONV Manual pages for UTF-8 Locale"
-dir path=usr group=sys
-dir path=usr/share group=sys
-dir path=usr/share/man
-dir path=usr/share/man/man5
-file path=usr/share/man/man5/iconv_en_US.UTF-8.5
-license copyright.oracle license=copyright.oracle
+set name=pkg.renamed value=true
+depend fmri=system/library/iconv/utf-8@$(PKGVERS_COMPONENT)-$(PKGVERS_BRANCH) type=require

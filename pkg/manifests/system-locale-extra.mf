@@ -841,6 +841,14 @@ dir path=usr/share/lib/setterm/en_US.UTF-8
 dir path=usr/share/lib/setterm/ja
 dir path=usr/share/lib/setterm/ja_JP.PCK
 dir path=usr/share/lib/setterm/ja_JP.UTF-8
+dir path=usr/share/man
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man1
+dir path=usr/share/man/ja_JP.UTF-8/man5
+dir path=usr/share/man/ja_JP.UTF-8/man7m
+dir path=usr/share/man/man1
+dir path=usr/share/man/man5
+dir path=usr/share/man/man7m
 file path=usr/bin/setterm mode=0555
 file path=usr/kernel/strmod/$(ARCH64)/b5euc group=sys mode=0755 facet.locale.zh_TW=true
 file path=usr/kernel/strmod/$(ARCH64)/big5euc group=sys mode=0755 facet.locale.zh_TW=true
@@ -1483,6 +1491,28 @@ file path=usr/share/lib/setterm/en_US.UTF-8/conf.file mode=0555 facet.locale.en_
 file path=usr/share/lib/setterm/ja/conf.file mode=0555 facet.locale.ja_JP=true
 file path=usr/share/lib/setterm/ja_JP.PCK/conf.file mode=0555 facet.locale.ja_JP=true
 file path=usr/share/lib/setterm/ja_JP.UTF-8/conf.file mode=0555 facet.locale.ja_JP=true
+file path=usr/share/man/ja_JP.UTF-8/man1/setterm.1
+file path=usr/share/man/ja_JP.UTF-8/man5/PCK.5
+file path=usr/share/man/ja_JP.UTF-8/man5/eucJP.5
+file path=usr/share/man/ja_JP.UTF-8/man5/eucjp.5
+file path=usr/share/man/ja_JP.UTF-8/man5/pck.5
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconv7.7m
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconv8.7m
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconvrs.7m
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconvru.7m
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconvs.7m
+file path=usr/share/man/ja_JP.UTF-8/man7m/jconvu.7m
+file path=usr/share/man/man1/setterm.1
+file path=usr/share/man/man5/PCK.5
+file path=usr/share/man/man5/eucJP.5
+file path=usr/share/man/man5/eucjp.5
+file path=usr/share/man/man5/pck.5
+file path=usr/share/man/man7m/jconv7.7m
+file path=usr/share/man/man7m/jconv8.7m
+file path=usr/share/man/man7m/jconvrs.7m
+file path=usr/share/man/man7m/jconvru.7m
+file path=usr/share/man/man7m/jconvs.7m
+file path=usr/share/man/man7m/jconvu.7m
 legacy pkg=SUNWlang-ar-extra category=system,l10nar desc="Arabic language support extra files" name="Arabic language support extra files" version=1.0,REV= facet.locale.ar=true
 legacy pkg=SUNWlang-bg-extra category=system,l10nbg desc="Bulgarian language support extra files" name="Bulgarian language support extra files" version=1.0,REV= facet.locale.bg=true
 legacy pkg=SUNWlang-bs-extra category=system,l10nbs desc="Bosnian language support extra files" name="Bosnian language support extra files" version=1.0,REV= facet.locale.bs=true

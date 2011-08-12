@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/input-method/iiim/atok@17,$(PKGVERS_BUILTON)-$(PKGVERS_BRANCH)
@@ -76,6 +76,10 @@ dir path=usr/share/iiim/le/atokx2/doc/help/img
 dir path=usr/share/iiim/le/atokx2/doc/help/img/common
 dir path=usr/share/iiim/le/atokx2/original
 dir path=usr/share/iiim/le/atokx2/systemdic
+dir path=usr/share/man
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man1
+dir path=usr/share/man/man1
 dir path=var group=sys
 dir path=var/lib group=other
 dir path=var/lib/iiim group=sys
@@ -764,5 +768,17 @@ file path=usr/share/iiim/le/atokx2/systemdic/atokeb.dar
 file path=usr/share/iiim/le/atokx2/systemdic/atokkh.dar
 file path=usr/share/iiim/le/atokx2/systemdic/facem17.dic
 file path=usr/share/iiim/le/atokx2/systemdic/facemi17.dic
+file path=usr/share/man/ja_JP.UTF-8/man1/ATOK.1
+file path=usr/share/man/ja_JP.UTF-8/man1/atok.1
+file path=usr/share/man/ja_JP.UTF-8/man1/atok12migd.1
+file path=usr/share/man/ja_JP.UTF-8/man1/atok12migs.1
+file path=usr/share/man/ja_JP.UTF-8/man1/atokx2cvttool.1
+file path=usr/share/man/ja_JP.UTF-8/man1/xatokx2cvttool.1
+file path=usr/share/man/man1/ATOK.1
+file path=usr/share/man/man1/atok.1
+file path=usr/share/man/man1/atok12migd.1
+file path=usr/share/man/man1/atok12migs.1
+file path=usr/share/man/man1/atokx2cvttool.1
+file path=usr/share/man/man1/xatokx2cvttool.1
 license copyright.oracle license=copyright.oracle
 link path=usr/lib/iiim/le/atokx2/$(ARCH64) target=./64

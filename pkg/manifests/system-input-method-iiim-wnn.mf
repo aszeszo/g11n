@@ -20,7 +20,7 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/system/input-method/iiim/wnn@8,$(PKGVERS_BUILTON)-$(PKGVERS_BRANCH)
@@ -78,6 +78,15 @@ dir path=usr/lib/wnn/ja_JP/rk group=sys
 dir path=usr/lib/wnn/msg group=sys
 dir path=usr/lib/wnn/unicode_conv group=sys
 dir path=usr/sbin
+dir path=usr/share group=sys
+dir path=usr/share/man
+dir path=usr/share/man/man1
+dir path=usr/share/man/man1m
+dir path=usr/share/man/man4
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man1
+dir path=usr/share/man/ja_JP.UTF-8/man1m
+dir path=usr/share/man/ja_JP.UTF-8/man4
 dir path=var group=sys
 dir path=var/lib group=other
 dir path=var/lib/wnn group=other
@@ -247,6 +256,60 @@ file path=usr/lib/wnn/unicode_conv/libwnnconv.so group=sys
 file path=usr/lib/wnn/ximrc group=sys mode=0444
 file path=usr/sbin/wnnaccess group=sys mode=0555
 file path=usr/sbin/wnnsysenv_server group=sys mode=0555
+file path=usr/share/man/ja_JP.UTF-8/man1/Wnn8.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnn.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnn8.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnnatod.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnndictutil.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnndtoa.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnnenvutil.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnnstat.1
+file path=usr/share/man/ja_JP.UTF-8/man1/wnnsysenv_client.1
+file path=usr/share/man/ja_JP.UTF-8/man1m/dpkeyserv.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/dpkeystat.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/jserver.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/wnnaccess.1m
+file path=usr/share/man/ja_JP.UTF-8/man1m/wnnsysenv_server.1m
+file path=usr/share/man/ja_JP.UTF-8/man4/jserverrc.4
+file path=usr/share/man/ja_JP.UTF-8/man4/uumkey.4
+file path=usr/share/man/ja_JP.UTF-8/man4/uumrc.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_2A_CTRL.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_2B_ROMKANA.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_automaton.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_cvt_xim_tbl.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_hinsi.data.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_mode.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnn_ximrc.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnnenvrc.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnnhosts.4
+file path=usr/share/man/ja_JP.UTF-8/man4/wnnlerc.4
+file path=usr/share/man/man1/Wnn8.1
+file path=usr/share/man/man1/wnn.1
+file path=usr/share/man/man1/wnn8.1
+file path=usr/share/man/man1/wnnatod.1
+file path=usr/share/man/man1/wnndictutil.1
+file path=usr/share/man/man1/wnndtoa.1
+file path=usr/share/man/man1/wnnenvutil.1
+file path=usr/share/man/man1/wnnstat.1
+file path=usr/share/man/man1/wnnsysenv_client.1
+file path=usr/share/man/man1m/dpkeyserv.1m
+file path=usr/share/man/man1m/dpkeystat.1m
+file path=usr/share/man/man1m/jserver.1m
+file path=usr/share/man/man1m/wnnaccess.1m
+file path=usr/share/man/man1m/wnnsysenv_server.1m
+file path=usr/share/man/man4/jserverrc.4
+file path=usr/share/man/man4/uumkey.4
+file path=usr/share/man/man4/uumrc.4
+file path=usr/share/man/man4/wnn_2A_CTRL.4
+file path=usr/share/man/man4/wnn_2B_ROMKANA.4
+file path=usr/share/man/man4/wnn_automaton.4
+file path=usr/share/man/man4/wnn_cvt_xim_tbl.4
+file path=usr/share/man/man4/wnn_hinsi.data.4
+file path=usr/share/man/man4/wnn_mode.4
+file path=usr/share/man/man4/wnn_ximrc.4
+file path=usr/share/man/man4/wnnenvrc.4
+file path=usr/share/man/man4/wnnhosts.4
+file path=usr/share/man/man4/wnnlerc.4
 file path=var/svc/manifest/application/wnn8/wnn8-server.xml group=sys mode=0444
 file usr/lib/svc/method/wnn8-server path=lib/svc/method/wnn8-server mode=0555
 license copyright.omron license=copyright.omron

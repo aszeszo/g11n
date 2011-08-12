@@ -240,5 +240,13 @@
     delete facet.locale.detected ^.*$>
 
 #
+# facets other than locale
+#
+
+# facet.doc.man
+<transform dir file link \
+    path=usr/share/man(/.+)?$ -> default facet.doc.man true>
+
+#
 # end
 #

@@ -31,12 +31,22 @@ legacy pkg=SUNWuiu8 category=system \
     version=11.0,REV= \
     name="Iconv modules for UTF-8 Locale" \
     desc="Iconv modules for UTF-8 Locale"
+legacy pkg=SUNWuium category=system \
+    version=11.0,REV= \
+    name="Iconv Man Pages for UTF-8 Locale" \
+    desc="ICONV Manual pages for UTF-8 Locale" \
+    facet.doc.man=true
 dir path=usr group=sys
 dir path=usr/lib
 dir path=usr/lib/iconv
 dir path=usr/lib/iconv/$(ARCH64)
 dir path=usr/lib/iconv/geniconvtbl
 dir path=usr/lib/iconv/geniconvtbl/binarytables
+dir path=usr/share group=sys
+dir path=usr/share/man
+dir path=usr/share/man/man5
+dir path=usr/share/man/ja_JP.UTF-8
+dir path=usr/share/man/ja_JP.UTF-8/man5
 file path=usr/lib/iconv/$(ARCH64)/646%UCS-2.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/646%UCS-2BE.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/646%UCS-2LE.so mode=0555
@@ -2712,6 +2722,12 @@ file path=usr/lib/iconv/GB18030%UTF-8.so mode=0555
 file path=usr/lib/iconv/UTF-8%GB18030.so mode=0555
 file path=usr/lib/iconv/BIG5%UTF-8.so mode=0555
 file path=usr/lib/iconv/UTF-8%BIG5.so mode=0555
+file path=usr/share/man/ja_JP.UTF-8/man5/iconv_ja.5
+file path=usr/share/man/man5/iconv_en_US.UTF-8.5
+file path=usr/share/man/man5/iconv_ja.5
+file path=usr/share/man/man5/iconv_ko.UTF-8.5
+file path=usr/share/man/man5/iconv_zh.5
+file path=usr/share/man/man5/iconv_zh_TW.5
 license copyright.unicode+icu license=copyright.unicode+icu
 link path=usr/lib/iconv/64 target=$(ARCH64)
 link path=usr/lib/iconv/$(ARCH64)/UCS-4%eucJP.so target=./UTF-32%eucJP.so
