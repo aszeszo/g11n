@@ -27,79 +27,79 @@ set name=pkg.fmri value=pkg:/system/locale/support@0.1,$(PKGVERS_BUILTON)-$(PKGV
 set name=pkg.description value="Cluster installs basic fonts, input methods, or code conversions according to locale facet configuration. Also installs translation packages which have not been controlled by facet directly yet."
 set name=pkg.summary value="Language Support cluster"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
-depend fmri=gnome/locale/cs type=require facet.locale.cs=true
-depend fmri=gnome/locale/de type=require facet.locale.de=true
-depend fmri=gnome/locale/es type=require facet.locale.es=true
-depend fmri=gnome/locale/extra type=require facet.locale.af=true facet.locale.as=true facet.locale.bg=true facet.locale.bn=true facet.locale.bs=true facet.locale.ca=true facet.locale.da=true facet.locale.el=true facet.locale.et=true facet.locale.fi=true facet.locale.gu=true facet.locale.hr=true facet.locale.hy=true facet.locale.id=true facet.locale.is=true facet.locale.ka=true facet.locale.kk=true facet.locale.kn=true facet.locale.ks=true facet.locale.ku=true facet.locale.ky=true facet.locale.lt=true facet.locale.lv=true facet.locale.mk=true facet.locale.ml=true facet.locale.mr=true facet.locale.ms=true facet.locale.mt=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.or=true facet.locale.pa=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.sq=true facet.locale.sr=true facet.locale.ta=true facet.locale.te=true facet.locale.th=true facet.locale.tr=true facet.locale.uk=true facet.locale.vi=true
-depend fmri=gnome/locale/fr type=require facet.locale.fr=true
-depend fmri=gnome/locale/hg type=require facet.locale.hu=true
-depend fmri=gnome/locale/hi type=require facet.locale.hi=true
-depend fmri=gnome/locale/it type=require facet.locale.it=true
-depend fmri=gnome/locale/ja type=require facet.locale.ja=true
-depend fmri=gnome/locale/ko type=require facet.locale.ko=true
-depend fmri=gnome/locale/pl type=require facet.locale.pl=true
-depend fmri=gnome/locale/pt_br type=require facet.locale.pt_BR=true
-depend fmri=gnome/locale/rtl type=require facet.locale.ar=true facet.locale.az=true facet.locale.he=true
-depend fmri=gnome/locale/ru type=require facet.locale.ru=true
-depend fmri=gnome/locale/sv type=require facet.locale.sv=true
-depend fmri=gnome/locale/zh_cn type=require facet.locale.zh_CN=true facet.locale.zh_SG=true
-depend fmri=gnome/locale/zh_hk type=require facet.locale.zh_HK=true
-depend fmri=gnome/locale/zh_tw type=require facet.locale.zh_TW=true
-depend fmri=mail/thunderbird/locale/de type=require facet.locale.de=true
-depend fmri=mail/thunderbird/locale/es type=require facet.locale.es=true
-depend fmri=mail/thunderbird/locale/extra type=require facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.pt_PT=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
-depend fmri=mail/thunderbird/locale/fr type=require facet.locale.fr=true
-depend fmri=mail/thunderbird/locale/it type=require facet.locale.it=true
-depend fmri=mail/thunderbird/locale/ja type=require facet.locale.ja=true
-depend fmri=mail/thunderbird/locale/ko type=require facet.locale.ko=true
-depend fmri=mail/thunderbird/locale/pl type=require facet.locale.pl=true
-depend fmri=mail/thunderbird/locale/pt_br type=require facet.locale.pt_BR=true
-depend fmri=mail/thunderbird/locale/ru type=require facet.locale.ru=true
-depend fmri=mail/thunderbird/locale/sv type=require facet.locale.sv=true
-depend fmri=mail/thunderbird/locale/zh_cn type=require facet.locale.zh_CN=true
-depend fmri=mail/thunderbird/locale/zh_tw type=require facet.locale.zh_HK=true facet.locale.zh_TW=true
-depend fmri=system/font/truetype/arabeyes type=require facet.locale.ar=true
-depend fmri=system/font/truetype/arphic-uming type=require facet.locale.zh_CN=true facet.locale.zh_HK=true facet.locale.zh_SG=true facet.locale.zh_TW=true
-depend fmri=system/font/truetype/bpg-georgian type=require facet.locale.ka=true
-depend fmri=system/font/truetype/hanyang-ko-core type=require facet.locale.ko=true
-depend fmri=system/font/truetype/indic-fonts-core type=require facet.locale.hi=true
-depend fmri=system/font/truetype/ipafont type=require facet.locale.ja=true
-depend fmri=system/font/truetype/kacst type=require facet.locale.ar=true
-depend fmri=system/font/truetype/lohit type=require facet.locale.hi=true
-depend fmri=system/font/truetype/mgopen type=require facet.locale.el=true
-depend fmri=system/font/truetype/thai-scalable type=require facet.locale.th=true
-depend fmri=system/input-method/ibus type=require
-depend fmri=system/input-method/ibus/anthy type=require facet.locale.ja=true
-depend fmri=system/input-method/ibus/chewing type=require facet.locale.zh_HK=true facet.locale.zh_TW=true
-depend fmri=system/input-method/ibus/hangul type=require facet.locale.ko=true
-depend fmri=system/input-method/ibus/ibus-m17n type=require
-depend fmri=system/input-method/ibus/sunpinyin type=require facet.locale.zh_CN=true facet.locale.zh_SG=true
-depend fmri=system/input-method/ibus/xkbc type=require
-depend fmri=system/input-method/imf-startup type=require
-depend fmri=system/input-method/library/libanthy type=require facet.locale.ja=true
-depend fmri=system/input-method/library/libchewing type=require facet.locale.zh_HK=true facet.locale.zh_TW=true
-depend fmri=system/input-method/library/libdatrie type=require
-depend fmri=system/input-method/library/libhangul type=require facet.locale.ko=true
-depend fmri=system/input-method/library/libthai type=require facet.locale.th=true
-depend fmri=system/input-method/library/m17n type=require
-depend fmri=system/input-method/library/m17n/contrib type=require
-depend fmri=system/library/iconv/utf-8 type=require
-depend fmri=system/library/iconv/utf-8/manual type=require
-depend fmri=system/locale type=require
-depend fmri=system/manual/locale/ca type=require facet.locale.ca=true
-depend fmri=system/manual/locale/ja type=require facet.locale.ja=true
-depend fmri=text/doctools/ja type=require facet.locale.ja=true
-depend fmri=web/browser/firefox/locale/de_de type=require facet.locale.de=true
-depend fmri=web/browser/firefox/locale/es_es type=require facet.locale.es=true
-depend fmri=web/browser/firefox/locale/extra type=require facet.locale.ar=true facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.lt=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
-depend fmri=web/browser/firefox/locale/fr_fr type=require facet.locale.fr=true
-depend fmri=web/browser/firefox/locale/hi_in type=require facet.locale.hi=true
-depend fmri=web/browser/firefox/locale/it_it type=require facet.locale.it=true
-depend fmri=web/browser/firefox/locale/ja_jp type=require facet.locale.ja=true
-depend fmri=web/browser/firefox/locale/ko_kr type=require facet.locale.ko=true
-depend fmri=web/browser/firefox/locale/pl_pl type=require facet.locale.pl=true
-depend fmri=web/browser/firefox/locale/pt_br type=require facet.locale.pt_BR=true
-depend fmri=web/browser/firefox/locale/ru_ru type=require facet.locale.ru=true
-depend fmri=web/browser/firefox/locale/sv_se type=require facet.locale.sv=true
-depend fmri=web/browser/firefox/locale/zh_cn type=require facet.locale.zh_CN=true
-depend fmri=web/browser/firefox/locale/zh_tw type=require facet.locale.zh_HK=true facet.locale.zh_TW=true
+depend fmri=gnome/locale/cs type=group facet.locale.cs=true
+depend fmri=gnome/locale/de type=group facet.locale.de=true
+depend fmri=gnome/locale/es type=group facet.locale.es=true
+depend fmri=gnome/locale/extra type=group facet.locale.af=true facet.locale.as=true facet.locale.bg=true facet.locale.bn=true facet.locale.bs=true facet.locale.ca=true facet.locale.da=true facet.locale.el=true facet.locale.et=true facet.locale.fi=true facet.locale.gu=true facet.locale.hr=true facet.locale.hy=true facet.locale.id=true facet.locale.is=true facet.locale.ka=true facet.locale.kk=true facet.locale.kn=true facet.locale.ks=true facet.locale.ku=true facet.locale.ky=true facet.locale.lt=true facet.locale.lv=true facet.locale.mk=true facet.locale.ml=true facet.locale.mr=true facet.locale.ms=true facet.locale.mt=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.or=true facet.locale.pa=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.sq=true facet.locale.sr=true facet.locale.ta=true facet.locale.te=true facet.locale.th=true facet.locale.tr=true facet.locale.uk=true facet.locale.vi=true
+depend fmri=gnome/locale/fr type=group facet.locale.fr=true
+depend fmri=gnome/locale/hg type=group facet.locale.hu=true
+depend fmri=gnome/locale/hi type=group facet.locale.hi=true
+depend fmri=gnome/locale/it type=group facet.locale.it=true
+depend fmri=gnome/locale/ja type=group facet.locale.ja=true
+depend fmri=gnome/locale/ko type=group facet.locale.ko=true
+depend fmri=gnome/locale/pl type=group facet.locale.pl=true
+depend fmri=gnome/locale/pt_br type=group facet.locale.pt_BR=true
+depend fmri=gnome/locale/rtl type=group facet.locale.ar=true facet.locale.az=true facet.locale.he=true
+depend fmri=gnome/locale/ru type=group facet.locale.ru=true
+depend fmri=gnome/locale/sv type=group facet.locale.sv=true
+depend fmri=gnome/locale/zh_cn type=group facet.locale.zh_CN=true facet.locale.zh_SG=true
+depend fmri=gnome/locale/zh_hk type=group facet.locale.zh_HK=true
+depend fmri=gnome/locale/zh_tw type=group facet.locale.zh_TW=true
+depend fmri=mail/thunderbird/locale/de type=group facet.locale.de=true
+depend fmri=mail/thunderbird/locale/es type=group facet.locale.es=true
+depend fmri=mail/thunderbird/locale/extra type=group facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.pt_PT=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
+depend fmri=mail/thunderbird/locale/fr type=group facet.locale.fr=true
+depend fmri=mail/thunderbird/locale/it type=group facet.locale.it=true
+depend fmri=mail/thunderbird/locale/ja type=group facet.locale.ja=true
+depend fmri=mail/thunderbird/locale/ko type=group facet.locale.ko=true
+depend fmri=mail/thunderbird/locale/pl type=group facet.locale.pl=true
+depend fmri=mail/thunderbird/locale/pt_br type=group facet.locale.pt_BR=true
+depend fmri=mail/thunderbird/locale/ru type=group facet.locale.ru=true
+depend fmri=mail/thunderbird/locale/sv type=group facet.locale.sv=true
+depend fmri=mail/thunderbird/locale/zh_cn type=group facet.locale.zh_CN=true
+depend fmri=mail/thunderbird/locale/zh_tw type=group facet.locale.zh_HK=true facet.locale.zh_TW=true
+depend fmri=system/font/truetype/arabeyes type=group facet.locale.ar=true
+depend fmri=system/font/truetype/arphic-uming type=group facet.locale.zh_CN=true facet.locale.zh_HK=true facet.locale.zh_SG=true facet.locale.zh_TW=true
+depend fmri=system/font/truetype/bpg-georgian type=group facet.locale.ka=true
+depend fmri=system/font/truetype/hanyang-ko-core type=group facet.locale.ko=true
+depend fmri=system/font/truetype/indic-fonts-core type=group facet.locale.hi=true
+depend fmri=system/font/truetype/ipafont type=group facet.locale.ja=true
+depend fmri=system/font/truetype/kacst type=group facet.locale.ar=true
+depend fmri=system/font/truetype/lohit type=group facet.locale.hi=true
+depend fmri=system/font/truetype/mgopen type=group facet.locale.el=true
+depend fmri=system/font/truetype/thai-scalable type=group facet.locale.th=true
+depend fmri=system/input-method/ibus type=group
+depend fmri=system/input-method/ibus/anthy type=group facet.locale.ja=true
+depend fmri=system/input-method/ibus/chewing type=group facet.locale.zh_HK=true facet.locale.zh_TW=true
+depend fmri=system/input-method/ibus/hangul type=group facet.locale.ko=true
+depend fmri=system/input-method/ibus/ibus-m17n type=group
+depend fmri=system/input-method/ibus/sunpinyin type=group facet.locale.zh_CN=true facet.locale.zh_SG=true
+depend fmri=system/input-method/ibus/xkbc type=group
+depend fmri=system/input-method/imf-startup type=group
+depend fmri=system/input-method/library/libanthy type=group facet.locale.ja=true
+depend fmri=system/input-method/library/libchewing type=group facet.locale.zh_HK=true facet.locale.zh_TW=true
+depend fmri=system/input-method/library/libdatrie type=group
+depend fmri=system/input-method/library/libhangul type=group facet.locale.ko=true
+depend fmri=system/input-method/library/libthai type=group facet.locale.th=true
+depend fmri=system/input-method/library/m17n type=group
+depend fmri=system/input-method/library/m17n/contrib type=group
+depend fmri=system/library/iconv/utf-8 type=group
+depend fmri=system/library/iconv/utf-8/manual type=group
+depend fmri=system/locale type=group
+depend fmri=system/manual/locale/ca type=group facet.locale.ca=true
+depend fmri=system/manual/locale/ja type=group facet.locale.ja=true
+depend fmri=text/doctools/ja type=group facet.locale.ja=true
+depend fmri=web/browser/firefox/locale/de_de type=group facet.locale.de=true
+depend fmri=web/browser/firefox/locale/es_es type=group facet.locale.es=true
+depend fmri=web/browser/firefox/locale/extra type=group facet.locale.ar=true facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.lt=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
+depend fmri=web/browser/firefox/locale/fr_fr type=group facet.locale.fr=true
+depend fmri=web/browser/firefox/locale/hi_in type=group facet.locale.hi=true
+depend fmri=web/browser/firefox/locale/it_it type=group facet.locale.it=true
+depend fmri=web/browser/firefox/locale/ja_jp type=group facet.locale.ja=true
+depend fmri=web/browser/firefox/locale/ko_kr type=group facet.locale.ko=true
+depend fmri=web/browser/firefox/locale/pl_pl type=group facet.locale.pl=true
+depend fmri=web/browser/firefox/locale/pt_br type=group facet.locale.pt_BR=true
+depend fmri=web/browser/firefox/locale/ru_ru type=group facet.locale.ru=true
+depend fmri=web/browser/firefox/locale/sv_se type=group facet.locale.sv=true
+depend fmri=web/browser/firefox/locale/zh_cn type=group facet.locale.zh_CN=true
+depend fmri=web/browser/firefox/locale/zh_tw type=group facet.locale.zh_HK=true facet.locale.zh_TW=true
