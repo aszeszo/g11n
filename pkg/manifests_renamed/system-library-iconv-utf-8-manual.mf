@@ -23,6 +23,6 @@
 # Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/system/library/iconv/utf-8/manual@$(PKGVERS)
+set name=pkg.fmri value=pkg:/system/library/iconv/utf-8/manual@0.5.11,5.11-0.173.0.0.0.0.725
 set name=pkg.renamed value=true
-depend fmri=system/library/iconv/utf-8@$(PKGVERS_COMPONENT)-$(PKGVERS_BRANCH) type=require
+depend fmri=system/library/iconv/utf-8@0.5.11-0.173.0.0.0.0.725 type=require
