@@ -2515,6 +2515,7 @@ file path=usr/lib/iconv/ibm931%UTF-8.so
 file path=usr/lib/iconv/ibm939%UTF-8.so
 license copyright.unicode license=copyright.unicode
 license copyright.hkscs license=copyright.hkscs
+license copyright.isoc license=copyright.isoc
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4.so target=./EUC-JIS-2004%UTF-32.so
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4BE.so target=./EUC-JIS-2004%UTF-32BE.so
 link path=usr/lib/iconv/$(ARCH64)/EUC-JIS-2004%UCS-4LE.so target=./EUC-JIS-2004%UTF-32LE.so

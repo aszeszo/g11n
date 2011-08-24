@@ -2729,6 +2729,7 @@ file path=usr/share/man/man5/iconv_ko.UTF-8.5
 file path=usr/share/man/man5/iconv_zh.5
 file path=usr/share/man/man5/iconv_zh_TW.5
 license copyright.unicode+icu license=copyright.unicode+icu
+license copyright.isoc license=copyright.isoc
 link path=usr/lib/iconv/64 target=$(ARCH64)
 link path=usr/lib/iconv/$(ARCH64)/UCS-4%eucJP.so target=./UTF-32%eucJP.so
 link path=usr/lib/iconv/$(ARCH64)/UCS-4BE%eucJP.so target=./UTF-32BE%eucJP.so
