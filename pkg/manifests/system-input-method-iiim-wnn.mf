@@ -25,7 +25,7 @@
 
 set name=pkg.fmri value=pkg:/system/input-method/iiim/wnn@8,$(PKGVERS_BUILTON)-$(PKGVERS_BRANCH)
 set name=info.classification value=org.opensolaris.category.2008:System/Internationalization
-depend fmri=system/locale/ja-extra type=require
+depend fmri=system/locale/extra type=require
 depend fmri=pkg:/system/iiim/ja/wnn8@8-1 type=optional
 set name=pkg.summary value="IIIMF - Japanese Language Engine (Wnn)"
 set name=org.opensolaris.redist value=nonredist

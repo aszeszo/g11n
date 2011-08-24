@@ -84,10 +84,8 @@ depend fmri=system/input-method/library/libthai type=group facet.locale.th=true
 depend fmri=system/input-method/library/m17n type=group
 depend fmri=system/input-method/library/m17n/contrib type=group
 depend fmri=system/library/iconv/utf-8 type=group
-depend fmri=system/library/iconv/utf-8/manual type=group
 depend fmri=system/locale type=group
-depend fmri=system/manual/locale/ca type=group facet.locale.ca=true
-depend fmri=system/manual/locale/ja type=group facet.locale.ja=true
+depend fmri=system/manual/locale type=group
 depend fmri=text/doctools/ja type=group facet.locale.ja=true
 depend fmri=web/browser/firefox/locale/de_de type=group facet.locale.de=true
 depend fmri=web/browser/firefox/locale/es_es type=group facet.locale.es=true
