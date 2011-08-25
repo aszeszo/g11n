@@ -670,6 +670,9 @@ def publish_pkg(pkg, proto_dir):
                         d = None # free data
                         os.close(fd)
 
+                        # filter our CDDL header hack (for sure it could be written in better way)
+                        os.system("perl -i -ne 'print unless /CDDL HEADER START/ .. /CDDL HEADER END/' '%s'" % tmp)
+
                         actual_action.data = lambda: open(tmp, "rb")
                         actual_action.attrs["pkg.size"] = a.attrs["pkg.size"]
                         publish_action(t, pkg, actual_action)

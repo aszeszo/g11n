@@ -89,6 +89,7 @@ COMPRESS=	/usr/bin/compress
 MV=             /usr/bin/mv -f
 RM=             /usr/bin/rm -f
 GREP=           /usr/bin/grep
+GNU_GREP=       /usr/bin/ggrep
 SED=            /usr/bin/sed
 NAWK=           /usr/bin/nawk
 CP=             /usr/bin/cp -f
