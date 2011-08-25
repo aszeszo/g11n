@@ -123,7 +123,7 @@ BDFTOPCF =	/usr/openwin/bin/bdftopcf
 BZIP2=		/usr/bin/bzip2 -9
 RSYNC=		/usr/bin/rsync
 UNPACKARCHIVE=	$(SRC)/tools/unpack-archive
-CDDL_FILTER=	$(SED) -e '/CDDL HEADER START/,/CDDL HEADER END/d'
+CDDL_FILTER=	$(PERL) -ne 'print unless /CDDL HEADER START/ .. /CDDL HEADER END/'
 
 # SUNWwgetu
 WGET=		/usr/sfw/bin/wget
