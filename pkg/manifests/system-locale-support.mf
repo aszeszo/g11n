@@ -27,37 +27,6 @@ set name=pkg.fmri value=pkg:/system/locale/support@0.1,$(PKGVERS_BUILTON)-$(PKGV
 set name=pkg.description value="Cluster installs basic fonts, input methods, or code conversions according to locale facet configuration. Also installs translation packages which have not been controlled by facet directly yet."
 set name=pkg.summary value="Language Support cluster"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
-depend fmri=gnome/locale/cs type=group facet.locale.cs=true
-depend fmri=gnome/locale/de type=group facet.locale.de=true
-depend fmri=gnome/locale/es type=group facet.locale.es=true
-depend fmri=gnome/locale/extra type=group facet.locale.af=true facet.locale.as=true facet.locale.bg=true facet.locale.bn=true facet.locale.bs=true facet.locale.ca=true facet.locale.da=true facet.locale.el=true facet.locale.et=true facet.locale.fi=true facet.locale.gu=true facet.locale.hr=true facet.locale.hy=true facet.locale.id=true facet.locale.is=true facet.locale.ka=true facet.locale.kk=true facet.locale.kn=true facet.locale.ks=true facet.locale.ku=true facet.locale.ky=true facet.locale.lt=true facet.locale.lv=true facet.locale.mk=true facet.locale.ml=true facet.locale.mr=true facet.locale.ms=true facet.locale.mt=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.or=true facet.locale.pa=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.sq=true facet.locale.sr=true facet.locale.ta=true facet.locale.te=true facet.locale.th=true facet.locale.tr=true facet.locale.uk=true facet.locale.vi=true
-depend fmri=gnome/locale/fr type=group facet.locale.fr=true
-depend fmri=gnome/locale/hg type=group facet.locale.hu=true
-depend fmri=gnome/locale/hi type=group facet.locale.hi=true
-depend fmri=gnome/locale/it type=group facet.locale.it=true
-depend fmri=gnome/locale/ja type=group facet.locale.ja=true
-depend fmri=gnome/locale/ko type=group facet.locale.ko=true
-depend fmri=gnome/locale/pl type=group facet.locale.pl=true
-depend fmri=gnome/locale/pt_br type=group facet.locale.pt_BR=true
-depend fmri=gnome/locale/rtl type=group facet.locale.ar=true facet.locale.az=true facet.locale.he=true
-depend fmri=gnome/locale/ru type=group facet.locale.ru=true
-depend fmri=gnome/locale/sv type=group facet.locale.sv=true
-depend fmri=gnome/locale/zh_cn type=group facet.locale.zh_CN=true facet.locale.zh_SG=true
-depend fmri=gnome/locale/zh_hk type=group facet.locale.zh_HK=true
-depend fmri=gnome/locale/zh_tw type=group facet.locale.zh_TW=true
-depend fmri=mail/thunderbird/locale/de type=group facet.locale.de=true
-depend fmri=mail/thunderbird/locale/es type=group facet.locale.es=true
-depend fmri=mail/thunderbird/locale/extra type=group facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.pt_PT=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
-depend fmri=mail/thunderbird/locale/fr type=group facet.locale.fr=true
-depend fmri=mail/thunderbird/locale/it type=group facet.locale.it=true
-depend fmri=mail/thunderbird/locale/ja type=group facet.locale.ja=true
-depend fmri=mail/thunderbird/locale/ko type=group facet.locale.ko=true
-depend fmri=mail/thunderbird/locale/pl type=group facet.locale.pl=true
-depend fmri=mail/thunderbird/locale/pt_br type=group facet.locale.pt_BR=true
-depend fmri=mail/thunderbird/locale/ru type=group facet.locale.ru=true
-depend fmri=mail/thunderbird/locale/sv type=group facet.locale.sv=true
-depend fmri=mail/thunderbird/locale/zh_cn type=group facet.locale.zh_CN=true
-depend fmri=mail/thunderbird/locale/zh_tw type=group facet.locale.zh_HK=true facet.locale.zh_TW=true
 depend fmri=system/font/truetype/arabeyes type=group facet.locale.ar=true
 depend fmri=system/font/truetype/arphic-uming type=group facet.locale.zh_CN=true facet.locale.zh_HK=true facet.locale.zh_SG=true facet.locale.zh_TW=true
 depend fmri=system/font/truetype/bpg-georgian type=group facet.locale.ka=true
@@ -87,17 +56,3 @@ depend fmri=system/library/iconv/utf-8 type=group
 depend fmri=system/locale type=group
 depend fmri=system/manual/locale type=group
 depend fmri=text/doctools/ja type=group facet.locale.ja=true
-depend fmri=web/browser/firefox/locale/de_de type=group facet.locale.de=true
-depend fmri=web/browser/firefox/locale/es_es type=group facet.locale.es=true
-depend fmri=web/browser/firefox/locale/extra type=group facet.locale.ar=true facet.locale.bg=true facet.locale.bs=true facet.locale.ca=true facet.locale.cs=true facet.locale.da=true facet.locale.el=true facet.locale.fi=true facet.locale.hu=true facet.locale.lt=true facet.locale.mk=true facet.locale.nb=true facet.locale.nl=true facet.locale.nn=true facet.locale.pt_PT=true facet.locale.ro=true facet.locale.sk=true facet.locale.sl=true facet.locale.tr=true
-depend fmri=web/browser/firefox/locale/fr_fr type=group facet.locale.fr=true
-depend fmri=web/browser/firefox/locale/hi_in type=group facet.locale.hi=true
-depend fmri=web/browser/firefox/locale/it_it type=group facet.locale.it=true
-depend fmri=web/browser/firefox/locale/ja_jp type=group facet.locale.ja=true
-depend fmri=web/browser/firefox/locale/ko_kr type=group facet.locale.ko=true
-depend fmri=web/browser/firefox/locale/pl_pl type=group facet.locale.pl=true
-depend fmri=web/browser/firefox/locale/pt_br type=group facet.locale.pt_BR=true
-depend fmri=web/browser/firefox/locale/ru_ru type=group facet.locale.ru=true
-depend fmri=web/browser/firefox/locale/sv_se type=group facet.locale.sv=true
-depend fmri=web/browser/firefox/locale/zh_cn type=group facet.locale.zh_CN=true
-depend fmri=web/browser/firefox/locale/zh_tw type=group facet.locale.zh_HK=true facet.locale.zh_TW=true

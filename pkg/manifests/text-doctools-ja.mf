@@ -20,12 +20,12 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
 set name=pkg.fmri value=pkg:/text/doctools/ja@$(PKGVERS)
 set name=info.classification value="org.opensolaris.category.2008:System/Text Tools"
-set name=pkg.summary value="Japanese Documentation Tools"
+set name=pkg.summary value="Japanese Documentation Tools for manual pages"
 set name=pkg.description value="Japanese Documentation Tools"
 legacy pkg=SUNWjdoc category=system,l10nja \
     version=1.1,REV= \

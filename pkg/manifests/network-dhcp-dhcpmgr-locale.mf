@@ -24,7 +24,7 @@
 #
 
 set name=pkg.fmri value=pkg:/network/dhcp/dhcpmgr/locale@$(PKGVERS)
-set name=pkg.description value="Localizations for DHCP Manager"
+set name=pkg.description value="Localizations for DHCP Manager graphical and command line interfaces"
 set name=pkg.summary value="Localizations for DHCP Manager"
 set name=info.classification value=org.opensolaris.category.2008:System/Services
 dir path=usr group=sys

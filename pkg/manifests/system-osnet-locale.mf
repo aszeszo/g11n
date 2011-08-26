@@ -24,7 +24,7 @@
 #
 
 set name=pkg.fmri value=pkg:/system/osnet/locale@$(PKGVERS)
-set name=pkg.description value="localized ON message files"
+set name=pkg.description value="localized OS-Networking message files"
 set name=pkg.summary value="localized ON message files"
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 dir path=usr group=sys
