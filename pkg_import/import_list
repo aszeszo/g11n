@@ -4,7 +4,6 @@
 # SVR4 packages are taken from result of inputmethod/specs
 #
 include system:input-method:library:m17n
-include system:input-method:scim
 #
 # Not integrated into G11N CWS yet
 # SVR4 package is kept in this directory as tarballs
