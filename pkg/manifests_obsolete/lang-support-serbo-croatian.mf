@@ -20,9 +20,8 @@
 #
 
 #
-# Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2010, 2011, Oracle and/or its affiliates. All rights reserved.
 #
 
-set name=pkg.fmri value=pkg:/lang-support-norwegian@0.1,5.11-0.133
-set name=pkg.renamed value=true
-depend fmri=system/locale/support/norwegian@0.1-0.133 type=require
+set name=pkg.fmri value=pkg:/lang-support-serbo-croatian@0.1,5.11-0.174.0.0.0.0.744
+set name=pkg.obsolete value=true
