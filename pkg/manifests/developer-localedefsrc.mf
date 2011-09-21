@@ -27,7 +27,7 @@ set name=pkg.fmri value=pkg:/source/locale/localedef@$(PKGVERS)
 set name=info.classification value=org.opensolaris.category.2008:System/Localizations
 set name=pkg.summary value="localedef source data"
 set name=pkg.description value="Source data that can be used by localedef(1) to create custom locales"
-license copyright.cddl+unicode  license="CDDL+Unicode"
+license copyright.unicode license=copyright.unicode
 dir path=usr group=sys
 dir path=usr/lib 
 dir path=usr/lib/localedef
