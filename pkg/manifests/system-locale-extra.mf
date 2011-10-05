@@ -2088,9 +2088,11 @@ link path=usr/share/locale/nl_BE.ISO8859-1 target=nl
 link path=usr/share/locale/nl_BE.ISO8859-15 target=nl
 link path=usr/share/locale/nl_NL.ISO8859-1 target=nl
 link path=usr/share/locale/nl_NL.ISO8859-15 target=nl
+link path=usr/share/locale/no_NO target=no
 link path=usr/share/locale/no_NO.ISO8859-1 target=no
 link path=usr/share/locale/no_NO.ISO8859-1@bokmal target=no
 link path=usr/share/locale/no_NO.ISO8859-1@nynorsk target=nn
+link path=usr/share/locale/no_NY target=no
 link path=usr/share/locale/pl_PL.ISO8859-2 target=pl
 link path=usr/share/locale/pt.ISO8859-15 target=pt
 link path=usr/share/locale/pt_BR.ISO8859-1 target=pt_BR

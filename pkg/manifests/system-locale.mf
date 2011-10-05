@@ -1474,7 +1474,6 @@ dir path=usr/share/locale/mt group=other
 dir path=usr/share/locale/nb group=other
 dir path=usr/share/locale/nl group=other
 dir path=usr/share/locale/nn group=other
-dir path=usr/share/locale/no group=other
 dir path=usr/share/locale/or group=other
 dir path=usr/share/locale/pa group=other
 dir path=usr/share/locale/pl group=other
@@ -3078,8 +3077,6 @@ link path=usr/share/locale/nl_BE.UTF-8 target=nl
 link path=usr/share/locale/nl_NL target=nl
 link path=usr/share/locale/nl_NL.UTF-8 target=nl
 link path=usr/share/locale/nn_NO.UTF-8 target=nn
-link path=usr/share/locale/no_NO target=no
-link path=usr/share/locale/no_NY target=no
 link path=usr/share/locale/or_IN.UTF-8 target=or
 link path=usr/share/locale/pa_IN.UTF-8 target=pa
 link path=usr/share/locale/pl.UTF-8 target=pl
