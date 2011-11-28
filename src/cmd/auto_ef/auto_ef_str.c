@@ -129,7 +129,8 @@ size_t auto_ef_str(auto_ef_t **aef, const char *input_buf,
 	}
 
 	for (i = 0; i < ICONV_LOCALE_MAX; i++) {
-		const char *p, *context;
+		const char *p;
+		char *context;
 		int flag;
 		int succeed_flag = 0;
 		int tmp_bufsize = 0;

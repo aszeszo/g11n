@@ -38,7 +38,7 @@ int RegistHashTable(unsigned char, unsigned char, srd *);
 int HashTableOpen(char *, srd *, double *, double *);
 void get_hash_name(char *, char *);
 int Regist_ASCII_ISO2022JP(int, char *, _auto_ef_t *);
-int IsAsciiOr2022_buf(const char *, int, char *);
+int IsAsciiOr2022_buf(char *, int, char *);
 int Is2022KROrCN(int, char *, char *, size_t, _auto_ef_t *);
 int Hash(unsigned char, unsigned char);
 int TotalScore_buf(const char *, double *, int, srd *, double *, double *);
@@ -274,7 +274,7 @@ int IsHKSCSOrBIG5(char *from_code, const char *to_code,
 {
 
 	iconv_t cd;
-	const char *context;
+	char *context;
 	char *convert;
 	char *tbuf, *retbuf;
 	size_t fsize, tsize;
@@ -566,13 +566,14 @@ int Regist_ASCII_ISO2022JP(int i, char *from_code, _auto_ef_t *root_autoef) {
 	return (0);
 }
 
-int IsAsciiOr2022_buf(const char *input_buf, int buf_size,
+int IsAsciiOr2022_buf(char *input_buf, int buf_size,
 	char *from_encoding) {
 
 	char *tbuf;
 	iconv_t cd;
 	char *convert;
-	const char *context, *p;
+	char *context;
+	const char *p;
 	size_t fsize, tsize, ret;
 	int i;
 	int tmp_bufsize = 0;
