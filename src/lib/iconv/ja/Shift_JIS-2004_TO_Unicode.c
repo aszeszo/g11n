@@ -220,7 +220,7 @@ _icv_iconv(iconv_t cd, const char **inbuf, size_t *inbytesleft,
 					PUTU(u32, "PLANE1->BMP", 2);
 				}
 			} else { /* 2nd byte check failed */
-				RET_EILSEQ("PLANE1-2, 2)
+				RET_EILSEQ("PLANE1-2", 2)
 				/* NOTREACHED */
 			}
 		} else if ((ic1 >= 0xf0) && (ic1 <= 0xfc)) {
